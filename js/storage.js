@@ -431,3 +431,32 @@ let alphabet = [
 
 let letters = [];
 let contactArray = [];
+
+
+//********************************** */
+
+let oldUsers= [
+
+{name: 'Guest', mail: 'guest@guest.de', nameTag: 'G', password: 'test123', phone: '+49 1111 111 11 1',
+token: STORAGE_TOKEN},
+{name: 'Mina M Zarkesh', mail: 'mina@test.de', nameTag: 'MZ', password: 'test123', phone: '+49 1111 111 11 1', 
+token: STORAGE_TOKEN},
+
+{name: 'Junus Ergin', mail: 'junus@test.de', nameTag: 'JE', password: 'test', phone: '+49 1111 111 11 1',
+token: STORAGE_TOKEN},
+{name: 'Anton Mayer', mail: 'antonmayer@test.de', nameTag: 'AM', password: 'test123', phone: '+49 1111 111 11 1',
+token: STORAGE_TOKEN},
+{name: 'Anton Mayer', mail: 'antom@gmail.com', nameTag: 'AM', password: 'test123', phone: '+49 1111 111 11 1',
+token: STORAGE_TOKEN},
+{name: 'Sofia Muller', mail: 'sofiam@gmail.com', nameTag: 'SM', password: 'mypassword123', phone: '+49 1111 111 11 1',
+token: STORAGE_TOKEN},
+{name: 'Anja Schulz', mail: 'schulz@hotmail.com', nameTag: 'AS', password: 'mypassword123', phone: '+49 1111 111 11 1',
+token: STORAGE_TOKEN},
+{name: 'Ali', mail: 'ali@ali', nameTag: 'AA', password: '123', phone: '+49 1111 111 11 1',
+token: STORAGE_TOKEN},
+{name: 'Peter Pan', mail: 'pp@nox.de', nameTag: 'PP', password: 'wendy', phone: '+49 1111 111 11 1',
+token: STORAGE_TOKEN}
+]
+
+//********************************************* */
+resetUsers = "[{\"name\": \"Guest\", \"mail\": \"guest@guest.de\", \"nameTag\": \"G\", \"password\": \"test123\", \"phone\": \"+49 1111 111 11 1\", \"color\": \"--default\", \"token\": \"CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE\"}, {\"name\": \"Mina M Zarkesh\", \"mail\": \"mina@test.de\", \"nameTag\": \"MZ\", \"password\": \"test123\", \"phone\": \"+49 1111 111 11 1\", \"color\": \"--default\", \"token\": \"CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE\"}, {\"name\": \"Junus Ergin\", \"mail\": \"junus@test.de\", \"nameTag\": \"JE\", \"password\": \"test\", \"phone\": \"+49 1111 111 11 1\", \"color\": \"--variant03\", \"token\": \"CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE\"}, {\"name\": \"Anton Mayer\", \"mail\": \"antonmayer@test.de\", \"nameTag\": \"AM\", \"password\": \"test123\", \"phone\": \"+49 1111 111 11 1\", \"color\": \"--variant12\", \"token\": \"CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE\"}, {\"name\": \"Anton Mayer\", \"mail\": \"antom@gmail.com\", \"nameTag\": \"AM\", \"password\": \"test123\", \"phone\": \"+49 1111 111 11 1\", \"color\": \"--variant07\", \"token\": \"CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE\"}, {\"name\": \"Sofia Muller\", \"mail\": \"sofiam@gmail.com\", \"nameTag\": \"SM\", \"password\": \"mypassword123\", \"phone\": \"+49 1111 111 11 1\", \"color\": \"--variant02\", \"token\": \"CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE\"}, {\"name\": \"Anja Schulz\", \"mail\": \"schulz@hotmail.com\", \"nameTag\": \"AS\", \"password\": \"mypassword123\", \"phone\": \"+49 1111 111 11 1\", \"color\": \"--variant15\", \"token\": \"CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE\"}]"
