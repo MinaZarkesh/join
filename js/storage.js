@@ -2,7 +2,7 @@
  * The token used for remote storage authentication.
  * @type {string}
  */
-const STORAGE_TOKEN = "848MSA6HLK28ZES60D4LDV7DSIDBDOSA4TSPOBAX";
+const STORAGE_TOKEN = "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE";
 
 /**
  * The URL for remote storage.
