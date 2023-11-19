@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <link rel="icon" type="image/x-icon" href="../assets/img/favIcon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <link rel="stylesheet" href="../css/general.css" />
+    <link rel="stylesheet" href="../css/board.css" />
+    <link rel="stylesheet" href="../css/openTaskCard.css" />
+    <link rel="stylesheet" href="../css/navbarMobile.css" />
+    <script src="../js/storage.js"></script>
+    <script src="../js/templatesBoard.js"></script>
+    <script src="../js/board.js"></script>
+  </head>
+  <body onload="initBoards()">
+    <div w3-include-html="../assets/templates/header.html"></div>
+    <div style="display: flex">
+      <div
+        w3-include-html="../assets/templates/navBar.html"
+        style="display: flex"
+      ></div>
+      <div class="mainTask">
+        <div class="menuRighttop">
+          <div class="menuRightTopFirst">
+            <div class="formContainer">
+              <form>
+                <input
+                  id="searchTask"
+                  onkeyup="filterTasks()"
+                  placeholder="Find Task"
+                />
+                <div class="board_line"></div>
+                <img src="../assets/img/searchLupe.png" alt="" />
+              </form>
+            </div>
+
+            <button id="board_addTaskBTN" onclick="showMainTask()">
+              Add task +
+            </button>
+          </div>
+        </div>
+
+        <div class="toDoBoard">
+          <div id="toDoBoard" class="toDoBoardQuery"></div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      w3-include-html="../assets/templates/navbarMobile.html"
+      class="menuListMobile"
+    ></div>
+    <img id="animatedImg" src="../assets/img/Added-to-board 1.png" alt="" />
+    <div
+      id="AddTask-overlay"
+      class="main_section"
+      style="padding: 0px 32px 0px 32px"
+    ></div>
+    <div class="overlay" id="overlay"></div>
+    <div class="openTask" id="openTask"></div>
+  </body>
+</html>

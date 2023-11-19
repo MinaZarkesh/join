@@ -1,0 +1,556 @@
+body {
+    overflow-y: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 14px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(69, 137, 255, 1);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(69, 137, 255, 1);
+}
+
+#addNewContact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* gap: 10px; */
+    /* margin: 16px, 10px, 16px, 10px; */
+    width: 357px;
+    height: 56px;
+    animation-delay: 10ms;
+}
+
+
+/*TODO*/
+
+
+/*wenn auf addNewConct geklickt wird, soll sich das Bild austauschen, blau werden*/
+
+.contacts-list-box {
+    display: flex;
+    /* display: none; */
+    align-items: center;
+    /* position: absolute; */
+    flex-direction: column;
+    width: 456px;
+    height: 100%;
+    /* top: 96px; */
+    left: 232px;
+    /* margin: 16px; */
+    border: 1px solid #ececec;
+    box-shadow: 0px 5px 5px 2px rgb(13 12 12 / 10%);
+}
+
+.button-fixed {
+    /* background-color: rgba(255, 255, 255, 1); */
+    position: sticky;
+    display: flex;
+    /* padding: 32px, 24px, 16px, 24px; */
+    width: 456px;
+    height: 104px;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-list-scroll {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 32px;
+    padding-top: 24px;
+    padding-left: 32px;
+    padding-bottom: 24px;
+    padding-right: 32px;
+}
+
+.lettter-box {
+    display: flex;
+    justify-content: flex-start;
+    width: 352px;
+    height: 56px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    /* padding: 17px, 36px, 17px, 36px; */
+    border-bottom: 1px solid rgba(209, 209, 209, 1);
+}
+
+.letter {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 18px;
+    padding-top: 17px;
+    padding-left: 36px;
+    padding-bottom: 17px;
+    padding-right: 36px;
+    gap: 8px;
+}
+
+.contact-box {
+    width: 352px;
+    height: 77px;
+    display: flex;
+    align-items: center;
+    /* padding-top: 15px;
+  padding-left: 24px;
+  padding-bottom: 15px;
+  padding-right: 24px; */
+    gap: 35px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 10px;
+}
+
+.contact-box:hover {
+    cursor: pointer;
+    background-color: rgba(210, 227, 255, 1);
+}
+
+.contact-box:active {
+    background-color: rgba(69, 137, 255, 1);
+    /* color: rgba(255, 255, 255, 1); */
+}
+
+.contact-box:active span {
+    /* background-color: rgba(69, 137, 255, 1); */
+    color: rgba(255, 255, 255, 1);
+}
+
+.contact-box.active {
+    background-color: rgba(69, 137, 255, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+.contact-box.active span {
+    color: rgba(255, 255, 255, 1);
+}
+
+.contact-frame-mail {
+    font-size: 16px;
+    color: rgba(69, 137, 255, 1);
+}
+
+.contact-frame-mail:active {
+    background-color: rgba(69, 137, 255, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+
+/*TODO*/
+
+
+/*mail-adresse wird nur weiß ich direkt drauf drücke, aber nicht wenn ich auf den Namen klicke, warum?*/
+
+
+/*wenn contact-frame.mail:active dann füge contact-active zur class-list von contact-frame-mail hinzu*/
+
+.contact-active {
+    background-color: rgba(69, 137, 255, 1);
+    color: rgba(255, 255, 255, 1);
+}
+
+.contact-inner-box {
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+    padding-left: 24px;
+    padding-bottom: 15px;
+    padding-right: 24px;
+    gap: 35px;
+}
+
+.contact-frame {
+    height: 47px;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.profile-badge {
+    background-color: var(--default);
+    color: rgba(255, 255, 255, 1);
+    font-size: 12px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 45px;
+    border: 2px solid rgba(255, 255, 255, 1);
+    gap: 10px;
+}
+
+.contact-frame-name {
+    font-size: 19px;
+}
+
+.floating-contact-box {
+    margin: 64px;
+    /* border: 1px solid black; */
+    font-size: 16px;
+    padding-top: 60px;
+}
+
+.floating-contact-box .profile-badge {
+    width: 114px;
+    height: 114px;
+    border-radius: 100px;
+    border: 3px solid rgba(255, 255, 255, 1);
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.floating-contact-box-header {
+    display: flex;
+    gap: 54px;
+    align-items: center;
+}
+
+.edit-delete {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    height: 24px;
+}
+
+.contactsBoard {
+    display: flex;
+    height: 90vh;
+}
+
+
+/* .edit-delete a {
+  flex:1;
+  background-color: transparent;
+  font-size: 16px;
+  color: rgba(42, 54, 71, 1);
+  text-align: center;
+   display: flex;
+  align-items: center;
+    gap: 6px; 
+    height: 24px;
+} */
+
+.edit-delete a:hover {
+    cursor: pointer;
+}
+
+.floating-contact-box h2 {
+    font-size: 23px;
+    margin: 0;
+    margin-top: 22px;
+    margin-bottom: 7px;
+}
+
+.floating-contact-box-info h3 {
+    margin: 0;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.d-none {
+    display: none;
+}
+
+
+/*colors for background Contact Profile-badges*/
+
+.anton {
+    background-color: var(--variant09);
+}
+
+.anja {
+    background-color: var(--variant13);
+}
+
+.benedikt {
+    background-color: var(--default);
+}
+
+.david {
+    background-color: var(--variant14);
+}
+
+.eva {
+    background-color: var(--variant06);
+}
+
+.emmanuel {
+    background-color: var(--variant10);
+}
+
+.marcel {
+    /*?? Welche Farbe bekommt er?*/
+    /*ist zwar nicht vorgesehen, aber als variant16*/
+    background-color: var(--variant16);
+}
+
+.tatjana {
+    background-color: var(--variant15);
+}
+
+.sofia {
+    background-color: var(--variant04);
+}
+
+.unknown {
+    background-color: var(--grey);
+}
+
+.full-width {
+    width: 100%;
+}
+
+.main_section {
+    z-index: 1002;
+}
+
+
+/* @media (max-width: 1150px){
+  .floating-contact-box {
+display: none;
+}
+} */
+
+.close-mobile-img {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    .add-contact-box-header {
+        border-top-right-radius: 0px;
+    }
+    .main_section {
+        border-radius: 0px;
+        width: 100%;
+    }
+    #close-btn {
+        width: 2px;
+        height: 10px;
+        padding: 0px;
+        top: 34px;
+        left: 635px;
+    }
+}
+
+@media (max-width: 770px) {
+    /* .menuLeft {
+
+    display: none;
+   
+  }
+  
+  #close-btn {
+    left: 600px;
+}
+
+.contacts-list-box {
+
+  width: 100%;
+}
+.button-fixed {
+  width: 100%;
+}
+main {
+  width: 100%;
+} */
+}
+
+@media (max-width: 640px) {
+    #close-btn {
+        left: 500px;
+    }
+}
+
+@media (max-width: 550px) {
+    #close-btn {
+        left: 400px;
+    }
+    .add-contact-box-header {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-list-scroll {
+        width: 330px;
+    }
+}
+
+@media (max-width: 450px) {
+    #close-btn {
+        left: 380px;
+    }
+}
+
+@media (max-width: 460px) {
+    form {
+        display: flex;
+        flex-direction: column;
+        align-content: space-around;
+        justify-content: center;
+        position: relative;
+        /* width: 90%; */
+        max-width: 370px;
+        /* height: 50%; */
+        /* height: 152px; */
+        gap: 24px;
+        /* margin: 32px; */
+    }
+}
+
+@media (max-width: 430px) {
+    #close-btn {
+        left: 345px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-content: space-around;
+        justify-content: center;
+        position: relative;
+        /* width: 90%; */
+        max-width: 310px;
+        /* height: 50%; */
+        /* height: 152px; */
+        gap: 24px;
+        /* margin: 32px; */
+    }
+}
+
+@media (max-width: 400px) {
+    .contact-list-scroll {
+        width: 260px;
+    }
+    #addNewContact {
+        width: 300px;
+    }
+}
+
+@media (max-width: 375px) {
+    #close-btn {
+        left: 300px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .button-fixed {
+        position: absolute;
+        bottom: 100px;
+        right: 90px;
+        z-index: 1002;
+        width: 60px;
+    }
+    .button-fixed button {
+        padding-right: 18px;
+        color: transparent;
+        font-size: 0;
+    }
+    .contactsBoard {
+        display: flex;
+        height: 90vh;
+    }
+    .floating-contact-box .profile-badge {
+        min-width: 116px;
+        min-height: 100px;
+    }
+    .contacts-list-box {
+        width: auto;
+        height: 90%;
+    }
+    main {
+        width: auto;
+    }
+    .menuListMobile {
+        display: flex !important;
+        position: fixed!important;
+        cursor: pointer!important;
+        left: 0!important;
+        right: 0!important;
+        bottom: 0!important;
+        height: 90px!important;
+        background-color: white!important;
+        align-items: center!important;
+        justify-content: space-around!important;
+        border-top: 1px solid lightgray!important;
+    }
+    .menuLeft {
+        display: none;
+    }
+}
+
+@media (max-width: 934px) {
+    .delete-div-mobule {
+        display: none;
+    }
+    .contacts-mobilde {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        z-index: 1002;
+        border: 1px solid lightgray;
+    }
+    .edit-div-mobile {
+        position: absolute;
+        bottom: -155px;
+        right: 0px;
+    }
+    .edit-div-mobile a {
+        font-size: 0;
+    }
+    #edit-img {
+        content: url('../assets/img/editContacts.png');
+    }
+    .close-mobile-img {
+        display: block;
+        position: absolute;
+        top: 50px;
+        right: 60px;
+        cursor: pointer;
+    }
+    .close-mobile-img img {
+        height: 46px;
+    }
+    .contacts-pc-display {
+        display: none;
+    }
+    #floating-contact-box {
+        display: block !important;
+        position: relative;
+        z-index: 1000;
+        max-width: 90%;
+    }
+    .overlay {
+        display: none;
+    }
+}
+
+.main-mobile-Overlay {
+    display: none;
+}
+
+@media (max-width:500px) {
+    .button-fixed {
+        position: inherit;
+    }
+}
