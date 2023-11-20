@@ -436,9 +436,3 @@ function selectContact(id, id1, nameTag, nameTagDiv, indexNumber) {
   renderBadges(indexNumber);
   checkIfContainerHasBadges();
 }
-
-
-
-
-
-
