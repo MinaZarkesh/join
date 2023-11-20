@@ -73,7 +73,9 @@ body {
     padding-top: 24px;
     padding-left: 32px;
     padding-bottom: 24px;
-    padding-right: 32px;
+    padding-right: 0px;
+    height: 90%;
+    /* height: 85vh; */
 }
 
 .lettter-box {
@@ -202,6 +204,7 @@ body {
     /* border: 1px solid black; */
     font-size: 16px;
     padding-top: 60px;
+    /* height: 100%; */
 }
 
 .floating-contact-box .profile-badge {
@@ -320,13 +323,6 @@ body {
     z-index: 1002;
 }
 
-
-/* @media (max-width: 1150px){
-  .floating-contact-box {
-display: none;
-}
-} */
-
 .close-mobile-img {
     display: none;
 }
@@ -346,29 +342,6 @@ display: none;
         top: 34px;
         left: 635px;
     }
-}
-
-@media (max-width: 770px) {
-    /* .menuLeft {
-
-    display: none;
-   
-  }
-  
-  #close-btn {
-    left: 600px;
-}
-
-.contacts-list-box {
-
-  width: 100%;
-}
-.button-fixed {
-  width: 100%;
-}
-main {
-  width: 100%;
-} */
 }
 
 @media (max-width: 640px) {
@@ -435,7 +408,7 @@ main {
 
 @media (max-width: 400px) {
     .contact-list-scroll {
-        width: 260px;
+        width: 250px;
     }
     #addNewContact {
         width: 300px;
@@ -465,12 +438,12 @@ main {
         display: flex;
         height: 90vh;
     }
-    .floating-contact-box .profile-badge {
+    /* .floating-contact-box .profile-badge {
         min-width: 116px;
         min-height: 100px;
-    }
+    } */
     .contacts-list-box {
-        width: auto;
+        width: 100%;
         height: 90%;
     }
     main {
@@ -483,7 +456,7 @@ main {
         left: 0!important;
         right: 0!important;
         bottom: 0!important;
-        height: 90px!important;
+        height: 10%!important;
         background-color: white!important;
         align-items: center!important;
         justify-content: space-around!important;
@@ -505,14 +478,17 @@ main {
         position: fixed;
         left: 0;
         width: 100%;
-        height: 100%;
+        padding: 8px 8px;
+        height: 100vh;
         background-color: white;
         z-index: 1002;
+        overflow: scroll;
         border: 1px solid lightgray;
+    
     }
     .edit-div-mobile {
         position: absolute;
-        bottom: -155px;
+        bottom: 0%;
         right: 0px;
     }
     .edit-div-mobile a {
@@ -539,6 +515,8 @@ main {
         position: relative;
         z-index: 1000;
         max-width: 90%;
+        /* height: 90%; */
+      
     }
     .overlay {
         display: none;
@@ -553,4 +531,25 @@ main {
     .button-fixed {
         position: inherit;
     }
+    .floating-contact-box .profile-badge{
+        width: 80px;
+        height: 80px;
+        font-size: 32px;
+        min-width: none;
+        min-height: none;
+    }
+    .floating-contact-box-header{
+        gap: 8px;
+        flex-direction: column;
+    }
+    h1{
+        text-align: center;
+    }
+    .floating-contact-box{
+        padding-top: 0px;
+    }
+    /* #contactsName{
+    
+    } */
+
 }

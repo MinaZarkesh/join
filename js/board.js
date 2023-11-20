@@ -350,6 +350,7 @@ function renderSubtask() {
   subtasksDiv.innerHTML = "";
   if (!(subtask.value === "")) {
     subTasksBoard.push(subtask.value);
+    subtask.value = "";
   }
   let ulbegin = "<ul>";
   for (let i = 0; i < subTasksBoard.length; i++) {

@@ -1,116 +1,116 @@
 body {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .menuLeft {
-    height: 90vh;
-    justify-content: flex-end;
+  height: 93vh;
+  justify-content: flex-end;
 }
 
 .menuList {
-    display: none;
+  display: none;
 }
 
 .NoticeContent {
-    overflow: scroll;
-    height: 1028px;
-    padding-left: 88px;
-    padding-right: 88px;
+  overflow-y: scroll;
+  height: 865px;
+  padding-left: 88px;
+  padding-right: 88px;
 }
 
 .NoticeTitel {
-    font-size: 61px;
-    color: #000000;
+  font-size: 61px;
+  color: #000000;
 }
 
 .subtitleLegalnotice {
-    color: #4589FF;
-    font-size: 33px;
+  color: #4589ff;
+  font-size: 33px;
 }
 
 .noticeTextContent {
-    font-size: 16px;
-    color: #000000;
+  font-size: 16px;
+  color: #000000;
 }
 
 .pointOut {
-    color: #005DFF;
-    font-size: 18px;
+  color: #005dff;
+  font-size: 18px;
 }
 
 .pointOutLight {
-    color: #4589FF;
+  color: #4589ff;
 }
 
 .spaceBetween {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: white;
-    border-radius: 100px;
-    width: 37px;
-    height: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 100px;
+  width: 37px;
+  height: 37px;
 }
 
 button:hover {
-    background-color: rgba(227, 238, 255, 1);
-    border-radius: 100px;
+  background-color: rgba(227, 238, 255, 1);
+  border-radius: 100px;
 }
 
 .legalNoticePosition {
-    background-color: #4589FF;
-    color: white;
-    padding: 8px;
-    border-radius: 20px;
+  background-color: #4589ff;
+  color: white;
+  padding: 8px;
+  border-radius: 20px;
 }
 
 @media (max-width: 830px) {
-    .NoticeTitel {
-        font-size: 48px;
-    }
+  .NoticeTitel {
+    font-size: 48px;
+  }
 }
 
 @media (max-width: 550px) {
-    .NoticeTitel {
-        font-size: 33px;
-    }
-    a {
-        font-size: 12px;
-    }
-    .subtitleLegalnotice {
-        font-size: 20px;
-    }
-    p {
-        font-size: 12px;
-    }
-    li {
-        font-size: 12px;
-    }
+  .NoticeTitel {
+    font-size: 33px;
+  }
+  a {
+    font-size: 12px;
+  }
+  .subtitleLegalnotice {
+    font-size: 20px;
+  }
+  p {
+    font-size: 12px;
+  }
+  li {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 440px) {
-    .NoticeTitel {
-        font-size: 24px;
-    }
-    a {
-        font-size: 12px;
-    }
-    .subtitleLegalnotice {
-        font-size: 16px;
-    }
-    p {
-        font-size: 12px;
-    }
-    li {
-        font-size: 12px;
-    }
-    a {
-        font-size: 9px;
-    }
+  .NoticeTitel {
+    font-size: 24px;
+  }
+  a {
+    font-size: 12px;
+  }
+  .subtitleLegalnotice {
+    font-size: 16px;
+  }
+  p {
+    font-size: 12px;
+  }
+  li {
+    font-size: 12px;
+  }
+  a {
+    font-size: 9px;
+  }
 }

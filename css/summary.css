@@ -224,11 +224,15 @@ header {
     .deadline {
         width: -webkit-fill-available;
     }
+    .summary{
+        overflow: hidden;
+    }
 }
 
 @media (max-width: 980px) {
     .summary {
         margin-top: auto;
+       
     }
     .summaryHeader {
         animation: slideUp 3s ease-in-out forwards;
