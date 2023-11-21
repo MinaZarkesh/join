@@ -14,8 +14,8 @@ header {
   padding-left: 39px;
 }
 
-#openSubtasksDiv{
-  overflow: auto;
+#openSubtasksDiv, #subtasksDiv{
+  overflow-y: auto;
   height: 120px;
 }
 
@@ -26,6 +26,10 @@ form #openSubtasksDiv {
   height: 56px;
 }
 
+[type="checkbox"]+label {
+  position: relative;
+  cursor: pointer;
+}
 .firstHeaderDiv {
   display: flex;
   align-items: center;
