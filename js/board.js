@@ -427,17 +427,16 @@ let tempContactNames = [];
 let elementAssignedToName = [];
 // let tempContactNamesAfter = [];
 
-
 function checkAssignedToinContacts() {
   tempContactNames = [];
   for (let j = 0; j < contacts.length; j++) {
     const element = contacts[j].name;
     tempContactNames.push(element);
   }
-//  debugger;
+  //  debugger;
   // console.log(tempContactNames);
 
-   for (let k = 0; k < tasks.length; k++) {
+  for (let k = 0; k < tasks.length; k++) {
     let elementAssignedTo = tasks[k].assignedTo;
 
     for (let i = 0; i < elementAssignedTo.length; i++) {
@@ -454,7 +453,6 @@ function checkAssignedToinContacts() {
 
     // tasks[k].assignedTo = elementAssignedToName;
     elementAssignedToName = [];
-   
   }
 }
 // for (let i = 0; i < elementAssignedToName.length; i++) {
@@ -566,15 +564,25 @@ function renderProfileBadges(i) {
   let taskPriorityImg = "../assets/img/medium.png";
 
   profileBadges.innerHTML = "";
-
+  let tempNumber;
   // generiere profileBadges
-  for (let j = 0; j < taskassignedToColor.length; j++) {
+  if (taskassignedToColor.length < 3) {
+    tempNumber = taskassignedToColor.length;
+  } else {
+    tempNumber = 3;
+  }
+
+  for (let j = 0; j < tempNumber; j++) {
     const assignedToColor = taskassignedToColor[j];
     const assignedToNameTag = taskassignedToNameTag[j];
     profileBadges.innerHTML += generateProfileBadge(
       assignedToColor,
       assignedToNameTag
     );
+  }
+  if (tempNumber == 3 && taskassignedToColor.length > 3) {
+    tempNumber= taskassignedToColor.length-3;
+    profileBadges.innerHTML += generateProfileBadge("--default", `+${tempNumber}`);
   }
 }
 
