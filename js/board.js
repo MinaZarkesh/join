@@ -25,6 +25,7 @@ let editedTask = [];
 async function initBoards() {
   await init();
   // Rufe die Funktion nach dem Laden der Seite auf, um den Anfangszustand festzulegen
+
   renderBoard();
   updateNoTasksDisplay();
   createContactChosen();
@@ -254,16 +255,13 @@ function chooseContact(index) {
  * @return {undefined} This function does not return a value.
  */
 function renderAssignetToProfileBadges(index) {
-  
   let isContactchosen = isContactchosenArray[index];
   contact = contacts[index];
   if (isContactchosen) {
-
     if (!ContactChosenDiv.includes(contact)) {
       ContactChosenDiv.push(contact);
     }
   } else {
-
     if (ContactChosenDiv.includes(contact)) {
       let chosenIndex = ContactChosenDiv.indexOf(contact);
       ContactChosenDiv.splice(chosenIndex, 1);
@@ -279,7 +277,9 @@ function renderAssignetToProfileBadges(index) {
   content.innerHTML = "";
   for (let i = 0; i < ContactChosenDiv.length; i++) {
     const element = ContactChosenDiv[i];
-    content.innerHTML += generateProfileBadge(element.color, element.nameTag);
+    if (element !== null || element.name !== undefined) {
+      content.innerHTML += generateProfileBadge(element.color, element.nameTag);
+    }
   }
 }
 
@@ -383,9 +383,11 @@ async function createTask() {
 
   for (let i = 0; i < ContactChosenDiv.length; i++) {
     const element = ContactChosenDiv[i];
-    taskassignedTo.push(element.name);
-    taskassignedToNameTag.push(element.nameTag);
-    taskassignedToColor.push(element.color);
+    if (element !== null || element.name !== undefined) {
+      taskassignedTo.push(element.name);
+      taskassignedToNameTag.push(element.nameTag);
+      taskassignedToColor.push(element.color);
+    }
   }
 
   for (let i = 0; i < subTasksBoard.length; i++) {
@@ -420,6 +422,58 @@ async function createTask() {
   }, 100); // Kurze Verzögerung vor dem erneuten Setzen der Animation
   closeMainTask();
 }
+
+let tempContactNames = [];
+let elementAssignedToName = [];
+// let tempContactNamesAfter = [];
+
+
+function checkAssignedToinContacts() {
+  tempContactNames = [];
+  for (let j = 0; j < contacts.length; j++) {
+    const element = contacts[j].name;
+    tempContactNames.push(element);
+  }
+//  debugger;
+  // console.log(tempContactNames);
+
+   for (let k = 0; k < tasks.length; k++) {
+    let elementAssignedTo = tasks[k].assignedTo;
+
+    for (let i = 0; i < elementAssignedTo.length; i++) {
+      const assignedToNameTemp = elementAssignedTo[i];
+      if (tempContactNames.indexOf(assignedToNameTemp) == -1) {
+        // console.log("Ist drin: ", i, assignedToNameTemp);
+        tasks[k].assignedTo.splice(i, 1);
+        tasks[k].assignedToNameTag.splice(i, 1);
+        tasks[k].assignedToColor.splice(i, 1);
+        // elementAssignedToName.push(assignedToNameTemp);
+      }
+    }
+    // console.log("check AssignedTo: ", elementAssignedToName);
+
+    // tasks[k].assignedTo = elementAssignedToName;
+    elementAssignedToName = [];
+   
+  }
+}
+// for (let i = 0; i < elementAssignedToName.length; i++) {
+//   const element = array[i];
+
+// }
+
+// for (let i = 0; i < element.length; i++) {
+//    elementAssignedToName = element[i];
+//   tempContactNames.forEach(elementContact => {
+//     if(elementContact.indexOf(elementAssignedToName) !== -1){
+//      console.log("Ist drin: " + elementAssignedToName);
+//     }
+//   });
+// }
+
+// console.log("ist drin: ",elementAssignedToName);
+
+// tasks[0].assignedTo[3] contacts[0].name.indexOf(tasks[0].assignedTo[3]);
 
 /**
  * Adds a task to the backend.
@@ -490,7 +544,7 @@ function renderTaskCard(id) {
       cardCategory.style.backgroundColor = `var(--userStory)`;
     } else {
     }
-
+    checkAssignedToinContacts();
     renderProfileBadges(j);
     renderPriorityImg(j);
     renderProgessBar(j);
@@ -921,9 +975,11 @@ async function editTask(index) {
 
   for (let i = 0; i < ContactChosenDiv.length; i++) {
     const element = ContactChosenDiv[i];
-    taskassignedTo.push(element.name);
-    taskassignedToNameTag.push(element.nameTag);
-    taskassignedToColor.push(element.color);
+    if (element !== null || element.name !== undefined) {
+      taskassignedTo.push(element.name);
+      taskassignedToNameTag.push(element.nameTag);
+      taskassignedToColor.push(element.color);
+    }
   }
 
   for (let i = 0; i < subTasksBoard.length; i++) {
@@ -1005,6 +1061,7 @@ function editSubtask(i) {
 function renderAddTask() {
   let mainSection = document.getElementById("AddTask-overlay");
   mainSection.innerHTML = generateAddTask();
+  subTasksBoard = [];
   //mit dieser Funktion stellst du sicher, dass die vergangenen Tage nicht mehr ausgewählt werden können.
   document.getElementById("date").min = new Date().toISOString().split("T")[0];
 }
