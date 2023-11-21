@@ -434,17 +434,17 @@ body {
         color: transparent;
         font-size: 0;
     }
-    .contactsBoard {
+    /* .contactsBoard {
         display: flex;
         height: 90vh;
-    }
+    } */
     /* .floating-contact-box .profile-badge {
         min-width: 116px;
         min-height: 100px;
     } */
     .contacts-list-box {
         width: 100%;
-        height: 90%;
+        height: 83vh;
     }
     main {
         width: auto;

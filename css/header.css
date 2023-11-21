@@ -7,8 +7,8 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color: #4589FF;
-    height: 5%;
-    padding: 15px 39px 20px 39px;
+    height: 10vh;
+    padding: 0px 39px 0px 39px;
 }
 
 .logo {
@@ -41,5 +41,8 @@ header {
 @media (max-width: 550px){
   .header-right {
     display: none;
+  }
+  .logo{
+    min-height: 40px;
   }
   }
