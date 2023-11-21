@@ -236,7 +236,7 @@ function toggleMenu() {
     if (window.innerWidth <= 550) {
         menuContent.innerHTML = `
       <a href="../html/help.html">Help</a>
-      <a target="_blank" rel="noopener noreferrer" href="../html/LegalNotice.html">Legal noticee</a>
+      <a target="_blank" rel="noopener noreferrer" href="../html/LegalNotice.html">Legal notice</a>
       <a target="_blank" rel="noopener noreferrer" href="../html/PrivacyPolicy.html">Privacy Policy</a>
       <a href="..\html\index.html">Log Out</a>`
     }

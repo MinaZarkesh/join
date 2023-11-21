@@ -15,6 +15,8 @@ let searchResultTasks;
 
 let subtaskscheckedArray;
 let editedTask = [];
+let tempContactNames = [];
+let elementAssignedToName = [];
 
 /**
  * Initializes the boards.
@@ -423,10 +425,10 @@ async function createTask() {
   closeMainTask();
 }
 
-let tempContactNames = [];
-let elementAssignedToName = [];
-// let tempContactNamesAfter = [];
-
+/**
+ * Checks the assignedTo property in the contacts array and removes any elements in the assignedTo array of each task that do not exist in the contacts array.
+ *
+ */
 function checkAssignedToinContacts() {
   tempContactNames = [];
   for (let j = 0; j < contacts.length; j++) {
@@ -581,8 +583,11 @@ function renderProfileBadges(i) {
     );
   }
   if (tempNumber == 3 && taskassignedToColor.length > 3) {
-    tempNumber= taskassignedToColor.length-3;
-    profileBadges.innerHTML += generateProfileBadge("--default", `+${tempNumber}`);
+    tempNumber = taskassignedToColor.length - 3;
+    profileBadges.innerHTML += generateProfileBadge(
+      "--default",
+      `+${tempNumber}`
+    );
   }
 }
 
