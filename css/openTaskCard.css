@@ -30,6 +30,10 @@
     justify-content: space-between;
     align-items: center;
 }
+#openAssignetTo{
+    overflow-y: scroll;
+    height: 100px;
+}
 
 .taskOpen span {
     background-color: #0038ff;
