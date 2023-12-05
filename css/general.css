@@ -2,9 +2,11 @@
   /*colors*/
   --primary: #4589ff;
   --secondary: #d2e3ff;
+  --active: #E3EEFF;
   --black: #000;
   --white: #fff;
   --grey: #d1d1d1;
+  --menuColor: #42526E;
   --userStory: rgba(255, 122, 0, 1);
   --technicalTask: rgba(0, 56, 255, 1);
   /*priority-colors*/
@@ -55,7 +57,7 @@ header {
 }
 main {
   display: flex;
-  width: 85vw;
+  width: 90vw;
   height: 90vh;
   background-color: rgba(255, 0, 0, 0.3);
   /* position: relative; */
