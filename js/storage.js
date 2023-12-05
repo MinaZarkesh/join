@@ -8,7 +8,6 @@ async function init() {
 }
 
 function openNavMenu() {
-  console.log('ja?')
   new MenuLink('summary');
   new MenuLink('add_task');
   new MenuLink('board');

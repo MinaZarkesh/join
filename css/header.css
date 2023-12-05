@@ -42,7 +42,7 @@ span {
   padding: 0.5vh;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 768px) {
   span,
   .help-icon {
     display: none;

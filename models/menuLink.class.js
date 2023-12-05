@@ -1,9 +1,12 @@
 class MenuLink {
     link;
     name;
+    className;
     constructor(id) {
+        this.className = "active";
         this.name = id.charAt(0).toUpperCase() + id.slice(1);
-        this.link = `<a href="${id}.html">
+        // onClick="activeLink(${id})" 
+        this.link = `<a class="nav-link" href="${id}.html">
                         <img src="../assets/img/${id}_menu.png" alt="${id}" />${this.name}
                     </a>`
         this.linkRender('navbar');
@@ -12,6 +15,14 @@ class MenuLink {
     linkRender (id) {
         docID(id).innerHTML += this.link;
     }
+    
+    // activeLink(id){
+    //     console.log("activeLink: ", id);
+    //     document.querySelector('.click').addEventListener('click', (e) => {
+    //         // Do whatever you want
+    //         docID(id).classList.add(className); 
+    //       });
+    // }
 }
 
 {/* <div>

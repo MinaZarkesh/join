@@ -1,42 +1,40 @@
 .vertical-menu {
   display: flex;
   flex-direction: column;
-  width: 15vw;
+  width: 20vw;
+  max-width: 262px;
+  height: 90vh;
   gap: 1%;
   padding: 1vw;
   padding-top: 5vh;
-  height: 100%;
   border-right: 1px solid var(--black);
 }
 
 .vertical-menu a {
   width: 100%;
-  background-color: var(--white); /* Grey background color */
+  background-color: var(--white);
   border-radius: 10px;
   padding: 3vh 1vw;
-  color: black; /* Black text color */
+  color: var(--menuColor); /* Black text color */
   display: flex; /* Make the links appear below each other */
   gap: 1vw;
-
-  /* padding: 12px; Add some padding */
   text-decoration: none; /* Remove underline from links */
 }
 
 .vertical-menu a:hover {
-  background-color: var(--active); /* Dark grey background on mouse-over */
+  background-color: var(--active);
 }
 
 .vertical-menu a.active {
-  background-color: var(
-    --secondary
-  ); /* Add a green color to the "active/current" link */
+  background-color: var(--secondary);
   color: var(--menuColor);
 }
 
-@media (max-width: 400px) {
+@media (max-width: 768px) {
   .vertical-menu {
     flex-direction: row;
     width: 100vw;
+    max-width: 100vw;
     height: 10vh;
     padding: 1vh;
     border-right: 0px solid var(--black);
@@ -45,5 +43,7 @@
   .vertical-menu a {
     display: flex;
     flex-direction: column;
+    padding: 1vh 1vw;
+    height: 100%;
   }
 }

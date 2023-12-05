@@ -1,12 +1,13 @@
 :root {
+  --mediumSize: 768px;
   /*colors*/
   --primary: #4589ff;
   --secondary: #d2e3ff;
-  --active: #E3EEFF;
+  --active: #e3eeff;
   --black: #000;
   --white: #fff;
   --grey: #d1d1d1;
-  --menuColor: #42526E;
+  --menuColor: #42526e;
   --userStory: rgba(255, 122, 0, 1);
   --technicalTask: rgba(0, 56, 255, 1);
   /*priority-colors*/
@@ -45,7 +46,7 @@ header {
   width: 100vw;
   height: 10vh;
   display: flex;
-  background-color: var( --primary);
+  background-color: var(--primary);
 }
 
 .main-site {
@@ -53,24 +54,15 @@ header {
   flex-direction: row-reverse;
   width: 100vw;
   height: 90vh;
-  background-color: rgba(0, 0, 255, 0.3);
 }
 main {
   display: flex;
   width: 90vw;
   height: 90vh;
   background-color: rgba(255, 0, 0, 0.3);
-  /* position: relative; */
 }
 
-footer {
-  background-color: rgba(0, 0, 0, 0.3);
-  display: flex;
-  width: 15vw;
-  height: 90vh;
-}
-
-@media (max-width: 400px) {
+@media (max-width: 768px) {
   .main-site {
     flex-direction: column;
     width: 100vw;
@@ -79,10 +71,6 @@ footer {
   main {
     width: 100vw;
     height: 90vh;
-  }
-  footer {
-    width: 100vw;
-    height: 10vh;
   }
 }
 
