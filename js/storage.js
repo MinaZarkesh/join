@@ -1,3 +1,20 @@
+function docID(id) {
+  return document.getElementById(id);
+}
+
+async function init() {
+  includeHTML();
+  openNavMenu();
+}
+
+function openNavMenu() {
+  console.log('ja?')
+  new MenuLink('summary');
+  new MenuLink('add_task');
+  new MenuLink('board');
+  new MenuLink('contacts');
+}
+
 /**
  * The token used for remote storage authentication.
  * @type {string}
@@ -440,7 +457,7 @@
 // resetUsers =
 //   '[{"name": "Guest", "mail": "guest@guest.de", "nameTag": "G", "password": "test123", "phone": "+49 1111 111 11 1", "color": "--default", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Mina M Zarkesh", "mail": "mina@test.de", "nameTag": "MZ", "password": "test123", "phone": "+49 1111 111 11 1", "color": "--default", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Junus Ergin", "mail": "junus@test.de", "nameTag": "JE", "password": "test", "phone": "+49 1111 111 11 1", "color": "--variant03", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Anton Mayer", "mail": "antonmayer@test.de", "nameTag": "AM", "password": "test123", "phone": "+49 1111 111 11 1", "color": "--variant12", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Anton Mayer", "mail": "antom@gmail.com", "nameTag": "AM", "password": "test123", "phone": "+49 1111 111 11 1", "color": "--variant07", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Sofia Muller", "mail": "sofiam@gmail.com", "nameTag": "SM", "password": "mypassword123", "phone": "+49 1111 111 11 1", "color": "--variant02", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Anja Schulz", "mail": "schulz@hotmail.com", "nameTag": "AS", "password": "mypassword123", "phone": "+49 1111 111 11 1", "color": "--variant15", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}]';
 
-  function includeHTML() {
+async function includeHTML() {
     var z, i, elmnt, file, xhttp;
     /*loop through a collection of all HTML elements:*/
     z = document.getElementsByTagName("*");
