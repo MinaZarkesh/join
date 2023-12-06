@@ -1,0 +1,4 @@
+function createSummaryBoxes(){
+    new createSummaryBoxes();
+    
+}
