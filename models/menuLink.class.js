@@ -5,6 +5,7 @@ class MenuLink {
     constructor(id) {
         this.className = "active";
         this.name = id.charAt(0).toUpperCase() + id.slice(1);
+        this.name = this.name.replace("_t", " T");
         // onClick="activeLink(${id})" 
         this.link = `<a class="nav-link" href="${id}.html">
                         <img src="../assets/img/${id}_menu.png" alt="${id}" />${this.name}
