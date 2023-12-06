@@ -1,8 +1,8 @@
 .vertical-menu {
   display: flex;
   flex-direction: column;
-  width: 20vw;
-  max-width: 262px;
+  /* width: flex; */
+  width: 160px;
   height: 90vh;
   gap: 1%;
   padding: 1vw;
