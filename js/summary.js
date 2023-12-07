@@ -1,4 +1,4 @@
-function createSummaryBoxes(){
-    new createSummaryBoxes();
-    
+function initBoard() {
+  init();
+  new SummaryBox("summaryBox");
 }

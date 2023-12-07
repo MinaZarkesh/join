@@ -20,19 +20,20 @@
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/summary.css" />
     <script src="../js/storage.js"></script>
+    <script src="../js/summary.js"></script>
+    <script src="../models/summaryBoxes.class.js"></script>
     <script src="../models/menuLink.class.js"></script>
   </head>
 
-  <body onload="init()">
+  <body onload="initBoard()">
     <div class="" w3-include-html="../assets/templates/header.html"></div>
     <div class="main-site">
       <main>
-        <div class="container text-center">
+        <div id="summaryBox" class="container text-center">
           <div class="row">
             <span id="greetings">Guten Abend, Mina Zarkesh</span>
           </div>
           <div class="row row-cols-4">
-            
             <div class="col-2">
               <div class="row">
                 <div class="col">
