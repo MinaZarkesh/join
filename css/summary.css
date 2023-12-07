@@ -1,13 +1,19 @@
 .col,
 .col-1,
 .col-2 {
-  /* background-color: aqua; */
   border: 1px solid black;
   height: 20vh;
   border-radius: 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: absolute;
+}
+
+.col:hover,
+.col-1:hover,
+.col-2:hover{
+  background-color: aqua;
 }
 .col,
 .col-1 {
@@ -76,6 +82,7 @@ h6 {
 }
 
 .container {
+  position: relative;
   width: 800px;
   height: 50vh;
   background-color: blueviolet;
