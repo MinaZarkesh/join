@@ -1,7 +1,7 @@
 .col,
 .col-1,
 .col-2 {
-  border: 1px solid black;
+  border: 1px solid var(--grey);
   height: 20vh;
   border-radius: 32px;
   display: flex;
@@ -11,26 +11,26 @@
 }
 
 .col:hover,
-.col-1:hover,
-.col-2:hover{
-  background-color: aqua;
-}
-.col,
-.col-1 {
- 
-  width: 25%;
-}
-.col-2 {
-    display: block;
-  width: 75%;
-  align-items: center;
-  background-color: var(--primary);
+.col-1:hover {
+  background-color: var(--secondary);
 }
 
-.col-2 .col{
-    width: 90%;
-    padding: 0;
-    border-width: 0px;
+
+.col,
+.col-1 {
+  width: 25%;
+  /* background-color: var(--primary); */
+}
+.col-2 {
+  display: block;
+  width: 75%;
+  align-items: center;
+}
+
+.col-2 .col {
+  width: 90%;
+  padding: 0;
+  border-width: 0px;
 }
 
 main {
@@ -38,6 +38,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: var(--white);
 }
 
 .summary-boxes img {
@@ -54,12 +55,12 @@ main {
   color: var(--white);
 }
 
-.summary-boxes .row{
-display: flex;
-flex-direction: row;
-width: 70%;
-right: 0;
-justify-content: space-around;
+.summary-boxes .row {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  right: 0;
+  justify-content: space-around;
 }
 
 .summary-boxes h1 {
@@ -70,8 +71,6 @@ justify-content: space-around;
   font-weight: 700;
   font-size: 5vw;
 }
-
-
 
 h6 {
   margin-top: 1vh;
@@ -85,7 +84,7 @@ h6 {
   position: relative;
   width: 800px;
   height: 50vh;
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
 }
 
 #greetings {
