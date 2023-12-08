@@ -16,31 +16,27 @@ class SummaryBox {
   index;
   top;
   left;
-
+//descriptions[index] <-- in der summary.js
   constructor(id, index) {
-    this.renderDescitption();
     this.item = /*html*/ `
-             <div id="item${id}${index}" class="col">${description}</div>
+             <div id="item${id}${index}" class="col">  <div class="row">
+   <img src=${images[index]}>
+    <h1>${taskAmounts[index]}</h1>
+   </div>
+   <h6>
+  ${descriptions[index]}
+   </h6></div>
         `;
     this.itemRender(id, index);
     this.calcPosition(index);
     this.renderPosition(id, index);
   }
 
-  renderDescitption() {
-    description = /*html*/ `
-   <div class="row">
-   <img src="../assets/img/to_do_summary.png">
-    <h1>10</h1>
-   </div>
-   <h6>
-    Awaiting Feedback
-   </h6>
-  `;
-  }
+
   itemRender(id, index) {
     docID(`${id}${index}`).innerHTML = this.item;
   }
+
 
   renderPosition(id, index) {
     docID(`item${id}${index}`).style.width = `${this.itemWidth}px`;
@@ -49,6 +45,7 @@ class SummaryBox {
     docID(`item${id}${index}`).style.top = `${this.top}px`;
   }
 
+//calc Position for Desktop Version (window.innerWidth>1023)
   calcPosition(index) {
     this.itemWidth = this.containerWidth / this.itemAmountPerRow - this.gap;
 
