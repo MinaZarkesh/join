@@ -2,6 +2,7 @@ function initBoard() {
   init();
   createSummaryBoxes();
 }
+
 let description= "Hier könnte dein Name stehen";
 function createSummaryBoxes(){
     new SummaryBox("summaryBox", 0);
