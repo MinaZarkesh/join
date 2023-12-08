@@ -1,4 +1,8 @@
-//erstelle die Werte für die Elemente
+//for responsiveness
+let screenSize = 1024; //ab wann wechsel zu Desktop Version
+
+//erstelle die Werte für die Items
+let itemAmount = 6;
 
 let descriptions = [
   "Tasks urgent",
@@ -17,29 +21,40 @@ let images = [
   "../assets/img/await_feedback_summary.png",
   "../assets/img/done_summary.png",
 ];
+
 let taskAmounts = [1, 2, 3, 40, 5, 6]; //verändern durch Tasks
 
 function initBoard() {
   init();
-  if (window.innerWidth > 1023) {
-    createSummaryBoxes(); //creates SummaryBoxes beim laden
-  }
+  createSummaryBoxes(); //creates SummaryBoxes beim laden
 }
 
 /***************** Event-Listener wenn window resize *****************/
 window.addEventListener("resize", function () {
-  checkScreenWidh();
+  checkScreenWidth();
 });
 
 let screenData = { internalWidth: "" };
 let screenWidth = "desktop";
+let containerInnerWidth = window.innerWidth;
+let containerInnerHeight = window.innerHeight * 0.8;
 
-function checkScreenWidh() {
-  if (window.innerWidth > 1023) {
-    screenData.screenWidth = "desktop";
+function checkScreenWidth() {
+  if (window.innerWidth > screenSize) {
+    screenWidth = "desktop";
   } else {
-    screenData.screenWidth = "mobile";
+    containerInnerWidth = window.innerWidth;
+    containerInnerHeight = window.innerHeight * 0.8;
+
+    console.log(
+      "mainsummarywidth: ",
+      containerInnerWidth,
+      "mainsummaryHeight ",
+      containerInnerHeight
+    );
+    screenWidth = "mobile";
   }
+
   console.log(screenWidth); //zum Nachvollziehen erstmal dringelassen
 }
 
@@ -51,36 +66,37 @@ Object.defineProperty(screenData, "screenWidth", {
     if (newVal != this.internalWidth) {
       //vergleicht ob newVal != "desktop"
       this.internalWidth = newVal;
+
       createSummaryBoxes(); //löst aus, wenn EventListener getriggert
     }
   },
 });
 
 function createSummaryBoxes() {
-  if (window.innerWidth < 1023) {
-    docID("summaryBox").innerHTML = ""; // Überschreibt die Div summaryBox
-    console.log("Test");
-  } else {
-    // create die Div, die er bei SummaryBox anspricht
-    docID("summaryBox").innerHTML = `
-    <div class="row">
-    <span id="greetings">Guten Abend, Mina Zarkesh</span>
-  </div>
-  <div class="row-cols-4">
-    <div id="summaryBox0"></div>
-    <div id="summaryBox1"></div>
-    <div id="summaryBox2"></div>
-    <div id="summaryBox3"></div>
-    <div id="summaryBox4"></div>
-    <div id="summaryBox5"></div>
-  </div>
-    `;
+  let view = "";
 
-    new SummaryBox("summaryBox", 0);
-    new SummaryBox("summaryBox", 1);
-    new SummaryBox("summaryBox", 2);
-    new SummaryBox("summaryBox", 3);
-    new SummaryBox("summaryBox", 4);
-    new SummaryBox("summaryBox", 5);
+  if (window.innerWidth < screenSize) {
+    //1024
+
+    view = "mobile";
+  } else {
+    view = "desktop";
+    // create die Div, die er bei SummaryBox anspricht
+  }
+
+  docID("summaryBox").innerHTML = "";
+  SummaryBoxes = [];
+  for (let i = 0; i < itemAmount; i++) {
+    docID("summaryBox").innerHTML += `
+  <div id="summaryBox${i}"></div>
+  `;
+
+    new SummaryBox(
+      "summaryBox",
+      i,
+      view,
+      window.innerWidth,
+      window.innerHeight
+    );
   }
 }
