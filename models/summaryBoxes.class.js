@@ -20,6 +20,7 @@ class SummaryBox {
   left;
 
   constructor(id, index) {
+    this.renderDescitption();
     this.item = /*html*/ `
              <div id="item${id}${index}" class="col">${description}</div>
         `;
@@ -28,9 +29,21 @@ class SummaryBox {
     this.renderPosition(id, index);
   }
 
+renderDescitption(){
+  description = /*html*/`
+   <div class="text-center">
+   <img src="../assets/img/to_do_summary.png">
+    <h1>10</h1>
+   </div>
+   <h6>
+    Tasks Done
+   </h6>
+  `
+}
   itemRender(id, index) {
     docID(`${id}${index}`).innerHTML = this.item;
   }
+
 
   renderPosition(id, index) {
     docID(`item${id}${index}`).style.width = `${this.itemWidth}px`;
@@ -38,6 +51,7 @@ class SummaryBox {
     docID(`item${id}${index}`).style.top = `${this.top}px`;
   }
 
+  
   calcPosition(index) {
     this.itemWidth = this.containerWidth / this.itemAmountPerRow - this.gap;
     this.itemHeight =
