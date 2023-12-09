@@ -1,3 +1,9 @@
+.div-span {
+    height: 50px;
+    width: 100%;
+}
+
+
 #addtaskCon {
     width: 518px;
     background-color: aqua;
@@ -23,5 +29,64 @@
 #contentbig {
     background-color: beige;
     width: 100%;
-    height: 100px;
+    height: 200px;
+    gap: 8px;
+}
+
+#taskName {
+    background-color: blue;
+}
+
+#taskName input{
+    height: 50px;
+    width: 100%;
+    font-size: 30px; 
+}
+
+#Description {
+    background-color: rgb(119, 0, 255);
+    width: 100%;
+}
+
+#Description span {
+    height: 50px;
+    width: 100%;
+}
+
+#Description textarea {
+    height: 80px;
+    width: 100%;
+    border-radius: 5%;
+    border: .0625rem rgba(0, 0, 0, 0.3); 
+}
+
+#Due-date {
+    background-color: rgb(255, 0, 0);
+    height: 50px;
+    width: 100%;
+}
+
+
+#priority {
+    background-color: rgb(255, 230, 0);
+    height: 50px;
+    width: 100%;
+}
+
+#assigned {
+    background-color: rgb(89, 255, 0);
+    height: 50px;
+    width: 100%;
+}
+
+#category {
+    background-color: rgb(255, 0, 128);
+    height: 50px;
+    width: 100%;
+}
+
+#subtask {
+    background-color: rgb(30, 0, 255);
+    height: 50px;
+    width: 100%;
 }

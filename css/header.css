@@ -12,7 +12,7 @@ header {
   align-items: center;
   gap: 1vw;
 }
-span {
+.span-size {
   font-size: 1.3vh;
 }
 .help-icon {
