@@ -1,5 +1,7 @@
 //for responsiveness
 let screenSize = 1024; //ab wann wechsel zu Desktop Version
+let containerInnerWidth = window.innerWidth;
+let containerInnerHeight = window.innerHeight * 0.8;
 
 //erstelle die Werte für die Items
 let itemAmount = 6;
@@ -29,15 +31,44 @@ function initBoard() {
   createSummaryBoxes(); //creates SummaryBoxes beim laden
 }
 
+function createSummaryBoxes() {
+  let view = "";
+
+  if (window.innerWidth < screenSize) {
+    //1024
+
+    view = "mobile";
+  } else {
+    view = "desktop";
+    // create die Div, die er bei SummaryBox anspricht
+  }
+
+  docID("summaryBox").innerHTML = "";
+  SummaryBoxes = [];
+  for (let i = 0; i < itemAmount; i++) {
+    docID("summaryBox").innerHTML += `
+  <div id="summaryBox${i}"></div>
+  `;
+
+    new SummaryBox(
+      "summaryBox",
+      i,
+      view,
+      window.innerWidth,
+      window.innerHeight
+    );
+  }
+}
+
 /***************** Event-Listener wenn window resize *****************/
+
+let screenData = { internalWidth: "" };
+let screenWidth = "desktop";
+
 window.addEventListener("resize", function () {
   checkScreenWidth();
 });
 
-let screenData = { internalWidth: "" };
-let screenWidth = "desktop";
-let containerInnerWidth = window.innerWidth;
-let containerInnerHeight = window.innerHeight * 0.8;
 
 function checkScreenWidth() {
   if (window.innerWidth > screenSize) {
@@ -71,32 +102,3 @@ Object.defineProperty(screenData, "screenWidth", {
     }
   },
 });
-
-function createSummaryBoxes() {
-  let view = "";
-
-  if (window.innerWidth < screenSize) {
-    //1024
-
-    view = "mobile";
-  } else {
-    view = "desktop";
-    // create die Div, die er bei SummaryBox anspricht
-  }
-
-  docID("summaryBox").innerHTML = "";
-  SummaryBoxes = [];
-  for (let i = 0; i < itemAmount; i++) {
-    docID("summaryBox").innerHTML += `
-  <div id="summaryBox${i}"></div>
-  `;
-
-    new SummaryBox(
-      "summaryBox",
-      i,
-      view,
-      window.innerWidth,
-      window.innerHeight
-    );
-  }
-}
