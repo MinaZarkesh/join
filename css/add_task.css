@@ -1,0 +1,27 @@
+#addtaskCon {
+    width: 518px;
+    background-color: aqua;
+    height: 100vh;
+    border-top-left-radius: 5%;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+}
+
+#taskHeadline {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+
+#contentCon {
+    background-color: brown;
+    width: 90%;
+    height: 200px;
+    margin: 0 5%;
+}
+
+#contentbig {
+    background-color: beige;
+    width: 100%;
+    height: 100px;
+}
