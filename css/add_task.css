@@ -1,6 +1,5 @@
 .div-span {
-    height: 50px;
-    width: 100%;
+    font-size: 20px;
 }
 
 
@@ -20,16 +19,19 @@
 }
 
 #contentCon {
+    display: flex;
+    flex-direction: column;
     background-color: brown;
     width: 90%;
-    height: 200px;
     margin: 0 5%;
+    gap: 8px;
 }
 
 #contentbig {
+    display: flex;
+    flex-direction: column;
     background-color: beige;
     width: 100%;
-    height: 200px;
     gap: 8px;
 }
 
@@ -62,10 +64,13 @@
 
 #Due-date {
     background-color: rgb(255, 0, 0);
-    height: 50px;
     width: 100%;
 }
 
+#Due-date input {
+    height: 50px;
+    width: 100%;
+}
 
 #priority {
     background-color: rgb(255, 230, 0);
@@ -73,15 +78,27 @@
     width: 100%;
 }
 
+#priority-button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 #assigned {
     background-color: rgb(89, 255, 0);
-    height: 50px;
+    width: 100%;
+}
+
+#assigned-select {
     width: 100%;
 }
 
 #category {
     background-color: rgb(255, 0, 128);
-    height: 50px;
+    width: 100%;
+}
+
+#category-select {
     width: 100%;
 }
 
