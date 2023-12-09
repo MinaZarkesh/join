@@ -25,14 +25,14 @@ class SummaryBox {
 
   constructor(id, index, view, containerInnerWidth, containerInnerHeight) {
     this.containerWidth = containerInnerWidth;
-  this.containerHeight =  containerInnerHeight;
+    this.containerHeight =  containerInnerHeight;
     this.item = /*html*/ `
              <div id="item${id}${index}" class="col">  <div class="row">
    <img src=${images[index]}>
-    <h1>${taskAmounts[index]}</h1>
+      <h1>${taskAmounts[index]}</h1>
    </div>
    <h6>
-  ${descriptions[index]}
+      ${descriptions[index]}
    </h6></div>
         `;
   
@@ -63,14 +63,14 @@ class SummaryBox {
   //calc Position for Desktop Version (window.innerWidth>1023) (px)
   calcPositionDesktop(index) {
 
-      // for calcPosition
-  this.containerWidth = 798;
-  this.containerHeight = 498;
-  this.spanheight = 36;
-  this.gapColoumn = 16;
-  this.gapRow = this.gapColoumn;
-  this.itemAmountPerRow = 4;
-  this.rowAmount = 2;
+        // for calcPosition
+    this.containerWidth = 798;
+    this.containerHeight = 498;
+    this.spanheight = 36;
+    this.gapColoumn = 16;
+    this.gapRow = this.gapColoumn;
+    this.itemAmountPerRow = 4;
+    this.rowAmount = 2;
 
 
     this.itemWidth = this.containerWidth / this.itemAmountPerRow - this.gapColoumn;

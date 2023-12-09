@@ -44,11 +44,9 @@ function createSummaryBoxes() {
   }
 
   docID("summaryBox").innerHTML = "";
-  SummaryBoxes = [];
-  for (let i = 0; i < itemAmount; i++) {
-    docID("summaryBox").innerHTML += `
-  <div id="summaryBox${i}"></div>
-  `;
+    SummaryBoxes = [];
+    for (let i = 0; i < itemAmount; i++) {
+      docID("summaryBox").innerHTML += `<div id="summaryBox${i}"></div>`;
 
     new SummaryBox(
       "summaryBox",
