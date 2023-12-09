@@ -60,7 +60,7 @@ main {
   /* width: 85vw; */
   flex: 1;
   height: 90vh;
-  background-color: rgba(255, 0, 0, 0.3);
+  /* background-color: rgba(255, 0, 0, 0.3); */
 }
 
 @media (max-width: 1023px) {
@@ -75,7 +75,7 @@ main {
   }
 }
 
-button {
+.button {
   height: 48px;
   border-radius: 8px;
   padding: 16px 10px 16px 10px;
@@ -89,7 +89,7 @@ button {
   justify-content: center;
 }
 
-button:hover {
+.button:hover {
   cursor: pointer;
   border-radius: 8px;
   padding: 8px, 16px, 8px, 16px;
@@ -106,7 +106,7 @@ button:hover {
 
 /*when der Button angeklickt wird*/
 
-button:active {
+.button:active {
   background-color: rgba(255, 255, 255, 1);
   color: rgba(69, 137, 255, 1);
   /* offset-x | offset-y | blur-radius | spread-radius | color */

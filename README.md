@@ -17,3 +17,11 @@ span hat auch die Spans in Addtask überschrieben. Deswegen habe ich
 eine Klasse daraus gemacht und beide Stellen entsprechend angepasst
 header.html Zeil4 
 summary.html 34
+
+Änderung in general.css Zeile 78, 92 und 109.
+Aus "button" wird ".button" Bisher wurde es nicht verwendet. 
+Als Klasse kann man es noch aufrufen, aber ich brauche button auch ohne formatierung in der Add Task
+
+Ich habe das Rohdesign der AddTask fertig. Ich möchte im nächsten 
+Schritt versuchen, js classen zu erstellen. Du kannst ja schon mal
+drüber schauen wenn du magst. 

@@ -5,7 +5,7 @@
 
 #addtaskCon {
     width: 518px;
-    background-color: aqua;
+    /* background-color: aqua; */
     height: 100vh;
     border-top-left-radius: 5%;
     border-bottom-left-radius: 5%;
@@ -21,7 +21,7 @@
 #contentCon {
     display: flex;
     flex-direction: column;
-    background-color: brown;
+    /* background-color: brown; */
     width: 90%;
     margin: 0 5%;
     gap: 8px;
@@ -30,13 +30,14 @@
 #contentbig {
     display: flex;
     flex-direction: column;
-    background-color: beige;
+    /* background-color: beige; */
     width: 100%;
     gap: 8px;
 }
 
 #taskName {
-    background-color: blue;
+    /* background-color: blue; */
+    display: block;
 }
 
 #taskName input{
@@ -46,7 +47,7 @@
 }
 
 #Description {
-    background-color: rgb(119, 0, 255);
+    /* background-color: rgb(119, 0, 255); */
     width: 100%;
 }
 
@@ -58,22 +59,24 @@
 #Description textarea {
     height: 80px;
     width: 100%;
-    border-radius: 5%;
-    border: .0625rem rgba(0, 0, 0, 0.3); 
+    outline: none;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px; 
 }
 
 #Due-date {
-    background-color: rgb(255, 0, 0);
+    /* background-color: rgb(255, 0, 0); */
     width: 100%;
 }
 
 #Due-date input {
     height: 50px;
     width: 100%;
+    padding: 0 10px;
 }
 
 #priority {
-    background-color: rgb(255, 230, 0);
+    /* background-color: rgb(255, 230, 0); */
     height: 50px;
     width: 100%;
 }
@@ -85,7 +88,7 @@
 }
 
 #assigned {
-    background-color: rgb(89, 255, 0);
+    /* background-color: rgb(89, 255, 0); */
     width: 100%;
 }
 
@@ -94,7 +97,7 @@
 }
 
 #category {
-    background-color: rgb(255, 0, 128);
+    /* background-color: rgb(255, 0, 128); */
     width: 100%;
 }
 
@@ -103,7 +106,27 @@
 }
 
 #subtask {
-    background-color: rgb(30, 0, 255);
-    height: 50px;
+    /* background-color: rgb(30, 0, 255); */
     width: 100%;
+}
+
+#subtask-input  {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#subtask-input input {
+    width: 93.3%!important;
+    border: none
+}
+
+#subtask-input img {
+    height: 20px;
+    width: 20px;
+    background-color: white;
+}
+
+#die-subtask {
+    background-color: white;
 }
