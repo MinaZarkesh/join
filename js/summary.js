@@ -1,5 +1,6 @@
 //for responsiveness
 let screenSize = 1024; //ab wann Wechsel zu Desktop Version
+
 //erstelle die Werte für die Items
 let itemAmount = 6;
 
@@ -20,13 +21,13 @@ let images = [
   "../assets/img/await_feedback_summary.png",
   "../assets/img/done_summary.png",
 ];
-let summaryBoxDivID = "summaryBox"; //später Class in SummaryBox
 
 let taskAmounts = [1, 2, 3, 40, 5, 6]; //verändern durch Tasks
 let newTaskAmounts = [1, 12, 3, 9, 5, 6]; //zum Testen
 
 //empty Array for new SummaryBoxes
 let summaryBoxes = [];
+let summaryBoxDivID = "summaryBox";
 
 function initBoard() {
   init();
@@ -53,7 +54,7 @@ function createSummaryBoxes() {
       summaryBoxDivID
     ).innerHTML += `<div id="${summaryBoxDivID}${i}"></div>`;
 
-    summaryBoxes.push(new SummaryBox(i));
+    summaryBoxes.push(new SummaryBox(summaryBoxDivID, i));
   }
 }
 
@@ -68,6 +69,10 @@ function updateTaskAmounts() {
   }
 }
 
+function navToBoard() {
+  console.log("Nav to Board");
+  window.location = "../html/board.html";
+}
 /***************** Event-Listener wenn window resize *****************/
 window.addEventListener("resize", function () {
   //triggert wenn, Bildschirmgröße verändert wird.

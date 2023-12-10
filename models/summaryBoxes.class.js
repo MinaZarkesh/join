@@ -16,7 +16,8 @@ class SummaryBox {
   left;
   index;
   taskAmount;
-  id = "summaryBox";
+  // id = "summaryBox";
+
   //in der summary.js
   //taskAmounts[index]
 
@@ -24,7 +25,8 @@ class SummaryBox {
   //descriptions[index]
   //images[index]
 
-  constructor(index) {
+  constructor(id, index) {
+    this.id = id;
     this.index = index;
     this.taskAmount = taskAmounts[index]; //Variable aus summary.js
     this.item = this.generateItemHTML();
@@ -35,7 +37,9 @@ class SummaryBox {
 
   generateItemHTML() {
     return /*html*/ `
-<div id="item${this.id}${this.index}" class="col">  <div class="row">
+<div onclick="navToBoard()" id="item${this.id}${
+      this.index
+    }" class="col">  <div class="row">
 <img src=${images[this.index]}>
 <h1 id="taskAmounts${this.id}${this.index}">${taskAmounts[this.index]}</h1>
 </div>
@@ -66,6 +70,7 @@ ${descriptions[this.index]}
 
   checkScreenView(index) {
     if (window.innerWidth > screenSize) {
+      //schreensize in summary.js
       this.calcPositionDesktop(index);
     } else {
       this.calcPositionMobile(index);
@@ -74,34 +79,32 @@ ${descriptions[this.index]}
 
   //calc Position for Desktop Version (window.innerWidth>1024) (px)
   calcPositionDesktop(index) {
-    // let index = this.index;
-    // for calcPosition
     this.containerWidth = 798;
     this.containerHeight = 498;
     this.spanheight = 36;
     this.gapColoumn = 16;
     this.gapRow = this.gapColoumn;
-    this.itemAmountPerRow = 4;
+    this.itemAmountPerRow = itemAmount-2;
     this.rowAmount = 2;
-
+    this.row = 0;
+    
     this.itemWidth =
       this.containerWidth / this.itemAmountPerRow - this.gapColoumn;
 
     this.height = this.containerHeight - this.spanheight;
+    this.itemHeight = this.height / this.rowAmount - this.gapRow;
 
-    this.itemHeight = this.height / this.rowAmount - this.gapRow * 2;
-
-    this.row = 0;
     if (index == 0) {
       let singleContainer = this.itemAmountPerRow - 1;
       this.itemWidth =
         (this.containerWidth * singleContainer) / this.itemAmountPerRow -
-        this.gapRow;
+        this.gapColoumn;
       index = 0;
+
     } else if (index == 1) {
-      index = this.itemAmountPerRow - 1;
+      index = this.itemAmountPerRow - 1; //letztes in der ersten Reihe
     } else {
-      index = index - 2;
+      index = index - 2; //min 2, -2 da 2 in der ersten Reihe
       this.row = 1;
     }
 
@@ -116,32 +119,33 @@ ${descriptions[this.index]}
   }
 
   calcPositionMobile(index) {
-    // let index = this.index;
+
+    //irgendwas stimmt was nicht
 
     this.itemAmountPerRow = 2;
-    this.spanheight = window.innerHeight * 0.005;
-    this.rowAmount = 3.5;
-    this.gapColoumn = 4;
+    this.rowAmount = 4;
+    this.gapColoumn = 8;
     this.gapRow = 8;
 
-    this.containerWidth = window.innerWidth * 0.9;
-    this.containerHeight = window.innerHeight * 0.73;
+    this.containerWidth = (window.innerWidth * 0.9) - 2;
+    this.height = (window.innerHeight * 0.8) - 2; // gesamtbreite - 10% (nav) - 10% (header) -2px für Rand
+    //  this.height = 506.92; //um den Fehler zu analysieren
 
     this.itemWidth =
       this.containerWidth / this.itemAmountPerRow - this.gapColoumn;
 
-    this.height = this.containerHeight - this.spanheight;
-    this.singleContainer = this.rowAmount - 1;
     this.itemHeight =
-      this.height / this.rowAmount - this.gapRow * this.singleContainer;
+      (this.height / this.rowAmount)- this.gapRow;
+
     this.row = 0;
 
     if (index == 0) {
       this.itemWidth = this.containerWidth - this.gapColoumn;
     } else if (index == 1) {
-      this.itemWidth = this.containerWidth - this.gapRow;
+      this.itemWidth = this.containerWidth - this.gapColoumn;
       index = 0;
       this.row = 1;
+
     } else if (index == 2 || index == 3) {
       index = index - 2;
       this.row = 2;
@@ -151,9 +155,8 @@ ${descriptions[this.index]}
     }
 
     this.top =
-      this.spanheight +
-      this.gapRow / 2 +
-      this.row * this.itemHeight +
+      this.gapRow / 2 + 
+      this.row * this.itemHeight + 
       this.row * this.gapRow;
 
     this.left =
