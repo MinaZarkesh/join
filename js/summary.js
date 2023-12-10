@@ -1,5 +1,5 @@
 //for responsiveness
-let screenSize = 1024; //ab wann wechsel zu Desktop Version
+let screenSize = 1024; //ab wann Wechsel zu Desktop Version
 //erstelle die Werte für die Items
 let itemAmount = 6;
 
@@ -20,16 +20,18 @@ let images = [
   "../assets/img/await_feedback_summary.png",
   "../assets/img/done_summary.png",
 ];
+let summaryBoxDivID = "summaryBox"; //später Class in SummaryBox
 
 let taskAmounts = [1, 2, 3, 40, 5, 6]; //verändern durch Tasks
-let summaryBoxDivID = "summaryBox";
+let newTaskAmounts = [1, 12, 3, 9, 5, 6]; //zum Testen
+
 //empty Array for new SummaryBoxes
 let summaryBoxes = [];
 
 function initBoard() {
   init();
   createSummaryBoxes(); //creates SummaryBoxes beim laden
-  changeTaskAmount();
+  updateTaskAmounts();
 }
 
 function createSummaryBoxes() {
@@ -51,52 +53,32 @@ function createSummaryBoxes() {
       summaryBoxDivID
     ).innerHTML += `<div id="${summaryBoxDivID}${i}"></div>`;
 
-    summaryBoxes.push(new SummaryBox(summaryBoxDivID, i));
+    summaryBoxes.push(new SummaryBox(i));
   }
 }
 
-function changeTaskAmount() {
-  let idx = 3; //index of SummaryBoxes
-  let newNumber = 9;
-  if (summaryBoxes.length > idx) {
-    // test = `taskAmounts${summaryBoxDivID}${idx}`;
-    // docID(test).innerHTML = newNumber;
-    // taskAmounts[idx] = newNumber;
-
-    summaryBoxes[idx].updateTaskAmount(newNumber, summaryBoxDivID, idx);
-    //TODO: update Server;
+function updateTaskAmounts() {
+  for (let index = 0; index < newTaskAmounts.length; index++) {
+    const newNumber = newTaskAmounts[index];
+    if (newNumber != taskAmounts[index]) {
+      taskAmounts[index] = newNumber;
+      summaryBoxes[index].updateTaskAmount(newNumber, index);
+      //TODO: update Server;
+    }
   }
 }
 
 /***************** Event-Listener wenn window resize *****************/
-/*TODO: überarebiten, da es nicht ganz funktioniert */
-let screenData = { internalWidth: "" };
-let screenWidth = "desktop";
-
 window.addEventListener("resize", function () {
-  checkScreenWidth();
+  //triggert wenn, Bildschirmgröße verändert wird.
+  changeScreenView();
 });
 
-function checkScreenWidth() {
-  if (window.innerWidth > screenSize) {
-    screenWidth = "desktop";
-  } else {
-    screenWidth = "mobile";
+function changeScreenView() {
+  // console.log(screenWidth);
+  for (let index = 0; index < summaryBoxes.length; index++) {
+    const element = summaryBoxes[index];
+    element.checkScreenView(index);
+    element.renderPosition(index);
   }
-
-  console.log(screenWidth); //zum Nachvollziehen erstmal dringelassen
 }
-
-Object.defineProperty(screenData, "screenWidth", {
-  get() {
-    return this.internalWidth;
-  },
-  set(newVal) {
-    if (newVal != this.internalWidth) {
-      //vergleicht ob newVal != "desktop"
-      this.internalWidth = newVal;
-      console.log("Triggered", this.internalWidth);
-      // createSummaryBoxes(); //löst aus, wenn EventListener getriggert
-    }
-  },
-});

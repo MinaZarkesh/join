@@ -36,4 +36,6 @@ https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=desi
        Schau dir dazu mal in der summary.css die Klasse .col ab Zeile 35 an.
        Wenn man die drei Eigenschaften einkommteniert, dann ändert man dies. Es überschreibt das justify-content: center; in Zeile 33
 
-    
+    Ich  habe eine Methode(funktion in Klassen) in der Class summaryBox.class.js erstellt, um die Anzahl der Tasks zu updaten, falls diese sich geändert hat.
+
+        Um dies zu testen, habe ich in der summary.js eine Funktion changeTaskAmounts() erstellt, die testweise, die Anzahl im 4. Item (2. Reihe, 2.Item von links) von ursprünglich 40 auf 9 updatet.

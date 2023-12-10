@@ -15,7 +15,8 @@ class SummaryBox {
   top;
   left;
   index;
-  taskAmounts;
+  taskAmount;
+  id = "summaryBox";
   //in der summary.js
   //taskAmounts[index]
 
@@ -23,26 +24,46 @@ class SummaryBox {
   //descriptions[index]
   //images[index]
 
-  constructor(id, index) {
-    // this.containerWidth = window.innerWidth;
-    // this.containerHeight = window.innerHeight;
-    this.taskAmounts = taskAmounts[index];
-    this.item = /*html*/ `
-             <div id="item${id}${index}" class="col">  <div class="row">
-   <img src=${images[index]}>
-      <h1 id="taskAmounts${id}${index}">${taskAmounts[index]}</h1>
-   </div>
-   <h6>
-      ${descriptions[index]}
-   </h6></div>
-        `;
-
+  constructor(index) {
+    this.index = index;
+    this.taskAmount = taskAmounts[index]; //Variable aus summary.js
+    this.item = this.generateItemHTML();
+    this.itemRender();
     this.checkScreenView(index);
-    this.itemRender(id, index);
-    this.renderPosition(id, index);
+    this.renderPosition();
   }
 
-  //ciw <-- containerInnerWidth, cih <-- containerInnerHeight
+  generateItemHTML() {
+    return /*html*/ `
+<div id="item${this.id}${this.index}" class="col">  <div class="row">
+<img src=${images[this.index]}>
+<h1 id="taskAmounts${this.id}${this.index}">${taskAmounts[this.index]}</h1>
+</div>
+<h6>
+${descriptions[this.index]}
+</h6></div>
+`;
+  }
+
+  itemRender() {
+    docID(`${this.id}${this.index}`).innerHTML = this.item;
+  }
+
+  updateTaskAmount(taskAmount, index) {
+    if (this.taskAmount != taskAmount) {
+      this.taskAmount = taskAmount;
+      docID(`taskAmounts${this.id}${index}`).innerHTML = this.taskAmount;
+      console.log("updated: ", index, this.taskAmount);
+    }
+  }
+
+  renderPosition() {
+    docID(`item${this.id}${this.index}`).style.width = `${this.itemWidth}px`;
+    docID(`item${this.id}${this.index}`).style.height = `${this.itemHeight}px`;
+    docID(`item${this.id}${this.index}`).style.left = `${this.left}px`;
+    docID(`item${this.id}${this.index}`).style.top = `${this.top}px`;
+  }
+
   checkScreenView(index) {
     if (window.innerWidth > screenSize) {
       this.calcPositionDesktop(index);
@@ -51,25 +72,9 @@ class SummaryBox {
     }
   }
 
-  itemRender(id, index) {
-    docID(`${id}${index}`).innerHTML = this.item;
-  }
-
-  updateTaskAmount(taskAmounts, id, index) {
-    this.taskAmounts = taskAmounts;
-    docID(`taskAmounts${id}${index}`).innerHTML = this.taskAmounts;
-    console.log("updated: ", this.taskAmounts);
-  }
-
-  renderPosition(id, index) {
-    docID(`item${id}${index}`).style.width = `${this.itemWidth}px`;
-    docID(`item${id}${index}`).style.height = `${this.itemHeight}px`;
-    docID(`item${id}${index}`).style.left = `${this.left}px`;
-    docID(`item${id}${index}`).style.top = `${this.top}px`;
-  }
-
-  //calc Position for Desktop Version (window.innerWidth>1023) (px)
+  //calc Position for Desktop Version (window.innerWidth>1024) (px)
   calcPositionDesktop(index) {
+    // let index = this.index;
     // for calcPosition
     this.containerWidth = 798;
     this.containerHeight = 498;
@@ -111,6 +116,8 @@ class SummaryBox {
   }
 
   calcPositionMobile(index) {
+    // let index = this.index;
+
     this.itemAmountPerRow = 2;
     this.spanheight = window.innerHeight * 0.005;
     this.rowAmount = 3.5;
