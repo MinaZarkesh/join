@@ -15,7 +15,7 @@ class SummaryBox {
   top;
   left;
   index;
-
+  taskAmounts;
   //in der summary.js
   //taskAmounts[index]
 
@@ -23,35 +23,42 @@ class SummaryBox {
   //descriptions[index]
   //images[index]
 
-  constructor(id, index, view, containerInnerWidth, containerInnerHeight) {
-    this.containerWidth = containerInnerWidth;
-    this.containerHeight =  containerInnerHeight;
+  constructor(id, index) {
+    // this.containerWidth = window.innerWidth;
+    // this.containerHeight = window.innerHeight;
+    this.taskAmounts = taskAmounts[index];
     this.item = /*html*/ `
              <div id="item${id}${index}" class="col">  <div class="row">
    <img src=${images[index]}>
-      <h1>${taskAmounts[index]}</h1>
+      <h1 id="taskAmounts${id}${index}">${taskAmounts[index]}</h1>
    </div>
    <h6>
       ${descriptions[index]}
    </h6></div>
         `;
-  
-    this.checkScreenView(index, view, containerInnerWidth, containerInnerHeight);
+
+    this.checkScreenView(index);
     this.itemRender(id, index);
     this.renderPosition(id, index);
   }
 
   //ciw <-- containerInnerWidth, cih <-- containerInnerHeight
-  checkScreenView(index, view, ciw, cih) {
-    if (view === "desktop") {
+  checkScreenView(index) {
+    if (window.innerWidth > screenSize) {
       this.calcPositionDesktop(index);
     } else {
-      this.calcPositionMobile(index, ciw, cih);
+      this.calcPositionMobile(index);
     }
   }
 
   itemRender(id, index) {
     docID(`${id}${index}`).innerHTML = this.item;
+  }
+
+  updateTaskAmount(taskAmounts, id, index) {
+    this.taskAmounts = taskAmounts;
+    docID(`taskAmounts${id}${index}`).innerHTML = this.taskAmounts;
+    console.log("updated: ", this.taskAmounts);
   }
 
   renderPosition(id, index) {
@@ -63,8 +70,7 @@ class SummaryBox {
 
   //calc Position for Desktop Version (window.innerWidth>1023) (px)
   calcPositionDesktop(index) {
-
-        // for calcPosition
+    // for calcPosition
     this.containerWidth = 798;
     this.containerHeight = 498;
     this.spanheight = 36;
@@ -73,8 +79,8 @@ class SummaryBox {
     this.itemAmountPerRow = 4;
     this.rowAmount = 2;
 
-
-    this.itemWidth = this.containerWidth / this.itemAmountPerRow - this.gapColoumn;
+    this.itemWidth =
+      this.containerWidth / this.itemAmountPerRow - this.gapColoumn;
 
     this.height = this.containerHeight - this.spanheight;
 
@@ -100,28 +106,22 @@ class SummaryBox {
       this.row * this.itemHeight +
       this.row * this.gapRow;
 
-    this.left = this.gapColoumn / 2 + index * this.itemWidth + index * this.gapColoumn;
+    this.left =
+      this.gapColoumn / 2 + index * this.itemWidth + index * this.gapColoumn;
   }
 
-  calcPositionMobile(index, ciw, cih) {
+  calcPositionMobile(index) {
     this.itemAmountPerRow = 2;
-    this.spanheight = cih*0.005;
+    this.spanheight = window.innerHeight * 0.005;
     this.rowAmount = 3.5;
     this.gapColoumn = 4;
     this.gapRow = 8;
 
-    
-    this.containerWidth = ciw*0.9;
-    this.containerHeight = cih*0.73;
+    this.containerWidth = window.innerWidth * 0.9;
+    this.containerHeight = window.innerHeight * 0.73;
 
-    console.log(
-      "calcPositionMobile: mainsummarywidth: ",
-      this.containerWidth,
-      "mainsummaryHeight ",
-      this.containerHeight
-    );
-
-    this.itemWidth = this.containerWidth / this.itemAmountPerRow - this.gapColoumn;
+    this.itemWidth =
+      this.containerWidth / this.itemAmountPerRow - this.gapColoumn;
 
     this.height = this.containerHeight - this.spanheight;
     this.singleContainer = this.rowAmount - 1;
@@ -148,7 +148,8 @@ class SummaryBox {
       this.gapRow / 2 +
       this.row * this.itemHeight +
       this.row * this.gapRow;
-      
-    this.left = this.gapColoumn / 2 + index * this.itemWidth + index * this.gapColoumn;
+
+    this.left =
+      this.gapColoumn / 2 + index * this.itemWidth + index * this.gapColoumn;
   }
 }

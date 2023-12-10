@@ -1,8 +1,5 @@
 //for responsiveness
 let screenSize = 1024; //ab wann wechsel zu Desktop Version
-let containerInnerWidth = window.innerWidth;
-let containerInnerHeight = window.innerHeight * 0.8;
-
 //erstelle die Werte für die Items
 let itemAmount = 6;
 
@@ -25,10 +22,14 @@ let images = [
 ];
 
 let taskAmounts = [1, 2, 3, 40, 5, 6]; //verändern durch Tasks
+let summaryBoxDivID = "summaryBox";
+//empty Array for new SummaryBoxes
+let summaryBoxes = [];
 
 function initBoard() {
   init();
   createSummaryBoxes(); //creates SummaryBoxes beim laden
+  changeTaskAmount();
 }
 
 function createSummaryBoxes() {
@@ -43,18 +44,27 @@ function createSummaryBoxes() {
     // create die Div, die er bei SummaryBox anspricht
   }
 
-  docID("summaryBox").innerHTML = "";
-    SummaryBoxes = [];
-    for (let i = 0; i < itemAmount; i++) {
-      docID("summaryBox").innerHTML += `<div id="summaryBox${i}"></div>`;
+  docID(summaryBoxDivID).innerHTML = "";
 
-    new SummaryBox(
-      "summaryBox",
-      i,
-      view,
-      window.innerWidth,
-      window.innerHeight
-    );
+  for (let i = 0; i < itemAmount; i++) {
+    docID(
+      summaryBoxDivID
+    ).innerHTML += `<div id="${summaryBoxDivID}${i}"></div>`;
+
+    summaryBoxes.push(new SummaryBox(summaryBoxDivID, i));
+  }
+}
+
+function changeTaskAmount() {
+  let idx = 3; //index of SummaryBoxes
+  let newNumber = 9;
+  if (summaryBoxes.length > idx) {
+    // test = `taskAmounts${summaryBoxDivID}${idx}`;
+    // docID(test).innerHTML = newNumber;
+    // taskAmounts[idx] = newNumber;
+
+    summaryBoxes[idx].updateTaskAmount(newNumber, summaryBoxDivID, idx);
+    //TODO: update Server;
   }
 }
 
@@ -67,20 +77,10 @@ window.addEventListener("resize", function () {
   checkScreenWidth();
 });
 
-
 function checkScreenWidth() {
   if (window.innerWidth > screenSize) {
     screenWidth = "desktop";
   } else {
-    containerInnerWidth = window.innerWidth;
-    containerInnerHeight = window.innerHeight * 0.8;
-
-    console.log(
-      "mainsummarywidth: ",
-      containerInnerWidth,
-      "mainsummaryHeight ",
-      containerInnerHeight
-    );
     screenWidth = "mobile";
   }
 
@@ -95,8 +95,8 @@ Object.defineProperty(screenData, "screenWidth", {
     if (newVal != this.internalWidth) {
       //vergleicht ob newVal != "desktop"
       this.internalWidth = newVal;
-
-      createSummaryBoxes(); //löst aus, wenn EventListener getriggert
+      console.log("Triggered", this.internalWidth);
+      // createSummaryBoxes(); //löst aus, wenn EventListener getriggert
     }
   },
 });
