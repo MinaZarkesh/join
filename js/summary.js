@@ -59,7 +59,7 @@ function createSummaryBoxes() {
 }
 
 /***************** Event-Listener wenn window resize *****************/
-
+/*TODO: überarebiten, da es nicht ganz funktioniert */
 let screenData = { internalWidth: "" };
 let screenWidth = "desktop";
 

@@ -41,6 +41,7 @@ class SummaryBox {
     this.renderPosition(id, index);
   }
 
+  //ciw <-- containerInnerWidth, cih <-- containerInnerHeight
   checkScreenView(index, view, ciw, cih) {
     if (view === "desktop") {
       this.calcPositionDesktop(index);
@@ -111,7 +112,7 @@ class SummaryBox {
 
     
     this.containerWidth = ciw*0.9;
-    this.containerHeight = cih*0.75;
+    this.containerHeight = cih*0.73;
 
     console.log(
       "calcPositionMobile: mainsummarywidth: ",
