@@ -37,9 +37,7 @@ class SummaryBox {
 
   generateItemHTML() {
     return /*html*/ `
-<div onclick="navToBoard()" id="item${this.id}${
-      this.index
-    }" class="col">  <div class="row">
+<div onclick="navToBoard()" id="item${this.id}${this.index}" class="col">  <div class="row">
 <img src=${images[this.index]}>
 <h1 id="taskAmounts${this.id}${this.index}">${taskAmounts[this.index]}</h1>
 </div>
@@ -84,10 +82,10 @@ ${descriptions[this.index]}
     this.spanheight = 36;
     this.gapColoumn = 16;
     this.gapRow = this.gapColoumn;
-    this.itemAmountPerRow = itemAmount-2;
+    this.itemAmountPerRow = itemAmount - 2;
     this.rowAmount = 2;
     this.row = 0;
-    
+
     this.itemWidth =
       this.containerWidth / this.itemAmountPerRow - this.gapColoumn;
 
@@ -100,7 +98,6 @@ ${descriptions[this.index]}
         (this.containerWidth * singleContainer) / this.itemAmountPerRow -
         this.gapColoumn;
       index = 0;
-
     } else if (index == 1) {
       index = this.itemAmountPerRow - 1; //letztes in der ersten Reihe
     } else {
@@ -119,7 +116,6 @@ ${descriptions[this.index]}
   }
 
   calcPositionMobile(index) {
-
     //irgendwas stimmt was nicht
 
     this.itemAmountPerRow = 2;
@@ -127,25 +123,23 @@ ${descriptions[this.index]}
     this.gapColoumn = 8;
     this.gapRow = 8;
 
-    this.containerWidth = (window.innerWidth * 0.9) - 2;
-    this.height = (window.innerHeight * 0.8) - 2; // gesamtbreite - 10% (nav) - 10% (header) -2px für Rand
+    this.containerWidth = window.innerWidth * 0.9 - 2;
+    this.height = window.innerHeight * 0.8 - 2; // gesamtbreite - 10% (nav) - 10% (header) -2px für Rand
     //  this.height = 506.92; //um den Fehler zu analysieren
 
     this.itemWidth =
       this.containerWidth / this.itemAmountPerRow - this.gapColoumn;
 
-    this.itemHeight =
-      (this.height / this.rowAmount)- this.gapRow;
+    this.itemHeight = this.height / this.rowAmount - this.gapRow;
 
     this.row = 0;
 
     if (index == 0) {
-      this.itemWidth = this.containerWidth - this.gapColoumn;
+       this.itemWidth = this.containerWidth - this.gapColoumn;
     } else if (index == 1) {
       this.itemWidth = this.containerWidth - this.gapColoumn;
       index = 0;
       this.row = 1;
-
     } else if (index == 2 || index == 3) {
       index = index - 2;
       this.row = 2;
@@ -155,9 +149,7 @@ ${descriptions[this.index]}
     }
 
     this.top =
-      this.gapRow / 2 + 
-      this.row * this.itemHeight + 
-      this.row * this.gapRow;
+      this.gapRow / 2 + this.row * this.itemHeight + this.row * this.gapRow;
 
     this.left =
       this.gapColoumn / 2 + index * this.itemWidth + index * this.gapColoumn;

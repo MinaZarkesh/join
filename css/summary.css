@@ -32,6 +32,7 @@ main {
   flex-direction: column;
   justify-content: center;
   position: absolute;
+  scale: 1;
   /*um die Bilder und Zahlen auf gleiche Höhe zu bringen*/
   /* justify-content: flex-start;
   padding-top: 40px;
@@ -60,7 +61,6 @@ main {
 .col .row h1 {
   width: fit-content;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   text-align: center;
   font-weight: 750;
@@ -76,11 +76,62 @@ main {
   font-size: 24px;
   color: var(--primary);
 }
+
+/*Wie zur Hölle funktioniert es vernünftig*/
+/*morgen in js umsetzen oder in der Klasse*/
 /* first item*/
-#itemsummaryBox0:hover {
+ #itemsummaryBox0 {
+  background-color: var(--primary);
+  color: var(--white);
+} 
+
+#itemsummaryBox0:hover{
+  background-color: var(--white);
+  color: var(--primary);
   scale: 1.05;
   z-index: 1;
 }
+
+#itemsummaryBox01{
+  border: none;
+  scale: 1;
+  z-index: 0;
+}
+
+#itemsummaryBox01:hover{
+  border: none;
+  background-color: var(--white);
+  color: var(--primary);
+  scale: 1;
+  z-index: 0;
+}
+
+#firstBox{
+  position: relative;
+  border: 0px solid var(--grey);
+  border-left: 3px solid var(--secondary);
+  margin: 24px 0px;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+}
+
+#firstbox:hover{
+  border-left: 3px solid var(--primary);
+}
+
+#firstbox h6{
+  font-weight: 700;
+  font-size: 32px;
+  margin: 0;
+}
+
+#firstbox span{
+font-size: 24px;
+} 
+
+
+
 
 @media (max-width: 1023px) {
   .col:hover {
@@ -104,8 +155,6 @@ main {
     height: 100%;
     display: flex;
     position: relative;
-    /* justify-content: center;
-    align-items: center; */
   }
 
   .col .row img {
