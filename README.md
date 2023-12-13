@@ -43,3 +43,4 @@ https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=desi
 - Mina 13.12.2023
   Ich habe das Design des ersten Items heute angepasst und fertig gestellt.
 
+  Ich wollte schon mal mit dem Login Design beginnen

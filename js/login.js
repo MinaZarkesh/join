@@ -1,0 +1,3 @@
+function initLogin() {
+    includeHTML();
+  }

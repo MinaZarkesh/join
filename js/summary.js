@@ -31,7 +31,7 @@ let newTaskAmounts = [1, 12, 3, 9, 5, 6, 8]; //zum Testen
 let summaryBoxes = [];
 let summaryBoxDivID = "summaryBox";
 
-function initBoard() {
+function initSummary() {
   init();
   createSummaryBoxes(); //creates SummaryBoxes beim laden
   // updateTaskAmounts();
