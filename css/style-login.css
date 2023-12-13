@@ -1,23 +1,80 @@
-.main-site{
-    height: 100%;
-    /* width: 100%; */
+body {
+  font-family: "Open Sans", sans-serif;
+}
+.main-site {
+  height: 100%;
+  /* width: 100%; */
+}
+h1 {
+  font-weight: 700;
+  font-size: 48px;
 }
 
-.row{
-    flex-wrap: nowrap;
+#LoginItem .row {
+  position: relative;
+  width: 100%;
+  flex-wrap: nowrap;
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  margin-left: 0;
 }
 
-#LoginItem{
-    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
-    border-radius: 30px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+.row {
+  flex-wrap: nowrap;
 }
-h1{
-text-align: center;
-text-decoration: underline;
-text-decoration-color: var(--primary);
-text-underline-offset: 16px;
-padding-bottom: 24px;
+
+#LoginItem .row button {
+  width: unset;
+  height: 48px;
+  padding: 10px 35px;
+  gap: 10px;
+}
+
+#LoginItem {
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.08);
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 652px;
+  height: 491px;
+  padding: 48px 115px;
+}
+#LoginItem form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  height: 152px;
+  width: fit-content;
+}
+
+#LoginItem input {
+  width: 422px;
+  /* height: 48px; */
+  gap: 10px;
+  border: none;
+  border-bottom: 1px solid var(--grey);
+  padding: 12px 21px;
+}
+
+#LoginItem h1 {
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-color: var(--primary);
+  text-underline-offset: 16px;
+  padding-bottom: 24px;
+  font-size: 48px;
+}
+
+.contentCon {
+  display: flex;
+  flex-direction: column;
+  /* background-color: brown; */
+  width: fit-content;
+  /* width: 90%; */
+  /* margin: 5% 5%; */
+  gap: 39px;
 }
