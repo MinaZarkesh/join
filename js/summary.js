@@ -67,37 +67,14 @@ function createfirstBox() {
 <img src=${images[0]}>
 <h1 id="taskAmounts${summaryBoxDivID}0">${taskAmounts[0]}</h1>
 </div>
-<h5>
+<h6>
 ${descriptions[0]}
-</h5></div>
+</h6></div>
     <div onclick="navToBoard()"id="firstBox">
-      <h5>October 16, 2022</h5>
+      <h6>October 16, 2022</h6>
       <span>Upcoming Deadline</span>
-    </div> 
+    </div>
  `;
-
-  let width = summaryBoxes[1].itemWidth;
-  let height = summaryBoxes[1].itemHeight - 2;
-  let left = summaryBoxes[0].left + width / 3;
-  let top = 0;
-
-  console.log("width: ", width);
-  console.log("height: ", height);
-  console.log("left: ", left);
-  console.log("top: ", top);
-
-  docID(`item${summaryBoxDivID}01`).style.width = `${width}px`;
-  docID(`item${summaryBoxDivID}01`).style.height = `${height}px`;
-  docID(`item${summaryBoxDivID}01`).style.left = `${left}px`;
-  docID(`item${summaryBoxDivID}01`).style.top = `${top}px`;
-
-  left = left + width;
-  width = 1.5 * width;
-
-  docID("firstBox").style.width = `${width}px`;
-  docID("firstBox").style.height = `${height}px`;
-  docID("firstBox").style.left = `${left}px`;
-  docID("firstBox").style.top = `${top}px`;
 }
 
 function updateTaskAmounts() {
@@ -129,3 +106,5 @@ function changeScreenView() {
     element.renderPosition(index);
   }
 }
+
+
