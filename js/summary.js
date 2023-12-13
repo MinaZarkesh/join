@@ -46,7 +46,6 @@ function createSummaryBoxes() {
     view = "mobile";
   } else {
     view = "desktop";
-    // create die Div, die er bei SummaryBox anspricht
   }
 
   docID(summaryBoxDivID).innerHTML = "";
@@ -62,16 +61,18 @@ function createSummaryBoxes() {
 }
 
 function createfirstBox() {
+  //leert die Box und fügt beide Elemente in einer neuen Div hinzu,
+  // um diese wiederum position relative zu machen(in css)
   docID(`item${summaryBoxDivID}0`).innerHTML = /*html*/ `
- <div  id="item${summaryBoxDivID}01" class="col">  <div class="row">
-<img src=${images[0]}>
-<h1 id="taskAmounts${summaryBoxDivID}0">${taskAmounts[0]}</h1>
-</div>
-<h6>
-${descriptions[0]}
-</h6></div>
+    <div  id="item${summaryBoxDivID}01" class="col">  
+      <div class="row">
+        <img src=${images[0]}>
+        <h1 id="taskAmounts${summaryBoxDivID}0">${taskAmounts[0]}</h1>
+      </div>
+      <h6>${descriptions[0]}</h6>
+    </div>
     <div onclick="navToBoard()"id="firstBox">
-      <h6>October 16, 2022</h6>
+      <h6 id="upcomingDeadline">October 16, 2022</h6>
       <span>Upcoming Deadline</span>
     </div>
  `;
@@ -106,5 +107,3 @@ function changeScreenView() {
     element.renderPosition(index);
   }
 }
-
-

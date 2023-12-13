@@ -39,3 +39,7 @@ https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=desi
     Ich  habe eine Methode(funktion in Klassen) in der Class summaryBox.class.js erstellt, um die Anzahl der Tasks zu updaten, falls diese sich geändert hat.
 
         Um dies zu testen, habe ich in der summary.js eine Funktion changeTaskAmounts() erstellt, die testweise, die Anzahl im 4. Item (2. Reihe, 2.Item von links) von ursprünglich 40 auf 9 updatet.
+
+- Mina 13.12.2023
+  Ich habe das Design des ersten Items heute angepasst und fertig gestellt.
+
