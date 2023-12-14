@@ -62,18 +62,6 @@ main {
   /* background-color: rgba(255, 0, 0, 0.3); */
 }
 
-@media (max-width: 1023px) {
-  .main-site {
-    flex-direction: column;
-    width: 100vw;
-    height: 90vh;
-  }
-  main {
-    width: 100vw;
-    height: 90vh;
-  }
-}
-
 .button {
   height: 48px;
   /* width: fit-content; */
@@ -201,7 +189,7 @@ a:active {
   position: relative;
   left: -200px;
   opacity: 0;
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
 }
 
 input[type="checkbox"] {
@@ -226,4 +214,81 @@ input[type="checkbox"] {
   height: 24px;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+@media (max-width: 1023px) {
+  .main-site {
+    flex-direction: column;
+    width: 100vw;
+    height: 90vh;
+  }
+  main {
+    width: 100vw;
+    height: 90vh;
+  }
+
+  .button {
+    /* display: flex; */
+    width: 180px;
+    height: 48px;
+    padding: 4px 0px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background: var(--primary, #4589ff);
+    /* Version 2/t6 */
+    font-size: 1.1875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; /* 1.425rem */
+  }
+
+  .secondaryButton {
+    display: flex;
+    width: 180px;
+    height: 48px;
+    padding: 12px 0px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--menu-color, #42526e);
+    background: var(--white, #fff);
+    font-size: 1.1875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+  }
+
+  [type="checkbox"] {
+    position: relative;
+    left: -200px;
+    opacity: 0;
+    /* -webkit-appearance: none; */
+  }
+  
+  input[type="checkbox"] {
+    position: absolute;
+    vertical-align: middle;
+    width: fit-content;
+  }
+  
+  [type="checkbox"] + label::before {
+    width: 24px;
+    height: 24px;
+    background-image: url(../assets/img/checket.svg);
+    content: "";
+    float: left;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  [type="checkbox"]:checked + label::before {
+    background-image: url(../assets/img/box.svg);
+    width: 24px;
+    height: 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }

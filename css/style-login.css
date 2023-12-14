@@ -1,17 +1,13 @@
 body {
   font-family: "Open Sans", sans-serif;
 }
-.main-site, main {
+.main-site,
+main {
   height: 100%;
   width: 100%;
 }
-h1 {
-  font-weight: 700;
-  font-size: 48px;
-  margin-bottom: 0;
-}
 
-.button-group{
+.button-group {
   position: absolute;
   top: 4.6%;
   right: 6%;
@@ -20,27 +16,10 @@ h1 {
   gap: 35px;
 }
 
-#Logo-login{
+#Logo-login {
   position: absolute;
   top: 7.8%;
   left: 5.3%;
-}
-
-
-.button-group span{
-width: 168px;
-display: flex;
-align-items: center;
-/* Version 2/t5 */
-/* font-family: Open Sans; */
-font-size: 1.4375rem;
-font-style: normal;
-font-weight: 400;
-line-height: 120%; /* 1.725rem */
-}
-
-.button span{
-  width: 80px;
 }
 
 #LoginItem .row {
@@ -65,7 +44,7 @@ line-height: 120%; /* 1.725rem */
   gap: 6px;
 }
 
-.link-group a{
+.link-group a {
   padding: 8px;
   gap: 8px;
   width: fit-content;
@@ -124,9 +103,9 @@ line-height: 120%; /* 1.725rem */
   gap: 4px;
 }
 
-#LoginItem .row label:hover  {
- cursor: pointer;
- padding-right: 0;
+#LoginItem .row label:hover {
+  cursor: pointer;
+  padding-right: 0;
 }
 
 #LoginItem h1 {
@@ -138,6 +117,7 @@ line-height: 120%; /* 1.725rem */
   padding-bottom: 16px;
   font-size: 48px;
   line-height: 58px;
+  margin-bottom: 0;
 }
 
 .contentCon {
@@ -146,4 +126,136 @@ line-height: 120%; /* 1.725rem */
   width: fit-content;
   gap: 32px;
   height: 152px;
+}
+
+@media (max-width: 1023px) {
+  .main-site,
+  main {
+    height: 100%;
+    width: 100%;
+  }
+
+  
+  .button-group {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    gap: 35px;
+    top:83%;
+    right: auto;
+  }
+
+   .button-group span {
+    display: flex;
+    align-items: center;
+    font-size: 1.1875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height:  1.425rem;
+  }
+  
+  .button-group .button{
+    width: unset;
+    height: 5%;
+    padding: 10px 16px;
+  }
+  .button span {
+    width: 66px;
+  }
+
+   .link-group {
+    position: absolute;
+    bottom: 5%;
+    flex-wrap: nowrap;
+    width: 240px;
+    height: 3%;
+    flex-shrink: 0;
+    gap: 6px;
+  }
+  
+
+  #Logo-login {
+    position: absolute;
+    top: 4%;
+    left: 8%;
+    width: 15%;
+    max-width: 64px;
+  }
+
+  #LoginItem .row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 21px;
+    margin-left: 0;
+    width: fit-content;
+  }
+
+  #LoginItem .row button {
+    width: 180px;
+  }
+
+  #LoginItem {
+    display: flex;
+    width: 85%;
+    height: 55%;
+    max-width: 397px;
+    padding: 3% 1.5%;
+    flex-direction: column;
+    align-items: center;
+    gap: 6%;
+    border-radius: 30px;
+    background: var(--white, #fff);
+    /* shadoe backlog box */
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  #LoginItem form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8%;
+    margin-bottom: 0;
+  }
+
+  #LoginItem input:not([type="checkbox"]) {
+    display: flex;
+    width: 100%;
+    padding: 12px 21px;
+    align-items: center;
+    gap: 1%;
+    align-self: stretch;
+    border: none;
+    border-bottom: 1px solid var(--grey);
+  }
+
+  #LoginItem .row label {
+    width: 100%;
+    max-width: 364px;
+    padding: 0px 16px;
+    gap: 16px;
+  }
+
+  #LoginItem h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    text-underline-offset: 23%;
+    padding-bottom: 3%;
+    text-decoration-color: var(--primary);
+    margin-bottom: 0;
+  }
+
+  .contentCon {
+    display: flex;
+    width: 100%;
+    max-width: 364px;
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8%;
+  }
 }
