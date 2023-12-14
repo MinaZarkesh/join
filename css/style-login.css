@@ -1,27 +1,77 @@
 body {
   font-family: "Open Sans", sans-serif;
 }
-.main-site {
+.main-site, main {
   height: 100%;
-  /* width: 100%; */
+  width: 100%;
 }
 h1 {
   font-weight: 700;
   font-size: 48px;
+  margin-bottom: 0;
+}
+
+.button-group{
+  position: absolute;
+  top: 4.6%;
+  right: 6%;
+  display: flex;
+  width: fit-content;
+  gap: 35px;
+}
+
+#Logo-login{
+  position: absolute;
+  top: 7.8%;
+  left: 5.3%;
+}
+
+
+.button-group span{
+width: 168px;
+display: flex;
+align-items: center;
+/* Version 2/t5 */
+/* font-family: Open Sans; */
+font-size: 1.4375rem;
+font-style: normal;
+font-weight: 400;
+line-height: 120%; /* 1.725rem */
+}
+
+.button span{
+  width: 80px;
 }
 
 #LoginItem .row {
   position: relative;
   width: 100%;
+  line-height: 28px;
   flex-wrap: nowrap;
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
   gap: 35px;
   margin-left: 0;
 }
 
-.row {
+.link-group {
+  position: absolute;
+
+  bottom: 4%;
   flex-wrap: nowrap;
+  width: 240px;
+  height: 35px;
+  flex-shrink: 0;
+  gap: 6px;
+}
+
+.link-group a{
+  padding: 8px;
+  gap: 8px;
+  width: fit-content;
+  font-size: 16px;
+  height: fit-content;
+  line-height: 19px;
 }
 
 #LoginItem .row button {
@@ -32,49 +82,68 @@ h1 {
 }
 
 #LoginItem {
-  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+
   border-radius: 30px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  width: 652px;
-  height: 491px;
+  /* width: 652px;
+  height: 491px; */
   padding: 48px 115px;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  gap: 39px;
 }
 #LoginItem form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-  height: 152px;
   width: fit-content;
+  margin-bottom: 0;
 }
 
-#LoginItem input {
+#LoginItem input:not([type="checkbox"]) {
   width: 422px;
-  /* height: 48px; */
+  height: 48px;
   gap: 10px;
   border: none;
   border-bottom: 1px solid var(--grey);
   padding: 12px 21px;
 }
 
+#LoginItem .row label {
+  padding-left: 0;
+  width: fit-content;
+  display: flex;
+  justify-content: flex-start;
+  height: 23px;
+  gap: 4px;
+}
+
+#LoginItem .row label:hover  {
+ cursor: pointer;
+ padding-right: 0;
+}
+
 #LoginItem h1 {
+  width: 100%;
   text-align: center;
   text-decoration: underline;
   text-decoration-color: var(--primary);
   text-underline-offset: 16px;
-  padding-bottom: 24px;
+  padding-bottom: 16px;
   font-size: 48px;
+  line-height: 58px;
 }
 
 .contentCon {
   display: flex;
   flex-direction: column;
-  /* background-color: brown; */
   width: fit-content;
-  /* width: 90%; */
-  /* margin: 5% 5%; */
-  gap: 39px;
+  gap: 32px;
+  height: 152px;
 }

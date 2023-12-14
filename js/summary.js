@@ -38,15 +38,6 @@ function initSummary() {
 }
 
 function createSummaryBoxes() {
-  let view = "";
-
-  if (window.innerWidth < screenSize) {
-    //1024
-
-    view = "mobile";
-  } else {
-    view = "desktop";
-  }
 
   docID(summaryBoxDivID).innerHTML = "";
 

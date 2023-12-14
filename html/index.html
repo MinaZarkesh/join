@@ -26,38 +26,43 @@
 
   <body onload="initLogin()">
     <div class="main-site">
-      <div class="header"></div>
-      <!-- <header>Test</header> -->
       <main>
+        <img id="Logo-login" src="../assets/img/Logo-middle_blue.png" alt="">
+        <div class= "button-group">
+          <span>Not a Join user?</span>
+          <button class="button"><span>Sign up</span></button>
+        </div>
         <div id="LoginItem">
-         <div class="contentCon">
           <h1>Log in</h1>
           <form action="">
+          <div class="contentCon">
             <input
-              type="email"
-              name="Email"
-              placeholder="Email"
-              id="login-email"
-            />
-            <input
-              type="password"
-              name="Password"
-              placeholder="Password"
-              id="login-password"
-            />
+            type="email"
+            name="Email"
+            placeholder="Email"
+            id="login-email"
+          />
+          <input
+            type="password"
+            name="Password"
+            placeholder="Password"
+            id="login-password"
+          />
+          </div>
             <!-- changePassword-Style-->
 
-            <div>
-              <!-- checkbox -->
+            <div class="row">
+              <input type="checkbox" name="rememberMe" id="rememberMe" />
+              <label for="rememberMe"> Remember me</label>
             </div>
           </form>
-            <div class="row">
-              <button class="button">Log in</button>
-              <button class="secondaryButton">Guest Log in</button>
-            </div>
-         </div>
+          <div class="row">
+            <button class="button">Log in</button>
+            <button class="secondaryButton">Guest Log in</button>
+          </div>
         </div>
-        <div class="row link-group"><a href="">Privacy Policy</a>
+        <div class="row link-group">
+          <a href="">Privacy Policy</a>
           <a href="">Legal Notice</a>
         </div>
       </main>
