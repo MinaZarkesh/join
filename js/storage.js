@@ -1,6 +1,19 @@
+/**
+ * The token used for remote storage authentication.
+ * @type {string}
+ */
+const STORAGE_TOKEN = "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE";
+
+/**
+ * The URL for remote storage.
+ * @type {string}
+ */
+const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
+
 function docID(id) {
   return document.getElementById(id);
 }
+
 
 async function init() {
   includeHTML();
@@ -14,17 +27,6 @@ function openNavMenu() {
   new MenuLink('contacts');
 }
 
-/**
- * The token used for remote storage authentication.
- * @type {string}
- */
-// const STORAGE_TOKEN = "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE";
-
-/**
- * The URL for remote storage.
- * @type {string}
- */
-// const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
 /**
  * Sets a key-value pair in remote storage.
