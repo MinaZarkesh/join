@@ -43,8 +43,12 @@ https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=desi
 - Mina 13.12.2023
   Ich habe das Design des ersten Items heute angepasst und fertig gestellt.
 
-  Ich wollte schon mal mit dem Login Design beginnen
+  Ich habe mit dem Login-Design begonnen und der Login-Teil ist jetzt responsive
 
   - Kay 15.12.2023
   Ich habe im der Storage.js schon den Token und den Link mit JS Doc eingepflegt.
   Ich habe die den Add Task Container nach Links gezogen und erste Anfänge für die Klassen gemacht. Dabei habe ich einen Div-Klasse definiert, die das <span> Element schon enthält. Jetzt muss ich nur noch unterklassen machen, die es dann mit Inputfeldern usw. auffüllen. 
+
+  - Mina 15.122023
+    Zitat Kai: "Dabei ist mir aufgefallen, das main im CSS mehrfach benutzt wird, das sollten wir umgehen, in dem wir die main's mit ids versehen und das allgemeine als eine Art Klasse verwenden und die id's für individuelle Einstellungen"
+      Gute Idee, aber ich habe jetzt die ID des Main-Element in der AddTask von "mainCon" zu "AddTaskMainCon" umbenannt und in der .css angepasst, um mehrfachbenennungen der ID zu vermeiden.
