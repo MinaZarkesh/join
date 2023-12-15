@@ -44,3 +44,7 @@ https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=desi
   Ich habe das Design des ersten Items heute angepasst und fertig gestellt.
 
   Ich wollte schon mal mit dem Login Design beginnen
+
+  - Kay 15.12.2023
+  Ich habe im der Storage.js schon den Token und den Link mit JS Doc eingepflegt.
+  Ich habe die den Add Task Container nach Links gezogen und erste Anfänge für die Klassen gemacht. Dabei habe ich einen Div-Klasse definiert, die das <span> Element schon enthält. Jetzt muss ich nur noch unterklassen machen, die es dann mit Inputfeldern usw. auffüllen. 
