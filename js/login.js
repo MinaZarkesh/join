@@ -29,6 +29,11 @@ function showLogin() {
   docID("labelRememberMe").style.justifyContent = "flex-start";
 }
 
+function navToSummary() {
+  console.log("Nav to Board");
+  window.location = "../html/summary.html";
+}
+
 function generateSignupFormButtonHTML() {
   return /*html*/ `
       <button id="SignupForm-btn" onclick="showLogin()" class="Button">Sign up</button>
@@ -101,8 +106,8 @@ function generateLoginHtml() {
             </div>
           </form>
           <div id="LoginFormButtonGroup" class="row">
-            <button class="button">Log in</button>
-            <button class="secondaryButton">Guest Log in</button>
+            <button onclick="navToSummary()" class="button">Log in</button>
+            <button onclick="navToSummary()" class="secondaryButton">Guest Log in</button>
           </div>
     `;
 }
