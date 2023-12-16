@@ -52,3 +52,14 @@ https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=desi
   - Mina 15.122023
     Zitat Kai: "Dabei ist mir aufgefallen, das main im CSS mehrfach benutzt wird, das sollten wir umgehen, in dem wir die main's mit ids versehen und das allgemeine als eine Art Klasse verwenden und die id's für individuelle Einstellungen"
       Gute Idee, aber ich habe jetzt die ID des Main-Element in der AddTask von "mainCon" zu "AddTaskMainCon" umbenannt und in der .css angepasst, um mehrfachbenennungen der ID zu vermeiden.
+
+- Kay 16.12.2023
+  Ich habe jetzt für die AddTask mehrere Klassen erstellt.
+    - Labeldiv erstellt den Div Container mit <span>
+    - Divdate ist ein Child der Labeldiv und erstellt das Kalenderinput
+    - Divtextarea ist ein Child von Labeldiv und erstellt die Textarea von Discription
+    - DivSelect ist ein Child von Labeldiv und erstellt die Select Optionen für Category und Assigned - wobei ich im Moment nur Category eingepflegt habe. Assigned kommt noch.
+    - Selectoption erzeugt die Optionen für die Select Felder
+    - Divinput erzeugt ein Inputfeld
+    - DivImputImg erzeugt ein Inputfeld mit Bild wie wir es z.B. für add Subtask und Login brauchen
+    
