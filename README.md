@@ -58,8 +58,7 @@ https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=desi
     - Labeldiv erstellt den Div Container mit <span>
     - Divdate ist ein Child der Labeldiv und erstellt das Kalenderinput
     - Divtextarea ist ein Child von Labeldiv und erstellt die Textarea von Discription
-    - DivSelect ist ein Child von Labeldiv und erstellt die Select Optionen für Category und Assigned - wobei ich im Moment nur Category eingepflegt habe. Assigned kommt noch.
+    - DivSelect ist ein Child von Labeldiv und erstellt die Select Optionen für Category und Assigned - Bei Assigned gibts noch ein Problem, was ich gern noch mit dir besprechen würde wie wir das lösen wollen.  
     - Selectoption erzeugt die Optionen für die Select Felder
     - Divinput erzeugt ein Inputfeld
     - DivImputImg erzeugt ein Inputfeld mit Bild wie wir es z.B. für add Subtask und Login brauchen
-    

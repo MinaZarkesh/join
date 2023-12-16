@@ -1,9 +1,9 @@
 class Divselect extends Labeldiv {
 
-    constructor(parent, name, optional) {
+    constructor(parent, name, optional, id) {
         super(parent, name, optional)
         docID(name).innerHTML += /*html*/`
-            <select id="category-select" class="form-select"></select>
+            <select id="${id}" class="form-select"></select>
         `
     }
 }
