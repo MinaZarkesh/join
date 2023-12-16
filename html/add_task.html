@@ -11,10 +11,14 @@
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/add_task.css" />
     <script src="../js/storage.js"></script>
+    <script src="../models/Labeldiv.class.js"></script>
+    <script src="../models/divDate.class.js"></script>
+    <script src="../models/divTextarea.class.js"></script>
+    <script src="../js/add_task.js"></script>
     <script src="../models/menuLink.class.js"></script>
   </head>
 
-  <body onload="init()">
+  <body onload="initAddtask()">
     <div class="" w3-include-html="../assets/templates/header.html"></div>
     <div class="main-site">
       <main id="AddTaskMainCon">
@@ -26,14 +30,6 @@
               <div id="contentbig">
                 <div id="taskName">
                   <input type="text" placeholder="Enter a title">
-                </div>
-                <div id="Description">
-                  <span class="div-span">Description (optional)</span>
-                  <textarea placeholder="Enter a Description"></textarea>
-                </div>
-                <div id="Due-date">
-                  <span class="div-span">Due date</span>
-                  <input type="date" name="" id="">
                 </div>
               </div>
               <div id="priority">
