@@ -9,15 +9,29 @@
     <link rel="stylesheet" href="../css/general.css" />
     <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/style-contacts.css" />
     <script src="../js/storage.js"></script>
     <script src="../models/menuLink.class.js"></script>
+    <script src="../models/Contacts.class.js"></script>
+    <script src="../js/contacts.js"></script>
+    
+   
   </head>
 
-  <body onload="init()">
+  <body onload="initContacts()">
     <div class="" w3-include-html="../assets/templates/header.html"></div>
     <div class="main-site">
       <main>
-        Contacts
+       <div class="contactList">
+        <div class="fixed">
+          <button  class="button">Add new contact <img src="../assets/img/person_add.svg" alt=""></button>
+        </div>
+        <div id="contactList">
+        </div>
+       </div>
+        <div class="floatingContacts">
+          Hallo
+        </div>
       </main>
       <nav id="navbar" class="vertical-menu"></nav>
     </div>

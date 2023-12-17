@@ -1,0 +1,131 @@
+main {
+  flex-direction: row;
+  margin: 0;
+  height: 100%;
+}
+
+.contactList {
+  height: 99%;
+  /* width: 40%; */
+  width: 456px;
+  overflow-y: scroll;
+  /* height: 928px; */
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+}
+
+#contactList {
+  display: flex;
+  padding: 32px 24px;
+  padding-top: 105px;
+  flex-direction: column;
+  gap: 24px;
+  width: 352px;
+  align-items: center;
+  /* background-color: rgb(162, 162, 251); */
+}
+
+.fixed {
+  position: fixed;
+  display: flex;
+  width: 447px;
+  padding: 32px 24px 16px 24px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: var(--white, #fff);
+}
+
+.fixed .button {
+  display: flex;
+  width: 357px;
+  height: 56px;
+  padding: 16px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.floatingContacts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* width: 60%; */
+  flex: 1;
+  /* height: 100%; */
+  gap: 21px;
+  /* background-color: hsl(0, 90%, 84%); */
+}
+
+.contactList-row {
+  display: flex;
+  width: 352px;
+  padding: 15px 24px;
+  align-items: flex-start;
+  gap: 35px;
+  border-radius: 10px;
+  /* background-color: green; */
+  
+}
+
+.contactList-row:hover {
+  background-color: var(--secondary);
+}
+.contactList-coloumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5px;
+  /* background-color: green; */
+}
+
+.contactList-coloumn span {
+  color: #000;
+
+  /* Version 2/t6 */
+  /* font-family: Open Sans; */
+  font-size: 1.1875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 1.425rem */
+}
+
+.contactList-coloumn h6 {
+  margin: 0;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 1.2rem */
+  color: var(--primary);
+}
+
+.lettter-box {
+    display: flex;
+    justify-content: flex-start;
+    width: 352px;
+    height: 56px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    /* padding: 17px, 36px, 17px, 36px; */
+    border-bottom: 1px solid rgba(209, 209, 209, 1);
+}
+
+.letter {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 18px;
+    padding-top: 17px;
+    padding-left: 36px;
+    padding-bottom: 17px;
+    padding-right: 36px;
+    gap: 8px;
+}
+
+@media (max-width: 1023px) {
+  main {
+    height: 90%;
+  }
+}
