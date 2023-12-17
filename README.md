@@ -62,3 +62,13 @@ https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=desi
     - Selectoption erzeugt die Optionen für die Select Felder
     - Divinput erzeugt ein Inputfeld
     - DivImputImg erzeugt ein Inputfeld mit Bild wie wir es z.B. für add Subtask und Login brauchen
+
+- Mina 16.12.2023
+  - Ich habe das Login/Signup Design überarbeitet und mit KlassenObjekten angepasst.
+  - BackBtn erstellt, Position geht über die CSS Klasse .Back-btn
+  - Da Login und Signup nun zusammengefasst sind, habe ich die signup.html gelöscht
+  - Klasse customCheckBox erstellt. 
+     - Diese sollten wir für addTask und Login verwenden, um die Eigenschaft checked der Checkboxen zu nutzen. Habe ich bei AddTask noch nicht geändert.
+  - Ich habe ein wenig mit den Objekten herumgespielt, aber leider habe ich nicht hinbekommen, was ich wollte und habe es nun anders gelöst. 
+  - Warum ist es schon um 4:43? Ich geh ins Bett und schlaf mich erstmal aus, komme aber vermutlich nachmittags/abends wieder rein, um das Design der Contacts zu machen.
+  

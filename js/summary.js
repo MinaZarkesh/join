@@ -2,7 +2,7 @@
 let screenSize = 1024; //ab wann Wechsel zu Desktop Version
 
 //erstelle die Werte für die Items
-let itemAmount = 5;
+let itemAmount = 6;
 
 let descriptions = [
   "Tasks urgent",

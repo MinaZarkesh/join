@@ -1,113 +1,113 @@
+let inputName = new Divinputimg(
+  "signup-name",
+  "text",
+  "Name",
+  "../assets/img/icon-person.png"
+);
+let inputEmail = new Divinputimg(
+  "signup-email",
+  "mail",
+  "Email",
+  "../assets/img/icon-mail.png"
+);
+
+let inputPassword = new Divinputimg(
+  "signup-password",
+  "password",
+  "Password",
+  "../assets/img/icon-lock-closed.png"
+);
+
+let inputConfirmPassword = new Divinputimg(
+  "signup-confirmPassword",
+  "confirmPassword",
+  "Confirm Password",
+  "../assets/img/icon-lock-closed.png"
+);
+let singupInputs = [inputName, inputEmail, inputPassword, inputConfirmPassword];
+let loginInputs = [inputEmail, inputPassword];
+let loginForm = "LoginInputs";
+let BackBtnSignup;
+
 function initLogin() {
-  includeHTML();
+  setBackBtnSignup();
+  renderLoginElements("Login");
 }
 
-function showSignup() {
+function renderLoginElements(bool) {
+  // bool = "Login";
+  let inputFields;
+  let checkboxtext;
+  let checkBoxId;
+  let button;
+  inputFields = loginInputs;
+  checkboxtext = "Remember Me";
+  checkBoxId = "RememberMe";
+  button = ` <button onclick="navToSummary()" class="button">Log in</button>
+    <button onclick="navToSummary()" class="secondaryButton">Guest Log in</button>
+    `;
 
-  //anders die Farbe ändern, vielleicht als Klasse in css lösen
-  //change Inhalt
-  docID("LoginHeadline").innerHTML = "Sign up";
-  docID("LoginForm").innerHTML = generateSignupFormHTML();
-  docID("LoginFormButtonGroup").innerHTML = generateSignupFormButtonHTML();
-  docID("labelRememberMe").innerHTML = "I accept the Privacy Policy";
-  docID("LoginItem").innerHTML += generateSignupBackButtonHTML();
+  if (bool === "Sign up") {
+    inputFields = singupInputs;
+    checkboxtext = /*html*/ `
+  I accept the <a href="../html/PrivacyPolicy.html">Privacy Policy</a>
+    `;
+    checkBoxId = "acceptPrivacy";
+    button = `<button id="SignupForm-btn" onclick='renderLoginElements("Login")' class="Button">Sign up</button>`;
+  }
 
-   //Change Styling
-   docID("button-group").style.display = "none";
-   docID("Logo-login").src = "../assets/img/Logo-middle_white.png";
-   docID("LoginMain").style.backgroundColor = "var(--primary)";
-   docID("LoginLinkGroup").style.color = "var(--white)";
-   docID("labelRememberMe").style.justifyContent = "center";
-   docID("LoginFormButtonGroup").style.justifyContent = "center";
+  docID("LoginHeadline").innerHTML = bool;
+  docID(loginForm).innerHTML = setInputs(inputFields);
+  //  changePassword-Style
+  setCheckBox(checkBoxId, checkboxtext);
+  //new SecondaryButton
+  docID("LoginFormButtonGroup").innerHTML = button;
+  changeStyle(bool);
 }
 
-function showLogin() {
-  docID("LoginItem").innerHTML = generateLoginHtml();
-  docID("button-group").style.display = "flex";
-  docID("LoginMain").style.backgroundColor = "var(--white)";
-  docID("Logo-login").src = "../assets/img/Logo-middle_blue.png";
-  docID("labelRememberMe").style.justifyContent = "flex-start";
+function setBackBtnSignup() {
+  BackBtnSignup = new BackBtn(
+    "LoginItem",
+    "Signup",
+    'renderLoginElements("Login")'
+  );
+
+  // return BackBtnSignup.content;
+}
+
+function setCheckBox(id, checkboxtext) {
+  let customCheckboxLogin = new customCheckbox(loginForm, id, checkboxtext);
+  return customCheckboxLogin;
+}
+
+function setInputs(array) {
+  let element = "";
+  for (let i = 0; i < array.length; i++) {
+    element += array[i].content;
+  }
+  return element;
+}
+
+/*** Sign-up ***/
+
+function changeStyle(bool) {
+  if (bool === "Sign up") {
+    docID("button-group").style.display = "none";
+    docID("Logo-login").src = "../assets/img/Logo-middle_white.png";
+    docID("LoginMain").style.backgroundColor = "var(--primary)";
+    docID("LoginLinkGroup").style.color = "var(--white)";
+    docID("labelacceptPrivacy").style.justifyContent = "center";
+    docID("LoginFormButtonGroup").style.justifyContent = "center";
+    docID("SignupBack-btn").style.display = "flex";
+  } else {
+    docID("SignupBack-btn").style.display = "none";
+    docID("button-group").style.display = "flex";
+    docID("LoginMain").style.backgroundColor = "var(--white)";
+    docID("Logo-login").src = "../assets/img/Logo-middle_blue.png";
+    docID("labelRememberMe").style.justifyContent = "flex-start";
+  }
 }
 
 function navToSummary() {
-  console.log("Nav to Board");
   window.location = "../html/summary.html";
-}
-
-function generateSignupFormButtonHTML() {
-  return /*html*/ `
-      <button id="SignupForm-btn" onclick="showLogin()" class="Button">Sign up</button>
-    `;
-}
-function generateSignupFormHTML() {
-  return /*html*/ `
-      <div class="contentCon">
-          <input
-            type="text"
-            name="Name"
-            placeholder="Name"
-            id="signup-name"
-          />
-          <input
-            type="email"
-            name="Email"
-            placeholder="Email"
-            id="signup-email"
-          />
-          <input
-            type="password"
-            name="Password"
-            placeholder="Password"
-            id="signup-password"
-          />
-          <input
-            type="password"
-            name="signup-confirmPassword"
-            placeholder="Confirm Password"
-            id="signup-confirmPassword"
-          />
-      </div>
-            <!-- changePassword-Style-->
-      <div class="row">
-          <input type="checkbox" name="rememberMe" id="rememberMe" />
-          <label id="labelRememberMe" for="rememberMe"> Remember me</label>
-      </div>
-    `;
-}
-
-function generateSignupBackButtonHTML() {
-  return /*html*/ `
-      <button onclick="showLogin()" id="SignupBack-btn"><img src="../assets/img/icon-arrow-left-line-blue.png" alt=""></button>
-    `;
-}
-
-function generateLoginHtml() {
-  return /*html*/ `
-        <h1 id="LoginHeadline">Log in</h1>
-          <form  id="LoginForm" action="">
-          <div class="contentCon">
-            <input
-            type="email"
-            name="Email"
-            placeholder="Email"
-            id="login-email"
-          />
-          <input
-            type="password"
-            name="Password"
-            placeholder="Password"
-            id="login-password"
-          />
-          </div>
-            <!-- changePassword-Style-->
-            <div class="row">
-              <input type="checkbox" name="rememberMe" id="rememberMe" />
-              <label id="labelRememberMe" for="rememberMe"> Remember me</label>
-            </div>
-          </form>
-          <div id="LoginFormButtonGroup" class="row">
-            <button onclick="navToSummary()" class="button">Log in</button>
-            <button onclick="navToSummary()" class="secondaryButton">Guest Log in</button>
-          </div>
-    `;
 }

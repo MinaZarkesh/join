@@ -14,19 +14,17 @@ function docID(id) {
   return document.getElementById(id);
 }
 
-
 async function init() {
   includeHTML();
   openNavMenu();
 }
 
 function openNavMenu() {
-  new MenuLink('summary');
-  new MenuLink('add_task');
-  new MenuLink('board');
-  new MenuLink('contacts');
+  new MenuLink("summary");
+  new MenuLink("add_task");
+  new MenuLink("board");
+  new MenuLink("contacts");
 }
-
 
 /**
  * Sets a key-value pair in remote storage.
@@ -61,25 +59,6 @@ function openNavMenu() {
 //       }
 //       throw `Could not find data with key "${key}".`;
 //     });
-// }
-
-/**
- * Asynchronously includes HTML content  (header) into the current document.
- *
- * @return {Promise<void>} Promise that resolves when all HTML content has been included.
- */
-// async function includeHTML() {
-//   let includeElements = document.querySelectorAll("[w3-include-html]");
-//   for (let i = 0; i < includeElements.length; i++) {
-//     const element = includeElements[i];
-//     file = element.getAttribute("w3-include-html"); // "includes/header.html"
-//     let resp = await fetch(file);
-//     if (resp.ok) {
-//       element.innerHTML = await resp.text();
-//     } else {
-//       element.innerHTML = "Page not found";
-//     }
-//   }
 // }
 
 // let user = [];
@@ -166,7 +145,6 @@ function openNavMenu() {
 // //   return color;
 // // }
 
-
 // /**
 //  * Checks the index and redirects the user to a specific link.
 //  * made by Mina Zarkesh
@@ -181,7 +159,6 @@ function openNavMenu() {
 // //   }
 // //   window.location.href = `${link}.html?id=${index}`;
 // // }
-
 
 // /**************** TasksArray, wird später ersetzt werden *****************/
 
@@ -459,29 +436,33 @@ function openNavMenu() {
 //   '[{"name": "Guest", "mail": "guest@guest.de", "nameTag": "G", "password": "test123", "phone": "+49 1111 111 11 1", "color": "--default", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Mina M Zarkesh", "mail": "mina@test.de", "nameTag": "MZ", "password": "test123", "phone": "+49 1111 111 11 1", "color": "--default", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Junus Ergin", "mail": "junus@test.de", "nameTag": "JE", "password": "test", "phone": "+49 1111 111 11 1", "color": "--variant03", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Anton Mayer", "mail": "antonmayer@test.de", "nameTag": "AM", "password": "test123", "phone": "+49 1111 111 11 1", "color": "--variant12", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Anton Mayer", "mail": "antom@gmail.com", "nameTag": "AM", "password": "test123", "phone": "+49 1111 111 11 1", "color": "--variant07", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Sofia Muller", "mail": "sofiam@gmail.com", "nameTag": "SM", "password": "mypassword123", "phone": "+49 1111 111 11 1", "color": "--variant02", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Anja Schulz", "mail": "schulz@hotmail.com", "nameTag": "AS", "password": "mypassword123", "phone": "+49 1111 111 11 1", "color": "--variant15", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}]';
 
 async function includeHTML() {
-    var z, i, elmnt, file, xhttp;
-    /*loop through a collection of all HTML elements:*/
-    z = document.getElementsByTagName("*");
-    for (i = 0; i < z.length; i++) {
-      elmnt = z[i];
-      /*search for elements with a certain attribute:*/
-      file = elmnt.getAttribute("w3-include-html");
-      if (file) {
-        /*make an HTTP request using the attribute value as the file name:*/
-        xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4) {
-            if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-            if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-            /*remove the attribute, and call this function once more:*/
-            elmnt.removeAttribute("w3-include-html");
-            includeHTML();
+  var z, i, elmnt, file, xhttp;
+  /*loop through a collection of all HTML elements:*/
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    /*search for elements with a certain attribute:*/
+    file = elmnt.getAttribute("w3-include-html");
+    if (file) {
+      /*make an HTTP request using the attribute value as the file name:*/
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+          if (this.status == 200) {
+            elmnt.innerHTML = this.responseText;
           }
-        }      
-        xhttp.open("GET", file, true);
-        xhttp.send();
-        /*exit the function:*/
-        return;
-      }
+          if (this.status == 404) {
+            elmnt.innerHTML = "Page not found.";
+          }
+          /*remove the attribute, and call this function once more:*/
+          elmnt.removeAttribute("w3-include-html");
+          includeHTML();
+        }
+      };
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      /*exit the function:*/
+      return;
     }
-  };
+  }
+}

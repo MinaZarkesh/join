@@ -130,30 +130,37 @@ main {
   background-color: white;
 }
 
+.Back-btn {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  padding: 2.5px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.Back-btn:hover {
+  background-color: var(--secondary);
+  border-radius: 50%;
+}
+
 a {
   background-color: transparent;
   font-size: 16px;
   color: rgba(42, 54, 71, 1);
   text-align: center;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   gap: 6px;
   height: 24px;
   text-decoration: none;
 }
 
-a:hover {
-  /* padding: 8px; */
-  /* gap: 8px; */
-  /* font-size: 16px;
-    font-weight: 700; */
-  /* height: 33px; */
-  text-decoration: none;
-  color: rgba(0, 93, 255, 1);
-}
+a:hover,
 a:active {
   text-decoration: none;
-  color: rgba(0, 93, 255, 1);
+  color: var(--primary);
 }
 
 /****Scroll******/
@@ -267,13 +274,13 @@ input[type="checkbox"] {
     opacity: 0;
     /* -webkit-appearance: none; */
   }
-  
+
   input[type="checkbox"] {
     position: absolute;
     vertical-align: middle;
     width: fit-content;
   }
-  
+
   [type="checkbox"] + label::before {
     width: 24px;
     height: 24px;
@@ -283,7 +290,7 @@ input[type="checkbox"] {
     background-position: center;
     background-repeat: no-repeat;
   }
-  
+
   [type="checkbox"]:checked + label::before {
     background-image: url(../assets/img/box.svg);
     width: 24px;

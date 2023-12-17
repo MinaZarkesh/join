@@ -23,6 +23,23 @@ main {
   gap: 35px;
 }
 
+.divinputimg img {
+  width: 25px;
+  height: 25px;
+}
+.divinputimg {
+  display: flex;
+  align-items: center;
+}
+
+.Back-btn {
+  width: 37px;
+  height: 37px;
+
+  left: 64px;
+  top: 48px;
+}
+
 #Logo-login {
   position: absolute;
   top: 7.8%;
@@ -35,12 +52,12 @@ main {
   line-height: 28px;
   flex-wrap: nowrap;
   /* display: flex; */
-  /* justify-content: center; */
+  justify-content: center;
   gap: 35px;
   margin-left: 0;
 }
 
-#LoginFormButtonGroup{
+#LoginFormButtonGroup {
   display: flex;
   align-items: flex-start;
 }
@@ -56,32 +73,13 @@ main {
   gap: 6px;
 }
 
-#LoginLinkGroup a{
+#LoginLinkGroup a {
   padding: 8px;
   gap: 8px;
   width: fit-content;
   font-size: 16px;
   height: fit-content;
   line-height: 19px;
-}
-
-#SignupBack-btn{
-  border: none;
-  background-color: transparent;
-  display: flex;
-width: 37px;
-height: 37px;
-padding: 2.5px;
-justify-content: center;
-align-items: center;
-  position: absolute;
-  left: 48px;
-  top: 64px;
-}
-
-#SignupBack-btn:hover{
-  background-color: var(--secondary);
-  border-radius: 50%;
 }
 
 #LoginItem .row button {
@@ -124,7 +122,8 @@ align-items: center;
   padding: 12px 21px;
 }
 
-#labelRememberMe{
+#labelRememberMe,
+#labelacceptPrivacy {
   display: flex;
   height: 23px;
   gap: 4px;
@@ -132,9 +131,11 @@ align-items: center;
   padding-right: 0;
   padding-left: 16px;
 }
+#labelacceptPrivacy a {
+  color: var(--primary);
+}
 
-#labelRememberMe
-:hover {
+#labelRememberMe :hover {
   cursor: pointer;
   padding-right: 0;
 }
@@ -147,6 +148,7 @@ align-items: center;
   text-underline-offset: 16px;
   padding-bottom: 16px;
   font-size: 48px;
+  font-weight: 700;
   line-height: 58px;
   margin-bottom: 0;
 }
@@ -209,13 +211,11 @@ align-items: center;
     width: 15%;
     max-width: 64px;
   }
-  #SignupBack-btn{
-    position: absolute;
+
+  .Back-btn {
     left: 8%;
     top: 5%;
-
   }
-
 
   #LoginItem .row {
     display: flex;

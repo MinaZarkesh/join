@@ -18,49 +18,38 @@
     <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/style-login.css" />
+   
+  
     <script src="../js/storage.js"></script>
     <script src="../models/menuLink.class.js"></script>
+    <script src="../models/BackBtn.class.js"></script>
+    <script src="../models/labeldiv.class.js"></script>
+    <script src="../models/customCheckbox.class.js"></script>
+    <script src="../models/divInputImg.class.js"></script>
+  
+    
     <script src="../js/login.js"></script>
   </head>
 
   <body onload="initLogin()">
+ 
     <div class="main-site">
       <main id="LoginMain">
         <img id="Logo-login" src="../assets/img/Logo-middle_blue.png" alt="" />
         <div id="button-group">
           <span>Not a Join user?</span>
-          <button onclick="showSignup()" class="button">
+          <button onclick='renderLoginElements("Sign up")' class="button">
             <span>Sign up</span>
           </button>
         </div>
         <div id="LoginItem">
           <h1 id="LoginHeadline">Log in</h1>
           <form id="LoginForm" action="">
-          <div class="contentCon">
-            <input
-            type="email"
-            name="Email"
-            placeholder="Email"
-            id="login-email"
-          />
-          <input
-            type="password"
-            name="Password"
-            placeholder="Password"
-            id="login-password"
-          />
-          </div>
-            <!-- changePassword-Style-->
-
-            <div class="row">
-              <input type="checkbox" name="rememberMe" id="rememberMe" />
-              <label id="labelRememberMe" for="rememberMe"> Remember me</label>
-            </div>
+          <div id="LoginInputs"  class="contentCon">
+          </div> 
           </form>
           <div id="LoginFormButtonGroup" class="row">
-            <button onclick="navToSummary()" class="button">Log in</button>
-            <button onclick="navToSummary()" class="secondaryButton">Guest Log in</button>
-          </div>
+         </div>
         </div>
         <div id="LoginLinkGroup" class="row link-group">
           <a href="../html/PrivacyPolicy.html">Privacy Policy</a>
