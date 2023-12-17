@@ -3,7 +3,7 @@ class Divinputimg {
   constructor(parent, classname, type, placeholder, imgsrc) {
     this.content = /*html*/ `
     <div class="${classname}">
-        <input type="${type}" class="form-control" placeholder="${placeholder}">
+        <input type="${type}" placeholder="${placeholder}">
         <img src="${imgsrc}">
     </div>
 `;

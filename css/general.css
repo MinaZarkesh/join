@@ -242,6 +242,7 @@ input[type="checkbox"] {
   display: flex;
   align-items: center;
   width: 100%;
+  border-bottom: 1px solid var(--grey);
 }
 
 @media (max-width: 1023px) {
