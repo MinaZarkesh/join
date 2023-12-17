@@ -1,5 +1,8 @@
 .div-span {
+    display: flex;
     font-size: 20px;
+    margin-top: 12px;
+    margin-bottom: 8px;
 }
 
 #AddTaskMainCon {
@@ -8,7 +11,6 @@
 
 #addtaskCon {
     width: 518px;
-    /* background-color: aqua; */
     height: 100vh;
     border-top-left-radius: 5%;
     border-bottom-left-radius: 5%;
@@ -24,7 +26,6 @@
 #contentCon {
     display: flex;
     flex-direction: column;
-    /* background-color: brown; */
     width: 90%;
     margin: 0 5%;
     gap: 8px;
@@ -33,14 +34,8 @@
 #contentbig {
     display: flex;
     flex-direction: column;
-    /* background-color: beige; */
     width: 100%;
     gap: 8px;
-}
-
-#taskName {
-    /* background-color: blue; */
-    display: block;
 }
 
 #taskName input{
@@ -51,12 +46,6 @@
 }
 
 #Description {
-    /* background-color: rgb(119, 0, 255); */
-    width: 100%;
-}
-
-#Description span {
-    height: 50px;
     width: 100%;
 }
 
@@ -65,11 +54,14 @@
     width: 100%;
     outline: none;
     border-color: rgba(0, 0, 0, 0.2);
-    border-radius: 10px; 
+    border-radius: 0 10px 10px 10px;
+    padding-top: 18px;
+    padding-left: 16px;
+    font-size: 19px;
+    line-height: 120%;
 }
 
 #Due-date {
-    /* background-color: rgb(255, 0, 0); */
     width: 100%;
 }
 
@@ -80,7 +72,6 @@
 }
 
 #priority {
-    /* background-color: rgb(255, 230, 0); */
     height: 50px;
     width: 100%;
 }
@@ -92,7 +83,6 @@
 }
 
 #assigned {
-    /* background-color: rgb(89, 255, 0); */
     width: 100%;
 }
 
@@ -101,7 +91,7 @@
 }
 
 #category {
-    /* background-color: rgb(255, 0, 128); */
+
     width: 100%;
 }
 
@@ -110,7 +100,6 @@
 }
 
 #subtask {
-    /* background-color: rgb(30, 0, 255); */
     width: 100%;
 }
 
@@ -133,4 +122,12 @@
 
 #die-subtask {
     background-color: white;
+}
+
+::-webkit-calendar-picker-indicator {
+    background-image: url('../assets/img/kalendar.png');
+  }
+.input-blue {
+    color: #4589FF;
+    font-size: 16px;
 }

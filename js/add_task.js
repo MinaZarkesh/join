@@ -1,6 +1,6 @@
 function initAddtask() {
     init();
-    new Divinput('contentbig', 'taskName', "Enter a title");
+    new Divinput('contentbig', 'taskName', "Enter a title", "task-title", "input-field");
     new Requiered('taskName');
     new Divtextarea('contentbig', "description" , "Description", true);
     new Divdate('contentbig','due-date', 'Due date', false);

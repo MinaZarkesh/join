@@ -226,8 +226,16 @@ input[type="checkbox"] {
 /* requiered field */
 
 .requiered {
+  display: flex;
+  margin-top: .25rem;
   color: #FF8190;
-  font-size: 13px
+  font-size: 13px;
+  line-height: 120%;
+}
+
+.input-field{
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 1023px) {
