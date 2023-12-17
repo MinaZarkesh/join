@@ -26,6 +26,12 @@ function openNavMenu() {
   new MenuLink("contacts");
 }
 
+function isRequiered(id) {
+  docID(id).innerHTML = /*html*/`
+    This field is required
+  `
+}
+
 /**
  * Sets a key-value pair in remote storage.
  *

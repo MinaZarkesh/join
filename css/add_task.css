@@ -46,7 +46,8 @@
 #taskName input{
     height: 50px;
     width: 100%;
-    font-size: 30px; 
+    font-size: 30px;
+    padding: 13px 16px;
 }
 
 #Description {

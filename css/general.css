@@ -223,6 +223,13 @@ input[type="checkbox"] {
   background-repeat: no-repeat;
 }
 
+/* requiered field */
+
+.requiered {
+  color: #FF8190;
+  font-size: 13px
+}
+
 @media (max-width: 1023px) {
   .main-site {
     flex-direction: column;

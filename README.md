@@ -71,4 +71,9 @@ https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=desi
      - Diese sollten wir für addTask und Login verwenden, um die Eigenschaft checked der Checkboxen zu nutzen. Habe ich bei AddTask noch nicht geändert.
   - Ich habe ein wenig mit den Objekten herumgespielt, aber leider habe ich nicht hinbekommen, was ich wollte und habe es nun anders gelöst. 
   - Warum ist es schon um 4:43? Ich geh ins Bett und schlaf mich erstmal aus, komme aber vermutlich nachmittags/abends wieder rein, um das Design der Contacts zu machen.
+
+- Kay 17.12.2023
+  - die customChecckBox Klasse sollten wir nochmal anpassen, damit wir sie für die Log-in Seite, als auch für die Subtask verwenden könnten. Im Grunde einmal nur die Checkbox anlegen und die dann einsetzen.
+  - Ich habe eine Klasse requiered angelegt. Das ist für das Feld "this field is requiered." Dazu passt habe ich die CSS Klasse requiered in generell.css angelegt, welche das Element einfärbt. Ich habe dazu in der Storage.js eine Funktion isRequiered() definiert, womit man den Text "this field is requiered." aufruft. 
+
   
