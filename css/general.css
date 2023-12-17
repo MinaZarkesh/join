@@ -56,6 +56,10 @@ header {
   display: flex;
 }
 
+.w-100 {
+  width: 100%;
+}
+
 .main-site {
   display: flex;
   flex-direction: row-reverse;
@@ -239,6 +243,7 @@ input[type="checkbox"] {
   color: #FF8190;
   font-size: 13px;
   line-height: 120%;
+  height: 16px;
 }
 
 .input-field{
