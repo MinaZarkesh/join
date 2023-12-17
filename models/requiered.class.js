@@ -1,8 +1,8 @@
 class Requiered {
 
-    constructor(parent) {
+    constructor(parent, text, id) {
         docID(parent).innerHTML += /*html*/`
-            <span class="requiered">This field is required</span>
+            <span id=${id} class="requiered d-none">${text}</span>
         `
     }
 }

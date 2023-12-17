@@ -48,6 +48,14 @@ header {
   background-color: var(--primary);
 }
 
+.d-none {
+  display: none;
+}
+
+.d-flex {
+  display: flex;
+}
+
 .main-site {
   display: flex;
   flex-direction: row-reverse;
