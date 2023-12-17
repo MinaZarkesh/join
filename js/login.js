@@ -1,35 +1,47 @@
-let inputName = new Divinputimg(
-  "signup-name",
-  "text",
-  "Name",
-  "../assets/img/icon-person.png"
-);
-let inputEmail = new Divinputimg(
-  "signup-email",
-  "mail",
-  "Email",
-  "../assets/img/icon-mail.png"
-);
-
-let inputPassword = new Divinputimg(
-  "signup-password",
-  "password",
-  "Password",
-  "../assets/img/icon-lock-closed.png"
-);
-
-let inputConfirmPassword = new Divinputimg(
-  "signup-confirmPassword",
-  "confirmPassword",
-  "Confirm Password",
-  "../assets/img/icon-lock-closed.png"
-);
-let singupInputs = [inputName, inputEmail, inputPassword, inputConfirmPassword];
-let loginInputs = [inputEmail, inputPassword];
-let loginForm = "LoginInputs";
+let inputName;
+let inputEmail;
+let inputPassword;
+let inputConfirmPassword;
+let singupInputs;
+let loginInputs;
+let loginForm;
 let BackBtnSignup;
 
+
 function initLogin() {
+  inputName = new Divinputimg(
+    "LoginInputs",
+    "inputimgdiv",
+    "text",
+    "Name",
+    "../assets/img/icon-person.png"
+  );
+  inputEmail = new Divinputimg(
+    "LoginInputs",
+    "inputimgdiv",
+    "mail",
+    "Email",
+    "../assets/img/icon-mail.png"
+  );
+  
+  inputPassword = new Divinputimg(
+    "LoginInputs",
+    "inputimgdiv",
+    "password",
+    "Password",
+    "../assets/img/icon-lock-closed.png"
+  );
+  
+  inputConfirmPassword = new Divinputimg(
+    "LoginInputs",
+    "inputimgdiv",
+    "confirmPassword",
+    "Confirm Password",
+    "../assets/img/icon-lock-closed.png"
+  );
+  singupInputs = [inputName, inputEmail, inputPassword, inputConfirmPassword];
+  loginInputs = [inputEmail, inputPassword];
+  loginForm = "LoginInputs";
   setBackBtnSignup();
   renderLoginElements("Login");
 }
@@ -57,7 +69,7 @@ function renderLoginElements(bool) {
   }
 
   docID("LoginHeadline").innerHTML = bool;
-  docID(loginForm).innerHTML = setInputs(inputFields);
+  setInputs(inputFields);
   //  changePassword-Style
   setCheckBox(checkBoxId, checkboxtext);
   //new SecondaryButton

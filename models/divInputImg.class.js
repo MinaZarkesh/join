@@ -1,9 +1,8 @@
 class Divinputimg {
-  content;
-  constructor(id, type, placeholder, imgsrc) {
-    this.content = /*html*/ `
-            <div class="divinputimg">
-                <input id="${id}" type="${type}" class="form-control" placeholder="${placeholder}">
+  constructor(parent, classname, type, placeholder, imgsrc) {
+    docID(parent).innerHTML += /*html*/ `
+            <div class="${classname}">
+                <input type="${type}" class="form-control" placeholder="${placeholder}">
                 <img src="${imgsrc}">
             </div>
         `;

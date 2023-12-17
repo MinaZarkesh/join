@@ -19,7 +19,7 @@ function initAddtask() {
     new Selectoption('category-select', "value='2'", "Bild Category");
     new Selectoption('category-select', "value='3'", "Bild Category");
     new Labeldiv('contentCon', 'subtask', 'Subtask', false);
-    new Divinputimg('Subtask', 'subtask-input', 'text', 'Add new subtask', '../assets/img/+.png');
+    new Divinputimg('subtask', 'inputimgdiv', 'text', 'Add new subtask', '../assets/img/+.png');
     new Subtitles('contentCon', 'die-subtask', 'Dies ist eine subtask');
 }
 
