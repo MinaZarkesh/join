@@ -6,9 +6,15 @@ let singupInputs;
 let loginInputs;
 let loginForm;
 let BackBtnSignup;
-
-
+let customCheckboxRememberMe;
+let customCheckboxAcceptPrivacy;
+let loginCheckbox;
 function initLogin() {
+  createAllElements();
+  renderLoginElements("Login");
+}
+
+function createAllElements() {
   inputName = new Divinputimg(
     "LoginInputs",
     "inputimgdiv",
@@ -23,7 +29,7 @@ function initLogin() {
     "Email",
     "../assets/img/icon-mail.png"
   );
-  
+
   inputPassword = new Divinputimg(
     "LoginInputs",
     "inputimgdiv",
@@ -31,7 +37,7 @@ function initLogin() {
     "Password",
     "../assets/img/icon-lock-closed.png"
   );
-  
+
   inputConfirmPassword = new Divinputimg(
     "LoginInputs",
     "inputimgdiv",
@@ -39,39 +45,42 @@ function initLogin() {
     "Confirm Password",
     "../assets/img/icon-lock-closed.png"
   );
-  singupInputs = [inputName, inputEmail, inputPassword, inputConfirmPassword];
-  loginInputs = [inputEmail, inputPassword];
   loginForm = "LoginInputs";
+  checkboxtext = "Remember Me";
+  checkBoxId = "rememberMe";
+  customCheckboxRememberMe = new customCheckbox(loginForm, checkBoxId, checkboxtext);
+  checkboxtext = /*html*/ `
+  I accept the <a href="../html/PrivacyPolicy.html">Privacy Policy</a>
+    `;
+    checkBoxId = "acceptPrivacy";
+  customCheckboxAcceptPrivacy = new customCheckbox(loginForm, checkBoxId, checkboxtext);
+  
   setBackBtnSignup();
-  renderLoginElements("Login");
 }
 
 function renderLoginElements(bool) {
   // bool = "Login";
   let inputFields;
-  let checkboxtext;
-  let checkBoxId;
   let button;
+  singupInputs = [inputName, inputEmail, inputPassword, inputConfirmPassword];
+  loginInputs = [inputEmail, inputPassword];
   inputFields = loginInputs;
-  checkboxtext = "Remember Me";
-  checkBoxId = "RememberMe";
+  loginCheckbox = customCheckboxRememberMe;
   button = ` <button onclick="navToSummary()" class="button">Log in</button>
     <button onclick="navToSummary()" class="secondaryButton">Guest Log in</button>
     `;
 
   if (bool === "Sign up") {
     inputFields = singupInputs;
-    checkboxtext = /*html*/ `
-  I accept the <a href="../html/PrivacyPolicy.html">Privacy Policy</a>
-    `;
-    checkBoxId = "acceptPrivacy";
+    loginCheckbox = customCheckboxAcceptPrivacy;
     button = `<button id="SignupForm-btn" onclick='renderLoginElements("Login")' class="Button">Sign up</button>`;
   }
 
   docID("LoginHeadline").innerHTML = bool;
-  setInputs(inputFields);
+   docID(loginForm).innerHTML= setInputs(inputFields);
   //  changePassword-Style
-  setCheckBox(checkBoxId, checkboxtext);
+ docID(loginForm).innerHTML += loginCheckbox.content;
+// docID(customCheckboxAcceptPrivacy.labelID).innerHTML= checkboxtext;
   //new SecondaryButton
   docID("LoginFormButtonGroup").innerHTML = button;
   changeStyle(bool);
@@ -116,7 +125,6 @@ function changeStyle(bool) {
     docID("button-group").style.display = "flex";
     docID("LoginMain").style.backgroundColor = "var(--white)";
     docID("Logo-login").src = "../assets/img/Logo-middle_blue.png";
-    docID("labelRememberMe").style.justifyContent = "flex-start";
   }
 }
 
