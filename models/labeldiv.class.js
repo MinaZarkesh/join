@@ -1,10 +1,10 @@
 class Labeldiv {
     additionaltext;
 
-    constructor(parent, name, optional) {
+    constructor(parent, child, name, optional) {
         this.additionaltext = optional ? "(optional)" : "";
         docID(parent).innerHTML += /*html*/`
-            <div id="${name}">
+            <div id="${child}">
                 <span class="div-span"> ${name} ${this.additionaltext}</span>
             </div>
         `
