@@ -62,7 +62,7 @@ let oldContacts = [
     phone: "49-222-222",
     nameTag: "SM",
   },
-    {
+  {
     name: "Anton Mayer",
     color: "--variant09",
     mail: "antom@gmail.com",
@@ -128,28 +128,31 @@ let oldContacts = [
 ];
 
 let ContactBoxes = [];
+let letter = "A";
+let clickedContact;
 
 function initContacts() {
   init();
   createContacts();
+  // createFloatingContacts();
   // renderAllElements();
 }
 
 function createContacts() {
-    docID("contactList").innerHTML += createLetterBox();
+  docID("contactList").innerHTML += createLetterBox();
   for (let i = 0; i < oldContacts.length; i++) {
     const profileColor = oldContacts[i].color;
     const profileNameTag = oldContacts[i].nameTag;
     const contactName = oldContacts[i].name;
     const contactEmail = oldContacts[i].mail;
-    const contactPhone = oldContacts[i].phone
+    const contactPhone = oldContacts[i].phone;
     ContactBoxes.push(
       new Contact(
         "contactList",
         profileColor,
         profileNameTag,
         contactName,
-        contactEmail, 
+        contactEmail,
         contactPhone,
         i
       )
@@ -157,11 +160,34 @@ function createContacts() {
     docID("contactList").innerHTML += ContactBoxes[i].contactItem;
   }
 
-  function  createLetterBox(letter){
+  function createLetterBox() {
     return /*html*/ `
-    <div class="lettter-box">
+    <div class="letter-box">
   <span id="letter${letter}" class="letter">${letter}</span>
 </div>
   `;
+  }
 }
+
+function createFloatingContacts() {
+  docID("floatingContacts").innerHTML = /*html*/ `
+    <div class="floatingCon">
+      <div class="floatingHeadline row">
+        
+          <div class="profileBadge">
+            <img width="120px" height="120px" src="../assets/img/icon-person.png" alt="">
+          </div>
+          <div class="floatingHeadlineTextCon">
+            <h1>Anton Meyer</h1>
+            <div>
+              <div class="row">
+                <img width="24px" height="24px" src="../assets/img/edit.png" alt="">
+                <span> Edit</span>
+              </div> 
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  `;
 }
