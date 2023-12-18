@@ -1,5 +1,5 @@
 //for responsiveness
-let screenSize = 1024; //ab wann Wechsel zu Desktop Version
+let screenSize = 1023; //ab wann Wechsel zu Desktop Version
 
 //erstelle die Werte für die Items
 let itemAmount = 6;

@@ -64,7 +64,7 @@ header {
 }
 main {
   display: flex;
-  /* width: 85vw; */
+  width: 85vw;
   flex: 1;
   height: 90vh;
   /* background-color: rgba(255, 0, 0, 0.3); */
