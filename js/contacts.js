@@ -1,9 +1,9 @@
 let oldContacts = [
   {
-    name: "Anton Mayer",
+    name: "Wilhelmina Schattschneider",
     color: "--variant09",
     mail: "antom@gmail.com",
-    phone: "49-123-123",
+    phone: "+49-123-123",
     nameTag: "AM",
   },
   {
@@ -134,8 +134,7 @@ let clickedContact;
 function initContacts() {
   init();
   createContacts();
-  // createFloatingContacts();
-  // renderAllElements();
+  createFloatingContacts(ContactBoxes[0]);
 }
 
 function createContacts() {
@@ -169,25 +168,42 @@ function createContacts() {
   }
 }
 
-function createFloatingContacts() {
+function createFloatingContacts(contact) {
+  clickedContact = contact;
   docID("floatingContacts").innerHTML = /*html*/ `
-    <div class="floatingCon">
-      <div class="floatingHeadline row">
-        
-          <div class="profileBadge">
-            <img width="120px" height="120px" src="../assets/img/icon-person.png" alt="">
-          </div>
-          <div class="floatingHeadlineTextCon">
-            <h1>Anton Meyer</h1>
-            <div>
-              <div class="row">
-                <img width="24px" height="24px" src="../assets/img/edit.png" alt="">
-                <span> Edit</span>
-              </div> 
+  <div class="floatingCon">
+            <div class="floatingHeadline">
+              <div id="floatingProfileBadge">
+              </div>
+              <div class="floatingHeadlineTextCon">
+                <h1>${clickedContact.contactName}</h1>
+                <div class="floatingHeadlineLinksCon">
+                  <div class="floatingHeadlineLink">
+                    <img src="../assets/img/edit.png" alt="" />
+                    <span> Edit</span>
+                  </div>
+                  <div class="floatingHeadlineLink">
+                    <img src="../assets/img/delete.png" alt="" />
+                    <span> Delete</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2>Contact Information</h2>
+            <div class="gap-22">
+              <div class="gap-15">
+                <h6>Email</h6>
+                <span id="floatingContactsMailValue" class="color-primary">${clickedContact.contactEmail}</span>
+              </div>
+              <div class="gap-15">
+                <h6>Phone</h6>
+                <span id="floatingContactsPhoneValue">${clickedContact.contactPhone}</span>
+              </div>
             </div>
           </div>
-        
-      </div>
-    </div>
   `;
+
+  docID("floatingProfileBadge").innerHTML = clickedContact.profileBadge;
+  docID("floatingContactsMailValue").innerHTML = clickedContact.contactEmail;
+  docID("floatingContactsPhoneValue").innerHTML = clickedContact.contactPhone;
 }

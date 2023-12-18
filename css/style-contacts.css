@@ -138,11 +138,27 @@
   font-weight: 700;
   line-height: 120%; /* 1.725rem */
 }
-.profileBadge img {
+#floatingProfileBadge .profile-badge {
   min-width: 90px;
   min-height: 90px;
   max-width: 120px;
   max-height: 120px;
+}
+#floatingProfileBadge span{
+  display: flex;
+width: 80px;
+height: 28.571px;
+flex-direction: column;
+justify-content: center;
+flex-shrink: 0;
+  color: var(--white);
+
+  text-align: center;
+  /* font-family: Inter; */
+  font-size: 2.9375rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%; /* 3.525rem */
 }
 
 .floatingHeadline {
@@ -151,7 +167,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* gap: 54px; */
+  gap: 5%;
 }
 
 .floatingHeadlineTextCon {
@@ -165,7 +181,7 @@
 .floatingHeadlineTextCon h1 {
   color: var(--black);
   margin: 0;
-  font-size: 3rem;
+  font-size: 2.8rem;
   font-style: normal;
   font-weight: 600;
   line-height: 120%; /* 3.6rem */
@@ -201,6 +217,10 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 15px;
+  color: var(--black);
+}
+.gap-15 span {
+  color: var(--black);
 }
 
 .floatingCon h6 {
@@ -212,20 +232,20 @@
   line-height: 120%; /* 1.2rem */
 }
 
-#floatingContactsPhoneValue {
+#floatingContactsMailValue {
   color: var(--primary);
 }
 .floatingCon span {
   margin: 0;
-
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   line-height: 120%; /* 1.2rem */
 }
 
-@media (max-width: 1023px) {
-  /* main {
-    height: 80vh;
+ @media (max-width: 767px) {
+  /* #floatingContacts{
+    width: 100vw;
+    flex: none;
   } */
-}
+} 
