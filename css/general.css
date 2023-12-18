@@ -258,6 +258,20 @@ input[type="checkbox"] {
   border-bottom: 1px solid var(--grey);
 }
 
+.profile-badge {
+  background-color: var(--default);
+  color: rgba(255, 255, 255, 1);
+  font-size: 12px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 45px;
+  border: 2px solid rgba(255, 255, 255, 1);
+  gap: 10px;
+}
+
 @media (max-width: 1023px) {
   .main-site {
     flex-direction: column;
