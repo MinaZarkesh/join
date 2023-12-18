@@ -15,6 +15,7 @@ this.profileBadge = /*html*/ `
     </div>
 `;
 
+
 docID(parent).innerHtml += this.profileBadge;
 this.createContactItem(id);
 }
