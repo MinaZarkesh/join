@@ -129,7 +129,7 @@ let oldContacts = [
 
 let ContactBoxes = [];
 let letter = "A";
-let clickedContact;
+let clickedContact = ContactBoxes[0];
 
 function initContacts() {
   init();
@@ -169,41 +169,30 @@ function createContacts() {
 }
 
 function createFloatingContacts(contact) {
-  clickedContact = contact;
-  docID("floatingContacts").innerHTML = /*html*/ `
-  <div class="floatingCon">
-            <div class="floatingHeadline">
-              <div id="floatingProfileBadge">
-              </div>
-              <div class="floatingHeadlineTextCon">
-                <h1>${clickedContact.contactName}</h1>
-                <div class="floatingHeadlineLinksCon">
-                  <div class="floatingHeadlineLink">
-                    <img src="../assets/img/edit.png" alt="" />
-                    <span> Edit</span>
-                  </div>
-                  <div class="floatingHeadlineLink">
-                    <img src="../assets/img/delete.png" alt="" />
-                    <span> Delete</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <h2>Contact Information</h2>
-            <div class="gap-22">
-              <div class="gap-15">
-                <h6>Email</h6>
-                <span id="floatingContactsMailValue" class="color-primary">${clickedContact.contactEmail}</span>
-              </div>
-              <div class="gap-15">
-                <h6>Phone</h6>
-                <span id="floatingContactsPhoneValue">${clickedContact.contactPhone}</span>
-              </div>
-            </div>
-          </div>
-  `;
+  contact.createfloatingContacts();
+  docID("floatingProfileBadge").innerHTML = contact.profileBadge;
+  docID("floatingContactsMailValue").innerHTML = contact.contactEmail;
+  docID("floatingContactsPhoneValue").innerHTML = contact.contactPhone;
+  // docID("floatingContacts").innerHTML = contact.createfloatingContacts();
+  createEditContactsOverlay();
+}
 
-  docID("floatingProfileBadge").innerHTML = clickedContact.profileBadge;
-  docID("floatingContactsMailValue").innerHTML = clickedContact.contactEmail;
-  docID("floatingContactsPhoneValue").innerHTML = clickedContact.contactPhone;
+function createEditContactsOverlay() {
+  docID("floatingContacts").innerHTML = /*html*/ `
+    <div id="editContactOverlay">
+      <div class="editContactOverlayHeader">
+        <img src="../assets/img/Logo_white.svg" alt="">
+        <h1 id="editContactOverlayHeadline" >Add Contact</h1>
+        <span>Tasks are better with a team!</span>
+      </div>
+      <div class="editContactsCon">
+        <div id='editContactConOverlay'  class="profile-badge" style="background-color: var(--grey);">
+          <img id='editContactOverlay-img' src="../assets/img/person-white.svg">
+        </div>
+        <div id="inputfieldsCon">
+        </div>
+        <div id="editContactButtonGroup"></div>
+      </div>
+    </div>
+  `;
 }

@@ -32,6 +32,38 @@ function isRequiered(id) {
   `
 }
 
+function createInputElements() {
+  inputName = new Divinputimg(
+    "LoginInputs",
+    "inputimgdiv",
+    "text",
+    "Name",
+    "../assets/img/icon-person.png"
+  );
+  inputEmail = new Divinputimg(
+    "LoginInputs",
+    "inputimgdiv",
+    "mail",
+    "Email",
+    "../assets/img/icon-mail.png"
+  );
+
+  inputPassword = new Divinputimg(
+    "LoginInputs",
+    "inputimgdiv",
+    "password",
+    "Password",
+    "../assets/img/icon-lock-closed.png"
+  );
+
+  inputConfirmPassword = new Divinputimg(
+    "LoginInputs",
+    "inputimgdiv",
+    "confirmPassword",
+    "Confirm Password",
+    "../assets/img/icon-lock-closed.png"
+  );
+}
 /**
  * Sets a key-value pair in remote storage.
  *

@@ -10,41 +10,13 @@ let customCheckboxRememberMe;
 let customCheckboxAcceptPrivacy;
 let loginCheckbox;
 function initLogin() {
+  createInputElements();
   createAllElements();
   renderLoginElements("Login");
 }
 
-function createAllElements() {
-  inputName = new Divinputimg(
-    "LoginInputs",
-    "inputimgdiv",
-    "text",
-    "Name",
-    "../assets/img/icon-person.png"
-  );
-  inputEmail = new Divinputimg(
-    "LoginInputs",
-    "inputimgdiv",
-    "mail",
-    "Email",
-    "../assets/img/icon-mail.png"
-  );
 
-  inputPassword = new Divinputimg(
-    "LoginInputs",
-    "inputimgdiv",
-    "password",
-    "Password",
-    "../assets/img/icon-lock-closed.png"
-  );
-
-  inputConfirmPassword = new Divinputimg(
-    "LoginInputs",
-    "inputimgdiv",
-    "confirmPassword",
-    "Confirm Password",
-    "../assets/img/icon-lock-closed.png"
-  );
+function createAllElements(){
   loginForm = "LoginInputs";
   checkboxtext = "Remember Me";
   checkBoxId = "rememberMe";

@@ -30,13 +30,13 @@ https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=desi
   Schritt versuchen, js classen zu erstellen. Du kannst ja schon mal
   drüber schauen wenn du magst.
 
-- Mina 10.9.2023
-    Schau dir mal die summary.html an. In den Items(die kleinen Boxen) in der zweiten Reihe ist die erste Zeile nicht bei allen Boxen auf der gleichen Höhe. In Figma ist es auch so dargestellt, aber ich finde es irgendwie auffällig. Daher könnte man es anpassen.
+- Mina 10.12.2023
+  Schau dir mal die summary.html an. In den Items(die kleinen Boxen) in der zweiten Reihe ist die erste Zeile nicht bei allen Boxen auf der gleichen Höhe. In Figma ist es auch so dargestellt, aber ich finde es irgendwie auffällig. Daher könnte man es anpassen.
 
        Schau dir dazu mal in der summary.css die Klasse .col ab Zeile 35 an.
        Wenn man die drei Eigenschaften einkommteniert, dann ändert man dies. Es überschreibt das justify-content: center; in Zeile 33
 
-    Ich  habe eine Methode(funktion in Klassen) in der Class summaryBox.class.js erstellt, um die Anzahl der Tasks zu updaten, falls diese sich geändert hat.
+  Ich habe eine Methode(funktion in Klassen) in der Class summaryBox.class.js erstellt, um die Anzahl der Tasks zu updaten, falls diese sich geändert hat.
 
         Um dies zu testen, habe ich in der summary.js eine Funktion changeTaskAmounts() erstellt, die testweise, die Anzahl im 4. Item (2. Reihe, 2.Item von links) von ursprünglich 40 auf 9 updatet.
 
@@ -46,34 +46,49 @@ https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=desi
   Ich habe mit dem Login-Design begonnen und der Login-Teil ist jetzt responsive
 
   - Kay 15.12.2023
-  Ich habe im der Storage.js schon den Token und den Link mit JS Doc eingepflegt.
-  Ich habe die den Add Task Container nach Links gezogen und erste Anfänge für die Klassen gemacht. Dabei habe ich einen Div-Klasse definiert, die das <span> Element schon enthält. Jetzt muss ich nur noch unterklassen machen, die es dann mit Inputfeldern usw. auffüllen. 
+    Ich habe im der Storage.js schon den Token und den Link mit JS Doc eingepflegt.
+    Ich habe die den Add Task Container nach Links gezogen und erste Anfänge für die Klassen gemacht. Dabei habe ich einen Div-Klasse definiert, die das <span> Element schon enthält. Jetzt muss ich nur noch unterklassen machen, die es dann mit Inputfeldern usw. auffüllen.
 
   - Mina 15.122023
     Zitat Kai: "Dabei ist mir aufgefallen, das main im CSS mehrfach benutzt wird, das sollten wir umgehen, in dem wir die main's mit ids versehen und das allgemeine als eine Art Klasse verwenden und die id's für individuelle Einstellungen"
-      Gute Idee, aber ich habe jetzt die ID des Main-Element in der AddTask von "mainCon" zu "AddTaskMainCon" umbenannt und in der .css angepasst, um mehrfachbenennungen der ID zu vermeiden.
+    Gute Idee, aber ich habe jetzt die ID des Main-Element in der AddTask von "mainCon" zu "AddTaskMainCon" umbenannt und in der .css angepasst, um mehrfachbenennungen der ID zu vermeiden.
 
 - Kay 16.12.2023
   Ich habe jetzt für die AddTask mehrere Klassen erstellt.
-    - Labeldiv erstellt den Div Container mit <span>
-    - Divdate ist ein Child der Labeldiv und erstellt das Kalenderinput
-    - Divtextarea ist ein Child von Labeldiv und erstellt die Textarea von Discription
-    - DivSelect ist ein Child von Labeldiv und erstellt die Select Optionen für Category und Assigned - Bei Assigned gibts noch ein Problem, was ich gern noch mit dir besprechen würde wie wir das lösen wollen.  
-    - Selectoption erzeugt die Optionen für die Select Felder
-    - Divinput erzeugt ein Inputfeld
-    - DivImputImg erzeugt ein Inputfeld mit Bild wie wir es z.B. für add Subtask und Login brauchen
+
+  - Labeldiv erstellt den Div Container mit <span>
+  - Divdate ist ein Child der Labeldiv und erstellt das Kalenderinput
+  - Divtextarea ist ein Child von Labeldiv und erstellt die Textarea von Discription
+  - DivSelect ist ein Child von Labeldiv und erstellt die Select Optionen für Category und Assigned - Bei Assigned gibts noch ein Problem, was ich gern noch mit dir besprechen würde wie wir das lösen wollen.
+  - Selectoption erzeugt die Optionen für die Select Felder
+  - Divinput erzeugt ein Inputfeld
+  - DivImputImg erzeugt ein Inputfeld mit Bild wie wir es z.B. für add Subtask und Login brauchen
 
 - Mina 16.12.2023
+
   - Ich habe das Login/Signup Design überarbeitet und mit KlassenObjekten angepasst.
   - BackBtn erstellt, Position geht über die CSS Klasse .Back-btn
   - Da Login und Signup nun zusammengefasst sind, habe ich die signup.html gelöscht
-  - Klasse customCheckBox erstellt. 
-     - Diese sollten wir für addTask und Login verwenden, um die Eigenschaft checked der Checkboxen zu nutzen. Habe ich bei AddTask noch nicht geändert.
-  - Ich habe ein wenig mit den Objekten herumgespielt, aber leider habe ich nicht hinbekommen, was ich wollte und habe es nun anders gelöst. 
+  - Klasse customCheckBox erstellt.
+    - Diese sollten wir für addTask und Login verwenden, um die Eigenschaft checked der Checkboxen zu nutzen. Habe ich bei AddTask noch nicht geändert.
+  - Ich habe ein wenig mit den Objekten herumgespielt, aber leider habe ich nicht hinbekommen, was ich wollte und habe es nun anders gelöst.
   - Warum ist es schon um 4:43? Ich geh ins Bett und schlaf mich erstmal aus, komme aber vermutlich nachmittags/abends wieder rein, um das Design der Contacts zu machen.
 
 - Kay 17.12.2023
-  - die customChecckBox Klasse sollten wir nochmal anpassen, damit wir sie für die Log-in Seite, als auch für die Subtask verwenden könnten. Im Grunde einmal nur die Checkbox anlegen und die dann einsetzen.
-  - Ich habe eine Klasse requiered angelegt. Das ist für das Feld "this field is requiered." Dazu passt habe ich die CSS Klasse requiered in generell.css angelegt, welche das Element einfärbt. Ich habe dazu in der Storage.js eine Funktion isRequiered() definiert, womit man den Text "this field is requiered." aufruft. 
 
-  
+  - die customChecckBox Klasse sollten wir nochmal anpassen, damit wir sie für die Log-in Seite, als auch für die Subtask verwenden könnten. Im Grunde einmal nur die Checkbox anlegen und die dann einsetzen.
+  - Ich habe eine Klasse requiered angelegt. Das ist für das Feld "this field is requiered." Dazu passt habe ich die CSS Klasse requiered in generell.css angelegt, welche das Element einfärbt. Ich habe dazu in der Storage.js eine Funktion isRequiered() definiert, womit man den Text "this field is requiered." aufruft.
+
+- Mina 18./19.122023
+  - Ich habe das floatingContacts erstellt und mit in die Contacts.class eingebunden.
+  - Desweiteren habe ich die Contacts.html erweitert und bis 1023 responsive gemacht und es hat soweit funktioniert.
+  - ich habe mit dem Overlay "AddContact"-Design angefangen. 
+    - diese würde ich später auch in einem Objekt zusammenfassen, damit man dies mehrmals verwenden kann. 
+  - Außerdem habe ich herausgefunden, dass man das ProfileBadge mit derselben ID mehrmals verwenden kann, ohne dass sie sich überschreiben, aber es ist auch dasselbe Element, das benutzt wird.
+  - morgen wollte ich dann den Rest vom AddContact und EditContact machen und eventuell schon mit dem Javascript Code beginnen.
+  - Ich habe heute mit "Rene Heller" gesprochen, der ist auch gerade alleine bei Join dran und er hat selbst die font-family und die Bilder als Variabeln in die root-Klasse geschrieben und will dessen Inhalt dann bei responsive austauschen. Bei der Animation ändert sich wohl ein Bild. Aber man kann viel mehr in root schreiben als lediglich variablen für Color, da könnte man eventuell rübergehen und schauen dass man sehr viel mehr in eine Variable macht. 
+
+  - Wir sind ganz schön weit mit dem Design gekommen und ich denke das Javascript ist nicht so großartig viel, da wir ja schon viele functions von unseren alten Projekten übernehmen können, also denke ich dass Weihnachten 2023/Silvester2023 durchaus drin sein könnte. Ich bin komplett fokussiert und halte mich ran. 
+
+  - Als Info für dich, ich werde spätestens Sonntag, 24.12. mittags zu meiner Mama fahren und werde am 3.1.2024 wieder zurückkommen und dann wahrscheinlich eine Regeneration vom Urlaub brauchen und dann vermutlich am Wochenende weitermachen. Je nachdem wie weit wir kommen und wie viel eventuell dann noch zu erledigen ist. Und dann werden wir Angular und das Jahr 2024 einfach komplett rocken.
+  Gute Nacht erstmal.
