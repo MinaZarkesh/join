@@ -22,7 +22,7 @@ function initAddtask() {
     new Selectoption('category-select', "value='2'", "Bild Category");
     new Selectoption('category-select', "value='3'", "Bild Category");
     new Labeldiv('contentCon', 'subtask', 'Subtask', false);
-    new Divinputimg('subtask', 'inputimgdiv', 'text', 'Add new subtask', '../assets/img/+.png');
+    new Divinputimg('subtask', 'subtask-input', 'text', 'Add new subtask', '../assets/img/+.png');
     new Subtitles('contentCon', 'die-subtask', 'Dies ist eine subtask');
 }
 
@@ -35,14 +35,13 @@ function makeRequiered() {
 function activeUrgency(id) {
     btns = ["btn-red", "btn-orange", "btn-green" ];
     btns.forEach(element => {
+        docID(element).classList.remove('active');
         if(id == element){
             if (docID(element).classList.value.includes('active')) {
                 docID(element).classList.remove('active');    
             } else {
                 docID(element).classList.add('active');
             }
-        } else {
-            docID(element).classList.remove('active');
         }
     });
 }

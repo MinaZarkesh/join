@@ -98,18 +98,18 @@
     width: 100%;
 }
 
-#subtask-input  {
+.subtask-input  {
     display: flex;
     align-items: center;
     width: 100%;
-}
-
-#subtask-input input {
+} 
+ 
+.subtask-input input {
     width: 93.3%!important;
     border: none
 }
 
-#subtask-input img {
+.subtask-input img {
     height: 20px;
     width: 20px;
     background-color: white;
