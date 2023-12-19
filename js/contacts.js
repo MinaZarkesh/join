@@ -127,7 +127,6 @@ let oldContacts = [
   },
 ];
 
-let ContactBoxes = [];
 let letter = "A";
 let clickedContact = ContactBoxes[0];
 let addinputs;
@@ -140,26 +139,12 @@ function initContacts() {
   createFloatingContacts(ContactBoxes[0]);
 }
 
-function createContacts() {
-  docID("contactList").innerHTML += createLetterBox();
-  for (let i = 0; i < oldContacts.length; i++) {
-    const profileColor = oldContacts[i].color;
-    const profileNameTag = oldContacts[i].nameTag;
-    const contactName = oldContacts[i].name;
-    const contactEmail = oldContacts[i].mail;
-    const contactPhone = oldContacts[i].phone;
-    ContactBoxes.push(
-      new Contact(
-        "contactList",
-        profileColor,
-        profileNameTag,
-        contactName,
-        contactEmail,
-        contactPhone,
-        i
-      )
-    );
-    docID("contactList").innerHTML += ContactBoxes[i].contactItem;
+  function createContacts() {
+    docID("contactList").innerHTML += createLetterBox();
+    createContactBox();
+    ContactBoxes.forEach((e) => {
+      docID("contactList").innerHTML += e.contactItem;
+    })
   }
 
   function createLetterBox() {
@@ -169,7 +154,6 @@ function createContacts() {
 </div>
   `;
   }
-}
 
 // let inputName;
 // let inputEmail;

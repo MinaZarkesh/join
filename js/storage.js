@@ -38,6 +38,7 @@ let inputEmail;
 let inputPhone;
 let inputPassword;
 let inputConfirmPassword;
+let ContactBoxes = [];
 
 function createInputElements() {
   inputName = new Divinputimg(
@@ -85,6 +86,19 @@ function setInputs(array) {
     element += array[i].content;
   }
   return element;
+}
+
+function createContactBox() {
+  for (let i = 0; i < oldContacts.length; i++) {
+    const profileColor = oldContacts[i].color;
+    const profileNameTag = oldContacts[i].nameTag;
+    const contactName = oldContacts[i].name;
+    const contactEmail = oldContacts[i].mail;
+    const contactPhone = oldContacts[i].phone;
+    ContactBoxes.push(
+      new Contact("contactList", profileColor, profileNameTag, contactName, contactEmail, contactPhone, i)
+    );
+  }
 }
 
 
