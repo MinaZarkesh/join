@@ -45,5 +45,5 @@ function activeUrgency(id) {
             docID(element).classList.remove('active');
         }
     });
-
 }
+
