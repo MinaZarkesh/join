@@ -1,6 +1,8 @@
 #editContactOverlay {
+  position: relative;
   display: inline-flex;
   height: 100%;
+  max-height: 1024px;
   flex-direction: column;
   align-items: center;
   gap: 72px;
@@ -35,7 +37,6 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-
   border-radius: 50%;
 }
 
@@ -48,4 +49,67 @@
   flex-direction: column;
   align-items: center;
   gap: 32px;
+}
+
+#LoginInputs input:not([type="checkbox"]) {
+  display: flex;
+  width: 380px;
+  padding: 12px 21px;
+  align-items: center;
+  gap: 1%;
+  align-self: stretch;
+  border: none;
+}
+
+.contentCon {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.editContactsCon .row {
+  position: relative;
+  width: 100%;
+  line-height: 28px;
+  flex-wrap: nowrap;
+  /* display: flex; */
+  justify-content: center;
+  gap: 35px;
+  margin-left: 0;
+}
+
+#editContactButtonGroup {
+  display: flex;
+  align-items: flex-start;
+}
+.button {
+  min-width: 150px;
+  width: fit-content;
+}
+
+.close-btn {
+  position: absolute;
+  display: flex;
+  padding: 4px;
+  gap: 10px;
+  right: 24px;
+  top: 24px;
+  width: 24px;
+height: 24px;
+background: #D9D9D9;
+  background-color: transparent;
+  font-size: 24px;
+  border: none;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 53px;
+  color: var(--white);
+}
+
+#editContactConOverlay .profile-badge{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  font-size: 36px;
 }

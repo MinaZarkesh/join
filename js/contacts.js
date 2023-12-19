@@ -134,8 +134,8 @@ let addinputs;
 function initContacts() {
   init();
   createContacts();
-  
-//  createInputElements();
+
+  //  createInputElements();
   createFloatingContacts(ContactBoxes[0]);
 }
 
@@ -155,59 +155,13 @@ function initContacts() {
   `;
   }
 
-// let inputName;
-// let inputEmail;
-// let inputPhone;
-// let inputPassword;
-// let inputConfirmPassword;
-
-// function createInputElements() {
-//   inputName = new Divinputimg(
-//     "LoginInputs",
-//     "inputimgdiv",
-//     "text",
-//     "Name",
-//     "../assets/img/icon-person.png"
-//   );
-//   inputEmail = new Divinputimg(
-//     "LoginInputs",
-//     "inputimgdiv",
-//     "mail",
-//     "Email",
-//     "../assets/img/icon-mail.png"
-//   );
-//   inputPhone = new Divinputimg(
-//     "LoginInputs",
-//     "inputimgdiv",
-//     "phone",
-//     "Phone",
-//     "../assets/img/icon-call.svg.png"
-//   );
-
-//   inputPassword = new Divinputimg(
-//     "LoginInputs",
-//     "inputimgdiv",
-//     "password",
-//     "Password",
-//     "../assets/img/icon-lock-closed.png"
-//   );
-
-//   inputConfirmPassword = new Divinputimg(
-//     "LoginInputs",
-//     "inputimgdiv",
-//     "confirmPassword",
-//     "Confirm Password",
-//     "../assets/img/icon-lock-closed.png"
-//   );
-// }
-
 function createFloatingContacts(contact) {
   contact.createfloatingContacts();
   docID("floatingProfileBadge").innerHTML = contact.profileBadge;
   docID("floatingContactsMailValue").innerHTML = contact.contactEmail;
   docID("floatingContactsPhoneValue").innerHTML = contact.contactPhone;
   // docID("floatingContacts").innerHTML = contact.createfloatingContacts();
-   createEditContactsOverlay();
+  createEditContactsOverlay();
 }
 
 function createEditContactsOverlay() {
@@ -216,24 +170,41 @@ function createEditContactsOverlay() {
       <div class="editContactOverlayHeader">
         <img src="../assets/img/Logo_white.svg" alt="">
         <h1 id="editContactOverlayHeadline" >Add Contact</h1>
-        <span>Tasks are better with a team!</span>
+        <span id="contactOverlaySubtitle">Tasks are better with a team!</span>
       </div>
       <div class="editContactsCon">
         <div id='editContactConOverlay'  class="profile-badge" style="background-color: var(--grey);">
           <img id='editContactOverlay-img' src="../assets/img/person-white.svg">
         </div>
-        <div id="LoginInputs">
+        <div id="LoginInputs" class="contentCon">
         </div>
-        <div id="editContactButtonGroup"></div>
+        <div id="editContactButtonGroup" class="row"></div>
       </div>
     </div>
   `;
 
+  createInputElements();
+  addinputs = [inputName, inputEmail, inputPhone];
+  docID("LoginInputs").innerHTML = setInputs(addinputs);
 
- createInputElements();
+  docID("editContactButtonGroup").innerHTML = /*html*/ `
+    <button id="overlaySecondaryBtn" onclick="" class="secondaryButton" >Cancel <img src="../assets/img/clear.png"></button>
+    <button id="overlayPrimaryBtn" onclick="" class="button">Create contact <img src="../assets/img/check.svg"></button>
+  `;
 
-addinputs = [inputName, inputEmail, inputPhone];
+  docID("editContactOverlay").innerHTML += /*html*/`
+       <button onclick="" class="close-btn">X</button>
+ 
+  `;
 
+  createEdit();
+}
 
-docID("LoginInputs").innerHTML= setInputs(addinputs);
+function createEdit(i){
+  docID("editContactOverlayHeadline").innerHTML ="Edit contact";
+  docID("contactOverlaySubtitle").style.display = "none";
+  docID("editContactConOverlay").innerHTML = ContactBoxes[0].profileBadge;
+  docID("overlaySecondaryBtn").innerHTML="Delete";
+  docID("overlaySecondaryBtn").style.width ="fit-content";
+  // docID("overlayPrimaryBtn")
 }

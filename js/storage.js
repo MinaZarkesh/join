@@ -60,7 +60,7 @@ function createInputElements() {
     "inputimgdiv",
     "phone",
     "Phone",
-    "../assets/img/icon-call.svg.png"
+    "../assets/img/icon-call.svg"
   );
 
   inputPassword = new Divinputimg(
