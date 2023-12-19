@@ -1,8 +1,8 @@
 class Requiered {
 
-    constructor(parent, text, id) {
+    constructor(parent) {
         docID(parent).innerHTML += /*html*/`
-            <span id=${id} class="requiered d-none">${text}</span>
+            <span id="${parent}-requiered" class="requiered">    </span>
         `
     }
 }
