@@ -5,21 +5,14 @@ class Contact {
   contactEmail;
   contactPhone;
   id;
-  constructor(
-    parent,
-    color,
-    nameTag,
-    contactName,
-    contactEmail,
-    contactPhone,
-    id
-  ) {
+
+  constructor(parent, color, nameTag, contactName, contactEmail, contactPhone, id) {
     this.contactEmail = contactEmail;
     this.contactName = contactName;
     this.contactPhone = contactPhone;
     this.id = id;
     this.profileBadge = /*html*/ `
-<div id='profileBadgeCon${id}'  class="profile-badge" style="background-color: var(${color});">
+    <div id='profileBadgeCon${id}'  class="profile-badge" style="background-color: var(${color});">
       <span id='contactItemNameTag${id}'>${nameTag}</span>
     </div>
 `;
@@ -42,7 +35,7 @@ class Contact {
 
   createfloatingContacts(){
     docID("floatingContacts").innerHTML = /*html*/ `
-  <div class="floatingCon">
+          <div class="floatingCon">
             <div class="floatingHeadline">
               <div id="floatingProfileBadge">
                 ${this.profileBadge}

@@ -174,7 +174,7 @@ function createFloatingContacts(contact) {
   docID("floatingContactsMailValue").innerHTML = contact.contactEmail;
   docID("floatingContactsPhoneValue").innerHTML = contact.contactPhone;
   // docID("floatingContacts").innerHTML = contact.createfloatingContacts();
-  createEditContactsOverlay();
+  // createEditContactsOverlay();
 }
 
 function createEditContactsOverlay() {
