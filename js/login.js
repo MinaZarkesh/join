@@ -1,7 +1,7 @@
-let inputName;
-let inputEmail;
-let inputPassword;
-let inputConfirmPassword;
+// let inputName;
+// let inputEmail;
+// let inputPassword;
+// let inputConfirmPassword;
 let singupInputs;
 let loginInputs;
 let loginForm;

@@ -130,10 +130,13 @@ let oldContacts = [
 let ContactBoxes = [];
 let letter = "A";
 let clickedContact = ContactBoxes[0];
+let addinputs;
 
 function initContacts() {
   init();
   createContacts();
+  
+//  createInputElements();
   createFloatingContacts(ContactBoxes[0]);
 }
 
@@ -168,13 +171,59 @@ function createContacts() {
   }
 }
 
+// let inputName;
+// let inputEmail;
+// let inputPhone;
+// let inputPassword;
+// let inputConfirmPassword;
+
+// function createInputElements() {
+//   inputName = new Divinputimg(
+//     "LoginInputs",
+//     "inputimgdiv",
+//     "text",
+//     "Name",
+//     "../assets/img/icon-person.png"
+//   );
+//   inputEmail = new Divinputimg(
+//     "LoginInputs",
+//     "inputimgdiv",
+//     "mail",
+//     "Email",
+//     "../assets/img/icon-mail.png"
+//   );
+//   inputPhone = new Divinputimg(
+//     "LoginInputs",
+//     "inputimgdiv",
+//     "phone",
+//     "Phone",
+//     "../assets/img/icon-call.svg.png"
+//   );
+
+//   inputPassword = new Divinputimg(
+//     "LoginInputs",
+//     "inputimgdiv",
+//     "password",
+//     "Password",
+//     "../assets/img/icon-lock-closed.png"
+//   );
+
+//   inputConfirmPassword = new Divinputimg(
+//     "LoginInputs",
+//     "inputimgdiv",
+//     "confirmPassword",
+//     "Confirm Password",
+//     "../assets/img/icon-lock-closed.png"
+//   );
+// }
+
 function createFloatingContacts(contact) {
   contact.createfloatingContacts();
   docID("floatingProfileBadge").innerHTML = contact.profileBadge;
   docID("floatingContactsMailValue").innerHTML = contact.contactEmail;
   docID("floatingContactsPhoneValue").innerHTML = contact.contactPhone;
   // docID("floatingContacts").innerHTML = contact.createfloatingContacts();
-  // createEditContactsOverlay();
+   createEditContactsOverlay();
 }
 
 function createEditContactsOverlay() {
@@ -189,15 +238,18 @@ function createEditContactsOverlay() {
         <div id='editContactConOverlay'  class="profile-badge" style="background-color: var(--grey);">
           <img id='editContactOverlay-img' src="../assets/img/person-white.svg">
         </div>
-        <div id="inputfieldsCon">
+        <div id="LoginInputs">
         </div>
         <div id="editContactButtonGroup"></div>
       </div>
     </div>
   `;
-createInputElements();
-let addinputs = [inputName, inputEmail, inputPhone];
-docID("inputfieldsCon").innerHTML = "";
-docID("inputfieldsCon").innerHTML= setInputs(addinputs);
-// docID("inputfieldsCon").innerHTML = addinputs;
+
+
+ createInputElements();
+
+addinputs = [inputName, inputEmail, inputPhone];
+
+
+docID("LoginInputs").innerHTML= setInputs(addinputs);
 }
