@@ -75,7 +75,7 @@ main {
 }
 
 .button {
-  height: 48px;
+  height: 100%; /*war vorher 48px*/
   /* width: fit-content; */
   border-radius: 8px;
   padding: 10px 16px;
@@ -120,8 +120,10 @@ main {
 }
 
 .secondaryButton {
-  width: 136px;
-  height: 61px;
+  width: fit-content;
+min-width: 136px;
+
+  height: 100%;  /*war vorher 61px*/
   border-radius: 10px;
   padding: 16px 10px 16px 10px;
   border: 1px solid #647188;
