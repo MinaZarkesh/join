@@ -92,3 +92,6 @@ https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=desi
 
   - Als Info für dich, ich werde spätestens Sonntag, 24.12. mittags zu meiner Mama fahren und werde am 3.1.2024 wieder zurückkommen und dann wahrscheinlich eine Regeneration vom Urlaub brauchen und dann vermutlich am Wochenende weitermachen. Je nachdem wie weit wir kommen und wie viel eventuell dann noch zu erledigen ist. Und dann werden wir Angular und das Jahr 2024 einfach komplett rocken.
   Gute Nacht erstmal.
+
+
+  - hier was neues von Kay
