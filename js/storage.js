@@ -17,6 +17,7 @@ function docID(id) {
 async function init() {
   includeHTML();
   openNavMenu();
+  //createInputElements();
 }
 
 function openNavMenu() {
@@ -86,7 +87,6 @@ function setInputs(array) {
   return element;
 }
 
-let addinputs = [inputName, inputEmail, inputPhone];
 
 /**
  * Sets a key-value pair in remote storage.
