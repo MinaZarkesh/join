@@ -9,6 +9,8 @@ let BackBtnSignup;
 let customCheckboxRememberMe;
 let customCheckboxAcceptPrivacy;
 let loginCheckbox;
+
+
 function initLogin() {
   createInputElements();
   createAllElements();
@@ -73,13 +75,7 @@ function setCheckBox(id, checkboxtext) {
   return customCheckboxLogin;
 }
 
-function setInputs(array) {
-  let element = "";
-  for (let i = 0; i < array.length; i++) {
-    element += array[i].content;
-  }
-  return element;
-}
+
 
 /*** Sign-up ***/
 

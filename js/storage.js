@@ -32,6 +32,12 @@ function isRequiered(id) {
   `
 }
 
+let inputName;
+let inputEmail;
+let inputPhone;
+let inputPassword;
+let inputConfirmPassword;
+
 function createInputElements() {
   inputName = new Divinputimg(
     "LoginInputs",
@@ -46,6 +52,13 @@ function createInputElements() {
     "mail",
     "Email",
     "../assets/img/icon-mail.png"
+  );
+  inputPhone = new Divinputimg(
+    "LoginInputs",
+    "inputimgdiv",
+    "phone",
+    "Phone",
+    "../assets/img/icon-call.svg.png"
   );
 
   inputPassword = new Divinputimg(
@@ -64,6 +77,17 @@ function createInputElements() {
     "../assets/img/icon-lock-closed.png"
   );
 }
+
+function setInputs(array) {
+  let element = "";
+  for (let i = 0; i < array.length; i++) {
+    element += array[i].content;
+  }
+  return element;
+}
+
+let addinputs = [inputName, inputEmail, inputPhone];
+
 /**
  * Sets a key-value pair in remote storage.
  *

@@ -195,4 +195,9 @@ function createEditContactsOverlay() {
       </div>
     </div>
   `;
+createInputElements();
+let addinputs = [inputName, inputEmail, inputPhone];
+docID("inputfieldsCon").innerHTML = "";
+docID("inputfieldsCon").innerHTML= setInputs(addinputs);
+// docID("inputfieldsCon").innerHTML = addinputs;
 }
