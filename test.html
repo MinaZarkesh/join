@@ -4,8 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="test.css">
+    <script src="test.js"></script>
 </head>
 <body>
-    <h1>hallo, was geht</h1>
+    <form autocomplete="off" action="/action_page.php">
+        <div class="autocomplete" style="width:300px;">
+          <input id="myInput" type="text" name="myCountry" placeholder="Country">
+        </div>
+        <input type="submit">
+      </form>
+      <script>
+        autocomplete(document.getElementById("myInput"), names);
+      </script>
+
 </body>
 </html>
