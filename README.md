@@ -96,3 +96,4 @@ https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=desi
 
   - hier was neues von Kay
   -neues
+  - wer das liest ist doof
