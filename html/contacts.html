@@ -20,46 +20,46 @@
     <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/style-contacts.css" />
-    <link rel="stylesheet" href="../css/style-overlayContacts.css" />
+    <link rel="stylesheet" href="../css/style-overlay-contacts.css" />
 
     <script src="../js/storage.js"></script>
     <script src="../models/menuLink.class.js"></script>
     <script src="../models/Contacts.class.js"></script>
     <script src="../js/contacts.js"></script>
-    <script src="../models/divInputImg.class.js"></script>
+    <script src="../models/divinputimg.class.js"></script>
   </head>
 
   <body onload="initContacts()">
     <div class="" w3-include-html="../assets/templates/header.html"></div>
     <div class="main-site">
-      <main id="contactsMain">
-        <div class="contactList">
+      <main>
+        <div class="contact-list">
           <div class="fixed">
             <button class="button" onclick="createAddContact()">
               Add new contact <img src="../assets/img/person_add.svg" alt="" />
             </button>
           </div>
-          <div id="contactList"></div>
+          <div id="contact-list"></div>
         </div>
-        <div id="floatingContacts"></div>
-        <div id="overlayContacts">
-          <div id="editContactOverlay">
+        <div id="floating-contacts"></div>
+        <div id="overlay-contacts">
+          <div id="edit-contact-overlay">
             <button onclick="closeButton()" class="close-btn">X</button>
-            <div class="editContactOverlayHeader">
+            <div class="edit-contact-overlay-header">
               <img src="../assets/img/Logo_white.svg" alt="" />
-              <h1 id="editContactOverlayHeadline"></h1>
-              <span id="contactOverlaySubtitle"
+              <h1 id="edit-contact-overlay-headline"></h1>
+              <span id="contact-overlay-subtitle"
                 >Tasks are better with a team!</span
               >
             </div>
-            <div class="editContactsCon">
+            <div class="edit-contacts-con">
               <div
-                id="editContactConOverlay"
+                id="edit-contact-con-overlay"
                 class="profile-badge"
                 style="background-color: var(--grey)"
               ></div>
-              <div id="LoginInputs" class="contentCon"></div>
-              <div id="editContactButtonGroup" class="row"></div>
+              <div id="inputs-con" class="content-con"></div>
+              <div id="edit-contact-button-group" class="row"></div>
             </div>
           </div>
         </div>

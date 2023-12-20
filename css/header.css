@@ -20,7 +20,7 @@ header {
   height: fit-content;
 }
 
-#header-nameTag {
+#header-name-tag {
   display: flex;
   background-color: var(--white);
   color: var(--primary);

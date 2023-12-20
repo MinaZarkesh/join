@@ -67,7 +67,7 @@ https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=desi
 - Mina 16.12.2023
 
   - Ich habe das Login/Signup Design überarbeitet und mit KlassenObjekten angepasst.
-  - BackBtn erstellt, Position geht über die CSS Klasse .Back-btn
+  - BackBtn erstellt, Position geht über die CSS Klasse .back_btn
   - Da Login und Signup nun zusammengefasst sind, habe ich die signup.html gelöscht
   - Klasse customCheckBox erstellt.
     - Diese sollten wir für addTask und Login verwenden, um die Eigenschaft checked der Checkboxen zu nutzen. Habe ich bei AddTask noch nicht geändert.
@@ -80,7 +80,7 @@ https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=desi
   - Ich habe eine Klasse requiered angelegt. Das ist für das Feld "this field is requiered." Dazu passt habe ich die CSS Klasse requiered in generell.css angelegt, welche das Element einfärbt. Ich habe dazu in der Storage.js eine Funktion isRequiered() definiert, womit man den Text "this field is requiered." aufruft.
 
 - Mina 18./19.122023
-  - Ich habe das floatingContacts erstellt und mit in die Contacts.class eingebunden.
+  - Ich habe das floating-contacts erstellt und mit in die Contacts.class eingebunden.
   - Desweiteren habe ich die Contacts.html erweitert und bis 1023 responsive gemacht und es hat soweit funktioniert.
   - ich habe mit dem Overlay "AddContact"-Design angefangen. 
     - diese würde ich später auch in einem Objekt zusammenfassen, damit man dies mehrmals verwenden kann. 
@@ -92,4 +92,10 @@ https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=desi
 
   - Als Info für dich, ich werde spätestens Sonntag, 24.12. mittags zu meiner Mama fahren und werde am 3.1.2024 wieder zurückkommen und dann wahrscheinlich eine Regeneration vom Urlaub brauchen und dann vermutlich am Wochenende weitermachen. Je nachdem wie weit wir kommen und wie viel eventuell dann noch zu erledigen ist. Und dann werden wir Angular und das Jahr 2024 einfach komplett rocken.
   Gute Nacht erstmal.
+
+- Mina 20.12.2023
+  - ich habe die Bilder einmal sortiert, sprich ich habe alle Bilder in einen neuen Unterordner gepackt und diese dann als eine Fehlermeldung kam zurückverschoben, eventuell habe ich nicht alle erwischt. Und dann einfach wenn du neue verwenden wilst bei den img schauen und wenn sie da nicht bereits drin sind dann auswechseln. Wir haben teils für das gleiche unterschiedliche Bilder genommen. 
+  - Ich würde vorschlagen, dass wir auch svg verwenden, damit wir diese manipulieren können, wenn wir ein neues Farbschema einbauen wollen. Aber erstmal wollte ich es so lassen, damit es zu keinen Schwierigkeiten kommt.
+
+  - Das Design von der Contacts ist so gut wie fertig, es muss nochmal ein wenig responsive gemacht werden, da bin ich nicht zu 100% fertig mit.
 

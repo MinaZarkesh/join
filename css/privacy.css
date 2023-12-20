@@ -1,24 +1,24 @@
-.menuLeft {
+.menu-left {
     justify-content: flex-end;
 }
 
-.menuList {
+.menu-list {
     display: none;
 }
 
-.policyConten {
+.policy-content {
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
     padding: 35px;
 }
 
-.PrivacyTitel {
+.privacy-titel {
     font-size: 61px;
 }
 
-.policySubtitle {
-    color: #005DFF;
+.policy-subtitle {
+    color: var(--primary);
     font-size: 33px;
 }
 
@@ -26,7 +26,7 @@ p {
     font-size: 16px;
 }
 
-.spaceBetween {
+.space-between {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,20 +36,20 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color: var(--white);
     border-radius: 100px;
     width: 37px;
     height: 37px;
 }
 
 button:hover {
-    background-color: rgba(227, 238, 255, 1);
+    background-color: var(--white);
     border-radius: 100px;
 }
 
-.privacyPosition {
-    background-color: #4589FF;
-    color: white;
+.privacy-position {
+    background-color: var(--primary);
+    color: var(--white);
     padding: 8px;
     border-radius: 20px;
 }
@@ -59,13 +59,13 @@ li {
 }
 
 @media (max-width: 550px) {
-    .PrivacyTitel {
+    .privacy-titel {
         font-size: 52px;
     }
     a {
         font-size: 12px;
     }
-    .policySubtitle {
+    .policy-subtitle {
         font-size: 20px;
     }
     p {

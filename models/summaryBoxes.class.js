@@ -7,7 +7,7 @@ class SummaryBox {
   spanheight;
   gapColoumn;
   gapRow;
-  itemAmountPerRow;
+  item_amountPerRow;
   rowAmount;
   row;
   itemWidth;
@@ -19,7 +19,7 @@ class SummaryBox {
   // id = "summaryBox";
 
   //in der summary.js
-  //taskAmounts[index]
+  //task_amounts[index]
 
   //vielleiht hier mit reinbringen
   //descriptions[index]
@@ -28,7 +28,7 @@ class SummaryBox {
   constructor(id, index) {
     this.id = id;
     this.index = index;
-    this.taskAmount = taskAmounts[index]; //Variable aus summary.js
+    this.taskAmount = task_amounts[index]; //Variable aus summary.js
     this.item = this.generateItemHTML();
     this.itemRender();
     this.checkScreenView(index);
@@ -37,9 +37,9 @@ class SummaryBox {
 
   generateItemHTML() {
     return /*html*/ `
-<div onclick="navToBoard()" id="item${this.id}${this.index}" class="col">  <div class="row">
+<div onclick="navToBoard()" id="item-${this.id}-${this.index}" class="col">  <div class="row">
 <img src=${images[this.index]}>
-<h1 id="taskAmounts${this.id}${this.index}">${taskAmounts[this.index]}</h1>
+<h1 id="task_amounts-${this.id}-${this.index}">${task_amounts[this.index]}</h1>
 </div>
 <h6>
 ${descriptions[this.index]}
@@ -48,26 +48,26 @@ ${descriptions[this.index]}
   }
 
   itemRender() {
-    docID(`${this.id}${this.index}`).innerHTML = this.item;
+    docID(`${this.id}-${this.index}`).innerHTML = this.item;
   }
 
   updateTaskAmount(taskAmount, index) {
     if (this.taskAmount != taskAmount) {
       this.taskAmount = taskAmount;
-      docID(`taskAmounts${this.id}${index}`).innerHTML = this.taskAmount;
+      docID(`task_amounts-${this.id}-${index}`).innerHTML = this.taskAmount;
       console.log("updated: ", index, this.taskAmount);
     }
   }
 
   renderPosition() {
-    docID(`item${this.id}${this.index}`).style.width = `${this.itemWidth}px`;
-    docID(`item${this.id}${this.index}`).style.height = `${this.itemHeight}px`;
-    docID(`item${this.id}${this.index}`).style.left = `${this.left}px`;
-    docID(`item${this.id}${this.index}`).style.top = `${this.top}px`;
+    docID(`item-${this.id}-${this.index}`).style.width = `${this.itemWidth}px`;
+    docID(`item-${this.id}-${this.index}`).style.height = `${this.itemHeight}px`;
+    docID(`item-${this.id}-${this.index}`).style.left = `${this.left}px`;
+    docID(`item-${this.id}-${this.index}`).style.top = `${this.top}px`;
   }
 
   checkScreenView(index) {
-    if (window.innerWidth > screenSize) {
+    if (window.innerWidth > screen_size) {
       //schreensize in summary.js
       this.calcPositionDesktop(index);
     } else {
@@ -82,24 +82,24 @@ ${descriptions[this.index]}
     this.spanheight = 36;
     this.gapColoumn = 16;
     this.gapRow = this.gapColoumn;
-    this.itemAmountPerRow = itemAmount - 2;
+    this.item_amountPerRow = item_amount - 2;
     this.rowAmount = 2;
     this.row = 0;
 
     this.itemWidth =
-      this.containerWidth / this.itemAmountPerRow - this.gapColoumn;
+      this.containerWidth / this.item_amountPerRow - this.gapColoumn;
 
     this.height = this.containerHeight - this.spanheight;
     this.itemHeight = this.height / this.rowAmount - this.gapRow;
 
     if (index == 0) {
-      let singleContainer = this.itemAmountPerRow - 1;
+      let singleContainer = this.item_amountPerRow - 1;
       this.itemWidth =
-        (this.containerWidth * singleContainer) / this.itemAmountPerRow -
+        (this.containerWidth * singleContainer) / this.item_amountPerRow -
         this.gapColoumn;
       index = 0;
     } else if (index == 1) {
-      index = this.itemAmountPerRow - 1; //letztes in der ersten Reihe
+      index = this.item_amountPerRow - 1; //letztes in der ersten Reihe
     } else {
       index = index - 2; //min 2, -2 da 2 in der ersten Reihe
       this.row = 1;
@@ -118,7 +118,7 @@ ${descriptions[this.index]}
   calcPositionMobile(index) {
     //irgendwas stimmt was nicht
 
-    this.itemAmountPerRow = 2;
+    this.item_amountPerRow = 2;
     this.rowAmount = 4;
     this.gapColoumn = 8;
     this.gapRow = 8;
@@ -128,7 +128,7 @@ ${descriptions[this.index]}
     //  this.height = 506.92; //um den Fehler zu analysieren
 
     this.itemWidth =
-      this.containerWidth / this.itemAmountPerRow - this.gapColoumn;
+      this.containerWidth / this.item_amountPerRow - this.gapColoumn;
 
     this.itemHeight = this.height / this.rowAmount - this.gapRow;
 

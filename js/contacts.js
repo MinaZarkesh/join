@@ -1,147 +1,18 @@
-let oldContacts = [
-  {
-    name: "Wilhelmina Schattschneider",
-    color: "--variant09",
-    mail: "antom@gmail.com",
-    phone: "+49-123-123",
-    nameTag: "AM",
-  },
-  {
-    name: "Anja Schulz",
-    color: "--variant13",
-    mail: "schulz@hotmail.com",
-    phone: "49-123-123",
-    nameTag: "AS",
-  },
-  {
-    name: "Benedikt Ziegler",
-    color: "--default",
-    mail: "benedikt@gmail.com",
-    phone: "49-123-123",
-    nameTag: "BZ",
-  },
-  {
-    name: "David Eisenberg",
-    color: "--variant14",
-    mail: "davidberg@gmail.com",
-    phone: "49-123-123",
-    nameTag: "DE",
-  },
-  {
-    name: "Eva Fischer",
-    color: "--variant06",
-    mail: "eva@gmail.com",
-    phone: "49-222-222",
-    nameTag: "EF",
-  },
-  {
-    name: "Emmanuel Mauer",
-    color: "--variant10",
-    mail: "emmanuelma@gmail.com",
-    phone: "49-222-222",
-    nameTag: "EM",
-  },
-  {
-    name: "Marcel Bauer",
-    color: "--variant16",
-    mail: "bauer@gmail.com",
-    phone: "49-222-222",
-    nameTag: "MB",
-  },
-  {
-    name: "Tatjana Wolf",
-    color: "--variant15",
-    mail: "wolf@gmail.com",
-    phone: "49-222-222",
-    nameTag: "TW",
-  },
-  {
-    name: "Sofia Müller",
-    color: "--variant04",
-    mail: "sofiam@gmail.com",
-    phone: "49-222-222",
-    nameTag: "SM",
-  },
-  {
-    name: "Anton Mayer",
-    color: "--variant09",
-    mail: "antom@gmail.com",
-    phone: "49-123-123",
-    nameTag: "AM",
-  },
-  {
-    name: "Anja Schulz",
-    color: "--variant13",
-    mail: "schulz@hotmail.com",
-    phone: "49-123-123",
-    nameTag: "AS",
-  },
-  {
-    name: "Benedikt Ziegler",
-    color: "--default",
-    mail: "benedikt@gmail.com",
-    phone: "49-123-123",
-    nameTag: "BZ",
-  },
-  {
-    name: "David Eisenberg",
-    color: "--variant14",
-    mail: "davidberg@gmail.com",
-    phone: "49-123-123",
-    nameTag: "DE",
-  },
-  {
-    name: "Eva Fischer",
-    color: "--variant06",
-    mail: "eva@gmail.com",
-    phone: "49-222-222",
-    nameTag: "EF",
-  },
-  {
-    name: "Emmanuel Mauer",
-    color: "--variant10",
-    mail: "emmanuelma@gmail.com",
-    phone: "49-222-222",
-    nameTag: "EM",
-  },
-  {
-    name: "Marcel Bauer",
-    color: "--variant16",
-    mail: "bauer@gmail.com",
-    phone: "49-222-222",
-    nameTag: "MB",
-  },
-  {
-    name: "Tatjana Wolf",
-    color: "--variant15",
-    mail: "wolf@gmail.com",
-    phone: "49-222-222",
-    nameTag: "TW",
-  },
-  {
-    name: "Sofia Müller",
-    color: "--variant04",
-    mail: "sofiam@gmail.com",
-    phone: "49-222-222",
-    nameTag: "SM",
-  },
-];
-
 let letter = "A";
-let clickedContact = ContactBoxes[0];
-let addinputs;
+let clicked_contact = contact_boxes[0];
+let add_inputs;
 
 function initContacts() {
   init();
   createContacts();
-  createFloatingContacts(ContactBoxes[0]);
+  createFloatingContacts(contact_boxes[0]);
 }
 
 function createContacts() {
-  docID("contactList").innerHTML += createLetterBox();
+  docID("contact-list").innerHTML += createLetterBox();
   createContactBox();
-  ContactBoxes.forEach((e) => {
-    docID("contactList").innerHTML += e.contactItem;
+  contact_boxes.forEach((e) => {
+    docID("contact-list").innerHTML += e.contact_item;
   });
 }
 
@@ -154,57 +25,57 @@ function createLetterBox() {
 }
 
 function createFloatingContacts(contact) {
-  contact.createfloatingContacts();
-  docID("floatingProfileBadge").innerHTML = contact.profileBadge;
-  docID("floatingContactsMailValue").innerHTML = contact.contactEmail;
-  docID("floatingContactsPhoneValue").innerHTML = contact.contactPhone;
+  contact.createFloatingContacts();
+  docID("floating-profile-badge").innerHTML = contact.profile_badge;
+  docID("floating-contacts-mail-value").innerHTML = contact.contact_email;
+  docID("floating-contactsPhoneValue").innerHTML = contact.contact_phone;
   //  layoutContactsOverlay();
 }
 
 function layoutContactsOverlay() {
   createInputElements();
-  addinputs = [inputName, inputEmail, inputPhone];
-  docID("LoginInputs").innerHTML = setInputs(addinputs);
+  add_inputs = [input_name, input_email, input_phone];
+  docID("inputs-con").innerHTML = setInputs(add_inputs);
 
-  docID("editContactButtonGroup").innerHTML = /*html*/ `
-    <button id="overlaySecondaryBtn" onclick="" class="secondaryButton" ></button>
-    <button id="overlayPrimaryBtn" onclick="" class="button"></button>
+  docID("edit-contact-button-group").innerHTML = /*html*/ `
+    <button id="overlay-secondary-btn" onclick="" class="secondary-button" ></button>
+    <button id="overlay-primary-btn" onclick="" class="button"></button>
   `;
 }
 
 function createEditContact() {
-  docID("overlayContacts").style.display = "flex";
+  docID("overlay-contacts").style.display = "flex";
   layoutContactsOverlay();
-  docID("overlayContacts").style.left = "0";
-  docID("editContactOverlayHeadline").innerHTML = "Edit contact";
-  docID("contactOverlaySubtitle").style.display = "none";
-  docID("editContactConOverlay").innerHTML = ContactBoxes[0].profileBadge;
-  docID("overlaySecondaryBtn").innerHTML = "Delete";
-  docID("overlaySecondaryBtn").style.width = "fit-content";
-  docID("overlayPrimaryBtn").innerHTML = /*html*/ `
+  docID("overlay-contacts").style.left = "0";
+  docID("edit-contact-overlay-headline").innerHTML = "Edit contact";
+  docID("contact-overlay-subtitle").style.display = "none";
+  docID("edit-contact-con-overlay").innerHTML = contact_boxes[0].profile_badge;
+  docID("overlay-secondary-btn").innerHTML = "Delete";
+  docID("overlay-secondary-btn").style.width = "fit-content";
+  docID("overlay-primary-btn").innerHTML = /*html*/ `
 Save <img src="../assets/img/check.svg">
 `;
 }
 
 function closeButton() {
-  docID("overlayContacts").style.display = "none";
+  docID("overlay-contacts").style.display = "none";
 }
 
 function createAddContact() {
-  docID("overlayContacts").style.display = "flex";
+  docID("overlay-contacts").style.display = "flex";
   layoutContactsOverlay();
-  docID("overlayContacts").style.left = "unset";
-  docID("editContactOverlayHeadline").innerHTML = "Add Contact";
-  docID("contactOverlaySubtitle").style.display = "flex";
-  docID("editContactConOverlay").innerHTML = /*html*/ `
-     <img id='editContactOverlay-img' src="../assets/img/person-white.svg">
+  docID("overlay-contacts").style.left = "unset";
+  docID("edit-contact-overlay-headline").innerHTML = "Add Contact";
+  docID("contact-overlay-subtitle").style.display = "flex";
+  docID("edit-contact-con-overlay").innerHTML = /*html*/ `
+     <img id='edit-contact-overlay-img' src="../assets/img/person-white.svg">
   `;
-  docID("overlaySecondaryBtn").innerHTML = /*html*/ `
+  docID("overlay-secondary-btn").innerHTML = /*html*/ `
     Cancel <img src="../assets/img/clear.png">
   `;
-  docID("overlaySecondaryBtn").style.width = "unset";
-  docID("overlayPrimaryBtn").innerHTML = /*html*/ `
+  docID("overlay-secondary-btn").style.width = "unset";
+  docID("overlay-primary-btn").innerHTML = /*html*/ `
   Create contact <img src="../assets/img/check.svg">
   `;
-  docID("overlayPrimaryBtn").style.width = "fit-content";
+  docID("overlay-primary-btn").style.width = "fit-content";
 }

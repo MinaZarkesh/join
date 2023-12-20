@@ -1,4 +1,4 @@
-categorys = ["Office", "Desing", "Engine"];
+categorys = ["Office", "Design", "Engine"];
 
 
 /**
@@ -36,19 +36,19 @@ function isRequiered(id) {
   `
 }
 
-let inputName;
-let inputEmail;
-let inputPhone;
-let inputPassword;
-let inputConfirmPassword;
-let ContactBoxes = [];
+let input_name;
+let input_email;
+let input_phone;
+let input_password;
+let input_confirm_password;
+let contact_boxes = [];
 
 function createInputElements() {
-  inputName = new Divinputimg("LoginInputs","inputimgdiv","text","Name","../assets/img/icon-person.png");
-  inputEmail = new Divinputimg("LoginInputs", "inputimgdiv", "mail", "Email", "../assets/img/icon-mail.png");
-  inputPhone = new Divinputimg("LoginInputs", "inputimgdiv", "phone", "Phone", "../assets/img/icon-call.svg");
-  inputPassword = new Divinputimg("LoginInputs", "inputimgdiv", "password", "Password", "../assets/img/icon-lock-closed.png");
-  inputConfirmPassword = new Divinputimg("LoginInputs", "inputimgdiv", "confirmPassword", "Confirm Password", "../assets/img/icon-lock-closed.png");
+  input_name = new Divinputimg("inputs-con","imput-img-div","text","Name","../assets/img/icon-person.png");
+  input_email = new Divinputimg("inputs-con", "imput-img-div", "mail", "Email", "../assets/img/icon-mail.png");
+  input_phone = new Divinputimg("inputs-con", "imput-img-div", "phone", "Phone", "../assets/img/icon-call.svg");
+  input_password = new Divinputimg("inputs-con", "imput-img-div", "password", "Password", "../assets/img/icon-lock-closed.png");
+  input_confirm_password = new Divinputimg("inputs-con", "imput-img-div", "confirmPassword", "Confirm Password", "../assets/img/icon-lock-closed.png");
 }
 
 function setInputs(array) {
@@ -64,10 +64,10 @@ function createContactBox() {
     const profileColor = oldContacts[i].color;
     const profileNameTag = oldContacts[i].nameTag;
     const contactName = oldContacts[i].name;
-    const contactEmail = oldContacts[i].mail;
-    const contactPhone = oldContacts[i].phone;
-    ContactBoxes.push(
-      new Contact("contactList", profileColor, profileNameTag, contactName, contactEmail, contactPhone, i)
+    const contact_email = oldContacts[i].mail;
+    const contact_phone = oldContacts[i].phone;
+    contact_boxes.push(
+      new Contact("contact-list", profileColor, profileNameTag, contactName, contact_email, contact_phone, i)
     );
   }
 }
@@ -294,71 +294,134 @@ function createContactBox() {
 /**
  * Creates an array of contacts for Backup
  */
-// let oldContactsSmall = [
-//   {
-//     name: "Anton Mayer",
-//     color: "--variant09",
-//     mail: "antom@gmail.com",
-//     phone: "49-123-123",
-//     nameTag: "AM",
-//   },
-//   {
-//     name: "Anja Schulz",
-//     color: "--variant13",
-//     mail: "schulz@hotmail.com",
-//     phone: "49-123-123",
-//     nameTag: "AS",
-//   },
-//   {
-//     name: "Benedikt Ziegler",
-//     color: "--default",
-//     mail: "benedikt@gmail.com",
-//     phone: "49-123-123",
-//     nameTag: "BZ",
-//   },
-//   {
-//     name: "David Eisenberg",
-//     color: "--variant14",
-//     mail: "davidberg@gmail.com",
-//     phone: "49-123-123",
-//     nameTag: "DE",
-//   },
-//   {
-//     name: "Eva Fischer",
-//     color: "--variant06",
-//     mail: "eva@gmail.com",
-//     phone: "49-222-222",
-//     nameTag: "EF",
-//   },
-//   {
-//     name: "Emmanuel Mauer",
-//     color: "--variant10",
-//     mail: "emmanuelma@gmail.com",
-//     phone: "49-222-222",
-//     nameTag: "EM",
-//   },
-//   {
-//     name: "Marcel Bauer",
-//     color: "--variant16",
-//     mail: "bauer@gmail.com",
-//     phone: "49-222-222",
-//     nameTag: "MB",
-//   },
-//   {
-//     name: "Tatjana Wolf",
-//     color: "--variant15",
-//     mail: "wolf@gmail.com",
-//     phone: "49-222-222",
-//     nameTag: "TW",
-//   },
-//   {
-//     name: "Sofia Müller",
-//     color: "--variant04",
-//     mail: "sofiam@gmail.com",
-//     phone: "49-222-222",
-//     nameTag: "SM",
-//   },
-// ];
+ let oldContacts = [
+  {
+    name: "Wilhelmina Schattschneider",
+    color: "--variant09",
+    mail: "antom@gmail.com",
+    phone: "+49-123-123",
+    nameTag: "AM",
+  },
+  {
+    name: "Anja Schulz",
+    color: "--variant13",
+    mail: "schulz@hotmail.com",
+    phone: "49-123-123",
+    nameTag: "AS",
+  },
+  {
+    name: "Benedikt Ziegler",
+    color: "--default",
+    mail: "benedikt@gmail.com",
+    phone: "49-123-123",
+    nameTag: "BZ",
+  },
+  {
+    name: "David Eisenberg",
+    color: "--variant14",
+    mail: "davidberg@gmail.com",
+    phone: "49-123-123",
+    nameTag: "DE",
+  },
+  {
+    name: "Eva Fischer",
+    color: "--variant06",
+    mail: "eva@gmail.com",
+    phone: "49-222-222",
+    nameTag: "EF",
+  },
+  {
+    name: "Emmanuel Mauer",
+    color: "--variant10",
+    mail: "emmanuelma@gmail.com",
+    phone: "49-222-222",
+    nameTag: "EM",
+  },
+  {
+    name: "Marcel Bauer",
+    color: "--variant16",
+    mail: "bauer@gmail.com",
+    phone: "49-222-222",
+    nameTag: "MB",
+  },
+  {
+    name: "Tatjana Wolf",
+    color: "--variant15",
+    mail: "wolf@gmail.com",
+    phone: "49-222-222",
+    nameTag: "TW",
+  },
+  {
+    name: "Sofia Müller",
+    color: "--variant04",
+    mail: "sofiam@gmail.com",
+    phone: "49-222-222",
+    nameTag: "SM",
+  },
+  {
+    name: "Anton Mayer",
+    color: "--variant09",
+    mail: "antom@gmail.com",
+    phone: "49-123-123",
+    nameTag: "AM",
+  },
+  {
+    name: "Anja Schulz",
+    color: "--variant13",
+    mail: "schulz@hotmail.com",
+    phone: "49-123-123",
+    nameTag: "AS",
+  },
+  {
+    name: "Benedikt Ziegler",
+    color: "--default",
+    mail: "benedikt@gmail.com",
+    phone: "49-123-123",
+    nameTag: "BZ",
+  },
+  {
+    name: "David Eisenberg",
+    color: "--variant14",
+    mail: "davidberg@gmail.com",
+    phone: "49-123-123",
+    nameTag: "DE",
+  },
+  {
+    name: "Eva Fischer",
+    color: "--variant06",
+    mail: "eva@gmail.com",
+    phone: "49-222-222",
+    nameTag: "EF",
+  },
+  {
+    name: "Emmanuel Mauer",
+    color: "--variant10",
+    mail: "emmanuelma@gmail.com",
+    phone: "49-222-222",
+    nameTag: "EM",
+  },
+  {
+    name: "Marcel Bauer",
+    color: "--variant16",
+    mail: "bauer@gmail.com",
+    phone: "49-222-222",
+    nameTag: "MB",
+  },
+  {
+    name: "Tatjana Wolf",
+    color: "--variant15",
+    mail: "wolf@gmail.com",
+    phone: "49-222-222",
+    nameTag: "TW",
+  },
+  {
+    name: "Sofia Müller",
+    color: "--variant04",
+    mail: "sofiam@gmail.com",
+    phone: "49-222-222",
+    nameTag: "SM",
+  },
+];
 
 // /***************** alphabet **********************************/
 

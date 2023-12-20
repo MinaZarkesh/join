@@ -1,8 +1,8 @@
 //for responsiveness
-let screenSize = 1023; //ab wann Wechsel zu Desktop Version
+let screen_size = 1023; //ab wann Wechsel zu Desktop Version
 
 //erstelle die Werte für die Items
-let itemAmount = 6;
+let item_amount = 6;
 
 let descriptions = [
   "Tasks urgent",
@@ -24,57 +24,57 @@ let images = [
   "../assets/img/done_summary.png",
 ];
 
-let taskAmounts = [1, 2, 3, 40, 5, 6, 7]; //verändern durch Tasks
-let newTaskAmounts = [1, 12, 3, 9, 5, 6, 8]; //zum Testen
+let task_amounts = [1, 2, 3, 40, 5, 6, 7]; //verändern durch Tasks
+let new_task_amounts = [1, 12, 3, 9, 5, 6, 8]; //zum Testen
 
-//empty Array for new SummaryBoxes
-let summaryBoxes = [];
-let summaryBoxDivID = "summaryBox";
+//empty Array for new summary_boxes
+let summary_boxes = [];
+let summaryBox_div_id = "summary-box";
 
 function initSummary() {
   init();
-  createSummaryBoxes(); //creates SummaryBoxes beim laden
+  createSummaryBoxes(); //creates summary-boxes beim laden
   // updateTaskAmounts();
 }
 
 function createSummaryBoxes() {
 
-  docID(summaryBoxDivID).innerHTML = "";
+  docID(summaryBox_div_id).innerHTML = "";
 
-  for (let i = 0; i < itemAmount; i++) {
+  for (let i = 0; i < item_amount; i++) {
     docID(
-      summaryBoxDivID
-    ).innerHTML += `<div id="${summaryBoxDivID}${i}"></div>`;
+      summaryBox_div_id
+    ).innerHTML += `<div id="${summaryBox_div_id}-${i}"></div>`;
 
-    summaryBoxes.push(new SummaryBox(summaryBoxDivID, i));
+    summary_boxes.push(new SummaryBox(summaryBox_div_id, i));
   }
-  createfirstBox();
+  createFirstBox();
 }
 
-function createfirstBox() {
+function createFirstBox() {
   //leert die Box und fügt beide Elemente in einer neuen Div hinzu,
   // um diese wiederum position relative zu machen(in css)
-  docID(`item${summaryBoxDivID}0`).innerHTML = /*html*/ `
-    <div  id="item${summaryBoxDivID}01" class="col">  
+  docID(`item-${summaryBox_div_id}-0`).innerHTML = /*html*/ `
+    <div  id="item-${summaryBox_div_id}-0-1" class="col">  
       <div class="row">
         <img src=${images[0]}>
-        <h1 id="taskAmounts${summaryBoxDivID}0">${taskAmounts[0]}</h1>
+        <h1 id="task-amounts-${summaryBox_div_id}-0">${task_amounts[0]}</h1>
       </div>
       <h6>${descriptions[0]}</h6>
     </div>
-    <div onclick="navToBoard()"id="firstBox">
-      <h6 id="upcomingDeadline">October 16, 2022</h6>
+    <div onclick="navToBoard()"id="first-box">
+      <h6 id="upcoming-deadline">October 16, 2022</h6>
       <span>Upcoming Deadline</span>
     </div>
  `;
 }
 
 function updateTaskAmounts() {
-  for (let index = 0; index < newTaskAmounts.length; index++) {
-    const newNumber = newTaskAmounts[index];
-    if (newNumber != taskAmounts[index]) {
-      taskAmounts[index] = newNumber;
-      summaryBoxes[index].updateTaskAmount(newNumber, index);
+  for (let index = 0; index < new_task_amounts.length; index++) {
+    const new_number = new_task_amounts[index];
+    if (new_number != task_amounts[index]) {
+      task_amounts[index] = new_number;
+      summary_boxes[index].updateTaskAmount(new_number, index);
       //TODO: update Server;
     }
   }
@@ -92,8 +92,8 @@ window.addEventListener("resize", function () {
 
 function changeScreenView() {
   // console.log(screenWidth);
-  for (let index = 0; index < summaryBoxes.length; index++) {
-    const element = summaryBoxes[index];
+  for (let index = 0; index < summary_boxes.length; index++) {
+    const element = summary_boxes[index];
     element.checkScreenView(index);
     element.renderPosition(index);
   }

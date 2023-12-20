@@ -1,15 +1,10 @@
-// let inputName;
-// let inputEmail;
-// let inputPassword;
-// let inputConfirmPassword;
-let singupInputs;
-let loginInputs;
-let loginForm;
-let BackBtnSignup;
-let customCheckboxRememberMe;
-let customCheckboxAcceptPrivacy;
-let loginCheckbox;
-
+let singup_inputs;
+let login_inputs;
+let login_form;
+let back_btn;
+let custom_checkbox_remember_me;
+let custom_checkbox_accept_privacy;
+let login_checkbox;
 
 function initLogin() {
   createInputElements();
@@ -17,82 +12,92 @@ function initLogin() {
   renderLoginElements("Login");
 }
 
-
-function createAllElements(){
-  loginForm = "LoginInputs";
-  checkboxtext = "Remember Me";
-  checkBoxId = "rememberMe";
-  customCheckboxRememberMe = new customCheckbox(loginForm, checkBoxId, checkboxtext);
-  checkboxtext = /*html*/ `
+function createAllElements() {
+  login_form = "inputs-con";
+  checkbox_text = "Remember Me";
+  checkbox_id = "remember-me";
+  custom_checkbox_remember_me = new CustomCheckbox(
+    login_form,
+    checkbox_id,
+    checkbox_text
+  );
+  checkbox_text = /*html*/ `
   I accept the <a href="../html/PrivacyPolicy.html">Privacy Policy</a>
     `;
-    checkBoxId = "acceptPrivacy";
-  customCheckboxAcceptPrivacy = new customCheckbox(loginForm, checkBoxId, checkboxtext);
-  
-  setBackBtnSignup();
+  checkbox_id = "-accept-privacy";
+  custom_checkbox_accept_privacy = new CustomCheckbox(
+    login_form,
+    checkbox_id,
+    checkbox_text
+  );
+
+  setBackBtnsignup();
 }
 
 function renderLoginElements(bool) {
   // bool = "Login";
-  let inputFields;
+  let input_fields;
   let button;
-  singupInputs = [inputName, inputEmail, inputPassword, inputConfirmPassword];
-  loginInputs = [inputEmail, inputPassword];
-  inputFields = loginInputs;
-  loginCheckbox = customCheckboxRememberMe;
+  singup_inputs = [
+    input_name,
+    input_email,
+    input_password,
+    input_confirm_password,
+  ];
+  login_inputs = [input_email, input_password];
+  input_fields = login_inputs;
+  login_checkbox = custom_checkbox_remember_me;
   button = ` <button onclick="navToSummary()" class="button">Log in</button>
-    <button onclick="navToSummary()" class="secondaryButton">Guest Log in</button>
+    <button onclick="navToSummary()" class="secondary-button">Guest Log in</button>
     `;
 
   if (bool === "Sign up") {
-    inputFields = singupInputs;
-    loginCheckbox = customCheckboxAcceptPrivacy;
-    button = `<button id="SignupForm-btn" onclick='renderLoginElements("Login")' class="Button">Sign up</button>`;
+    input_fields = singup_inputs;
+    login_checkbox = custom_checkbox_accept_privacy;
+    button = `<button id="signup-form-btn" onclick='renderLoginElements("Login")' class="Button">Sign up</button>`;
   }
 
-  docID("LoginHeadline").innerHTML = bool;
-   docID(loginForm).innerHTML= setInputs(inputFields);
+  docID("login-headline").innerHTML = bool;
+  docID(login_form).innerHTML = setInputs(input_fields);
   //  changePassword-Style
- docID(loginForm).innerHTML += loginCheckbox.content;
-// docID(customCheckboxAcceptPrivacy.labelID).innerHTML= checkboxtext;
-  //new SecondaryButton
-  docID("LoginFormButtonGroup").innerHTML = button;
+  docID(login_form).innerHTML += login_checkbox.content;
+  // docID(custom_checkbox_accept_privacy.labelID).innerHTML= checkbox_text;
+  //new secondary-button
+  docID("login-form-button-group").innerHTML = button;
   changeStyle(bool);
 }
 
-function setBackBtnSignup() {
-  BackBtnSignup = new BackBtn(
-    "LoginItem",
-    "Signup",
+function setBackBtnsignup() {
+  back_btn = new BackBtn(
+    "login-item",
+    "signup",
     'renderLoginElements("Login")'
   );
 
-  // return BackBtnSignup.content;
+  // return BackBtnsignup.content;
 }
 
-function setCheckBox(id, checkboxtext) {
-  let customCheckboxLogin = new customCheckbox(loginForm, id, checkboxtext);
-  return customCheckboxLogin;
+function setCheckBox(id, checkbox_text) {
+  let custom_checkbox_login = new CustomCheckbox(login_form, id, checkbox_text);
+  return custom_checkbox_login;
 }
-
-
 
 /*** Sign-up ***/
 
 function changeStyle(bool) {
   if (bool === "Sign up") {
     docID("button-group").style.display = "none";
-    docID("Logo-login").src = "../assets/img/Logo-middle_white.png";
-    docID("LoginMain").style.backgroundColor = "var(--primary)";
-    docID("LoginLinkGroup").style.color = "var(--white)";
-    docID("labelacceptPrivacy").style.justifyContent = "center";
-    docID("LoginFormButtonGroup").style.justifyContent = "center";
-    docID("SignupBack-btn").style.display = "flex";
+    docID("logo-login").src = "../assets/img/Logo-middle_white.png";
+    docID("login-main").style.backgroundColor = "var(--primary)";
+    docID("login-link-group").style.color = "var(--white)";
+    docID("label-accept-privacy").style.justifyContent = "center";
+    docID("login-form-button-group").style.justifyContent = "center";
+    docID("signup-back-btn").style.display = "flex";
   } else {
-    docID("SignupBack-btn").style.display = "none";
+    docID("signup-back-btn").style.display = "none";
     docID("button-group").style.display = "flex";
-    docID("LoginMain").style.backgroundColor = "var(--white)";
-    docID("Logo-login").src = "../assets/img/Logo-middle_blue.png";
+    docID("login-main").style.backgroundColor = "var(--white)";
+    docID("logo-login").src = "../assets/img/Logo-middle_blue.png";
   }
 }
 

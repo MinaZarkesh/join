@@ -10,17 +10,17 @@ function initAddtask() {
     new Requiered('description-textarea');
     new Divdate('contentbig','due-date', 'Due date', false);
     new Requiered('due-date');
-    new Childdiv('contentCon', 'priority', 'Priority', false, 'priority-button');
+    new Childdiv('content-con', 'priority', 'Priority', false, 'priority-button');
     new Urgencybtn('priority-button', "Urgent");
     new Urgencybtn('priority-button', "Medium");
     new Urgencybtn('priority-button', "Low");
-    new Labeldiv('contentCon', 'assigned', 'Assigned to', true);
+    new Labeldiv('content-con', 'assigned', 'Assigned to', true);
     new Divinputimg('assigned', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png');
-    new Labeldiv('contentCon', 'category', 'Category', false);
+    new Labeldiv('content-con', 'category', 'Category', false);
     new Divinputimg('category', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png');
-    new Labeldiv('contentCon', 'subtask', 'Subtask', true);
+    new Labeldiv('content-con', 'subtask', 'Subtask', true);
     new Divinputimg('subtask', 'input-con', 'text', 'Add new subtask', '../assets/img/+.png');
-    new Subtitles('contentCon', 'die-subtask', 'Dies ist eine subtask');
+    new Subtitles('content-con', 'die-subtask', 'Dies ist eine subtask');
 }
 
 //Testfunction
@@ -82,10 +82,10 @@ function contactDropdown(imgid, parent) {
         docID('contactList-Parent').classList.remove('d-none');
         docID('contactList-Parent').innerHTML = `<div id="contactList"></div>`;
         createContactBox();
-        ContactBoxes.forEach((e) => {
+        contact_boxes.forEach((e) => {
             docID("contactList").innerHTML += /*html*/`
                 <div class="tasks-contacts">
-                    ${e.profileBadge}
+                    ${e.profile_badge}
                     ${e.contactName}
                 </div>
             `  
@@ -96,7 +96,7 @@ function contactDropdown(imgid, parent) {
     } else {
         dropdownReset('contactList-Parent', imgid);
         dropdownContacts = false;
-        ContactBoxes = [];
+        contact_boxes = [];
     }
 }
 

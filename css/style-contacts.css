@@ -1,5 +1,5 @@
 /*** Contact List ***/
-.contactList {
+.contact-list {
   height: 99%;
   overflow-y: scroll;
   flex-shrink: 0;
@@ -7,7 +7,8 @@
   justify-content: center;
 }
 
-#contactList {
+
+#contact-list {
   width: 400px;
   display: flex;
   padding: 32px 24px;
@@ -15,6 +16,7 @@
   flex-direction: column;
   gap: 24px;
 }
+
 
 .fixed {
   position: fixed;
@@ -28,6 +30,7 @@
   background: var(--white, #fff);
 }
 
+
 .fixed .button {
   display: flex;
   width: 98%;
@@ -39,7 +42,8 @@
   gap: 10px;
 }
 
-.contactList-row {
+
+.contact-list-row {
   display: flex;
   padding: 15px 24px;
   align-items: flex-start;
@@ -47,10 +51,13 @@
   border-radius: 10px;
 }
 
-.contactList-row:hover {
+
+.contact-list-row:hover {
   background-color: var(--secondary);
 }
-.contactList-coloumn {
+
+
+.contact-list-coloumn {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -58,8 +65,9 @@
   gap: 5px;
 }
 
-.contactList-coloumn span {
-  color: #000;
+
+.contact-list-coloumn span {
+  color: var(--black);
 
   /* Version 2/t6 */
   /* font-family: Open Sans; */
@@ -69,7 +77,8 @@
   line-height: 120%; /* 1.425rem */
 }
 
-.contactList-coloumn h6 {
+
+.contact-list-coloumn h6 {
   margin: 0;
   font-size: 1rem;
   font-style: normal;
@@ -78,6 +87,7 @@
   color: var(--primary);
 }
 
+
 .letter-box {
   display: flex;
   justify-content: flex-start;
@@ -85,9 +95,9 @@
   height: 56px;
   margin-top: 8px;
   margin-bottom: 8px;
-  /* padding: 17px, 36px, 17px, 36px; */
-  border-bottom: 1px solid rgba(209, 209, 209, 1);
+  border-bottom: 1px solid var(--white);
 }
+
 
 .letter {
   display: flex;
@@ -100,22 +110,18 @@
   gap: 8px;
 }
 
+
 /*** Floating Contacts ***/
-#floatingContacts {
+#floating-contacts {
   position: relative;
   display: flex;
   align-items: flex-start;
   padding: 2%;
-  
   flex: 1;
-  /* margin-top: 168px; */
 }
 
-.floatingCon {
-  /* position: absolute;
-  top: 0;
-  left: 0;
-  margin: 0; */
+
+.floating-con {
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
@@ -123,7 +129,8 @@
   background: var(--white, #fff);
 }
 
-.floatingCon h2 {
+
+.floating-con h2 {
   margin: 0;
   color: var(--black);
 
@@ -132,32 +139,36 @@
   font-weight: 700;
   line-height: 120%; /* 1.725rem */
 }
-#floatingProfileBadge .profile-badge {
+
+
+#floating-profile-badge .profile-badge {
   min-width: 90px;
   min-height: 90px;
   max-width: 120px;
   max-height: 120px;
   padding: 4px;
 }
-#floatingProfileBadge span{
-  display: flex;
-width: 50px;
-height: 16.571px;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-flex-shrink: 0;
-  color: var(--white);
 
+
+#floating-profile-badge span {
+  display: flex;
+  width: 50px;
+  height: 16.571px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--white);
   text-align: center;
   /* font-family: Inter; */
-  font-size: 2.0rem;
+  font-size: 2rem;
   font-style: normal;
   font-weight: 500;
   line-height: 100%; /* 3.525rem */
 }
 
-.floatingHeadline {
+
+.floating-headline {
   padding: 0;
   margin: 0;
   display: flex;
@@ -166,7 +177,8 @@ flex-shrink: 0;
   gap: 5%;
 }
 
-.floatingHeadlineTextCon {
+
+.floating-headline-text-con {
   color: var(--black);
   display: flex;
   flex-direction: column;
@@ -174,7 +186,9 @@ flex-shrink: 0;
   gap: 8px;
   /* min-width: 292px; */
 }
-.floatingHeadlineTextCon h1 {
+
+
+.floating-headline-text-con h1 {
   color: var(--black);
   margin: 0;
   font-size: 2.8rem;
@@ -183,24 +197,28 @@ flex-shrink: 0;
   line-height: 120%; /* 3.6rem */
 }
 
-.floatingHeadlineLinksCon {
-  /* width: 100%; */
+
+.floating-headline-links-con {
   display: flex;
   align-items: flex-start;
   gap: 16px;
 }
 
-.floatingHeadlineLink {
+
+.floating-headline-link {
   color: var(--black);
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
 }
-.floatingHeadlineLink img {
+
+
+.floating-headline-link img {
   width: 24px;
   height: 24px;
 }
+
 
 .gap-22 {
   display: flex;
@@ -208,6 +226,7 @@ flex-shrink: 0;
   align-items: flex-start;
   gap: 22px;
 }
+
 .gap-15 {
   display: flex;
   flex-direction: column;
@@ -215,11 +234,13 @@ flex-shrink: 0;
   gap: 15px;
   color: var(--black);
 }
+
 .gap-15 span {
   color: var(--black);
 }
 
-.floatingCon h6 {
+
+.floating-con h6 {
   margin: 0;
 
   font-size: 1rem;
@@ -228,10 +249,13 @@ flex-shrink: 0;
   line-height: 120%; /* 1.2rem */
 }
 
-#floatingContactsMailValue {
+
+#floating-contacts-mail-value {
   color: var(--primary);
 }
-.floatingCon span {
+
+
+.floating-con span {
   margin: 0;
   font-size: 1rem;
   font-style: normal;
@@ -239,9 +263,7 @@ flex-shrink: 0;
   line-height: 120%; /* 1.2rem */
 }
 
- @media (max-width: 767px) {
-  /* #floatingContacts{
-    width: 100vw;
-    flex: none;
-  } */
-} 
+/** zweites MediaQuery **/
+/* @media (max-width: 767px) {
+
+} */

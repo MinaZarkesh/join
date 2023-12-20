@@ -5,9 +5,14 @@
   --secondary: #d2e3ff;
   --active: #e3eeff;
   --black: #000;
+  --black40: rgba(0, 0, 0, 0.4);
+  --black20: rgba(0, 0, 0, 0.2);
+  --black08: rgba(0,0,0,0.08);
+  --secBtnBorder:rgb(100, 113, 136);
+  --linkColor:  rgba(42, 54, 71, 1);
   --white: #fff;
   --grey: #d1d1d1;
-  --menuColor: #42526e;
+  --menuColor: rgb(66, 82, 110);
   --userStory: rgba(255, 122, 0, 1);
   --technicalTask: rgba(0, 56, 255, 1);
   /*priority-colors*/
@@ -37,7 +42,7 @@ body {
   height: 100vh;
   width: 100vw;
   margin: 0;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: var(--white);
   font-family: "Open Sans", sans-serif;
 }
 
@@ -71,19 +76,18 @@ main {
   width: 85vw;
   flex: 1;
   height: 90vh;
-  /* background-color: rgba(255, 0, 0, 0.3); */
 }
 
 .button {
-  height: 100%; /*war vorher 48px*/
-  /* width: fit-content; */
+  height: 48px;
   min-width: 160px;
   border-radius: 8px;
   padding: 10px 16px;
-  background-color: rgba(69, 137, 255, 1);
-  color: white;
+  background-color: var(--primary);
+  color: var(--white);
   gap: 10px;
   border: none;
+
   /* Version 2/t5 */
   font-family: "Open Sans";
   font-size: 1.4375rem;
@@ -100,12 +104,12 @@ main {
   border-radius: 8px;
   padding: 10px 16px;
   background-color: var(--primary);
-  color: white;
+  color: var(--white);
   gap: 10px;
   border: none;
   font-size: 1.4375rem;
   /* offset-x | offset-y | blur-radius | spread-radius | color */
-  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 4px 8px 0px var(--black40);
   animation-duration: 100ms;
   animation-timing-function: ease-in-out;
 }
@@ -113,39 +117,38 @@ main {
 /*when der Button angeklickt wird*/
 
 .button:active {
-  background-color: rgba(255, 255, 255, 1);
-  color: rgba(69, 137, 255, 1);
+  background-color: var(--white);
+  color: var(--primary);
   /* offset-x | offset-y | blur-radius | spread-radius | color */
-  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 4px 8px 0px var(--black40);
   animation-delay: 1ms;
 }
 
-.secondaryButton {
+.secondary-button {
   width: fit-content;
-min-width: 136px;
-
-  height: 100%;  /*war vorher 61px*/
+  min-width: 136px;
+  height: 100%; /*war vorher 61px*/
   border-radius: 10px;
   padding: 16px 10px 16px 10px;
-  border: 1px solid #647188;
-  background-color: white;
+  border: 1px solid var(--secBtnBorder);
+  background-color: var(--white);
   font-size: 23px;
   line-height: 27.6px;
   font-weight: 400;
-  color: #647188;
+  color: var(--secBtnBorder);
   cursor: pointer;
 }
 
-.secondaryButton:hover {
-  border: 3px solid #4589ff;
-  color: #4589ff;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+.secondary-button:hover {
+  border: 3px solid var(--primary);
+  color: var(--primary);
+  box-shadow: 0px 5px 10px var(--black20);
   transition: border-color 0.1s ease-in-out, color 0.1s ease-in-out,
     box-shadow 0.1s ease-in-out;
-  background-color: white;
+  background-color: var(--white);
 }
 
-.Back-btn {
+.signup-back-btn {
   border: none;
   background-color: transparent;
   display: flex;
@@ -155,7 +158,7 @@ min-width: 136px;
   position: absolute;
 }
 
-.Back-btn:hover {
+.signup-back-btn:hover {
   background-color: var(--secondary);
   border-radius: 50%;
 }
@@ -163,7 +166,7 @@ min-width: 136px;
 a {
   background-color: transparent;
   font-size: 16px;
-  color: rgba(42, 54, 71, 1);
+  color:var(--linkColor);
   text-align: center;
   /* display: flex; */
   align-items: center;
@@ -193,16 +196,16 @@ a:active {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #4589ff;
+  background-color: var(--primary);
   border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #d2e3ff;
+  background-color: var(--secondary);
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  background-color: var(--white);
 }
 
 /**************  Ckeckbox    *************/
@@ -242,19 +245,19 @@ input[type="checkbox"] {
 
 .requiered {
   display: flex;
-  margin-top: .25rem;
-  color: #FF8190;
+  margin-top: 0.25rem;
+  color: var(--urgent);/*#ff8190;*/
   font-size: 13px;
   line-height: 120%;
   height: 16px;
 }
 
-.input-field{
+.input-field {
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid var(--black);
 }
 
-.inputimgdiv {
+.imput-img-div {
   display: flex;
   align-items: center;
   width: 100%;
@@ -263,7 +266,7 @@ input[type="checkbox"] {
 
 .profile-badge {
   background-color: var(--default);
-  color: rgba(255, 255, 255, 1);
+  color: var(--white);
   font-size: 12px;
   width: 42px;
   height: 42px;
@@ -271,7 +274,7 @@ input[type="checkbox"] {
   justify-content: center;
   align-items: center;
   border-radius: 45px;
-  border: 2px solid rgba(255, 255, 255, 1);
+  border: 2px solid var(--white);
   gap: 10px;
 }
 
@@ -287,7 +290,6 @@ input[type="checkbox"] {
   }
 
   .button {
-    /* display: flex; */
     width: 180px;
     height: 48px;
     padding: 4px 0px;
@@ -303,7 +305,7 @@ input[type="checkbox"] {
     line-height: 120%; /* 1.425rem */
   }
 
-  .secondaryButton {
+  .secondary-button {
     display: flex;
     width: 180px;
     height: 48px;
@@ -324,7 +326,6 @@ input[type="checkbox"] {
     position: relative;
     left: -200px;
     opacity: 0;
-    /* -webkit-appearance: none; */
   }
 
   input[type="checkbox"] {

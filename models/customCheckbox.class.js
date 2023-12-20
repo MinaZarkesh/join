@@ -1,4 +1,4 @@
-class customCheckbox {
+class CustomCheckbox {
   parent;
   name;
   text;
