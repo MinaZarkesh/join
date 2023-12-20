@@ -1,16 +1,23 @@
 class Contact {
+
   profile_badge;
   contact_item;
+  contact_item_id;
   contact_name;
   contact_email;
   contact_phone;
   contact_id;
+  contact_inner_item;
+  contact_inner_item_id;
 
-  constructor(parent, color, nameTag, contact_name, contact_email, contact_phone, id) {
+  constructor(parent,color,nameTag,contact_name,contact_email,contact_phone,id) {
+
     this.contact_email = contact_email;
     this.contact_name = contact_name;
     this.contact_phone = contact_phone;
     this.contact_id = id;
+    this.contact_inner_item_id;
+    this.contact_item_id = `contact-item-${id}`;
     this.profile_badge = /*html*/ `
     <div id='profile_badgeCon-${id}'  class="profile-badge" style="background-color: var(${color});">
       <span id='contact_itemNameTag-${id}'>${nameTag}</span>
@@ -22,18 +29,28 @@ class Contact {
   }
 
   createContactItem(id) {
-    this.contact_item = /*html*/ `
-            <div onclick="showFloatingContacts(${this.contact_id})" id='contact-item-${id}' class="contact-list-row">
-                ${this.profile_badge}
+    this.contact_inner_item = /*html*/ `
+        ${this.profile_badge}
                 <div class ="contact-list-coloumn">
                     <span id='contact_itemName-${id}'>${this.contact_name}</span>
                     <h6 id='contact_itemMail-${id}'>${this.contact_email}</h6>
                 </div>
+    `;
+
+    this.contact_item = /*html*/ `
+            <div onclick="showFloatingContacts(${this.contact_id})" id='contact-item-${id}' class="contact-list-row">
+            ${this.contact_inner_item}
             </div>
         `;
   }
 
-  createFloatingContacts(){
+  //noch nicht fertig
+  updateContactItem(id) {
+    this.createFloatingContacts();
+    this.createContactItem();
+  }
+
+  createFloatingContacts() {
     docID("floating-contacts").innerHTML = /*html*/ `
           <div class="floating-con">
             <div class="floating-headline">
@@ -65,6 +82,6 @@ class Contact {
                 <span id="floating-contactsPhoneValue">${this.contact_phone}</span>
               </div>
             </div>
-          </div>`
+          </div>`;
   }
 }

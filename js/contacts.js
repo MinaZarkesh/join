@@ -1,6 +1,6 @@
 let letter = "A";
 let clicked_contact = contact_boxes[0];
-let add_inputs;
+let contacts_inputs;
 
 function initContacts() {
   init();
@@ -28,6 +28,7 @@ function showFloatingContacts(id) {
   let contact = contact_boxes[id];
   setActive(id);
   contact.createFloatingContacts();
+
   docID("floating-profile-badge").innerHTML = contact.profile_badge;
   docID("floating-contacts-mail-value").innerHTML = contact.contact_email;
   docID("floating-contactsPhoneValue").innerHTML = contact.contact_phone;
@@ -39,6 +40,14 @@ function setActive(id) {
   let clicked_name_id = "contact_itemName-" + id;
   console.log(clicked_contact_box_id);
 
+  resetActive();
+  //set new attributes
+  docID(clicked_contact_box_id).style.background = "var(--primary)";
+  docID(clicked_mail_id).style.color = "var(--white)";
+  docID(clicked_name_id).style.color = "var(--white)";
+}
+
+function resetActive() {
   for (let i = 0; i < contact_boxes.length; i++) {
     let contact_item_id = "contact-item-" + i;
     let contact_mail_id = "contact_itemMail-" + i;
@@ -48,16 +57,12 @@ function setActive(id) {
     docID(contact_mail_id).style.color = "var(--primary)";
     docID(contact_name_id).style.color = "var(--black)";
   }
-  //set new attributes
-  docID(clicked_contact_box_id).style.background = "var(--primary)";
-  docID(clicked_mail_id).style.color = "var(--white)";
-  docID(clicked_name_id).style.color = "var(--white)";
 }
 
 function layoutContactsOverlay(idx) {
   createInputElements();
-  add_inputs = [input_name, input_email, input_phone];
-  docID("inputs-con").innerHTML = setInputs(add_inputs);
+  contacts_inputs = [input_name, input_email, input_phone];
+  docID("inputs-con").innerHTML = setInputs(contacts_inputs);
 
   docID("edit-contact-button-group").innerHTML = /*html*/ `
     <button id="overlay-secondary-btn" onclick="" class="secondary-button font-t5" ></button>
@@ -67,36 +72,31 @@ function layoutContactsOverlay(idx) {
 
 function createEditContact(id) {
   layoutEditContact(id);
-
   docID(input_name.input_id).value = contact_boxes[id].contact_name;
   docID(input_email.input_id).value = contact_boxes[id].contact_email;
   docID(input_phone.input_id).value = contact_boxes[id].contact_phone;
 }
 
 function saveEditContact(idx) {
-  let input_name_value = docID(input_name.input_id).value;
-  let input_email_value = docID(input_email.input_id).value;
-  let input_phone_value = docID(input_phone.input_id).value;
-  if (
-    !(
-      input_name_value == "" ||
-      input_email_value == "" ||
-      input_phone_value == ""
-    )
-  ) {
-    console.log(idx);
+  let edit_contact = contact_boxes[idx];
 
-    let edit_contact; 
-    contact_boxes[idx].contact_name = docID(input_name.input_id).value;
-    contact_boxes[idx].contact_email = docID(input_email.input_id).value;
-    contact_boxes[idx].contact_phone = docID(input_phone.input_id).value;
+  for (let i = 0; i < contacts_inputs.length; i++) {
+    let element = contacts_inputs[i];
+    let input_value = docID(element.input_id).value;
+
+    if (!input_value == "") {
+      edit_contact.contact_name = docID(input_name.input_id).value;
+      edit_contact.contact_email = docID(input_email.input_id).value;
+      edit_contact.contact_phone = docID(input_phone.input_id).value;
+    }
+
+    edit_contact.createFloatingContacts();
+    // contact_item_id;
+    // docID(edit_contact.contact_item_id).innerHTML =
+    edit_contact.createContactItem(idx);
+    docID(edit_contact.contact_item_id).innerHTML = edit_contact.contact_inner_item;
+    setActive(idx);
   }
-
-  console.log(contact_boxes[idx].contact_name);
-
-  // contact_boxes[id].contact_name = docID(input_name.input_id).value;
-  // contact_boxes[id].contact_email = docID(input_email.input_id).value;
-  // contact_boxes[id].contact_phone = docID(input_phone.input_id).value;
 }
 
 function layoutEditContact(id) {
