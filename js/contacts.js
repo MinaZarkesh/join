@@ -137,21 +137,21 @@ function initContacts() {
   createFloatingContacts(ContactBoxes[0]);
 }
 
-  function createContacts() {
-    docID("contactList").innerHTML += createLetterBox();
-    createContactBox();
-    ContactBoxes.forEach((e) => {
-      docID("contactList").innerHTML += e.contactItem;
-    })
-  }
+function createContacts() {
+  docID("contactList").innerHTML += createLetterBox();
+  createContactBox();
+  ContactBoxes.forEach((e) => {
+    docID("contactList").innerHTML += e.contactItem;
+  });
+}
 
-  function createLetterBox() {
-    return /*html*/ `
+function createLetterBox() {
+  return /*html*/ `
     <div class="letter-box">
   <span id="letter${letter}" class="letter">${letter}</span>
 </div>
   `;
-  }
+}
 
 function createFloatingContacts(contact) {
   contact.createfloatingContacts();
@@ -193,7 +193,7 @@ function closeButton() {
 function createAddContact() {
   docID("overlayContacts").style.display = "flex";
   layoutContactsOverlay();
-  // docID("overlayContacts").style.left = "unset";
+  docID("overlayContacts").style.left = "unset";
   docID("editContactOverlayHeadline").innerHTML = "Add Contact";
   docID("contactOverlaySubtitle").style.display = "flex";
   docID("editContactConOverlay").innerHTML = /*html*/ `
