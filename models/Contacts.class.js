@@ -45,7 +45,7 @@ class Contact {
                 <div class="floatingHeadlineLinksCon">
                   <div class="floatingHeadlineLink">
                     <img src="../assets/img/edit.png" alt="" />
-                    <span onclick="createEditContactsOverlay()" > Edit</span>
+                    <span onclick="createEditContact()" > Edit</span>
                   </div>
                   <div class="floatingHeadlineLink">
                     <img src="../assets/img/delete.png" alt="" />

@@ -41,15 +41,10 @@
 
 .contactList-row {
   display: flex;
-  /* width: 100%;
-  min-width: fit-content;
-  max-width: 352px; */
-
   padding: 15px 24px;
   align-items: flex-start;
   gap: 16px; /*ursprünglich 35px*/
   border-radius: 10px;
-  /* background-color: green; */
 }
 
 .contactList-row:hover {
@@ -61,7 +56,6 @@
   align-items: flex-start;
   justify-content: center;
   gap: 5px;
-  /* background-color: green; */
 }
 
 .contactList-coloumn span {

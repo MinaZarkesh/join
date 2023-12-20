@@ -135,8 +135,6 @@ let addinputs;
 function initContacts() {
   init();
   createContacts();
-
-  //  createInputElements();
   createFloatingContacts(ContactBoxes[0]);
 }
 
@@ -176,51 +174,53 @@ function createFloatingContacts(contact) {
   docID("floatingProfileBadge").innerHTML = contact.profileBadge;
   docID("floatingContactsMailValue").innerHTML = contact.contactEmail;
   docID("floatingContactsPhoneValue").innerHTML = contact.contactPhone;
-  // docID("floatingContacts").innerHTML = contact.createfloatingContacts();
-  createEditContactsOverlay();
+  //  layoutContactsOverlay();
 }
 
-function createEditContactsOverlay() {
-  docID("floatingContacts").innerHTML = /*html*/ `
-    <div id="editContactOverlay">
-      <div class="editContactOverlayHeader">
-        <img src="../assets/img/Logo_white.svg" alt="">
-        <h1 id="editContactOverlayHeadline" >Add Contact</h1>
-        <span id="contactOverlaySubtitle">Tasks are better with a team!</span>
-      </div>
-      <div class="editContactsCon">
-        <div id='editContactConOverlay'  class="profile-badge" style="background-color: var(--grey);">
-          <img id='editContactOverlay-img' src="../assets/img/person-white.svg">
-        </div>
-        <div id="LoginInputs" class="contentCon">
-        </div>
-        <div id="editContactButtonGroup" class="row"></div>
-      </div>
-    </div>
-  `;
-
+function layoutContactsOverlay() {
   createInputElements();
   addinputs = [inputName, inputEmail, inputPhone];
   docID("LoginInputs").innerHTML = setInputs(addinputs);
 
   docID("editContactButtonGroup").innerHTML = /*html*/ `
-    <button id="overlaySecondaryBtn" onclick="" class="secondaryButton" >Cancel <img src="../assets/img/clear.png"></button>
-    <button id="overlayPrimaryBtn" onclick="" class="button">Create contact <img src="../assets/img/check.svg"></button>
+    <button id="overlaySecondaryBtn" onclick="" class="secondaryButton" ></button>
+    <button id="overlayPrimaryBtn" onclick="" class="button"></button>
   `;
-
-  docID("editContactOverlay").innerHTML += /*html*/`
-       <button onclick="" class="close-btn">X</button>
- 
-  `;
-
-  createEdit();
 }
 
-function createEdit(i){
-  docID("editContactOverlayHeadline").innerHTML ="Edit contact";
+function createEditContact() {
+  docID("overlayContacts").style.display = "flex";
+  layoutContactsOverlay();
+  docID("overlayContacts").style.left = "0";
+  docID("editContactOverlayHeadline").innerHTML = "Edit contact";
   docID("contactOverlaySubtitle").style.display = "none";
   docID("editContactConOverlay").innerHTML = ContactBoxes[0].profileBadge;
-  docID("overlaySecondaryBtn").innerHTML="Delete";
-  docID("overlaySecondaryBtn").style.width ="fit-content";
-  // docID("overlayPrimaryBtn")
+  docID("overlaySecondaryBtn").innerHTML = "Delete";
+  docID("overlaySecondaryBtn").style.width = "fit-content";
+  docID("overlayPrimaryBtn").innerHTML = /*html*/ `
+Save <img src="../assets/img/check.svg">
+`;
+}
+
+function closeButton() {
+  docID("overlayContacts").style.display = "none";
+}
+
+function createAddContact() {
+  docID("overlayContacts").style.display = "flex";
+  layoutContactsOverlay();
+  // docID("overlayContacts").style.left = "unset";
+  docID("editContactOverlayHeadline").innerHTML = "Add Contact";
+  docID("contactOverlaySubtitle").style.display = "flex";
+  docID("editContactConOverlay").innerHTML = /*html*/ `
+     <img id='editContactOverlay-img' src="../assets/img/person-white.svg">
+  `;
+  docID("overlaySecondaryBtn").innerHTML = /*html*/ `
+    Cancel <img src="../assets/img/clear.png">
+  `;
+  docID("overlaySecondaryBtn").style.width = "unset";
+  docID("overlayPrimaryBtn").innerHTML = /*html*/ `
+  Create contact <img src="../assets/img/check.svg">
+  `;
+  docID("overlayPrimaryBtn").style.width = "fit-content";
 }

@@ -77,12 +77,13 @@ main {
 .button {
   height: 100%; /*war vorher 48px*/
   /* width: fit-content; */
+  min-width: 160px;
   border-radius: 8px;
   padding: 10px 16px;
   background-color: rgba(69, 137, 255, 1);
   color: white;
-  gap: 8px;
-  border: 0;
+  gap: 10px;
+  border: none;
   /* Version 2/t5 */
   font-family: "Open Sans";
   font-size: 1.4375rem;

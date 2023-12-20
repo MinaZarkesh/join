@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link rel="stylesheet" href="../css/summary.css" /> -->
     <title>Join</title>
-   
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -21,13 +21,12 @@
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/style-contacts.css" />
     <link rel="stylesheet" href="../css/style-overlayContacts.css" />
-    
+
     <script src="../js/storage.js"></script>
     <script src="../models/menuLink.class.js"></script>
     <script src="../models/Contacts.class.js"></script>
     <script src="../js/contacts.js"></script>
     <script src="../models/divInputImg.class.js"></script>
-
   </head>
 
   <body onload="initContacts()">
@@ -36,13 +35,33 @@
       <main id="contactsMain">
         <div class="contactList">
           <div class="fixed">
-            <button class="button">
+            <button class="button" onclick="createAddContact()">
               Add new contact <img src="../assets/img/person_add.svg" alt="" />
             </button>
           </div>
           <div id="contactList"></div>
         </div>
-        <div id="floatingContacts">
+        <div id="floatingContacts"></div>
+        <div id="overlayContacts">
+          <div id="editContactOverlay">
+            <button onclick="closeButton()" class="close-btn">X</button>
+            <div class="editContactOverlayHeader">
+              <img src="../assets/img/Logo_white.svg" alt="" />
+              <h1 id="editContactOverlayHeadline"></h1>
+              <span id="contactOverlaySubtitle"
+                >Tasks are better with a team!</span
+              >
+            </div>
+            <div class="editContactsCon">
+              <div
+                id="editContactConOverlay"
+                class="profile-badge"
+                style="background-color: var(--grey)"
+              ></div>
+              <div id="LoginInputs" class="contentCon"></div>
+              <div id="editContactButtonGroup" class="row"></div>
+            </div>
+          </div>
         </div>
       </main>
       <nav id="navbar" class="vertical-menu"></nav>
