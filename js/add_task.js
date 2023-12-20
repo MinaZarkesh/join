@@ -86,7 +86,7 @@ function contactDropdown(imgid, parent) {
             docID("contactList").innerHTML += /*html*/`
                 <div class="tasks-contacts">
                     ${e.profile_badge}
-                    ${e.contactName}
+                    ${e.contact_name}
                 </div>
             `  
       })

@@ -1,33 +1,33 @@
 class Contact {
   profile_badge;
   contact_item;
-  contactName;
+  contact_name;
   contact_email;
   contact_phone;
-  id;
+  contact_id;
 
-  constructor(parent, color, nameTag, contactName, contact_email, contact_phone, id) {
+  constructor(parent, color, nameTag, contact_name, contact_email, contact_phone, id) {
     this.contact_email = contact_email;
-    this.contactName = contactName;
+    this.contact_name = contact_name;
     this.contact_phone = contact_phone;
-    this.id = id;
+    this.contact_id = id;
     this.profile_badge = /*html*/ `
-    <div id='profile_badgeCon${id}'  class="profile-badge" style="background-color: var(${color});">
-      <span id='contact_itemNameTag${id}'>${nameTag}</span>
+    <div id='profile_badgeCon-${id}'  class="profile-badge" style="background-color: var(${color});">
+      <span id='contact_itemNameTag-${id}'>${nameTag}</span>
     </div>
 `;
 
     docID(parent).innerHtml += this.profile_badge;
-    this.createcontact_item(id);
+    this.createContactItem(id);
   }
 
-  createcontact_item(id) {
+  createContactItem(id) {
     this.contact_item = /*html*/ `
-            <div id='contact_item${id}' class="contact-list-row">
+            <div onclick="showFloatingContacts(${this.contact_id})" id='contact-item-${id}' class="contact-list-row">
                 ${this.profile_badge}
                 <div class ="contact-list-coloumn">
-                    <span id='contact_itemName${id}'>${this.contactName}</span>
-                    <h6 id='contact_itemMail${id}'>${this.contact_email}</h6>
+                    <span id='contact_itemName-${id}'>${this.contact_name}</span>
+                    <h6 id='contact_itemMail-${id}'>${this.contact_email}</h6>
                 </div>
             </div>
         `;
@@ -41,11 +41,11 @@ class Contact {
                 ${this.profile_badge}
               </div>
               <div class="floating-headline-text-con">
-                <h1>${this.contactName}</h1>
+                <h1>${this.contact_name}</h1>
                 <div class="floating-headline-links-con">
                   <div class="floating-headline-link">
                     <img src="../assets/img/edit.png" alt="" />
-                    <span onclick="createEditContact()" > Edit</span>
+                    <span onclick="createEditContact(${this.contact_id})" > Edit</span>
                   </div>
                   <div class="floating-headline-link">
                     <img src="../assets/img/delete.png" alt="" />

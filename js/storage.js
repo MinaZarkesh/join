@@ -63,11 +63,11 @@ function createContactBox() {
   for (let i = 0; i < oldContacts.length; i++) {
     const profileColor = oldContacts[i].color;
     const profileNameTag = oldContacts[i].nameTag;
-    const contactName = oldContacts[i].name;
+    const contact_name = oldContacts[i].name;
     const contact_email = oldContacts[i].mail;
     const contact_phone = oldContacts[i].phone;
     contact_boxes.push(
-      new Contact("contact-list", profileColor, profileNameTag, contactName, contact_email, contact_phone, i)
+      new Contact("contact-list", profileColor, profileNameTag, contact_name, contact_email, contact_phone, i)
     );
   }
 }
