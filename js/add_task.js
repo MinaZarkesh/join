@@ -1,3 +1,6 @@
+let dropdownContacts = false;
+let dropdownCategory = false;
+
 function initAddtask() {
     init();
     new Divinput('contentbig', 'taskName', "Enter a title", "task-title", "input-field", "input");
@@ -13,16 +16,9 @@ function initAddtask() {
     new Urgencybtn('priority-button', "Low");
     new Labeldiv('contentCon', 'assigned', 'Assigned to', true);
     new Divinputimg('assigned', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png');
-    // new Selectoption('assigned-select', "selected", "Choose...");
-    // new Selectoption('assigned-select', "value='1'", "Bild Vorname Nachname");
-    // new Selectoption('assigned-select', "value='2'", "Bild Vorname Nachname");
-    // new Selectoption('assigned-select', "value='3'", "Bild Vorname Nachname");
-    new Divselect('contentCon', 'category', 'Category', false, 'category-select');
-    new Selectoption('category-select', "selected", "Choose...");
-    new Selectoption('category-select', "value='1'", "Bild Category");
-    new Selectoption('category-select', "value='2'", "Bild Category");
-    new Selectoption('category-select', "value='3'", "Bild Category");
-    new Labeldiv('contentCon', 'subtask', 'Subtask', false);
+    new Labeldiv('contentCon', 'category', 'Category', false);
+    new Divinputimg('category', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png');
+    new Labeldiv('contentCon', 'subtask', 'Subtask', true);
     new Divinputimg('subtask', 'input-con', 'text', 'Add new subtask', '../assets/img/+.png');
     new Subtitles('contentCon', 'die-subtask', 'Dies ist eine subtask');
 }
@@ -36,14 +32,96 @@ function makeRequiered() {
 function activeUrgency(id) {
     btns = ["btn-red", "btn-orange", "btn-green" ];
     btns.forEach(element => {
-        docID(element).classList.remove('active');
         if(id == element){
             if (docID(element).classList.value.includes('active')) {
                 docID(element).classList.remove('active');    
             } else {
                 docID(element).classList.add('active');
             }
+        } else {
+            docID(element).classList.remove('active')
         }
     });
 }
 
+function dropdownMenu(imgid, parent) {
+    if(parent == 'assigned') {
+        contactDropdown(imgid, parent)
+    }
+    else {
+        catorgyDropdown(imgid, parent);
+    }
+}
+
+function catorgyDropdown(imgid, parent) {
+    if (!dropdownCategory) {
+        if (!docID('categoryList-Parent')) {
+            docID(parent).innerHTML += `<div id="categoryList-Parent"></div>`;   
+        }
+        docID('categoryList-Parent').classList.remove('d-none');
+        docID('categoryList-Parent').innerHTML = `<div id="categoryList"></div>`;
+        categorys.forEach( (e) => {
+            docID("categoryList").innerHTML += /*html*/`
+                <div class="tasks-contacts">${e}</div>
+            `
+        })
+        dropdownCategory = true;
+        docID(imgid).src = "../assets/img/arrow_up.png"
+    } else {
+        dropdownCategory = false;
+        dropdownReset('categoryList-Parent', imgid);
+    }
+}
+
+
+function contactDropdown(imgid, parent) {
+    if (!dropdownContacts) {
+        if (!docID('contactList-Parent')) {
+            docID(parent).innerHTML += `<div id="contactList-Parent"></div>`;   
+        }
+        docID('contactList-Parent').classList.remove('d-none');
+        docID('contactList-Parent').innerHTML = `<div id="contactList"></div>`;
+        createContactBox();
+        ContactBoxes.forEach((e) => {
+            docID("contactList").innerHTML += /*html*/`
+                <div class="tasks-contacts">
+                    ${e.profileBadge}
+                    ${e.contactName}
+                </div>
+            `  
+      })
+      dropdownContacts = true;
+      docID(imgid).src = "../assets/img/arrow_up.png"
+
+    } else {
+        dropdownReset('contactList-Parent', imgid);
+        dropdownContacts = false;
+        ContactBoxes = [];
+    }
+}
+
+function dropdownReset(parent, imgid) {
+    docID(parent).classList.add('d-none');
+    docID(imgid).src = "../assets/img/arrow_drop_down.png";
+}
+
+function subtasksFocusIn() {
+    if (!docID('img-check')) {
+        docID('subtask-div').innerHTML += '<img id="img-check" src="../assets/img/check.png">'
+    } else {
+        docID('img-check').classList.remove('d-none');
+    }
+    docID('subtask-img').src = '../assets/img/close.png';
+    ;
+}
+
+function subtasksFocusOut() {
+    if (docID('img-check')) {
+        docID('img-check').classList.add('d-none');
+    }
+    docID('subtask-img').src = '../assets/img/+.png';
+}
+
+function submitSubtask() {
+    return;
+}
