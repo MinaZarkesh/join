@@ -8,7 +8,6 @@
   border-right: 1px solid var(--black);
 }
 
-
 .vertical-menu a {
   width: 100%;
   background-color: var(--white);
@@ -20,18 +19,14 @@
   text-decoration: none; /* Remove underline from links */
 }
 
-
 .vertical-menu a:hover {
   background-color: var(--active);
 }
-
 
 .vertical-menu a.active {
   background-color: var(--secondary);
   color: var(--menuColor);
 }
-
-
 
 @media (max-width: 1023px) {
   .vertical-menu {
@@ -43,7 +38,6 @@
     border-right: 0px solid var(--black);
     border-top: 1px solid var(--black);
   }
-
 
   .vertical-menu a {
     display: flex;

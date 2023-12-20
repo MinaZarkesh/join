@@ -47,14 +47,14 @@ function renderLoginElements(bool) {
   login_inputs = [input_email, input_password];
   input_fields = login_inputs;
   login_checkbox = custom_checkbox_remember_me;
-  button = ` <button onclick="navToSummary()" class="button">Log in</button>
-    <button onclick="navToSummary()" class="secondary-button">Guest Log in</button>
+  button = ` <button onclick="navToSummary()" class="button font-t5 font-t5">Log in</button>
+    <button onclick="navToSummary()" class="secondary-button font-t5 font-t5">Guest Log in</button>
     `;
 
   if (bool === "Sign up") {
     input_fields = singup_inputs;
     login_checkbox = custom_checkbox_accept_privacy;
-    button = `<button id="signup-form-btn" onclick='renderLoginElements("Login")' class="Button">Sign up</button>`;
+    button = `<button id="signup-form-btn" onclick='renderLoginElements("Login")' class="button font-t5">Sign up</button>`;
   }
 
   docID("login-headline").innerHTML = bool;

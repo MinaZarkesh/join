@@ -77,9 +77,8 @@ main {
   color: var(--primary);
 }
 
-
 /* first item gesamt*/
- #item-summary-Box-0 {
+#item-summary-Box-0 {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -88,10 +87,10 @@ main {
   padding-top: 0;
   background-color: var(--primary);
   color: var(--white);
-} 
+}
 
 /*first item links vom Strich*/
-#item-summary-Box-0-1{
+#item-summary-Box-0-1 {
   position: relative;
   height: 100%;
   width: 33%;
@@ -100,12 +99,13 @@ main {
   z-index: 0;
 }
 
-#item-summary-Box-0-1 h6, #first-box h6{
+#item-summary-Box-0-1 h6,
+#first-box h6 {
   color: var(--white);
 }
 
 /*first item rechts vom Strich(border-left)*/
-#first-box{
+#first-box {
   position: relative;
   width: 66%;
   display: flex;
@@ -116,25 +116,25 @@ main {
   margin: 24px 0px;
 }
 
-#first-box h6{
+#first-box h6 {
   font-weight: 700;
   font-size: 32px;
   margin: 0;
 }
 
-#first-box span{
-font-size: 24px;
-} 
+#first-box span {
+  font-size: 24px;
+}
 
 /*hovern*/
-#item-summary-Box-0:hover{
+#item-summary-Box-0:hover {
   background-color: var(--white);
   color: var(--primary);
   scale: 1.05;
   z-index: 1;
 }
 
-#item-summary-Box-0:hover #item-summary-Box-0-1{
+#item-summary-Box-0:hover #item-summary-Box-0-1 {
   border: none;
   background-color: var(--white);
   color: var(--primary);
@@ -143,17 +143,15 @@ font-size: 24px;
 }
 
 /*überschreiben fürs erste Element*/
-#item-summary-Box-0:hover #item-summary-Box-0-1 h6, #item-summary-Box-0:hover #first-box h6{
+#item-summary-Box-0:hover #item-summary-Box-0-1 h6,
+#item-summary-Box-0:hover #first-box h6 {
   color: var(--primary);
 }
 
 /*Strich wechselt Farbe beim hovern*/
-#item-summary-Box-0:hover #first-box{
+#item-summary-Box-0:hover #first-box {
   border-left: 3px solid var(--primary);
 }
-
-
-
 
 @media (max-width: 1023px) {
   .col:hover {
@@ -161,7 +159,7 @@ font-size: 24px;
     scale: 1;
   }
 
-  #item-summary-Box-0:hover{
+  #item-summary-Box-0:hover {
     scale: 1;
   }
 
@@ -219,7 +217,8 @@ font-size: 24px;
     margin-top: 0;
     margin-bottom: 0;
   }
-  #first-box span, #first-box h6 {
+  #first-box span,
+  #first-box h6 {
     font-size: 16px;
   }
 }

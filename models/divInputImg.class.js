@@ -16,7 +16,7 @@ class Divinputimg {
     this.imgId = imgsrc.includes('icon-lock') ? `id='${parent}-img' onclick='togglePassword()'`: this.imgId;
     this.content = /*html*/ `
     <div class="${classname}" ${this.childId}>
-        <input type="${type}" placeholder="${placeholder}" ${this.inputfocus}>
+        <input type="${type}" placeholder="${placeholder}" ${this.inputfocus} class="font-t6">
         <img ${this.imgId} src="${imgsrc}">
     </div>`;
     docID(parent).innerHTML += this.content;

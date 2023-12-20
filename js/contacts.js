@@ -38,8 +38,8 @@ function layoutContactsOverlay() {
   docID("inputs-con").innerHTML = setInputs(add_inputs);
 
   docID("edit-contact-button-group").innerHTML = /*html*/ `
-    <button id="overlay-secondary-btn" onclick="" class="secondary-button" ></button>
-    <button id="overlay-primary-btn" onclick="" class="button"></button>
+    <button id="overlay-secondary-btn" onclick="" class="secondary-button font-t5" ></button>
+    <button id="overlay-primary-btn" onclick="" class="button font-t5"></button>
   `;
 }
 

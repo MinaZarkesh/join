@@ -7,7 +7,7 @@ class MenuLink {
         this.name = id.charAt(0).toUpperCase() + id.slice(1);
         this.name = this.name.replace("_t", " T");
         // onClick="activeLink(${id})" 
-        this.link = `<a class="nav-link" href="${id}.html">
+        this.link = `<a class="nav-link font-body" href="${id}.html">
                         <img src="../assets/img/${id}_menu.png" alt="${id}" />${this.name}
                     </a>`
         this.linkRender('navbar');

@@ -121,6 +121,8 @@ main {
   display: flex;
   height: 23px;
   gap: 4px;
+  /* align-items: center; */
+  /* text-align:end ; */
   justify-content: flex-start;
   padding-right: 0;
   padding-left: 16px;

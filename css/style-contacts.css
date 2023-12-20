@@ -7,7 +7,6 @@
   justify-content: center;
 }
 
-
 #contact-list {
   width: 400px;
   display: flex;
@@ -16,7 +15,6 @@
   flex-direction: column;
   gap: 24px;
 }
-
 
 .fixed {
   position: fixed;
@@ -30,7 +28,6 @@
   background: var(--white, #fff);
 }
 
-
 .fixed .button {
   display: flex;
   width: 98%;
@@ -42,7 +39,6 @@
   gap: 10px;
 }
 
-
 .contact-list-row {
   display: flex;
   padding: 15px 24px;
@@ -51,11 +47,9 @@
   border-radius: 10px;
 }
 
-
 .contact-list-row:hover {
   background-color: var(--secondary);
 }
-
 
 .contact-list-coloumn {
   display: flex;
@@ -64,7 +58,6 @@
   justify-content: center;
   gap: 5px;
 }
-
 
 .contact-list-coloumn span {
   color: var(--black);
@@ -77,7 +70,6 @@
   line-height: 120%; /* 1.425rem */
 }
 
-
 .contact-list-coloumn h6 {
   margin: 0;
   font-size: 1rem;
@@ -86,7 +78,6 @@
   line-height: 120%; /* 1.2rem */
   color: var(--primary);
 }
-
 
 .letter-box {
   display: flex;
@@ -97,7 +88,6 @@
   margin-bottom: 8px;
   border-bottom: 1px solid var(--white);
 }
-
 
 .letter {
   display: flex;
@@ -110,7 +100,6 @@
   gap: 8px;
 }
 
-
 /*** Floating Contacts ***/
 #floating-contacts {
   position: relative;
@@ -120,7 +109,6 @@
   flex: 1;
 }
 
-
 .floating-con {
   display: inline-flex;
   flex-direction: column;
@@ -128,7 +116,6 @@
   gap: 21px;
   background: var(--white, #fff);
 }
-
 
 .floating-con h2 {
   margin: 0;
@@ -140,7 +127,6 @@
   line-height: 120%; /* 1.725rem */
 }
 
-
 #floating-profile-badge .profile-badge {
   min-width: 90px;
   min-height: 90px;
@@ -148,7 +134,6 @@
   max-height: 120px;
   padding: 4px;
 }
-
 
 #floating-profile-badge span {
   display: flex;
@@ -167,7 +152,6 @@
   line-height: 100%; /* 3.525rem */
 }
 
-
 .floating-headline {
   padding: 0;
   margin: 0;
@@ -176,7 +160,6 @@
   justify-content: space-between;
   gap: 5%;
 }
-
 
 .floating-headline-text-con {
   color: var(--black);
@@ -187,7 +170,6 @@
   /* min-width: 292px; */
 }
 
-
 .floating-headline-text-con h1 {
   color: var(--black);
   margin: 0;
@@ -197,13 +179,11 @@
   line-height: 120%; /* 3.6rem */
 }
 
-
 .floating-headline-links-con {
   display: flex;
   align-items: flex-start;
   gap: 16px;
 }
-
 
 .floating-headline-link {
   color: var(--black);
@@ -213,12 +193,10 @@
   gap: 8px;
 }
 
-
 .floating-headline-link img {
   width: 24px;
   height: 24px;
 }
-
 
 .gap-22 {
   display: flex;
@@ -239,7 +217,6 @@
   color: var(--black);
 }
 
-
 .floating-con h6 {
   margin: 0;
 
@@ -249,11 +226,9 @@
   line-height: 120%; /* 1.2rem */
 }
 
-
 #floating-contacts-mail-value {
   color: var(--primary);
 }
-
 
 .floating-con span {
   margin: 0;

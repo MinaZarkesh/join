@@ -13,6 +13,12 @@ Token für Join mit Kay: CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE
 
 https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=design&node-id=0-1&mode=design&t=qXkEakXu5OYW8IF8-0
 
+## Benennung-Regeln
+function camelCase
+class PascalCase
+.css-classes #id-names kebap-case
+variables snake_case
+
 ## Reports
 
 - Kay 09.12.2023
@@ -99,3 +105,5 @@ https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=desi
 
   - Das Design von der Contacts ist so gut wie fertig, es muss nochmal ein wenig responsive gemacht werden, da bin ich nicht zu 100% fertig mit.
 
+  - Ich habe überall die Benennung der Variablen zu unseren neuen Regeln angepasst, außer in der AddTasks und den dazugehörigen classes, weil ich nicht genau wusste, wie das alles zusammen passt und die dazugehörigen Dateien sind noch nicht richtig umbenannt, weil wir dafür noch nicht festgelegt hatten.
+  - Außerdem habe ich gemerkt, dass das DropDownMenu bei Assigned nicht mehr die Contacts anzeigt, aber ich weiß nicht ob das Absicht ist.
