@@ -69,7 +69,7 @@ function catorgyDropdown(imgid, parent) {
             `
         })
         dropdownCategory = true;
-        docID(imgid).src = "../assets/img/arrow_up.png"
+        docID(imgid).src = "../assets/img/arrow_up.png";
     } else {
         dropdownCategory = false;
         dropdownReset('category-list-parent', imgid);

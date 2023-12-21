@@ -12,7 +12,7 @@ class Divinputimg extends World{
     this.childname = `${parent}-div`;
     this.imgId = imgsrc.includes('arrow_drop_down.png') ? `id='${this.idname}' onclick="dropdownMenu('${this.idname}', '${parent}')"`: "";
     this.imgId = imgsrc.includes('+.png') ? `id='${this.idname}' onclick="submitSubtask()", "${parent}" )'`: this.imgId;
-    this.childId = imgsrc.includes('+.png') ? `id='${this.childname}'`:this.imgId;
+    this.childId = imgsrc.includes('+.png') ? `id='${this.childname}'`:"";
     this.inputfocus =  imgsrc.includes('+.png') ? `onfocusin='subtasksFocusIn()' onfocusout='subtasksFocusOut()'`:this.imgId;
     this.imgId = imgsrc.includes('icon-lock') ? `id='${parent}-img' onclick='togglePassword()'`: this.imgId;
     this.content = /*html*/ `
