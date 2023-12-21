@@ -79,9 +79,12 @@ class Contact {
       }
     }
 
+    this.renderContacts(idx);
+  }
+
+  renderContacts(idx) {
     contact_boxes[idx] = this;
     this.createContactItem(idx);
-    showFloatingContacts(this.contact_id);
   }
 
   createFloatingContacts() {
