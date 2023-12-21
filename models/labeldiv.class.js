@@ -1,7 +1,8 @@
 class Labeldiv extends World{
     additionaltext;
-    
+
     constructor(parent, child, name, optional) {
+        super()
         this.additionaltext = optional ? "(optional)" : "";
         this.content = `
             <div id="${child}">
