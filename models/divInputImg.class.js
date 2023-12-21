@@ -20,6 +20,10 @@ class Divinputimg {
         <input id=${this.input_id} type="${type}" placeholder="${placeholder}" ${this.inputfocus} class="font-t6">
         <img ${this.imgId} src="${imgsrc}">
     </div>`;
-    docID(parent).innerHTML += this.content;
+    this.render(parent, this.content);
+  }
+
+  render(parent, html_element)  {
+    docID(parent).innerHTML += html_element;
   }
 }
