@@ -104,6 +104,10 @@
     width: 100%;
     border-bottom: 1px solid var(--grey);
 } 
+
+.input-con:focus {
+    border-bottom-color:  #005DFF;;
+}
  
 .input-con input {
     display: flex;
@@ -186,7 +190,49 @@
     padding: 5px 8px;
 }
 
+.tasks-contacts:hover {
+    background-color: #D2E3FF;
+}
+
 #contact-list-Parent {
     height: 200px;
     overflow: auto;
+}
+
+li input {
+    display: flex;
+    width: 100%;
+    outline: none;
+    border: none;
+    align-items: center;
+}
+
+.list-element {
+    display: flex;
+    padding: 12px 16px;
+}
+
+.list-element img {
+    /* display: none; */
+    margin-right: 5px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+
+.list-element:hover {
+    background-color: #D2E3FF;
+}
+
+.list-element:hover input {
+    background-color: #D2E3FF;
+}
+
+.list-element:hover img {
+    display: block;
+    background-color: #D2E3FF;
+}
+
+.list-element img:hover {
+    filter: brightness(90%)
 }
