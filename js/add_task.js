@@ -20,7 +20,9 @@ function initAddtask() {
     new Divinputimg('category', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png');
     new Labeldiv('content-con', 'subtask', 'Subtask', true);
     new Divinputimg('subtask', 'input-con', 'text', 'Add new subtask', '../assets/img/+.png');
-    new Subtitles('content-con', 'die-subtask', 'Dies ist eine subtask');
+    new UnsortedList('subtask');
+    new UnsortedListElement("subtasks-list", "Das ist eine Subtask");
+    new UnsortedListElement("subtasks-list", "Das ist eine zweite Subtask");
 }
 
 //Testfunction
