@@ -4,13 +4,16 @@ let contacts_inputs;
 
 function initContacts() {
   init();
-  createContacts();
+  createContactList();
   // showFloatingContacts(0);
 }
 
-function createContacts() {
+function createContactList() {
   docID("contact-list").innerHTML += createLetterBox();
-  createContactBox();
+  if (!contact_boxes.length > 0) {
+    createContactBox();
+  }
+  docID("contact-list").innerHTML = "";
   contact_boxes.forEach((e) => {
     docID("contact-list").innerHTML += e.contact_item;
   });
@@ -72,32 +75,16 @@ function layoutContactsOverlay(idx) {
 
 function createEditContact(id) {
   layoutEditContact(id);
-  docID(input_name.input_id).value = contact_boxes[id].contact_name;
-  docID(input_email.input_id).value = contact_boxes[id].contact_email;
-  docID(input_phone.input_id).value = contact_boxes[id].contact_phone;
+  contact_boxes[id].fillEditContact(id);
 }
 
 function saveEditContact(idx) {
-  let edit_contact = contact_boxes[idx];
-
-  for (let i = 0; i < contacts_inputs.length; i++) {
-    let element = contacts_inputs[i];
-    let input_value = docID(element.input_id).value;
-
-    if (!input_value == "") {
-      edit_contact.contact_name = docID(input_name.input_id).value;
-      edit_contact.contact_email = docID(input_email.input_id).value;
-      edit_contact.contact_phone = docID(input_phone.input_id).value;
-    }
-
-    edit_contact.createFloatingContacts();
-    // contact_item_id;
-    // docID(edit_contact.contact_item_id).innerHTML =
-    edit_contact.createContactItem(idx);
-    docID(edit_contact.contact_item_id).innerHTML = edit_contact.contact_inner_item;
-    setActive(idx);
-  }
+  contact_boxes[idx].updateContactItem();
+  createContactList();
+  setActive(idx);
 }
+
+function sortContactItems() {}
 
 function layoutEditContact(id) {
   docID("overlay-contacts").style.display = "flex";
