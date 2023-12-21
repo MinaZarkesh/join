@@ -1,8 +1,9 @@
-class Divinput {
+class Divinput extends World {
     spanClass = `d-none`;
     div_input;
 
     constructor(parent, name, placeholder, id, cssClass, type) {
+        super();
         let endtag = type == "textarea" ? "</textarea>" : "";
         let isclass = cssClass == ""? "" :`class='${cssClass}'`;
         this.div_input = `
@@ -11,10 +12,6 @@ class Divinput {
             </div>
         `
         this.render(parent, this.div_input)
-    }
-
-    render(parent, html_element)  {
-        docID(parent).innerHTML += html_element;
     }
 
 }

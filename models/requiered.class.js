@@ -1,8 +1,10 @@
-class Requiered {
+class Requiered extends World{
 
     constructor(parent) {
-        docID(parent).innerHTML += /*html*/`
+        super();
+        this.content= `
             <span id="${parent}-requiered" class="requiered font-label">    </span>
         `
+        this.render(parent, this.content)
     }
 }

@@ -1,8 +1,8 @@
-class UnsortedListElement {
+class UnsortedListElement extends World{
 
     constructor(parent, subtask) {
-        docID(parent).innerHTML += /*html*/`
-            <li>${subtask}</li>
-        `
+        super();
+        this.content= /*html*/`<li>${subtask}</li>`
+        this.render(parent, this.content);
     }
 }

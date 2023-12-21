@@ -58,13 +58,13 @@ function dropdownMenu(imgid, parent) {
 
 function catorgyDropdown(imgid, parent) {
     if (!dropdownCategory) {
-        if (!docID('categoryList-Parent')) {
-            docID(parent).innerHTML += `<div id="categoryList-Parent"></div>`;   
+        if (!docID('category-list-parent')) {
+            docID(parent).innerHTML += `<div id="category-list-parent"></div>`;   
         }
-        docID('categoryList-Parent').classList.remove('d-none');
-        docID('categoryList-Parent').innerHTML = `<div id="categoryList"></div>`;
+        docID('category-list-parent').classList.remove('d-none');
+        docID('category-list-parent').innerHTML = `<div id="category-list"></div>`;
         categorys.forEach( (e) => {
-            docID("categoryList").innerHTML += /*html*/`
+            docID("category-list").innerHTML += /*html*/`
                 <div class="tasks-contacts">${e}</div>
             `
         })
@@ -72,21 +72,21 @@ function catorgyDropdown(imgid, parent) {
         docID(imgid).src = "../assets/img/arrow_up.png"
     } else {
         dropdownCategory = false;
-        dropdownReset('categoryList-Parent', imgid);
+        dropdownReset('category-list-parent', imgid);
     }
 }
 
 
 function contactDropdown(imgid, parent) {
     if (!dropdownContacts) {
-        if (!docID('contactList-Parent')) {
-            docID(parent).innerHTML += `<div id="contactList-Parent"></div>`;   
+        if (!docID('contact-list-parent')) {
+            docID(parent).innerHTML += `<div id="contact-list-parent"></div>`;   
         }
-        docID('contactList-Parent').classList.remove('d-none');
-        docID('contactList-Parent').innerHTML = `<div id="contactList"></div>`;
+        docID('contact-list-parent').classList.remove('d-none');
+        docID('contact-list-parent').innerHTML = `<div id="contact-list"></div>`;
         createContactBox();
         contact_boxes.forEach((e) => {
-            docID("contactList").innerHTML += /*html*/`
+            docID("contact-list").innerHTML += /*html*/`
                 <div class="tasks-contacts">
                     ${e.profile_badge}
                     ${e.contact_name}
@@ -97,7 +97,7 @@ function contactDropdown(imgid, parent) {
       docID(imgid).src = "../assets/img/arrow_up.png"
 
     } else {
-        dropdownReset('contactList-Parent', imgid);
+        dropdownReset('contact-list-parent', imgid);
         dropdownContacts = false;
         contact_boxes = [];
     }

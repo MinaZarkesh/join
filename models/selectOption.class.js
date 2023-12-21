@@ -1,6 +1,8 @@
-class Selectoption {
+class Selectoption extends World {
 
     constructor(parent, selected, text) {
-        docID(parent).innerHTML += /*html*/`<option ${selected}>${text}</option>`
+        super();
+        this.content= `<option ${selected}>${text}</option>`
+        this.render(parent, this.content);
     }
 }

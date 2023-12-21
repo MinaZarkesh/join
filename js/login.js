@@ -60,7 +60,8 @@ function renderLoginElements(bool) {
   docID("login-headline").innerHTML = bool;
   docID(login_form).innerHTML = setInputs(input_fields);
   //  changePassword-Style
-  docID(login_form).innerHTML += login_checkbox.content;
+  login_checkbox.render(login_form, login_checkbox.content)
+  // docID(login_form).innerHTML += login_checkbox.content;
   // docID(custom_checkbox_accept_privacy.labelID).innerHTML= checkbox_text;
   //new secondary-button
   docID("login-form-button-group").innerHTML = button;
