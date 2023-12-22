@@ -1,4 +1,20 @@
-categorys = ["Office", "Design", "Engine"];
+categorys = [
+  {
+    name: "Office",
+    color: "--variant02",
+    nameTag: "OF",
+  },
+  {
+    name: "Design",
+    color: "--variant03",
+    nameTag: "DN",
+  },
+  {
+    name: "Engine",
+    color: "--variant04",
+    nameTag: "EN",
+  },
+];
 
 
 /**
@@ -19,7 +35,7 @@ function docID(id) {
 
 async function init() {
   includeHTML();
-  openNavMenu();
+  openNavMenu()
   //createInputElements();
 }
 

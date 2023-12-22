@@ -150,7 +150,7 @@
     color: white;
 }
 
-.tasks-contacts {
+.tasks-contacts, .tasks-category {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -218,6 +218,6 @@ li input {
     content: url('../assets/img/blue-checkbox-checked-hover.svg');
 }
 
-#associate-con {
+#associate-con, #department-con {
     display: flex;
 }

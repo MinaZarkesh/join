@@ -20,6 +20,7 @@ function initAddtask() {
     new Div('content-con', 'associate-con', '');
     new Labeldiv('content-con', 'category', 'Category', false);
     new Divinputimg('category', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png');
+    new Div('content-con', 'department-con', '');
     new Labeldiv('content-con', 'subtask', 'Subtask', true);
     new Divinputimg('subtask', 'input-con', 'text', 'Add new subtask', '../assets/img/+.png');
     new UnsortedList('subtask');
@@ -51,9 +52,6 @@ function activeUrgency(id) {
 function dropdownMenu(imgid, parent) {
     if(parent == 'assigned') {
         contactDropdown(imgid, parent)
-        // if (!docID('assigned')) {
-        //     docID('assigned').innerHTML += <div id="${id}" class="${classname}"></div>
-        // }
     }
     else {
         catorgyDropdown(imgid, parent);
@@ -61,22 +59,32 @@ function dropdownMenu(imgid, parent) {
 }
 
 function catorgyDropdown(imgid, parent) {
+    let checkbox
     if (!dropdownCategory) {
         if (!docID('category-list-parent')) {
             docID(parent).innerHTML += `<div id="category-list-parent"></div>`;   
         }
         docID('category-list-parent').classList.remove('d-none');
         docID('category-list-parent').innerHTML = `<div id="category-list"></div>`;
-        categorys.forEach( (e) => {
+        categorys.forEach( (e, index) => {
+            checkbox = new Checkbox(`check-${index}`, "checkbox").content;
             docID("category-list").innerHTML += /*html*/`
-                <div class="tasks-contacts">${e}</div>
+                <div class="tasks-category">
+                    <div id='profile_badgeCon-${index}'  class="profile-badge" style="background-color: var(${e.color});">
+                        <span id='category_itemNameTag-${index}'>${e.nameTag}</span>
+                    </div>
+                    ${e.name}
+                    ${checkbox}
+                </div>
             `
         })
         dropdownCategory = true;
         docID(imgid).src = "../assets/img/arrow_up.png";
+        docID("department-con").classList.add('d-none');
     } else {
         dropdownCategory = false;
         dropdownReset('category-list-parent', imgid);
+        docID("department-con").classList.remove('d-none');
     }
 }
 
@@ -102,11 +110,14 @@ function contactDropdown(imgid, parent) {
       })
       dropdownContacts = true;
       docID(imgid).src = "../assets/img/arrow_up.png"
+      docID("associate-con").classList.add('d-none');
 
     } else {
         dropdownReset('contact-list-parent', imgid);
         dropdownContacts = false;
         contact_boxes = [];
+        docID("associate-con").classList.remove('d-none');
+        associateRender();
     }
 }
 
@@ -132,32 +143,54 @@ function subtasksFocusOut() {
     docID('subtask-img').src = '../assets/img/+.png';
 }
 
-function submitSubtask() {
-    return;
-}
 
 function associateRender() {
-    let counter = 0
-    array = [1,2,3,4,5,6,7,8,9,10,11,12];
+    let counter = 0;
+    let active_array = activeCounter(".tasks-contacts");
     createContactBox("associate-con");
     contact_boxes.forEach((e, index) => {
-        if (array.includes(index)&& counter < 8) {
+        if (active_array[index] == true && counter < 8) {
             docID("associate-con").innerHTML += /*html*/`
             ${e.profile_badge}
             `  
         }
-        if (array.includes(index)) {
+        if (active_array[index] == true) {
             counter++;
         }
-        
   })
 
   if(counter >= 8) {
     plus_number = counter - 7;
     docID("associate-con").innerHTML += /*html*/`
         <div class="profile-badge" style="background-color: var(--default);">
-            <span id='contact_itemNameTag-1'>${plus_number}+</span>
+            <span id='contact_itemNameTag-${plus_number}'>${plus_number}+</span>
         </div>
-    `
+`
     }
+}
+
+function departmentRender() {
+    let counter = 0;
+    let active_array = activeCounter();
+    categorys.forEach((e, index) => {
+
+        docID("department-con").innerHTML += /*html*/`
+            <div class="profile-badge" style="background-color: var(${e.color});">
+            <span id='department_itemNameTag-${index}'>${e.nameTag}</span>
+        </div>
+            `  
+    })
+}
+
+function activeCounter(selector) {
+    let matches = document.querySelectorAll(selector);
+    let array = [];
+    for (let i = 0; i < matches.length; i++) {
+        array.push(matches[i].children[1].checked);
+    }
+    return array
+}
+
+function submitSubtask() {
+    return;
 }
