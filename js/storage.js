@@ -59,7 +59,7 @@ function setInputs(array) {
   return element;
 }
 
-function createContactBox() {
+function createContactBox(parent) {
   for (let i = 0; i < oldContacts.length; i++) {
     const profileColor = oldContacts[i].color;
     const profileNameTag = oldContacts[i].nameTag;
@@ -67,7 +67,7 @@ function createContactBox() {
     const contact_email = oldContacts[i].mail;
     const contact_phone = oldContacts[i].phone;
     contact_boxes.push(
-      new Contact("contact-list", profileColor, profileNameTag, contact_name, contact_email, contact_phone, i)
+      new Contact(parent, profileColor, profileNameTag, contact_name, contact_email, contact_phone, i)
     );
   }
 }

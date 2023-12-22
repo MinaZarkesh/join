@@ -299,9 +299,15 @@ input[type="checkbox"] {
 }
 
 .input-field {
+  outline: none;
   border: none;
-  border-bottom: 1px solid var(--black);
+  border-bottom: 1px solid var(--grey);
 }
+
+.input-field:focus {
+  border-bottom-color: #005DFF ;
+}
+
 
 .imput-img-div {
   display: flex;
