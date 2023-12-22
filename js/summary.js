@@ -3,6 +3,12 @@ let screen_size = 1023; //ab wann Wechsel zu Desktop Version
 
 //erstelle die Werte für die Items
 let item_amount = 6;
+let summaryBox_div_id = "summary-box";
+let task_amounts = [1, 2, 3, 40, 5, 6, 7]; //verändern durch Tasks
+
+let new_task_amounts = [1, 12, 3, 9, 5, 6, 8]; //zum Testen
+//empty Array for new summary_boxes
+let summary_boxes = [];
 
 let descriptions = [
   "Tasks urgent",
@@ -24,13 +30,6 @@ let images = [
   "../assets/img/done_summary.png",
 ];
 
-let task_amounts = [1, 2, 3, 40, 5, 6, 7]; //verändern durch Tasks
-let new_task_amounts = [1, 12, 3, 9, 5, 6, 8]; //zum Testen
-
-//empty Array for new summary_boxes
-let summary_boxes = [];
-let summaryBox_div_id = "summary-box";
-
 function initSummary() {
   init();
   createSummaryBoxes(); //creates summary-boxes beim laden
@@ -42,10 +41,9 @@ function createSummaryBoxes() {
   docID(summaryBox_div_id).innerHTML = "";
 
   for (let i = 0; i < item_amount; i++) {
-    docID(
-      summaryBox_div_id
-    ).innerHTML += `<div id="${summaryBox_div_id}-${i}"></div>`;
-
+    docID(summaryBox_div_id).innerHTML += /*html*/`
+    <div id="${summaryBox_div_id}-${i}"></div>
+    `;
     summary_boxes.push(new SummaryBox(summaryBox_div_id, i));
   }
   createFirstBox();
@@ -84,6 +82,7 @@ function navToBoard() {
   console.log("Nav to Board");
   window.location = "../html/board.html";
 }
+
 /***************** Event-Listener wenn window resize *****************/
 window.addEventListener("resize", function () {
   //triggert wenn, Bildschirmgröße verändert wird.

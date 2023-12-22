@@ -5,11 +5,11 @@ let contacts_inputs;
 function initContacts() {
   init();
   createContactList();
-  // showFloatingContacts(0);
 }
 
 function createContactList() {
   docID("contact-list").innerHTML += createLetterBox();
+
   if (!contact_boxes.length > 0) {
     createContactBox("contact-list");
   }
@@ -25,29 +25,6 @@ function createLetterBox() {
   <span id="letter${letter}" class="letter">${letter}</span>
 </div>
   `;
-}
-
-function showFloatingContacts(id) {
-  let contact = contact_boxes[id];
-  setActive(id);
-  contact.createFloatingContacts();
-
-  docID("floating-profile-badge").innerHTML = contact.profile_badge;
-  docID("floating-contacts-mail-value").innerHTML = contact.contact_email;
-  docID("floating-contactsPhoneValue").innerHTML = contact.contact_phone;
-}
-
-function setActive(id) {
-  let clicked_contact_box_id = "contact-item-" + id;
-  let clicked_mail_id = "contact_itemMail-" + id;
-  let clicked_name_id = "contact_itemName-" + id;
-  console.log(clicked_contact_box_id);
-
-  resetActive();
-  //set new attributes
-  docID(clicked_contact_box_id).style.background = "var(--primary)";
-  docID(clicked_mail_id).style.color = "var(--white)";
-  docID(clicked_name_id).style.color = "var(--white)";
 }
 
 function resetActive() {
@@ -80,13 +57,10 @@ function createEditContact(id) {
 
 function saveEditContact(idx) {
   let edit_contact = contact_boxes[idx];
-
   edit_contact.updateContactItem();
-  sortContactItems(edit_contact.parentArray);
-  showFloatingContacts(edit_contact.contact_id);
+  showFloatingContacts(edit_contact.contact_idx);
   createContactList();
-
-  setActive(idx);
+  edit_contact.setActive();
   closeButton();
 }
 
@@ -99,14 +73,26 @@ function sortContactItems(parent) {
       : 0
   );
 
-  // console.log("newTempcontacts Name: " + parent);
+  for (let i = 0; i < parent.length; i++) {
+    //nachdem neu sortieren auch die Idexes updaten
+    const element = parent[i];
+    element.contact_idx = i;
+    element.createContactItem();
+  }
 }
 
-//Idee: neuen Contact in contact_boxes pushen und dann renderContacts
-function addNewContacts() {
-  let addedContact = contact_boxes[7];
+function showFloatingContacts(idx) {
+  // let idx = this.parentArray.indexOf(this);
+  contact = contact_boxes[idx];
+  contact.contact_idx = idx;
+  contact.setActive();
+  console.log("showFloatingContacts: idx: ", idx);
 
-  let temp = contact_boxes;
+  contact.createFloatingContacts();
+  //update Values of createFloatingContacts
+  docID("floating-profile-badge").innerHTML = contact.profile_badge;
+  docID("floating-contacts-mail-value").innerHTML = contact.contact_email;
+  docID("floating-contactsPhoneValue").innerHTML = contact.contact_phone;
 }
 
 function layoutEditContact(id) {

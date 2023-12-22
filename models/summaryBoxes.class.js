@@ -19,9 +19,8 @@ class SummaryBox {
   // id = "summaryBox";
 
   //in der summary.js
+  //item_amount = 6;
   //task_amounts[index]
-
-  //vielleiht hier mit reinbringen
   //descriptions[index]
   //images[index]
 
@@ -116,8 +115,6 @@ ${descriptions[this.index]}
   }
 
   calcPositionMobile(index) {
-    //irgendwas stimmt was nicht
-
     this.item_amountPerRow = 2;
     this.rowAmount = 4;
     this.gapColoumn = 8;

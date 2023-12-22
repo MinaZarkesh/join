@@ -76,13 +76,15 @@ function setInputs(array) {
 }
 
 function createContactBox(parent) {
+ let parentArray = contact_boxes; //später Parameter
   for (let i = 0; i < oldContacts.length; i++) {
     const profileColor = oldContacts[i].color;
     const profileNameTag = oldContacts[i].nameTag;
     const contact_name = oldContacts[i].name;
     const contact_email = oldContacts[i].mail;
     const contact_phone = oldContacts[i].phone;
-    contact_boxes.push(
+
+    parentArray.push(
       new Contact(parent, profileColor, profileNameTag, contact_name, contact_email, contact_phone, i)
     );
   }
