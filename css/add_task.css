@@ -5,8 +5,8 @@
 }
 
 /* all width 100% */
-#contentbig, #assigned, #assigned-select, #Due-date
-#taskName input, #Description, .textarea, #Due-date input
+#contentbig, #assigned, #assigned-select, #Due-date,
+#taskName input, #Description, .textarea, #Due-date input,
 #category, #category-select, #subtask, .input-con,
 .input-con input, li input {
     width: 100%;
@@ -135,7 +135,7 @@
     --_activ: var(--activ, #7AE229);
 }
 
-.btn-red:hover .btn-orange:hover .btn-green:hover{
+.btn-red:hover, .btn-orange:hover, .btn-green:hover{
     border-bottom: 2px solid;
     border-bottom-color:var(--_activ);
 }

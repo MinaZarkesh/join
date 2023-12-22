@@ -17,6 +17,7 @@ function initAddtask() {
     new Urgencybtn('priority-button', "Low");
     new Labeldiv('content-con', 'assigned', 'Assigned to', true);
     new Divinputimg('assigned', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png');
+    new Div('content-con', 'associate-con', 'd-none');
     new Labeldiv('content-con', 'category', 'Category', false);
     new Divinputimg('category', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png');
     new Labeldiv('content-con', 'subtask', 'Subtask', true);
@@ -50,6 +51,9 @@ function activeUrgency(id) {
 function dropdownMenu(imgid, parent) {
     if(parent == 'assigned') {
         contactDropdown(imgid, parent)
+        // if (!docID('assigned')) {
+        //     docID('assigned').innerHTML += <div id="${id}" class="${classname}"></div>
+        // }
     }
     else {
         catorgyDropdown(imgid, parent);
