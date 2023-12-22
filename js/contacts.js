@@ -11,7 +11,7 @@ function initContacts() {
 function createContactList() {
   docID("contact-list").innerHTML += createLetterBox();
   if (!contact_boxes.length > 0) {
-    createContactBox();
+    createContactBox("contact-list");
   }
   docID("contact-list").innerHTML = "";
   contact_boxes.forEach((e) => {

@@ -17,7 +17,7 @@ function initAddtask() {
     new Urgencybtn('priority-button', "Low");
     new Labeldiv('content-con', 'assigned', 'Assigned to', true);
     new Divinputimg('assigned', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png');
-    new Div('content-con', 'associate-con', 'd-none');
+    new Div('content-con', 'associate-con', '');
     new Labeldiv('content-con', 'category', 'Category', false);
     new Divinputimg('category', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png');
     new Labeldiv('content-con', 'subtask', 'Subtask', true);
@@ -82,18 +82,21 @@ function catorgyDropdown(imgid, parent) {
 
 
 function contactDropdown(imgid, parent) {
+    let checkbox;
     if (!dropdownContacts) {
         if (!docID('contact-list-parent')) {
             docID(parent).innerHTML += `<div id="contact-list-parent"></div>`;   
         }
         docID('contact-list-parent').classList.remove('d-none');
         docID('contact-list-parent').innerHTML = `<div id="contact-list"></div>`;
-        createContactBox();
-        contact_boxes.forEach((e) => {
+        createContactBox("contact-list");
+        contact_boxes.forEach((e, index) => {
+            checkbox = new Checkbox(`check-${index}`, "checkbox").content;
             docID("contact-list").innerHTML += /*html*/`
                 <div class="tasks-contacts">
                     ${e.profile_badge}
                     ${e.contact_name}
+                    ${checkbox}
                 </div>
             `  
       })
@@ -131,4 +134,30 @@ function subtasksFocusOut() {
 
 function submitSubtask() {
     return;
+}
+
+function associateRender() {
+    let counter = 0
+    array = [1,2,3,4,5,6,7,8,9,10,11,12];
+    createContactBox("associate-con");
+    contact_boxes.forEach((e, index) => {
+        if (array.includes(index)&& counter < 8) {
+            docID("associate-con").innerHTML += /*html*/`
+            ${e.profile_badge}
+            `  
+        }
+        if (array.includes(index)) {
+            counter++;
+        }
+        
+  })
+
+  if(counter >= 8) {
+    plus_number = counter - 7;
+    docID("associate-con").innerHTML += /*html*/`
+        <div class="profile-badge" style="background-color: var(--default);">
+            <span id='contact_itemNameTag-1'>${plus_number}+</span>
+        </div>
+    `
+    }
 }

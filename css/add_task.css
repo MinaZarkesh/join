@@ -11,6 +11,7 @@
 .input-con input, li input {
     width: 100%;
 }
+
 #AddTaskMainCon {
     align-items: flex-start;
 }
@@ -154,6 +155,7 @@
     align-items: center;
     gap: 10px;
     padding: 5px 8px;
+    position: relative;
 }
 
 .tasks-contacts:hover, .list-element:hover, .list-element:hover input,
@@ -192,4 +194,30 @@ li input {
 
 .list-element img:hover {
     filter: brightness(90%)
+}
+
+/* checkbox */
+
+.checkbox {
+    right: 20px;
+    left: unset;
+    content: url('../assets/img/blue-checkbox.svg');
+    appearance: none;
+    opacity: unset;
+}
+
+.checkbox:hover {
+    content: url('../assets/img/blue-checkbox-hover.svg');
+}
+
+.checkbox:checked {
+    content: url('../assets/img/blue-checkbox-checked.svg');
+}
+
+.checkbox:checked:hover {
+    content: url('../assets/img/blue-checkbox-checked-hover.svg');
+}
+
+#associate-con {
+    display: flex;
 }
