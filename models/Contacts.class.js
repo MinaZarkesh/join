@@ -36,14 +36,7 @@ class Contact {
   }
 
   createContactItem() {
-    //da bin ich gerade dran, die contact_boxes Daten auch zu ändern
-
-    // this.parentArray = contact_boxes;
-    //  let idx = this.parentArray.indexOf(this);
-    //  if(idx == -1){
-    //    console.log("Test createContactItem: ",this.contact_id);
-    //  }
-
+ 
     this.contact_inner_item = /*html*/ `
         ${this.profile_badge}
                 <div class ="contact-list-coloumn">
@@ -78,7 +71,7 @@ class Contact {
         this.contact_phone = docID(input_phone.input_id).value;
       }
     }
-
+ 
     this.renderContacts(idx);
   }
 

@@ -80,51 +80,33 @@ function createEditContact(id) {
 
 function saveEditContact(idx) {
   let edit_contact = contact_boxes[idx];
+
   edit_contact.updateContactItem();
+  sortContactItems(edit_contact.parentArray);
   showFloatingContacts(edit_contact.contact_id);
   createContactList();
+
   setActive(idx);
   closeButton();
 }
 
-let temp = [];
-let tempContacts = [];
-let newTempContacts = [];
+function sortContactItems(parent) {
+  parent.sort((a, b) =>
+    a.contact_name > b.contact_name
+      ? 1
+      : b.contact_name > a.contact_name
+      ? -1
+      : 0
+  );
 
-
-function sortContactItems() {
-
-// wie kann man ein Array mit Contacten nach einer Eigenschaft sortieren.
-//Idee: Nach Namen sortieren, nach dem Index suchen und dann das gesamte Contacts-Objekt in ein neues Array
-
-  let temp;
-  temp = contact_boxes;
-  contact_boxes.forEach((e) => {
-    sort_name = e.contact_name;
-    temp.push(sort_name);
-    tempContacts.push(e);
-  });
-
-
-  temp.sort();
-  console.log(temp);
-  tempContacts.sort(a.contact_name);
-
-  tempContacts.forEach((element) => {
-    newTempContacts.push(element.contact_name);
-  });
-
-  console.log("newTempcontacts Name: " + newTempContacts);
+  // console.log("newTempcontacts Name: " + parent);
 }
 
-
-let addedContact = contact_boxes[7];
 //Idee: neuen Contact in contact_boxes pushen und dann renderContacts
-function addNewContacts(){
+function addNewContacts() {
+  let addedContact = contact_boxes[7];
 
-let temp = contact_boxes;
-
-
+  let temp = contact_boxes;
 }
 
 function layoutEditContact(id) {
