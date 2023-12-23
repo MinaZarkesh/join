@@ -64,6 +64,51 @@ function saveEditContact(idx) {
   closeButton();
 }
 
+function addNewContact() {
+  let parent_array = contact_boxes;
+  let parent = "contact-list";
+  let input_name_value;
+  let input_email_value;
+  let input_phone_value;
+  let profileColor = setRandomColor();
+  let profileNameTag = "??";
+
+  let idx = parent_array.length;
+
+  if (
+    input_name.value != "" &&
+    input_email.value != "" &&
+    !input_phone.value != ""
+  ) {
+    // imput-img-div-Name-input-id
+    input_name_value = docID(input_name.input_id).value;
+    input_email_value = docID(input_email.input_id).value;
+    input_phone_value = docID(input_phone.input_id).value;
+  }
+
+  console.log("inputs: ", input_name_value);
+
+  parent_array.push(
+    new Contact(
+      parent,
+      profileColor,
+      profileNameTag,
+      input_name_value,
+      input_email_value,
+      input_phone_value,
+      idx
+    )
+  );
+  let added_contact;
+  added_contact = parent_array[idx];
+
+  sortContactItems(added_contact.parentArray);
+  console.log(added_contact);
+  showFloatingContacts(added_contact.contact_idx);
+  createContactList();
+  added_contact.setActive();
+  closeButton();
+}
 function sortContactItems(parent) {
   parent.sort((a, b) =>
     a.contact_name > b.contact_name
@@ -82,12 +127,11 @@ function sortContactItems(parent) {
 }
 
 function showFloatingContacts(idx) {
-  // let idx = this.parentArray.indexOf(this);
+  console.log("floatingContacts: neu ", idx);
   contact = contact_boxes[idx];
   contact.contact_idx = idx;
-  contact.setActive();
-  console.log("showFloatingContacts: idx: ", idx);
 
+  // contact.setActive();
   contact.createFloatingContacts();
   //update Values of createFloatingContacts
   docID("floating-profile-badge").innerHTML = contact.profile_badge;
@@ -116,18 +160,17 @@ function closeButton() {
 function createAddContact() {
   docID("overlay-contacts").style.display = "flex";
   layoutContactsOverlay();
-  docID("overlay-contacts").style.left = "unset";
-  docID("edit-contact-overlay-headline").innerHTML = "Add Contact";
-  docID("contact-overlay-subtitle").style.display = "flex";
+  docID("edit-contact-button-group").innerHTML = /*html*/ `
+  <button id="overlay-secondary-btn" onclick="closeButton()" class="secondary-button font-t5" >  Cancel <img src="../assets/img/clear.png"></button>
+  <button id="overlay-primary-btn" onclick="addNewContact()" class="button font-t5"> Create contact <img src="../assets/img/check.svg"></button>
+`;
   docID("edit-contact-con-overlay").innerHTML = /*html*/ `
-     <img id='edit-contact-overlay-img' src="../assets/img/person-white.svg">
-  `;
-  docID("overlay-secondary-btn").innerHTML = /*html*/ `
-    Cancel <img src="../assets/img/clear.png">
-  `;
+<img id='edit-contact-overlay-img' src="../assets/img/person-white.svg">
+`;
+
+  docID("edit-contact-overlay-headline").innerHTML = "Add Contact";
+  docID("overlay-contacts").style.left = "unset";
+  docID("contact-overlay-subtitle").style.display = "flex";
   docID("overlay-secondary-btn").style.width = "unset";
-  docID("overlay-primary-btn").innerHTML = /*html*/ `
-  Create contact <img src="../assets/img/check.svg">
-  `;
   docID("overlay-primary-btn").style.width = "fit-content";
 }

@@ -1,14 +1,15 @@
 class Contact {
   profile_badge;
+  contact_color;
   contact_item;
   contact_item_id;
   contact_name;
   contact_email;
   contact_phone;
-  contact_id;
+  contact_idx;
   contact_inner_item;
-  contact_inner_item_id;
-
+  contact_name_tag;
+  parent;
   constructor(
     parent,
     color,
@@ -23,20 +24,21 @@ class Contact {
     this.contact_name = contact_name;
     this.contact_phone = contact_phone;
     this.contact_idx = idx;
-    this.contact_inner_item_id;
     this.contact_item_id = `contact-item-${this.contact_idx}`;
-    this.profile_badge = /*html*/ `
-    <div id='profile_badgeCon-${this.contact_idx}'  class="profile-badge" style="background-color: var(${color});">
-      <span id='contact_itemNameTag-${this.contact_idx}'>${nameTag}</span>
-    </div>
-`;
-
-    docID(parent).innerHtml += this.profile_badge;
+    this.contact_color = color;
+    this.contact_name_tag = nameTag;
+    this.parent = parent;
     this.createContactItem();
   }
 
   createContactItem() {
-    //contact_inner_item eventuell nicht mehr benutzt
+    this.profile_badge = /*html*/ `
+    <div id='profile_badgeCon-${this.contact_idx}'  class="profile-badge" style="background-color: var(${this.contact_color});">
+      <span id='contact_itemNameTag-${this.contact_idx}'>${this.contact_name_tag}</span>
+    </div>
+`;
+    docID(this.parent).innerHtml += this.profile_badge;
+
     this.contact_inner_item = /*html*/ `
         ${this.profile_badge}
                 <div class ="contact-list-coloumn">
@@ -59,15 +61,14 @@ class Contact {
   }
 
   updateContactItem() {
-    for (let i = 0; i < contacts_inputs.length; i++) {
-      let element = contacts_inputs[i];
-      let input_field = docID(element.input_id);
-
-      if (!input_field.value == "") {
-        this.contact_name = docID(input_name.input_id).value;
-        this.contact_email = docID(input_email.input_id).value;
-        this.contact_phone = docID(input_phone.input_id).value;
-      }
+    if (
+      input_name.value != "" &&
+      input_email.value != "" &&
+      !input_phone.value != ""
+    ) {
+      this.contact_name = docID(input_name.input_id).value;
+      this.contact_email = docID(input_email.input_id).value;
+      this.contact_phone = docID(input_phone.input_id).value;
     }
     sortContactItems(this.parentArray);
   }

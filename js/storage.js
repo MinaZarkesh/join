@@ -178,37 +178,37 @@ function createContactBox(parent) {
 //   return tasks, task, taskIndex;
 // }
 
-// let backgroundcolors = [
-//   "--default",
-//   "--variant02",
-//   "--variant03",
-//   "--variant04",
-//   "--variant05",
-//   "--variant06",
-//   "--variant07",
-//   "--variant08",
-//   "--variant09",
-//   "--variant10",
-//   "--variant11",
-//   "--variant12",
-//   "--variant13",
-//   "--variant14",
-//   "--variant15",
-//   "--variant16",
-// ];
+let backgroundcolors = [
+  "--default",
+  "--variant02",
+  "--variant03",
+  "--variant04",
+  "--variant05",
+  "--variant06",
+  "--variant07",
+  "--variant08",
+  "--variant09",
+  "--variant10",
+  "--variant11",
+  "--variant12",
+  "--variant13",
+  "--variant14",
+  "--variant15",
+  "--variant16",
+];
 
-// /**
-//  * Generates a random color from the 'backgroundcolors' array and returns it.
-//  * made by Mina Zarkesh
-//  *
-//  * @return {string} The randomly generated color.
-//  */
-// // function setRandomColor() {
-// //   let randomNumber = Math.floor(Math.random() * backgroundcolors.length);
-// //   let color = backgroundcolors[randomNumber];
-// //   // console.log("Random Index: "+randomNumber+ " random color: "+color);
-// //   return color;
-// // }
+/**
+ * Generates a random color from the 'backgroundcolors' array and returns it.
+ * made by Mina Zarkesh
+ *
+ * @return {string} The randomly generated color.
+ */
+function setRandomColor() {
+  let randomNumber = Math.floor(Math.random() * backgroundcolors.length);
+  let color = backgroundcolors[randomNumber];
+  // console.log("Random Index: "+randomNumber+ " random color: "+color);
+  return color;
+}
 
 // /**
 //  * Checks the index and redirects the user to a specific link.
