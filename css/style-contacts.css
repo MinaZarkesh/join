@@ -45,11 +45,28 @@
   align-items: flex-start;
   gap: 16px; /*ursprünglich 35px*/
   border-radius: 10px;
+  background-color: var(--white);
+  /* color: var(--black); */
+
 }
 
 .contact-list-row:hover {
+  cursor: pointer;
   background-color: var(--secondary);
 }
+
+.active-contact{
+
+background-color: var(--primary) ;
+}
+.active-contact .contact-list-coloumn span, .active-contact .contact-list-coloumn h6{
+  color: var(--white);
+  }
+
+  .active-contact:hover {
+    cursor: pointer;
+    background-color: var(--primary) ;
+  }
 
 .contact-list-coloumn {
   display: flex;
@@ -86,7 +103,7 @@
   height: 56px;
   margin-top: 8px;
   margin-bottom: 8px;
-  border-bottom: 1px solid var(--white);
+  border-bottom: 1px solid var(--grey);
 }
 
 .letter {

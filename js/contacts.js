@@ -1,5 +1,3 @@
-let letter = "A";
-// let clicked_contact = contact_boxes[0];
 let contacts_inputs;
 let letters;
 let myarray = [];
@@ -9,24 +7,12 @@ function initContacts() {
   createContactList();
 }
 
-// function createContactList() {
-//   docID("contact-list").innerHTML += createLetterBox();
-
-//   if (!contact_boxes.length > 0) {
-//     createContactBox("contact-list");
-//   }
-//   docID("contact-list").innerHTML = "";
-//   contact_boxes.forEach((e) => {
-//     docID("contact-list").innerHTML += e.contact_item;
-//   });
-// }
-
 function createContactList() {
   //Teile String in Array aus Buchstaben
   let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   alphabet.split("");
   letters = alphabet.split("");
-  
+
   //Contact_boxes füllen
   docID("contact-list").innerHTML = "";
   if (!contact_boxes.length > 0) {
@@ -39,17 +25,17 @@ function createContactList() {
     // debugger;
     // if (!contact_boxes.length > 0) {
 
-      myarray = contact_boxes.filter(checkLetter);
+    myarray = contact_boxes.filter(checkLetter);
 
-      //wenn myArray länger als 1 ist, dann füge den Buchstaben hinzu
-      //gehe dann die gefiltere Liste durch und erstelle für jeden ein ContactItem;
+    //wenn myArray länger als 1 ist, dann füge den Buchstaben hinzu
+    //gehe dann die gefiltere Liste durch und erstelle für jeden ein ContactItem;
 
-      if (myarray.length > 0) {
-        docID("contact-list").innerHTML += createLetterBox(letter);
-        myarray.forEach((e) => {
-          docID("contact-list").innerHTML += e.contact_item;
-        });
-      }
+    if (myarray.length > 0) {
+      docID("contact-list").innerHTML += createLetterBox(letter);
+      myarray.forEach((e) => {
+        docID("contact-list").innerHTML += e.contact_item;
+      });
+    }
     // }
   }); //letters.foreach
 }
@@ -70,12 +56,8 @@ function createLetterBox(letter) {
 function resetActive() {
   for (let i = 0; i < contact_boxes.length; i++) {
     let contact_item_id = "contact-item-" + i;
-    let contact_mail_id = "contact_itemMail-" + i;
-    let contact_name_id = "contact_itemName-" + i;
     //reset attributes from before
-    docID(contact_item_id).style.background = "var(--white)";
-    docID(contact_mail_id).style.color = "var(--primary)";
-    docID(contact_name_id).style.color = "var(--black)";
+    docID(contact_item_id).classList.remove("active-contact");
   }
 }
 

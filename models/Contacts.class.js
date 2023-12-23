@@ -111,14 +111,8 @@ class Contact {
 
   setActive() {
     let clicked_contact_box_id = "contact-item-" + this.contact_idx;
-    let clicked_mail_id = "contact_itemMail-" + this.contact_idx;
-    let clicked_name_id = "contact_itemName-" + this.contact_idx;
-    console.log(clicked_contact_box_id);
     resetActive();
-
     //set new attributes
-    docID(clicked_contact_box_id).style.background = "var(--primary)";
-    docID(clicked_mail_id).style.color = "var(--white)";
-    docID(clicked_name_id).style.color = "var(--white)";
+    docID(clicked_contact_box_id).classList.add("active-contact");
   }
 }
