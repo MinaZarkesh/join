@@ -159,7 +159,7 @@
 }
 
 .tasks-contacts:hover, .list-element:hover, .list-element:hover input,
-.list-element:hover img {
+.list-element img:hover, #subtask-img:hover, #img-check:hover {
     background-color: #D2E3FF;
 }
 
@@ -220,4 +220,14 @@ li input {
 
 #associate-con, #department-con {
     display: flex;
+}
+
+#subtask-img, #img-check {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+#img-check {
+    margin-right: 21px;
 }
