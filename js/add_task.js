@@ -139,11 +139,12 @@ function dropdownReset(parent, imgid) {
 
 function subtasksFocusIn() {
     if (!docID('img-check')) {
-        docID('subtask-div').innerHTML += '<img id="img-check" src="../assets/img/check.png">'
+        docID('subtask-div').innerHTML += '<img id="img-check" src="../assets/img/check.png">';
     } else {
         docID('img-check').classList.remove('d-none');
     }
     docID('subtask-img').src = '../assets/img/close.png';
+    docID('subtask-img').onclick = writeMe;
     ;
 }
 
@@ -152,6 +153,7 @@ function subtasksFocusOut() {
         docID('img-check').classList.add('d-none');
     }
     docID('subtask-img').src = '../assets/img/+.png';
+    docID('subtask-img').onclick = submitSubtask;
 }
 
 
@@ -221,10 +223,9 @@ function activeCounter(selector) {
 function submitSubtask() {
     docID('input-con-Add').focus();
     docID('input-con-Add').select();
-    docID('subtask-img').onclick = `writeMe()`;
 }
 
-function writeMe() {
-    console.log('work for me');
-    docID('subtask-img').onclick = `submitSubtask()`;
+function writeMe(event) {
+    event.stopPropagation();
+    subtasksFocusOut();
 }
