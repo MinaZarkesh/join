@@ -80,7 +80,6 @@ function addNewContact() {
     input_email.value != "" &&
     !input_phone.value != ""
   ) {
-    // imput-img-div-Name-input-id
     input_name_value = docID(input_name.input_id).value;
     input_email_value = docID(input_email.input_id).value;
     input_phone_value = docID(input_phone.input_id).value;
@@ -103,8 +102,8 @@ function addNewContact() {
   added_contact = parent_array[idx];
 
   sortContactItems(added_contact.parentArray);
-  showFloatingContacts(added_contact.contact_idx);
   createContactList();
+  showFloatingContacts(added_contact.contact_idx);
   added_contact.setActive();
   closeButton();
 }
@@ -128,8 +127,7 @@ function sortContactItems(parent) {
 function showFloatingContacts(idx) {
   console.log("floatingContacts: neu ", idx);
   contact = contact_boxes[idx];
-  contact.contact_idx = idx;
-
+  contact.setActive();
   contact.createFloatingContacts();
   //update Values of createFloatingContacts
   docID("floating-profile-badge").innerHTML = contact.profile_badge;
@@ -142,6 +140,7 @@ function deleteContact(idx) {
   sortContactItems(contact_boxes);
   createContactList();
   docID("floating-contacts").innerHTML = "";
+  closeButton();
 }
 
 function layoutEditContact(id) {
@@ -151,11 +150,15 @@ function layoutEditContact(id) {
   docID("edit-contact-overlay-headline").innerHTML = "Edit contact";
   docID("contact-overlay-subtitle").style.display = "none";
   docID("edit-contact-con-overlay").innerHTML = contact_boxes[id].profile_badge;
-  docID("overlay-secondary-btn").innerHTML = "Delete";
-  docID("overlay-secondary-btn").style.width = "fit-content";
-  docID("overlay-primary-btn").innerHTML = /*html*/ `
-Save <img src="../assets/img/check.svg">
+  docID("edit-contact-button-group").innerHTML = /*html*/ `
+  <button id="overlay-secondary-btn" onclick="deleteContact('${id}')" class="secondary-button font-t5" >Delete</button>
+  <button id="overlay-primary-btn" onclick="saveEditContact('${id}')" class="button font-t5">Save <img src="../assets/img/check.svg"></button>
 `;
+  // docID("overlay-secondary-btn").innerHTML = "Delete";
+  // docID("overlay-secondary-btn").style.width = "fit-content";
+  //   docID("overlay-primary-btn").innerHTML = /*html*/ `
+  // Save <img src="../assets/img/check.svg">
+  // `;
 }
 
 function closeButton() {
