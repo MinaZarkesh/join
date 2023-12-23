@@ -217,11 +217,14 @@ function activeCounter(selector) {
     return array
 }
 
-function toggleBlueBorderBottom() {
-
-}
-
 
 function submitSubtask() {
-    return;
+    docID('input-con-Add').focus();
+    docID('input-con-Add').select();
+    docID('subtask-img').onclick = `writeMe()`;
+}
+
+function writeMe() {
+    console.log('work for me');
+    docID('subtask-img').onclick = `submitSubtask()`;
 }
