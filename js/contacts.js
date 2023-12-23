@@ -1,47 +1,37 @@
 let contacts_inputs;
-let letters;
-let myarray = [];
+let letter;
 
 function initContacts() {
   init();
-  createContactList();
+  renderContactList();
 }
 
-function createContactList() {
+function renderContactList() {
   //Teile String in Array aus Buchstaben
-  let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  alphabet.split("");
-  letters = alphabet.split("");
+  alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  let parent_array = "contact-list";
 
+  docID(parent_array).innerHTML = "";
   //Contact_boxes füllen
-  docID("contact-list").innerHTML = "";
   if (!contact_boxes.length > 0) {
-    createContactBox("contact-list");
+    createContactBox(parent_array);
+    //update Values
   }
-
   //Fülle die ContactListe neu
-  letters.forEach((ltr) => {
-    letter = ltr;
-    // debugger;
-    // if (!contact_boxes.length > 0) {
-
-    myarray = contact_boxes.filter(checkLetter);
-
-    //wenn myArray länger als 1 ist, dann füge den Buchstaben hinzu
-    //gehe dann die gefiltere Liste durch und erstelle für jeden ein ContactItem;
-
-    if (myarray.length > 0) {
-      docID("contact-list").innerHTML += createLetterBox(letter);
-      myarray.forEach((e) => {
-        docID("contact-list").innerHTML += e.contact_item;
+  alphabet.forEach((ltr) => {
+    letter = ltr; //for checkLetter
+    filtered_contacts = contact_boxes.filter(checkLetter);
+    if (filtered_contacts.length > 0) {
+      docID(parent_array).innerHTML += createLetterBox(ltr);
+      filtered_contacts.forEach((e) => {
+        docID(parent_array).innerHTML += e.contact_item;
       });
     }
-    // }
-  }); //letters.foreach
+  });
 }
 
 function checkLetter(contact) {
-  firstLetter = contact.contact_name.charAt(0);
+  firstLetter = contact.contact_name.charAt(0).toUpperCase();
   return firstLetter == letter;
 }
 
@@ -55,9 +45,9 @@ function createLetterBox(letter) {
 
 function resetActive() {
   for (let i = 0; i < contact_boxes.length; i++) {
-    let contact_item_id = "contact-item-" + i;
+    let contact = contact_boxes[i];
     //reset attributes from before
-    docID(contact_item_id).classList.remove("active-contact");
+    docID(contact.contact_item_id).classList.remove("active-contact");
   }
 }
 
@@ -77,24 +67,27 @@ function createEditContact(id) {
   contact_boxes[id].fillEditContact(id);
 }
 
+let edit_contact;
+
 function saveEditContact(idx) {
-  let edit_contact = contact_boxes[idx];
+  edit_contact = contact_boxes[idx];
   edit_contact.updateContactItem();
+  console.log(edit_contact);
+  renderContactList();
   renderFloatingContacts(edit_contact.contact_idx);
-  createContactList();
-  edit_contact.setActive();
-  closeButton();
+   closeButton();
 }
 
 function addNewContact() {
   let parent_array = contact_boxes;
+  let added_contact;
+  //variables for parameters
   let parent = "contact-list";
+  let profileColor = setRandomColor();
+  let profileNameTag = "??";
   let input_name_value;
   let input_email_value;
   let input_phone_value;
-  let profileColor = setRandomColor();
-  let profileNameTag = "??";
-  let added_contact;
   let idx = parent_array.length;
 
   if (
@@ -122,13 +115,13 @@ function addNewContact() {
   );
 
   added_contact = parent_array[idx];
-
   sortContactItems(added_contact.parentArray);
-  createContactList();
+  renderContactList();
   renderFloatingContacts(added_contact.contact_idx);
-  added_contact.setActive();
   closeButton();
 }
+
+
 
 function sortContactItems(parent) {
   parent.sort((a, b) =>
@@ -143,20 +136,20 @@ function sortContactItems(parent) {
     //nachdem neu sortieren auch die Idexes updaten
     const element = parent[i];
     element.contact_idx = i;
-    element.createContactItem();
+    element.renderContactItem();
   }
 }
 
 function renderFloatingContacts(idx) {
   contact = contact_boxes[idx];
-  contact.setActive();
   contact.createFloatingContacts();
+  contact.setActive();
 }
 
 function deleteContact(idx) {
   contact_boxes.splice(idx, 1);
   sortContactItems(contact_boxes);
-  createContactList();
+  renderContactList();
   docID("floating-contacts").innerHTML = "";
   closeButton();
 }
@@ -190,7 +183,7 @@ function renderAddContact() {
   <button id="overlay-secondary-btn" onclick="closeButton()" class="secondary-button font-t5" >  Cancel <img src="../assets/img/clear.png"></button>
   <button id="overlay-primary-btn" onclick="addNewContact()" class="button font-t5"> Create contact <img src="../assets/img/check.svg"></button>
 `;
-  //changeStyle values
+  //change Style values
   docID("overlay-contacts").style.left = "unset";
   docID("overlay-contacts").style.display = "flex";
   docID("contact-overlay-subtitle").style.display = "flex";
