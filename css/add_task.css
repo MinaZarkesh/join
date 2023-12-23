@@ -4,6 +4,10 @@
     margin-bottom: 8px;
 }
 
+.blue-border, .input-con:hover {
+    border-bottom-color:  #005DFF !important;
+}
+
 /* all width 100% */
 #contentbig, #assigned, #assigned-select, #Due-date,
 #taskName input, #Description, .textarea, #Due-date input,
@@ -79,10 +83,6 @@
     align-items: center;
     border-bottom: 1px solid var(--grey);
 } 
-
-.input-con:focus {
-    border-bottom-color:  #005DFF;
-}
  
 .input-con input {
     display: flex;

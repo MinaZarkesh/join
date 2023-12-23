@@ -65,27 +65,37 @@ function catorgyDropdown(imgid, parent) {
             docID(parent).innerHTML += `<div id="category-list-parent"></div>`;   
         }
         docID('category-list-parent').classList.remove('d-none');
-        docID('category-list-parent').innerHTML = `<div id="category-list"></div>`;
-        categorys.forEach( (e, index) => {
-            checkbox = new Checkbox(`check-${index}`, "checkbox").content;
-            docID("category-list").innerHTML += /*html*/`
-                <div class="tasks-category">
-                    <div id='profile_badgeCon-${index}'  class="profile-badge" style="background-color: var(${e.color});">
-                        <span id='category_itemNameTag-${index}'>${e.nameTag}</span>
-                    </div>
-                    ${e.name}
-                    ${checkbox}
-                </div>
-            `
-        })
+        if (document.querySelectorAll(".tasks-category").length == 0) {
+            createCategoryList(checkbox);
+        }
         dropdownCategory = true;
         docID(imgid).src = "../assets/img/arrow_up.png";
         docID("department-con").classList.add('d-none');
+        docID('input-con-category-input-id').parentElement.classList.add('blue-border');
     } else {
         dropdownCategory = false;
         dropdownReset('category-list-parent', imgid);
         docID("department-con").classList.remove('d-none');
+        docID('input-con-category-input-id').parentElement.classList.remove('blue-border')
+        departmentRender();
     }
+
+}
+
+function createCategoryList() {
+    docID('category-list-parent').innerHTML = `<div id="category-list"></div>`;
+    categorys.forEach( (e, index) => {
+        checkbox = new Checkbox(`check-${index}`, "checkbox").content;
+        docID("category-list").innerHTML += /*html*/`
+            <div class="tasks-category">
+                <div id='profile_badgeCon-${index}'  class="profile-badge" style="background-color: var(${e.color});">
+                    <span id='category_itemNameTag-${index}'>${e.nameTag}</span>
+                </div>
+                ${e.name}
+                ${checkbox}
+            </div>
+        `
+    })
 }
 
 
@@ -111,12 +121,13 @@ function contactDropdown(imgid, parent) {
       dropdownContacts = true;
       docID(imgid).src = "../assets/img/arrow_up.png"
       docID("associate-con").classList.add('d-none');
-
+      docID('input-con-assigned-input-id').parentElement.classList.add('blue-border');
     } else {
         dropdownReset('contact-list-parent', imgid);
         dropdownContacts = false;
         contact_boxes = [];
         docID("associate-con").classList.remove('d-none');
+        docID('input-con-assigned-input-id').parentElement.classList.remove('blue-border')
         associateRender();
     }
 }
@@ -145,6 +156,7 @@ function subtasksFocusOut() {
 
 
 function associateRender() {
+    docID("associate-con").innerHTML = "";
     let counter = 0;
     let active_array = activeCounter(".tasks-contacts");
     createContactBox("associate-con");
@@ -160,7 +172,7 @@ function associateRender() {
   })
 
   if(counter >= 8) {
-    plus_number = counter - 7;
+    let plus_number = counter - 7;
     docID("associate-con").innerHTML += /*html*/`
         <div class="profile-badge" style="background-color: var(--default);">
             <span id='contact_itemNameTag-${plus_number}'>${plus_number}+</span>
@@ -170,16 +182,30 @@ function associateRender() {
 }
 
 function departmentRender() {
+    docID("department-con").innerHTML = "";
     let counter = 0;
-    let active_array = activeCounter();
+    let active_array = activeCounter(".tasks-category");
     categorys.forEach((e, index) => {
-
-        docID("department-con").innerHTML += /*html*/`
+        if (active_array[index] == true && counter < 8) {
+            docID("department-con").innerHTML += /*html*/`
             <div class="profile-badge" style="background-color: var(${e.color});">
-            <span id='department_itemNameTag-${index}'>${e.nameTag}</span>
-        </div>
-            `  
+                <span id='department_itemNameTag-${index}'>${e.nameTag}</span>
+            </div>
+            ` 
+        }
+        if (active_array[index] == true) {
+            counter++;
+        }
     })
+
+    if(counter >= 8) {
+        let plus_number = counter - 7;
+        docID("associate-con").innerHTML += /*html*/`
+            <div class="profile-badge" style="background-color: var(--default);">
+                <span id='contact_itemNameTag-${plus_number}'>${plus_number}+</span>
+            </div>
+    `
+        }
 }
 
 function activeCounter(selector) {
@@ -190,6 +216,11 @@ function activeCounter(selector) {
     }
     return array
 }
+
+function toggleBlueBorderBottom() {
+
+}
+
 
 function submitSubtask() {
     return;
