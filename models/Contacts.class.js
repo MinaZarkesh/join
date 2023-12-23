@@ -73,6 +73,7 @@ class Contact {
     sortContactItems(this.parentArray);
   }
 
+
   createFloatingContacts() {
     docID("floating-contacts").innerHTML = /*html*/ `
           <div class="floating-con">
@@ -87,7 +88,7 @@ class Contact {
                     <img src="../assets/img/edit.png" alt="" />
                     <span onclick="createEditContact(${this.contact_idx})" > Edit</span>
                   </div>
-                  <div class="floating-headline-link">
+                  <div onclick="deleteContact(${this.contact_idx})" class="floating-headline-link">
                     <img src="../assets/img/delete.png" alt="" />
                     <span> Delete</span>
                   </div>

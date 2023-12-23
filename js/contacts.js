@@ -103,7 +103,6 @@ function addNewContact() {
   added_contact = parent_array[idx];
 
   sortContactItems(added_contact.parentArray);
-  console.log(added_contact);
   showFloatingContacts(added_contact.contact_idx);
   createContactList();
   added_contact.setActive();
@@ -131,12 +130,18 @@ function showFloatingContacts(idx) {
   contact = contact_boxes[idx];
   contact.contact_idx = idx;
 
-  // contact.setActive();
   contact.createFloatingContacts();
   //update Values of createFloatingContacts
   docID("floating-profile-badge").innerHTML = contact.profile_badge;
   docID("floating-contacts-mail-value").innerHTML = contact.contact_email;
   docID("floating-contactsPhoneValue").innerHTML = contact.contact_phone;
+}
+
+function deleteContact(idx) {
+  contact_boxes.splice(idx, 1);
+  sortContactItems(contact_boxes);
+  createContactList();
+  docID("floating-contacts").innerHTML = "";
 }
 
 function layoutEditContact(id) {
