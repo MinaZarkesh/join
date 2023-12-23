@@ -1,15 +1,18 @@
 class Contact {
-  profile_badge;
+  //parameters of Constructor
+  parent;
   contact_color;
-  contact_item;
-  contact_item_id;
+  contact_name_tag;
   contact_name;
   contact_email;
   contact_phone;
   contact_idx;
+  //variables for renderContactItem
+  contact_item_id;
+  profile_badge;
+  contact_item;
   contact_inner_item;
-  contact_name_tag;
-  parent;
+
   constructor(
     parent,
     color,
@@ -19,19 +22,20 @@ class Contact {
     contact_phone,
     idx
   ) {
-    this.parentArray = contact_boxes; //später in constructor oder gleich ins Backend
-    this.contact_email = contact_email;
+    this.parent = parent;
+    this.contact_color = color;
+    this.contact_name_tag = nameTag;
     this.contact_name = contact_name;
+    this.contact_email = contact_email;
     this.contact_phone = contact_phone;
     this.contact_idx = idx;
     this.contact_item_id = `contact-item-${this.contact_idx}`;
-    this.contact_color = color;
-    this.contact_name_tag = nameTag;
-    this.parent = parent;
-    this.createContactItem();
+    this.parentArray = contact_boxes; //später in constructor oder gleich ins Backend
+    this.renderContactItem();
   }
 
-  createContactItem() {
+  renderContactItem() {
+    this.contact_item_id = `contact-item-${this.contact_idx}`;
     this.profile_badge = /*html*/ `
     <div id='profile_badgeCon-${this.contact_idx}'  class="profile-badge" style="background-color: var(${this.contact_color});">
       <span id='contact_itemNameTag-${this.contact_idx}'>${this.contact_name_tag}</span>
@@ -73,6 +77,11 @@ class Contact {
     sortContactItems(this.parentArray);
   }
 
+  setActive() {
+    resetActive();
+    //set new attributes
+    docID(this.contact_item_id).classList.add("active-contact");
+  }
 
   createFloatingContacts() {
     docID("floating-contacts").innerHTML = /*html*/ `
@@ -107,12 +116,5 @@ class Contact {
               </div>
             </div>
           </div>`;
-  }
-
-  setActive() {
-    let clicked_contact_box_id = "contact-item-" + this.contact_idx;
-    resetActive();
-    //set new attributes
-    docID(clicked_contact_box_id).classList.add("active-contact");
   }
 }
