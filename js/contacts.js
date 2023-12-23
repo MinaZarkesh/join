@@ -1,25 +1,65 @@
 let letter = "A";
-let clicked_contact = contact_boxes[0];
+// let clicked_contact = contact_boxes[0];
 let contacts_inputs;
+let letters;
+let myarray = [];
 
 function initContacts() {
   init();
   createContactList();
 }
 
-function createContactList() {
-  docID("contact-list").innerHTML += createLetterBox();
+// function createContactList() {
+//   docID("contact-list").innerHTML += createLetterBox();
 
+//   if (!contact_boxes.length > 0) {
+//     createContactBox("contact-list");
+//   }
+//   docID("contact-list").innerHTML = "";
+//   contact_boxes.forEach((e) => {
+//     docID("contact-list").innerHTML += e.contact_item;
+//   });
+// }
+
+function createContactList() {
+  //Teile String in Array aus Buchstaben
+  let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  alphabet.split("");
+  letters = alphabet.split("");
+  
+  //Contact_boxes füllen
+  docID("contact-list").innerHTML = "";
   if (!contact_boxes.length > 0) {
     createContactBox("contact-list");
   }
-  docID("contact-list").innerHTML = "";
-  contact_boxes.forEach((e) => {
-    docID("contact-list").innerHTML += e.contact_item;
-  });
+
+  //Fülle die ContactListe neu
+  letters.forEach((ltr) => {
+    letter = ltr;
+    // debugger;
+    // if (!contact_boxes.length > 0) {
+
+      myarray = contact_boxes.filter(checkLetter);
+
+      //wenn myArray länger als 1 ist, dann füge den Buchstaben hinzu
+      //gehe dann die gefiltere Liste durch und erstelle für jeden ein ContactItem;
+
+      if (myarray.length > 0) {
+        docID("contact-list").innerHTML += createLetterBox(letter);
+        myarray.forEach((e) => {
+          docID("contact-list").innerHTML += e.contact_item;
+        });
+      }
+    // }
+  }); //letters.foreach
 }
 
-function createLetterBox() {
+function checkLetter(contact) {
+  firstLetter = contact.contact_name.charAt(0);
+  return firstLetter == letter;
+}
+
+function createLetterBox(letter) {
   return /*html*/ `
     <div class="letter-box">
   <span id="letter${letter}" class="letter">${letter}</span>
@@ -51,14 +91,14 @@ function layoutContactsOverlay(idx) {
 }
 
 function createEditContact(id) {
-  layoutEditContact(id);
+  renderEditContact(id);
   contact_boxes[id].fillEditContact(id);
 }
 
 function saveEditContact(idx) {
   let edit_contact = contact_boxes[idx];
   edit_contact.updateContactItem();
-  showFloatingContacts(edit_contact.contact_idx);
+  renderFloatingContacts(edit_contact.contact_idx);
   createContactList();
   edit_contact.setActive();
   closeButton();
@@ -72,7 +112,7 @@ function addNewContact() {
   let input_phone_value;
   let profileColor = setRandomColor();
   let profileNameTag = "??";
-
+  let added_contact;
   let idx = parent_array.length;
 
   if (
@@ -98,15 +138,16 @@ function addNewContact() {
       idx
     )
   );
-  let added_contact;
+
   added_contact = parent_array[idx];
 
   sortContactItems(added_contact.parentArray);
   createContactList();
-  showFloatingContacts(added_contact.contact_idx);
+  renderFloatingContacts(added_contact.contact_idx);
   added_contact.setActive();
   closeButton();
 }
+
 function sortContactItems(parent) {
   parent.sort((a, b) =>
     a.contact_name > b.contact_name
@@ -124,15 +165,10 @@ function sortContactItems(parent) {
   }
 }
 
-function showFloatingContacts(idx) {
-  console.log("floatingContacts: neu ", idx);
+function renderFloatingContacts(idx) {
   contact = contact_boxes[idx];
   contact.setActive();
   contact.createFloatingContacts();
-  //update Values of createFloatingContacts
-  docID("floating-profile-badge").innerHTML = contact.profile_badge;
-  docID("floating-contacts-mail-value").innerHTML = contact.contact_email;
-  docID("floating-contactsPhoneValue").innerHTML = contact.contact_phone;
 }
 
 function deleteContact(idx) {
@@ -143,41 +179,38 @@ function deleteContact(idx) {
   closeButton();
 }
 
-function layoutEditContact(id) {
-  docID("overlay-contacts").style.display = "flex";
-  layoutContactsOverlay(id);
-  docID("overlay-contacts").style.left = "0";
+function closeButton() {
+  docID("overlay-contacts").style.display = "none";
+}
+
+function renderEditContact(id) {
+  layoutContactsOverlay();
+  //change Values
   docID("edit-contact-overlay-headline").innerHTML = "Edit contact";
-  docID("contact-overlay-subtitle").style.display = "none";
   docID("edit-contact-con-overlay").innerHTML = contact_boxes[id].profile_badge;
   docID("edit-contact-button-group").innerHTML = /*html*/ `
   <button id="overlay-secondary-btn" onclick="deleteContact('${id}')" class="secondary-button font-t5" >Delete</button>
   <button id="overlay-primary-btn" onclick="saveEditContact('${id}')" class="button font-t5">Save <img src="../assets/img/check.svg"></button>
 `;
-  // docID("overlay-secondary-btn").innerHTML = "Delete";
-  // docID("overlay-secondary-btn").style.width = "fit-content";
-  //   docID("overlay-primary-btn").innerHTML = /*html*/ `
-  // Save <img src="../assets/img/check.svg">
-  // `;
-}
-
-function closeButton() {
-  docID("overlay-contacts").style.display = "none";
-}
-
-function createAddContact() {
+  //change Style
   docID("overlay-contacts").style.display = "flex";
+  docID("overlay-contacts").style.left = "0";
+  docID("contact-overlay-subtitle").style.display = "none";
+}
+
+function renderAddContact() {
   layoutContactsOverlay();
+  docID("edit-contact-overlay-headline").innerHTML = "Add Contact";
+  docID("edit-contact-con-overlay").innerHTML = /*html*/ `
+<img id='edit-contact-overlay-img' src="../assets/img/person-white.svg">
+`;
   docID("edit-contact-button-group").innerHTML = /*html*/ `
   <button id="overlay-secondary-btn" onclick="closeButton()" class="secondary-button font-t5" >  Cancel <img src="../assets/img/clear.png"></button>
   <button id="overlay-primary-btn" onclick="addNewContact()" class="button font-t5"> Create contact <img src="../assets/img/check.svg"></button>
 `;
-  docID("edit-contact-con-overlay").innerHTML = /*html*/ `
-<img id='edit-contact-overlay-img' src="../assets/img/person-white.svg">
-`;
-
-  docID("edit-contact-overlay-headline").innerHTML = "Add Contact";
+  //changeStyle values
   docID("overlay-contacts").style.left = "unset";
+  docID("overlay-contacts").style.display = "flex";
   docID("contact-overlay-subtitle").style.display = "flex";
   docID("overlay-secondary-btn").style.width = "unset";
   docID("overlay-primary-btn").style.width = "fit-content";

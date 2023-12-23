@@ -318,7 +318,7 @@ function setRandomColor() {
     color: "--variant09",
     mail: "antom@gmail.com",
     phone: "+49-123-123",
-    nameTag: "AM",
+    nameTag: "WS",
   },
   {
     name: "Anja Schulz",
@@ -383,102 +383,65 @@ function setRandomColor() {
     phone: "49-123-123",
     nameTag: "AM",
   },
-  {
-    name: "Anja Schulz",
-    color: "--variant13",
-    mail: "schulz@hotmail.com",
-    phone: "49-123-123",
-    nameTag: "AS",
-  },
-  {
-    name: "Benedikt Ziegler",
-    color: "--default",
-    mail: "benedikt@gmail.com",
-    phone: "49-123-123",
-    nameTag: "BZ",
-  },
-  {
-    name: "David Eisenberg",
-    color: "--variant14",
-    mail: "davidberg@gmail.com",
-    phone: "49-123-123",
-    nameTag: "DE",
-  },
-  {
-    name: "Eva Fischer",
-    color: "--variant06",
-    mail: "eva@gmail.com",
-    phone: "49-222-222",
-    nameTag: "EF",
-  },
-  {
-    name: "Emmanuel Mauer",
-    color: "--variant10",
-    mail: "emmanuelma@gmail.com",
-    phone: "49-222-222",
-    nameTag: "EM",
-  },
-  {
-    name: "Marcel Bauer",
-    color: "--variant16",
-    mail: "bauer@gmail.com",
-    phone: "49-222-222",
-    nameTag: "MB",
-  },
-  {
-    name: "Tatjana Wolf",
-    color: "--variant15",
-    mail: "wolf@gmail.com",
-    phone: "49-222-222",
-    nameTag: "TW",
-  },
-  {
-    name: "Sofia Müller",
-    color: "--variant04",
-    mail: "sofiam@gmail.com",
-    phone: "49-222-222",
-    nameTag: "SM",
-  },
+  // {
+  //   name: "Anja Schulz",
+  //   color: "--variant13",
+  //   mail: "schulz@hotmail.com",
+  //   phone: "49-123-123",
+  //   nameTag: "AS",
+  // },
+  // {
+  //   name: "Benedikt Ziegler",
+  //   color: "--default",
+  //   mail: "benedikt@gmail.com",
+  //   phone: "49-123-123",
+  //   nameTag: "BZ",
+  // },
+  // {
+  //   name: "David Eisenberg",
+  //   color: "--variant14",
+  //   mail: "davidberg@gmail.com",
+  //   phone: "49-123-123",
+  //   nameTag: "DE",
+  // },
+  // {
+  //   name: "Eva Fischer",
+  //   color: "--variant06",
+  //   mail: "eva@gmail.com",
+  //   phone: "49-222-222",
+  //   nameTag: "EF",
+  // },
+  // {
+  //   name: "Emmanuel Mauer",
+  //   color: "--variant10",
+  //   mail: "emmanuelma@gmail.com",
+  //   phone: "49-222-222",
+  //   nameTag: "EM",
+  // },
+  // {
+  //   name: "Marcel Bauer",
+  //   color: "--variant16",
+  //   mail: "bauer@gmail.com",
+  //   phone: "49-222-222",
+  //   nameTag: "MB",
+  // },
+  // {
+  //   name: "Tatjana Wolf",
+  //   color: "--variant15",
+  //   mail: "wolf@gmail.com",
+  //   phone: "49-222-222",
+  //   nameTag: "TW",
+  // },
+  // {
+  //   name: "Sofia Müller",
+  //   color: "--variant04",
+  //   mail: "sofiam@gmail.com",
+  //   phone: "49-222-222",
+  //   nameTag: "SM",
+  // },
 ];
 
-// /***************** alphabet **********************************/
 
-// /**
-//  * Creates an array of letters german alphabet
-//  */
-// let alphabet = [
-//   "A",
-//   "B",
-//   "C",
-//   "D",
-//   "E",
-//   "F",
-//   "G",
-//   "H",
-//   "I",
-//   "J",
-//   "K",
-//   "L",
-//   "M",
-//   "N",
-//   "O",
-//   "P",
-//   "Q",
-//   "R",
-//   "S",
-//   "T",
-//   "U",
-//   "V",
-//   "W",
-//   "X",
-//   "Y",
-//   "Z",
-//   "Ä",
-//   "Ö",
-//   "Ü",
-// ];
-
-// let letters = [];
 // let contactArray = [];
 
 //********************************** */

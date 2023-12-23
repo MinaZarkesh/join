@@ -48,7 +48,7 @@ class Contact {
     `;
 
     this.contact_item = /*html*/ `
-      <div onclick='showFloatingContacts(${this.contact_idx})' id='contact-item-${this.contact_idx}' class="contact-list-row">
+      <div onclick='renderFloatingContacts(${this.contact_idx})' id='contact-item-${this.contact_idx}' class="contact-list-row">
         ${this.contact_inner_item}
       </div>
         `;
