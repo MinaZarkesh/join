@@ -75,3 +75,107 @@ function autocomplete(inp, arr) {//the autocomplete function takes two arguments
         closeAllLists(e.target);
     });
 }
+
+
+// select = assign || category
+function dropdownMenu(imgid, parent, select) {
+    let list_Parent = select == 'assign' ? "contact-list-parent" : "category-list-parent";
+    let list_Con = select == 'assign' ? "associate-con" : "department-con";
+    let input_id = select == 'assign' ? "input-con-assigned-input-id" : "input-con-category-input-id";
+    let tasks_Parent = select == 'assign' ? ".tasks-contacts" : ".tasks-category";
+    let drop_Down = select == 'assign' ? dropdownContacts : dropdownCategory;
+    if(!drop_Down) { 
+        createDropMenu(list_Parent, parent, tasks_Parent, select);
+    } else {
+        dropUp(select, list_Parent, imgid, list_Con, input_id, tasks_Parent);
+    }
+}
+
+function createDropMenu(list_Parent, parent, tasks_Parent, select) {
+    if (!docID(list_Parent)) {
+        docID(parent).innerHTML += `<div id="${list_Parent}"></div>`;
+    }
+    docID(list_Parent).classList.remove('d-none');
+    if (document.querySelectorAll(tasks_Parent).length == 0) {
+        select = 'assign' ? createContactList() : createCategoryList();
+    }
+    if (select == "assign") {contact_boxes = []}
+    select == 'assign' ? dropdownContacts = true : dropdownCategory = true;  
+    docID(imgid).src = "../assets/img/arrow_up.png";
+    docID(list_Con).classList.add('d-none'); 
+    docID(input_id).parentElement.classList.add('blue-border');
+}
+
+function dropUp(select, list_Parent, imgid, list_Con, input_id, tasks_Parent) {
+    select == 'assign' ? dropdownContacts = false : dropdownCategory = false;
+    dropdownReset(list_Parent, imgid);
+    contact_boxes = (select === "assign") ? [] : contact_boxes;
+    docID(imgid).src = "../assets/img/arrow_up.png";
+    docID(list_Con).classList.add('d-none');
+    docID(input_id).parentElement.classList.remove('blue-border');
+    listRender(list_Con, tasks_Parent);
+}
+
+function dropdownReset(parent, imgid) {
+    docID(parent).classList.add('d-none');
+    docID(imgid).src = "../assets/img/arrow_drop_down.png";
+}
+
+function createContactList() {
+    let checkbox;
+    createContactBox("contact-list-parent");
+    contact_boxes.forEach((e, index) => {
+        checkbox = new Checkbox(`check-${index}`, "checkbox").content;
+        docID("contact-list").innerHTML += /*html*/`
+            <div class="tasks-contacts">
+                ${e.profile_badge}
+                ${e.contact_name}
+                ${checkbox}
+            </div>
+        `  
+    })
+}
+
+function listRender(list_Con, tasks_Parent) {
+    let counter = 0;
+    let active_array = activeCounter(tasks_Parent);
+    let items = list_Con === "associate-con" ? contact_boxes : category;
+    let item_Name = list_Con === "associate-con" ? 'contact_itemNameTag' : 'category_itemNameTag';
+    docID(list_Con).innerHTML = "";
+    list_Con === "associate-con" ?? createContactBox(list_Con);
+    itemsForEach(counter, list_Con, active_array, items)
+    counter >= 8 ?? numberBadge(list_Con, item_Name, plus_number, counter)
+}
+
+function itemsForEach(counter, list_Con, active_array, items) {
+    items.forEach((e, index) => {
+        if (active_array[index] == true && counter < 8) {
+            list_Con === "associate-con"? bagdeAssociate(e) : bagdeDepartment(e, index);
+        }
+        if (active_array[index] == true) {
+            counter++;
+        }
+  })
+}
+
+function numberBadge(list_Con, item_Name, plus_number, counter) {
+    let plus_number = counter - 7;
+    docID(list_Con).innerHTML += /*html*/` 
+        <div class="profile-badge" style="background-color: var(--default);">
+            <span id='${item_Name}-${plus_number}'>${plus_number}+</span>
+        </div>`
+}
+
+function bagdeAssociate(e) {
+    docID("associate-con").innerHTML += /*html*/`
+        ${e.profile_badge}
+    `  
+}
+
+function bagdeDepartment(e, index){
+    docID("department-con").innerHTML += /*html*/`
+        <div class="profile-badge" style="background-color: var(${e.color});">
+            <span id='department_itemNameTag-${index}'>${e.nameTag}</span>
+        </div>
+    `
+}

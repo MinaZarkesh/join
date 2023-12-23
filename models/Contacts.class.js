@@ -10,15 +10,7 @@ class Contact {
   contact_inner_item;
   contact_name_tag;
   parent;
-  constructor(
-    parent,
-    color,
-    nameTag,
-    contact_name,
-    contact_email,
-    contact_phone,
-    idx
-  ) {
+  constructor(parent, color, nameTag, contact_name, contact_email, contact_phone, idx) {
     this.parentArray = contact_boxes; //später in constructor oder gleich ins Backend
     this.contact_email = contact_email;
     this.contact_name = contact_name;
