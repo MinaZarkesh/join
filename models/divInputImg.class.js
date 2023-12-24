@@ -9,6 +9,7 @@ class Divinputimg extends World{
     super();
     this.idname = `${parent}-img`;
     this.input_id = `${classname}-${type}-input-id`;
+
     this.inputForSelect(parent, classname);
     this.childname = `${parent}-div`;
     this.imgId = imgsrc.includes('arrow_drop_down.png') ? `id='${this.idname}' onclick="dropdownMenu('${this.idname}', '${parent}', '${parent}')"`: "";
@@ -26,7 +27,10 @@ class Divinputimg extends World{
 
   inputForSelect(parent, classname) {
     if (parent == 'assigned' || parent == 'category') {
-      this.input_id = `${classname}-${parent}-input-id`
+      this.input_id = `${classname}-${parent}-input-id`;
+    }
+    if (parent == 'subtask') {
+      this.input_id = `${classname}-Add`;
     }
   }
 }
