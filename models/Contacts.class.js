@@ -15,6 +15,10 @@ class Contact {
   contact_name_tag;
   parent;
   constructor(parent, color, nameTag, contact_name, contact_email, contact_phone, idx) {
+    this.parent = parent; 
+    this.contact_color = color;
+    this.contact_name_tag = nameTag;
+    this.contact_name = contact_name;
     this.parentArray = contact_boxes; //später in constructor oder gleich ins Backend
     this.contact_email = contact_email;
     this.contact_phone = contact_phone;

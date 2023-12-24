@@ -108,7 +108,7 @@ main {
 }
 
 #label-remember-me,
-#label-accept-privacy {
+#labelcheckbox-accept-privacy {
   display: flex;
   height: 23px;
   gap: 4px;
