@@ -25,6 +25,7 @@ class Contact {
     this.contact_idx = idx;
     this.contact_item_id = `contact-item-${this.contact_idx}`;
     this.parentArray = contact_boxes; //später in constructor oder gleich ins Backend
+    this.parent = parent;
     this.renderContactItem();
   }
 

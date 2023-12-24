@@ -97,7 +97,7 @@
 .input-con img {
     height: 10px;
     width: 10px;
-    margin-right: 15px;
+    margin-right: 17px;
     background-color: white;
 }
 
@@ -159,7 +159,7 @@
 }
 
 .tasks-contacts:hover, .list-element:hover, .list-element:hover input,
-.list-element img:hover, #subtask-img:hover, #img-check:hover {
+.list-element img:hover, #subtask-img:hover, #img-check:hover, .list:hover::before, .list:hover, .list:hover input  {
     background-color: #D2E3FF;
 }
 
@@ -177,24 +177,43 @@ li input {
 
 .list-element {
     display: flex;
-    padding: 12px 16px;
+    padding: 12px 10px;
 }
 
 .list-element img {
-    /* display: none; */
     margin-right: 5px;
     height: 20px;
     width: 20px;
     border-radius: 50%;
+
 }
 
 .list-element:hover img {
     display: block;
+    /* content: url('../assets/img/logo-white.png'); */
 }
 
 .list-element img:hover {
     filter: brightness(90%)
 }
+
+.list{
+    list-style-type: none;
+    position: relative;
+}
+
+.list::before {
+    content: '\2022'; /* das ist der Punkt*/
+    position: absolute;
+    font-size: 1.5em;
+    top: 49%;
+    transform: translateY(-50%);
+    color: black;
+    left: -7%;
+    padding: 7px 11px;
+}
+
+
 
 /* checkbox */
 
@@ -228,6 +247,6 @@ li input {
     border-radius: 50%;
 }
 
-#img-check {
-    margin-right: 21px;
+.margin-10 {
+    margin-right: 10px !important;
 }
