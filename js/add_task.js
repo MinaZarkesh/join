@@ -163,7 +163,7 @@ function activeCounter(selector) {
     let matches = document.querySelectorAll(selector);
     let array = [];
     for (let i = 0; i < matches.length; i++) {
-        array.push(matches[i].children[1].ed);check
+        array.push(matches[i].children[1].checked);
     }
     return array
 }
