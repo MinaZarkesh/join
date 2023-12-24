@@ -12,8 +12,8 @@ class Divinputimg extends World{
     this.inputForSelect(parent, classname);
     this.childname = `${parent}-div`;
     this.imgId = imgsrc.includes('arrow_drop_down.png') ? `id='${this.idname}' onclick="dropdownMenu('${this.idname}', '${parent}', '${parent}')"`: "";
-    this.imgId = imgsrc.includes('+.png') ? `id='${this.idname}' onclick="submitSubtask('input-con-Add')"`: this.imgId;
-    this.childId = imgsrc.includes('+.png') ? `id='${this.childname}'`:"";
+    this.imgId = imgsrc.includes('+.png') ? `id='${this.idname}' onclick="submitHelpFunction()"`: this.imgId;
+    this.childId = imgsrc.includes('+.png') ? `id='${this.childname}' onclick="submitHelpFunction()"`:"";
     this.inputfocus =  imgsrc.includes('+.png') ? `onfocusin='subtasksFocusIn()'`:this.imgId;
     this.imgId = imgsrc.includes('icon-lock') ? `id='${parent}-img' onclick='togglePassword()'`: this.imgId;
     this.content = /*html*/ `

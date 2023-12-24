@@ -25,8 +25,6 @@ function initAddtask() {
     new Labeldiv('content-con', 'subtask', 'Subtask', true);
     new Divinputimg('subtask', 'input-con', 'text', 'Add new subtask', '../assets/img/+.png');
     new UnsortedList('subtask');
-    // new UnsortedListElement("subtasks-list", "Das ist eine Subtask");
-    // new UnsortedListElement("subtasks-list", "Das ist eine zweite Subtask");
 }
 
 function activeUrgency(id) {
@@ -165,14 +163,20 @@ function activeCounter(selector) {
     let matches = document.querySelectorAll(selector);
     let array = [];
     for (let i = 0; i < matches.length; i++) {
-        array.push(matches[i].children[1].checked);
+        array.push(matches[i].children[1].ed);check
     }
     return array
+}
+
+function submitHelpFunction() {
+    let id = 'input-con-Add';
+    submitSubtask(id);
 }
 
 function submitSubtask(id) {
     docID(id).focus();
     docID(id).select();
+    subtasksFocusIn();
 }
 
 function writeMe(event) {
@@ -188,7 +192,13 @@ function subtasksFocusIn() {
     }
     docID('subtask-img').src = '../assets/img/close.png';
     docID('subtask-img').onclick = writeMe;
-    ;
+    docID('input-con-Add').addEventListener("keydown", (e) => {
+        if(e.key == 'Enter') {
+            addSubtask();
+        }
+    })
+    docID('subtask-div').classList.add('blue-border');
+    docID('subtask-img').classList.add('margin-10');
 }
 
 function subtasksFocusOut() {
@@ -196,14 +206,17 @@ function subtasksFocusOut() {
         docID('img-check').classList.add('d-none');
     }
     docID('subtask-img').src = '../assets/img/+.png';
-    docID('subtask-img').onclick = submitSubtask;
+    docID('subtask-img').onclick = submitHelpFunction;
+    docID('subtask-div').classList.remove('blue-border');
+    docID('subtask-img').classList.remove('margin-10');
 }
 
 function addSubtask() {
     if (docID('input-con-Add').value != "") {
-        subtask.push(new UnsortedListElement("subtasks-list", docID('input-con-Add').value))
-        // new UnsortedListElement("subtasks-list", docID('input-con-Add').value);
+        // subtask.push(new UnsortedListElement("subtasks-list", docID('input-con-Add').value))
+        subtask.push(docID('input-con-Add').value)
         docID('input-con-Add').value = "";
+        docID('input-con-Add').blur(); //nimmt den Focus von der Input
         subtasksFocusOut();
         subtaskListRender();
     } else {
@@ -213,10 +226,12 @@ function addSubtask() {
 
 function subtaskListRender() {
     docID("subtasks-list").innerHTML = "";
-    subtask.forEach((e) => {
-        e.render("subtasks-list", e.content);
-    })
+    for (let i = 0; i < subtask.length; i++) {
+        new UnsortedListElement("subtasks-list", subtask[i], i);
+    }
 }
+
 function editSubtask(id){
     submitSubtask(id);
 }
+
