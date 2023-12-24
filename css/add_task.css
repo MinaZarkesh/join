@@ -206,7 +206,7 @@ li input {
     content: '\2022'; /* das ist der Punkt*/
     position: absolute;
     font-size: 1.5em;
-    top: 49%;
+    top: 50%;
     transform: translateY(-50%);
     color: black;
     left: -7%;
@@ -241,7 +241,7 @@ li input {
     display: flex;
 }
 
-#subtask-img, #img-check {
+#subtask-img, #img-check, #subtasklist-img, #subtasklist-check-img {
     width: 15px;
     height: 15px;
     border-radius: 50%;
@@ -249,4 +249,11 @@ li input {
 
 .margin-10 {
     margin-right: 10px !important;
+}
+
+#button-con {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    gap: 25px;
 }

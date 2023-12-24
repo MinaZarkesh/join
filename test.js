@@ -117,7 +117,9 @@ function dropUp(select, list_Parent, imgid, list_Con, input_id, tasks_Parent) {
 }
 
 function dropdownReset(parent, imgid) {
-    docID(parent).classList.add('d-none');
+    if (!docID(parent)) {
+        docID(parent).classList.add('d-none');
+    }
     docID(imgid).src = "../assets/img/arrow_drop_down.png";
 }
 

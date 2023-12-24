@@ -24,7 +24,7 @@ function initAddtask() {
     new Div('content-con', 'department-con', '');
     new Labeldiv('content-con', 'subtask', 'Subtask', true);
     new Divinputimg('subtask', 'input-con', 'text', 'Add new subtask', '../assets/img/+.png');
-    new UnsortedList('subtask');
+    new Div('subtask', 'subtasks-con', '');
 }
 
 function activeUrgency(id) {
@@ -82,7 +82,9 @@ function dropUp(select, list_Parent, imgid, list_Con, input_id, tasks_Parent) {
 }
 
 function dropdownReset(parent, imgid) {
-    docID(parent).classList.add('d-none');
+    if (docID(parent)) {
+        docID(parent).classList.add('d-none');
+    }
     docID(imgid).src = "../assets/img/arrow_drop_down.png";
 }
 
@@ -213,7 +215,6 @@ function subtasksFocusOut() {
 
 function addSubtask() {
     if (docID('input-con-Add').value != "") {
-        // subtask.push(new UnsortedListElement("subtasks-list", docID('input-con-Add').value))
         subtask.push(docID('input-con-Add').value)
         docID('input-con-Add').value = "";
         docID('input-con-Add').blur(); //nimmt den Focus von der Input
@@ -225,7 +226,8 @@ function addSubtask() {
 }
 
 function subtaskListRender() {
-    docID("subtasks-list").innerHTML = "";
+    docID("subtasks-con").innerHTML = "";
+    new UnsortedList('subtasks-con');
     for (let i = 0; i < subtask.length; i++) {
         new UnsortedListElement("subtasks-list", subtask[i], i);
     }
@@ -235,3 +237,51 @@ function editSubtask(id){
     submitSubtask(id);
 }
 
+function deleteSubtask(i) {
+    subtask.splice(i, 1);
+    subtaskListRender();
+    return // element slicen und Liste neu rendern
+}
+
+function subtaskChange(value, i) {
+    let edit_value = docID(value).value;
+    let upadate_id = "edit-subtask";
+    docID('subtasks-con').innerHTML = /*html*/`
+        <div class="input-con blue-border" id="subtasklist-div">
+            <input id="${upadate_id}" type="text" class="font-t6" value="${edit_value}">
+            <img id="subtasklist-img" onclick="deleteSubtask(${i})" src="../assets/img/delete.png" class="margin-10">
+            <img id="subtasklist-check-img" onclick="updateSubtask(${i},'${upadate_id}')" src="../assets/img/check.png">
+        </div>
+    `
+}
+
+function updateSubtask(i, upadate_id) {
+    subtask[i] = docID(upadate_id).value;
+    subtaskListRender();
+}
+
+function clearTask() {
+    docID('task-title').value = "";
+    docID('desc-input').value = "";
+    docID('date-input').value = "";
+    activeUrgency('all');
+    dropdownContacts = true;
+    dropdownCategory = true;
+    dropdownMenu('assigned-img', 'assigned', 'assigned');
+    dropdownMenu('category-img', 'category', 'category');
+    uncountCounter(".tasks-contacts");
+    uncountCounter(".tasks-category");
+    listRender('associate-con', ".tasks-contacts");
+    listRender('department-con', ".tasks-category");
+    docID('input-con-Add').value = "";
+    subtask = [];
+    subtaskListRender();
+
+}
+
+function uncountCounter(selector) {
+    let matches = document.querySelectorAll(selector);
+    for (let i = 0; i < matches.length; i++) {
+        matches[i].children[1].checked = false;
+    }
+}
