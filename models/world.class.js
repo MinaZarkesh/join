@@ -1,7 +1,7 @@
 class World {
 
     content;
-
+    data;
     constructor() {
 
     }
