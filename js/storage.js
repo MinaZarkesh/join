@@ -18,6 +18,42 @@ const STORAGE_TOKEN = "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE";
  */
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
+/**
+ * Sets a key-value pair in remote storage.
+ *
+ * This function sends a POST request to the remote storage URL with the provided key and value.
+ *
+ * @param {string} key - The key for the data.
+ * @param {any} value - The value to be stored.
+ * @returns {Promise<Object>} - A Promise that resolves to the response data.
+ */
+async function setItem(key, value) {
+  const payload = { key, value, token: STORAGE_TOKEN };
+  return fetch(STORAGE_URL, {
+    method: "POST",
+    body: JSON.stringify(payload),
+  }).then((res) => res.json());
+}
+
+/**
+ * Retrieves an item from the storage based on the given key.
+ *
+ * @param {string} key - The key of the item to retrieve.
+ * @return {Promise<any>} A promise that resolves to the value of the retrieved item.
+ */
+async function getItem(key) {
+  const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
+  return fetch(url)
+    .then((res) => res.json())
+    .then((res) => {
+      if (res.data) {
+        return res.data.value;
+      }
+      throw `Could not find data with key "${key}".`;
+    });
+}
+
+
 function docID(id) {
   return document.getElementById(id);
 }
@@ -307,40 +343,9 @@ let oldContacts = [
 ];
 
 
-/**
- * Sets a key-value pair in remote storage.
- *
- * This function sends a POST request to the remote storage URL with the provided key and value.
- *
- * @param {string} key - The key for the data.
- * @param {any} value - The value to be stored.
- * @returns {Promise<Object>} - A Promise that resolves to the response data.
- */
-// async function setItem(key, value) {
-//   const payload = { key, value, token: STORAGE_TOKEN };
-//   return fetch(STORAGE_URL, {
-//     method: "POST",
-//     body: JSON.stringify(payload),
-//   }).then((res) => res.json());
-// }
 
-/**
- * Retrieves an item from the storage based on the given key.
- *
- * @param {string} key - The key of the item to retrieve.
- * @return {Promise<any>} A promise that resolves to the value of the retrieved item.
- */
-// async function getItem(key) {
-//   const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-//   return fetch(url)
-//     .then((res) => res.json())
-//     .then((res) => {
-//       if (res.data) {
-//         return res.data.value;
-//       }
-//       throw `Could not find data with key "${key}".`;
-//     });
-// }
+
+
 
 // let user = [];
 // let users = [];
