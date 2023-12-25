@@ -27,6 +27,7 @@ function initAddtask() {
     new Div('subtask', 'subtasks-con', '');
 }
 
+
 function activeUrgency(id) {
     btns = ["btn-red", "btn-orange", "btn-green" ];
     btns.forEach(element => {
@@ -285,3 +286,69 @@ function uncountCounter(selector) {
         matches[i].children[1].checked = false;
     }
 }
+
+function addTask() {
+    let title = docID('task-title').value;
+    let description = docID('desc-input').value;
+    let date = docID('date-input').value;
+    let urgency = theUrgency();
+    let associates = theSelectors('.tasks-contacts');
+    let departments = theSelectors('.tasks-contacts');
+    let subtasks = subtask;
+    let sub_checked = Subtaskschecked();
+
+    let newTask = {
+        "title": title,
+        "description": description,
+        "date": date,
+        "urgency": urgency,
+        "associates": associates,
+        "departments": departments,
+        "subtasks": subtasks,
+        "sub_checked": sub_checked 
+    }
+    clearTask();
+}
+
+function theUrgency() {
+    let btns = ["btn-red", "btn-orange", "btn-green" ];
+    let output;
+    btns.forEach((element) => {
+        if (docID(element).classList.value.includes('active')) {
+            output = element;
+        }
+    })
+    return output;
+}
+
+function theSelectors(selector){
+    let matches = document.querySelectorAll(selector);
+    let work;
+    let id = [];
+    let idx = [];
+    for (let i = 0; i < matches.length; i++) {
+        if (matches[i].children[1].checked) {
+            work = matches[i].children[1].id;
+            id.push(work.match(/\d+/)[0]);
+        }
+    }
+    if (selector == '.tasks-contacts') {
+        if (!id == []) {createContactBox("associate-con")};
+        contact_boxes.forEach((e, index) => {
+            if(id.includes(`${index}`)) {
+                contact_idx.push(e.contact_idx)
+            }
+        })
+    } else {
+        idx = id;
+    }
+    return idx
+}
+
+function Subtaskschecked() {
+    checked = [];
+    subtask.forEach(() => {
+        checked.push('unchecked');
+    })
+}
+

@@ -252,8 +252,15 @@ li input {
 }
 
 #button-con {
+    display: flex;
+    align-items: center;
     position: absolute;
     bottom: 5%;
     right: 5%;
     gap: 25px;
+    font-size: 23px;
+}
+
+#add-task-btn:hover {
+    box-shadow: 0px 5px 10px var(--black20);
 }
