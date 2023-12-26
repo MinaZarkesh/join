@@ -14,15 +14,16 @@ class BoardSegment extends World {
     img;
     img_id = "";
     img_class ="";
-    img_src = "";
+    img_src = "../assets/img/+.png";
 
     constructor(parent, segment, headline) {
         super();
         this.con_id = `${segment}-con`;
+        this.button_id = `${segment}-btn`
         this.headline_text = headline;
         this.container = new Div(parent, this.con_id, this.con_class);
         this.headline = new Span(this.con_id, this.headline_id, this.headline_class, this.headline_text);
         this.button = new Button(this.con_id, this.button_id, this.button_class, this.button_onclick);
-        // this.img = 
+        this.img = new Img(this.button_id, this.img_id, this.img_class, this.img_src);
     }
 }
