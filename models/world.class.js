@@ -46,12 +46,4 @@ class World {
             }
         })
     }
-
-    neuFunc() {
-        this.world_parameter.forEach((p) => {
-            if (e == p) {
-                this.parent = arg[index] ?arg[index] : "";
-            }
-        } ) 
-    }
 }

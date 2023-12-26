@@ -104,6 +104,7 @@ function createContactListTask() {
     })
 }
 function createCategoryList() {
+    let show = categorys.filter(listfilter)
     categorys.forEach( (e, index) => {
         let checkbox = new Checkbox(`check-${index}`, "checkbox").content;
         docID("category-list-parent").innerHTML += /*html*/`
@@ -117,6 +118,16 @@ function createCategoryList() {
         `
     })
 }
+
+function listfilter(num) {
+    for (let i = 0; num.length > i; i++) {
+        if (num[i].includes(docID('input-con-assigned-input-id').value)) {
+          return true;
+        }
+      }
+      return false;
+}
+
 
 function listRender(list_Con, tasks_Parent) {
     let counter = 0;
