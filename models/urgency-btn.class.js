@@ -7,7 +7,7 @@ class Urgencybtn extends World{
     lowClass = "btn-green";
     img;
     colorclass;
-    id;
+
 
     constructor(parent, btnName) {
         super();

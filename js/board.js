@@ -3,14 +3,10 @@ function initBoard() {
   init();
   new Div("main-board", "board-head-con", ''); //the head container
   new Div("main-board", "board-content-con", ''); //the content container
-  new Div("board-content-con", "to-do-con", "board-segments"); // the to-do Container
-  new Span("to-do-con", "", "", "to-do"); 
-  new Div("board-content-con", "in-progres-con", "board-segments"); // the in progress Container
-  new Span("in-progres-con", "", "", "in progress");
-  new Div("board-content-con", "await-feedback-con", "board-segments"); // the await Feedback Container
-  new Span("await-feedback-con", "", "", "Await Feedback");
-  new Div("board-content-con", "done-con", "board-segments"); // the done Container
-  new Span("done-con", "", "", "done");
+  new BoardSegment("board-content-con", "to-do", "To do");
+  new BoardSegment("board-content-con", "in-progress", "In progress");
+  new BoardSegment("board-content-con", "await-feedback", "Await Feedback");
+  new BoardSegment("board-content-con", "done", "Done");
 }
 
 

@@ -1,9 +1,8 @@
 class MenuLink extends World {
     name;
-    className;
     constructor(id) {
         super();
-        this.className = "active";
+        this.classname = "active";
         this.name = id.charAt(0).toUpperCase() + id.slice(1);
         this.name = this.name.replace("_t", " T");
         // onClick="activeLink(${id})" 
