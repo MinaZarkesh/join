@@ -104,8 +104,8 @@ function createContactListTask() {
     })
 }
 function createCategoryList() {
-    let show = categorys.filter(listfilter)
-    categorys.forEach( (e, index) => {
+    let filtered_Contact = filterList();
+    filtered_Contact.forEach( (e, index) => {
         let checkbox = new Checkbox(`check-${index}`, "checkbox").content;
         docID("category-list-parent").innerHTML += /*html*/`
             <div class="tasks-category">
@@ -119,13 +119,16 @@ function createCategoryList() {
     })
 }
 
-function listfilter(num) {
-    for (let i = 0; num.length > i; i++) {
-        if (num[i].includes(docID('input-con-assigned-input-id').value)) {
-          return true;
+function filterList() {
+    let output = [];
+    let input_value = docID('input-con-assigned-input-id').value.toLowerCase();
+    categorys.forEach((e) => {
+        let check = e.name.toLowerCase();
+        if(check.includes(input_value)){
+            output.push(e);
         }
-      }
-      return false;
+    })
+    return output;
 }
 
 
