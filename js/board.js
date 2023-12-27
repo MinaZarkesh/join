@@ -1,9 +1,14 @@
 
 function initBoard() {
   init();
-  new Div("main-board", "board-head-con", ''); //the head container
+  new Div("main-board", "board-head-con", ''); //the head container  
+  new Div("board-head-con", "search-con", "")
+  new Divinputimg("search-con", 'search', 'text', "Find Task", '../assets/img/searchLupe.png');
+  new Button("search-con","","button","", "Ask Task");
+  new Img("board-head-con", '', '', '../assets/img/cross white.png');
   new Div("main-board", "board-content-con", ''); //the content container
   new BoardSegment("board-content-con", "to-do", "To do");
+  new BoardCard('to-do-con', 0);
   new BoardSegment("board-content-con", "in-progress", "In progress");
   new BoardSegment("board-content-con", "await-feedback", "Await Feedback");
   new BoardSegment("board-content-con", "done", "Done");
