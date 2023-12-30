@@ -75,3 +75,4 @@ function autocomplete(inp, arr) {//the autocomplete function takes two arguments
         closeAllLists(e.target);
     });
 }
+

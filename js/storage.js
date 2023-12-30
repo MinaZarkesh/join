@@ -78,7 +78,6 @@ function isRequiered(id) {
 }
 
 
-
 function createInputElements() {
   input_name = new Divinputimg("inputs-con","imput-img-div","text","Name","../assets/img/icon-person.png");
   input_email = new Divinputimg("inputs-con", "imput-img-div", "mail", "Email", "../assets/img/icon-mail.png");
@@ -416,84 +415,89 @@ let oldContacts = [
 
 // /**************** TasksArray, wird später ersetzt werden *****************/
 
-// /**
-//  * Creates an array of tasks for Backup
-//  */
-// let oldTasks = [
-//   {
-//     container: "toDo",
-//     category: "User Story",
-//     title: "Kochwelt Page & Recipe Recommender",
-//     description: "Build start page with recipe recommendation.",
-//     date: "2023-01-23",
-//     priority: "Medium",
-//     priorityImg: "../assets/img/medium.png",
-//     assignedTo: ["Emmanuel Mauer", "Marcel Bauer", "Anton Mayer"],
-//     assignedToNameTag: ["EM", "MB", "AM"],
-//     assignedToColor: ["--variant10", "--variant16", "--variant09"],
-//     subtasks: ["Implement Recipe Recommendation", "Start Page Layout"],
-//     subtaskschecked: ["checked", "checked"],
-//   },
-//   {
-//     container: "awaitFeedback",
-//     category: "Technical Task",
-//     title: "Titel: Weihnachtsfeier",
-//     description:
-//       "Das ist die Description, hier etwas text : handy telefonieren",
-//     date: "2023-12-23",
-//     priority: "Urgent",
-//     priorityImg: "../assets/img/urgentImg.png",
-//     assignedTo: ["Marcel Bauer", "Anton Mayer", "Emmanuel Mauer"],
-//     assignedToNameTag: ["MB", "AM", "EM"],
-//     assignedToColor: ["--variant16", "--variant09", "--variant10"],
-//     subtasks: ["Subtask1", "Start Page Layout"],
-//     subtaskschecked: ["checked", "unchecked"],
-//   },
-//   {
-//     container: "awaitFeedback",
-//     category: "Development",
-//     title: "Titel: Essen",
-//     description:
-//       "Das ist die Description, hier etwas text : handy telefonieren",
-//     date: "2023-12-30",
-//     priority: "Low",
-//     priorityImg: "../assets/img/low.png",
-//     assignedTo: ["Marcel Bauer", "Anton Mayer", "Emmanuel Mauer"],
-//     assignedToNameTag: ["MB", "AM", "EM"],
-//     assignedToColor: ["--variant16", "--variant09", "--variant10"],
-//     subtasks: ["Start Page Layout", "Subtask2"],
-//     subtaskschecked: ["unchecked", "unchecked"],
-//   },
-//   {
-//     container: "inProgress",
-//     category: "Marketing",
-//     title: "Titel: Halloweenparty, Ähh Silvester",
-//     description:
-//       "Das ist die Description, hier etwas text : handy telefonieren",
-//     date: "2023-12-31",
-//     priority: "Urgent",
-//     priorityImg: "../assets/img/urgentImg.png",
-//     assignedTo: ["Marcel Bauer", "Anton Mayer", "Emmanuel Mauer"],
-//     assignedToNameTag: ["MB", "AM", "EM"],
-//     assignedToColor: ["--variant16", "--variant09", "--variant10"],
-//     subtasks: ["Start Page Layout", "Subtask3"],
-//     subtaskschecked: ["unchecked", "checked"],
-//   },
-//   {
-//     container: "done",
-//     category: "Technical Task",
-//     title: "Titel: Sommer Grillparty",
-//     description: "Wir treffen uns alle zur Grillparty",
-//     date: "2023-12-27",
-//     priority: "Low",
-//     priorityImg: "../assets/img/low.png",
-//     assignedTo: ["Marcel Bauer", "Anton Mayer", "Emmanuel Mauer"],
-//     assignedToNameTag: ["MB", "AM", "EM"],
-//     assignedToColor: ["--variant16", "--variant09", "--variant10"],
-//     subtasks: ["Grill aufstellen", "Spaß haben"],
-//     subtaskschecked: ["checked", "checked"],
-//   },
-// ];
+/**
+ * Creates an array of tasks for Backup
+ */
+let oldTasks = [
+  {
+    container: "to-do-con",
+    category: ["Office", "Design"],
+    title: "Kochwelt Page & Recipe Recommender",
+    description: "Build start page with recipe recommendation.",
+    date: "2023-01-23",
+    priority: "Medium",
+    priorityImg: "../assets/img/medium.png",
+    assignedTo: ["Emmanuel Mauer", "Marcel Bauer", "Anton Mayer"],
+    assignedToNameTag: ["EM", "MB", "AM"],
+    assignedToColor: ["--variant10", "--variant16", "--variant09"],
+    subtasks: ["Implement Recipe Recommendation", "Start Page Layout"],
+    subtaskschecked: ["checked", "checked"],
+    id: 1,
+  },
+  {
+    container: "await-feedback-con",
+    category: ["Engine"],
+    title: "Titel: Weihnachtsfeier",
+    description:
+      "Das ist die Description, hier etwas text : handy telefonieren",
+    date: "2023-12-23",
+    priority: "Urgent",
+    priorityImg: "../assets/img/urgentImg.png",
+    assignedTo: ["Marcel Bauer", "Anton Mayer", "Emmanuel Mauer"],
+    assignedToNameTag: ["MB", "AM", "EM"],
+    assignedToColor: ["--variant16", "--variant09", "--variant10"],
+    subtasks: ["Subtask1", "Start Page Layout"],
+    subtaskschecked: ["checked", "unchecked"],
+    id: 2,
+  },
+  {
+    container: "await-feedback-con",
+    category: ["Office"],
+    title: "Titel: Essen",
+    description:
+      "Das ist die Description, hier etwas text : handy telefonieren",
+    date: "2023-12-30",
+    priority: "Low",
+    priorityImg: "../assets/img/low.png",
+    assignedTo: ["Marcel Bauer", "Anton Mayer", "Emmanuel Mauer"],
+    assignedToNameTag: ["MB", "AM", "EM"],
+    assignedToColor: ["--variant16", "--variant09", "--variant10"],
+    subtasks: ["Start Page Layout", "Subtask2"],
+    subtaskschecked: ["unchecked", "unchecked"],
+    id: 3,
+  },
+  {
+    container: "in-progress-con",
+    category: ["Design"],
+    title: "Titel: Halloweenparty, Ähh Silvester",
+    description:
+      "Das ist die Description, hier etwas text : handy telefonieren",
+    date: "2023-12-31",
+    priority: "Urgent",
+    priorityImg: "../assets/img/urgentImg.png",
+    assignedTo: ["Marcel Bauer", "Anton Mayer", "Emmanuel Mauer"],
+    assignedToNameTag: ["MB", "AM", "EM"],
+    assignedToColor: ["--variant16", "--variant09", "--variant10"],
+    subtasks: ["Start Page Layout", "Subtask3"],
+    subtaskschecked: ["unchecked", "checked"],
+    id: 4,
+  },
+  {
+    container: "done-con",
+    category: ["Engine", "Office"],
+    title: "Titel: Sommer Grillparty",
+    description: "Wir treffen uns alle zur Grillparty",
+    date: "2023-12-27",
+    priority: "Low",
+    priorityImg: "../assets/img/low.png",
+    assignedTo: ["Marcel Bauer", "Anton Mayer", "Emmanuel Mauer"],
+    assignedToNameTag: ["MB", "AM", "EM"],
+    assignedToColor: ["--variant16", "--variant09", "--variant10"],
+    subtasks: ["Grill aufstellen", "Spaß haben"],
+    subtaskschecked: ["checked", "checked"],
+    id: 5,
+  },
+];
 
 // let openTasks = oldTasks;
 

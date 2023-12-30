@@ -4,7 +4,10 @@ class Div extends World {
         super()
         this.argument_array = ['parent', 'id', 'classname', 'data'];
         this.classData(arguments);
-        this.content = /*html*/`<div id="${this.id}" class="${this.classname}">${this.data}</div>`
-        this.render(parent, this.content);
+        this.content = /*html*/`
+        <div id="${this.id}" class="${this.classname}">
+            ${this.data}
+        </div>`
+        this.render(this.parent, this.content);
     }
 }
