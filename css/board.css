@@ -53,6 +53,7 @@
 
 .card-dept {
     display: flex;
+    gap: 5px;
 }
 
 .department-card {
@@ -96,6 +97,19 @@
 
 .badge-board{
     margin-right: -12px;
+}
+
+#main-board-card {
+    display:flex;
+    flex-direction: column;
+    gap: 24px;
+    position: absolute;
+    top: 10%;
+    z-index: 5;
+    padding: 48px 40px;
+    min-height: 250px;
+    min-width: 250px;
+    background-color: aqua;
 }
 
 

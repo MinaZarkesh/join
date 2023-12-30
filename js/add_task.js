@@ -93,29 +93,27 @@ function createContactListTask() {
     let checkbox;
     createContactBox("contact-list-parent");
     contact_boxes.forEach((e, index) => {
-        checkbox = new Checkbox(`check-${index}`, "checkbox").content;
         docID("contact-list-parent").innerHTML += /*html*/`
             <div class="tasks-contacts">
                 ${e.profile_badge}
                 ${e.contact_name}
-                ${checkbox}
             </div>
         `  
+        new Checkbox("contact-list-parent",`check-${index}`, "checkbox").content;
     })
 }
 function createCategoryList() {
     let filtered_Contact = filterList();
     filtered_Contact.forEach( (e, index) => {
-        let checkbox = new Checkbox(`check-${index}`, "checkbox").content;
         docID("category-list-parent").innerHTML += /*html*/`
-            <div class="tasks-category">
+            <div id="tasks-category-${index}" class="tasks-category">
                 <div id='profile_badgeCon-${index}'  class="profile-badge" style="background-color: var(${e.color});">
                     <span id='category_itemNameTag-${index}'>${e.nameTag}</span>
                 </div>
                 ${e.name}
-                ${checkbox}
             </div>
         `
+        new Checkbox(`tasks-category-${index}`, `check-${index}`, "checkbox");
     })
 }
 

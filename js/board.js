@@ -13,11 +13,21 @@ function initBoard() {
   new BoardSegment("board-content-con", "await-feedback", "Await Feedback");
   new BoardSegment("board-content-con", "done", "Done");
   createBoardCards();
+  new Div("main-board", "main-board-card");
+  openBigCard(1);
 }
 
 function createBoardCards() {
   oldTasks.forEach((e) => {
     new BoardCard(e);
+  })
+}
+
+function openBigCard(id) {
+  oldTasks.forEach((e) => {
+    if(e.id == id) {
+      new BoardBigCard(e, "main-board-card");
+    }
   })
 }
 

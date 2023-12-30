@@ -16,21 +16,8 @@ function createAllElements() {
   login_form = "inputs-con";
   checkbox_text = "Remember Me";
   checkbox_id = "checkbox-remember-me";
-  custom_checkbox_remember_me = new CustomCheckbox(
-    login_form,
-    checkbox_id,
-    checkbox_text
-  );
-  checkbox_text = /*html*/ `
-  I accept the <a href="../html/PrivacyPolicy.html">Privacy Policy</a>
-    `;
-  checkbox_id = "checkbox-accept-privacy";
-  custom_checkbox_accept_privacy = new CustomCheckbox(
-    login_form,
-    checkbox_id,
-    checkbox_text
-  );
-
+  // custom_checkbox_remember_me = new CustomCheckbox(login_form,checkbox_id,checkbox_text);
+  // custom_checkbox_accept_privacy = new CustomCheckbox(login_form,checkbox_id, checkbox_text);
   setBackBtnsignup();
 }
 
@@ -38,12 +25,7 @@ function renderLoginElements(bool) {
   // bool = "Login";
   let input_fields;
   let button;
-  singup_inputs = [
-    input_name,
-    input_email,
-    input_password,
-    input_confirm_password,
-  ];
+  singup_inputs = [input_name, input_email, input_password, input_confirm_password];
   login_inputs = [input_email, input_password];
   input_fields = login_inputs;
   login_checkbox = custom_checkbox_remember_me;
@@ -54,13 +36,16 @@ function renderLoginElements(bool) {
   if (bool === "Sign up") {
     input_fields = singup_inputs;
     login_checkbox = custom_checkbox_accept_privacy;
+    checkbox_id = "checkbox-accept-privacy";
+    checkbox_text = /*html*/ `accept the <a href="../html/PrivacyPolicy.html">Privacy Policy</a>`;
     button = `<button id="signup-form-btn" onclick="saveInputValues()" class="button font-t5">Sign up</button>`;
   }
 
   docID("login-headline").innerHTML = bool;
   docID(login_form).innerHTML = setInputs(input_fields);
+  new CustomCheckbox(login_form,checkbox_id,checkbox_text);
   //  changePassword-Style
-  login_checkbox.render(login_form, login_checkbox.content);
+  // login_checkbox.render(login_form, login_checkbox.content);
   // docID(login_form).innerHTML += login_checkbox.content;
   // docID(custom_checkbox_accept_privacy.labelID).innerHTML= checkbox_text;
   //new secondary-button

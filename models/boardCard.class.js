@@ -37,32 +37,11 @@ class BoardCard extends World {
         this.assosciates(this.associates_id, e)
     }
 
-    depart(e, parent) {
-        let color;
-        let div_id;
-        for (let i = 0; i < e.category.length; i++) {
-            color = this.backgroundcolor(e.category[i]);
-            div_id = `${parent}-${i}-div`      
-            new Div(parent, div_id, "department-card");
-            new Span(div_id,"","", e.category[i]);
-            docID(div_id).style = `background-color: var(${color})`;
-        }
-    }
-
-    backgroundcolor(department) {
-        let color;
-        categorys.forEach((e) => {
-            if(e.name == department) {
-                color = e.color;
-            }
-        });
-        return color
-    }
-
     title(e, parent) {
         new Span(parent, "", "card-title", e.title+ "<br>");
         new Span(parent, "", "card-desc", e.description);
     }
+
     subtaskContent(parent) {
         let progress_div = `${parent}-progress-con`;
         let progress_in_id = `${progress_div}-in`;
@@ -80,11 +59,5 @@ class BoardCard extends World {
         new Span(div_id, span_id, element[index], element);
         docID(div_id).style = `background-color: var(${e.assignedToColor[index]})`;
     });
-
-    // /*html*/ `
-    // <div id='profile_badgeCon-${this.contact_idx}'  class="profile-badge" style="background-color: var(${this.contact_color});">
-    //   <span id='contact_itemNameTag-${this.contact_idx}'>${this.contact_name_tag}</span>
-    // </div>
-    // `
     }
 }
