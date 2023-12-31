@@ -1,3 +1,15 @@
+@font-face {
+  font-family: 'Open Sans';
+  src: url(../assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf);
+  src: url(../assets/fonts/OpenSans-VariableFont_wdth,wght.ttf);
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url(../assets/fonts/Inter-VariableFont_slnt,wght.ttf);
+}
+
+
 :root {
   --mediumSize: 768px;
   /*colors*/
@@ -335,6 +347,28 @@ input[type="checkbox"] {
   font-style: normal;
   font-weight: 400;
   line-height: 120%; /* 0.9rem */
+}
+
+/* checkbox */
+
+.checkbox {
+  right: 20px;
+  left: unset;
+  content: url('../assets/img/blue-checkbox.svg');
+  appearance: none;
+  opacity: unset;
+}
+
+.checkbox:hover {
+  content: url('../assets/img/blue-checkbox-hover.svg');
+}
+
+.checkbox:checked {
+  content: url('../assets/img/blue-checkbox-checked.svg');
+}
+
+.checkbox:checked:hover {
+  content: url('../assets/img/blue-checkbox-checked-hover.svg');
 }
 
 

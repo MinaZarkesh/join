@@ -213,28 +213,6 @@ li input {
     padding: 7px 11px;
 }
 
-/* checkbox */
-
-.checkbox {
-    right: 20px;
-    left: unset;
-    content: url('../assets/img/blue-checkbox.svg');
-    appearance: none;
-    opacity: unset;
-}
-
-.checkbox:hover {
-    content: url('../assets/img/blue-checkbox-hover.svg');
-}
-
-.checkbox:checked {
-    content: url('../assets/img/blue-checkbox-checked.svg');
-}
-
-.checkbox:checked:hover {
-    content: url('../assets/img/blue-checkbox-checked-hover.svg');
-}
-
 #associate-con, #department-con {
     display: flex;
 }

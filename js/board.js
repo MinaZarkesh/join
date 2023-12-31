@@ -13,7 +13,7 @@ function initBoard() {
   new BoardSegment("board-content-con", "await-feedback", "Await Feedback");
   new BoardSegment("board-content-con", "done", "Done");
   createBoardCards();
-  new Div("main-board", "main-board-card");
+  new Div("main-card-div", "main-board-card");
   openBigCard(1);
 }
 
