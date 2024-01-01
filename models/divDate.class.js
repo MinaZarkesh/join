@@ -1,12 +1,15 @@
-class Divdate extends Labeldiv {
+class Divdate extends Elements {
 
     min_date;
-    constructor(parent, child, name, optional) {
-        super(parent, child, name, optional)
+    constructor(parent, id, className) {
+        super("input", id, className)
         // min="2000-01-02"
-        this.min_date = this.today()
-        this.content = `<input type="date" min="${this.min_date}" class="input-field input-blue font-t6" name="" id="date-input">`
-        this.render(child, this.content);
+        this.element.min = this.today()
+        this.element.type = 'date';
+
+        // this.content = `<input type="date" min="${this.min_date}" class="input-field input-blue font-t6" name="" id="date-input">`
+        // this.render(child, this.content);
+        docID(parent).appendChild(this.element);
     }
 
     today(){

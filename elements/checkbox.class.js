@@ -1,12 +1,8 @@
-class Checkbox extends World{
+class Checkbox extends Elements{
 
-
-    constructor(parent, name, classname) {
-        super();
-        this.argument_array = ['parent', 'name', 'classname'];
-        this.classData(arguments);
-        this.content = `<input type="checkbox"  id=${name} class='${classname}'></input>`;
-
-        this.render(parent, this.content)
+    constructor(parent, id, className) {
+        super("input", id, className);
+        this.element.type = 'checkbox';
+        docID(parent).appendChild(this.element);
     }
 }

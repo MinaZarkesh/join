@@ -14,7 +14,6 @@ function initBoard() {
   new BoardSegment("board-content-con", "done", "Done");
   createBoardCards();
   new Div("main-card-div", "main-board-card");
-  openBigCard(1);
 }
 
 function createBoardCards() {
@@ -24,11 +23,18 @@ function createBoardCards() {
 }
 
 function openBigCard(id) {
+  console.log('angekommen');
+  docID('main-card-div').classList.remove('d-none');
   oldTasks.forEach((e) => {
     if(e.id == id) {
       new BoardBigCard(e, "main-board-card");
     }
   })
+}
+
+function closeCard() {
+  docID('main-board-card').innerHTML= '';
+  docID('main-card-div').classList.add('d-none');
 }
 
 

@@ -35,10 +35,11 @@ class BoardCard extends World {
         this.subtaskContent(this.subtask_id);
         this.associates = new Div(this.container_id, this.associates_id, this.associates_class);
         this.assosciates(this.associates_id, e)
+        docID(this.container_id).onclick = function () {openBigCard(e.id)};
     }
 
     title(e, parent) {
-        new Span(parent, "", "card-title", e.title+ "<br>");
+        new Span(parent, "", "card-title", e.title + "\n \n");
         new Span(parent, "", "card-desc", e.description);
     }
 
@@ -60,5 +61,17 @@ class BoardCard extends World {
         new Span(div_id, span_id, element[index], element);
         docID(div_id).style = `background-color: var(${e.assignedToColor[index]})`;
     });
+    }
+
+    depart(e, parent) {
+        let color;
+        let div_id;
+        for (let i = 0; i < e.category.length; i++) {
+            color = this.backgroundcolor(e.category[i]);
+            div_id = `${parent}-${i}-div`      
+            new Div(parent, div_id, "department-card");
+            new Span(div_id,"","", e.category[i]);
+            docID(div_id).style = `background-color: var(${color})`;
+        }
     }
 }

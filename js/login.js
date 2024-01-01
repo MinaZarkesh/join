@@ -54,11 +54,7 @@ function renderLoginElements(bool) {
 }
 
 function setBackBtnsignup() {
-  back_btn = new BackBtn(
-    "login-item",
-    "signup",
-    'renderLoginElements("Login")'
-  );
+  back_btn = new BackBtn("login-item","signup",() => renderLoginElements("Login"));
 
   // return BackBtnsignup.content;
 }

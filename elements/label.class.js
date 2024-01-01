@@ -1,10 +1,9 @@
-class Label extends World {
+class Label extends Elements {
 
     constructor(parent, name, text) {
-        super()
-        this.labelID = `label${name}`;
-        this.content = /*html*/`<label id=${this.labelID} for=${name}> ${text}</label>`;
-
-        this.render(parent, this.content);
+        super('label', `label${name}`, undefined)
+        this.element.for = name;
+        this.element.textContent = text;;
+        docID(parent).appendChild(this.element);
     }
 }

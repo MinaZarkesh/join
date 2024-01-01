@@ -76,3 +76,23 @@ function autocomplete(inp, arr) {//the autocomplete function takes two arguments
     });
 }
 
+function init() {
+    container = document.getElementById('onclick-check');
+    for (let i = 0; i < 2; i++) {
+        let button_id = `Start-${i}`;
+        let button = document.createElement('button');
+        button.id = button_id;
+        button.textContent = button_id;
+
+        container.appendChild(button);
+
+        document.getElementById(button_id).onclick = output;
+    }
+    let input = document.createElement('input');
+    container.appendChild(input);
+}
+
+
+function output() {
+    console.log('ausgelöst');
+}

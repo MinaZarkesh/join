@@ -1,10 +1,8 @@
-class Img extends World {
+class Img extends Elements {
 
-    constructor(parent, id, classname, src) {
-        super();
-        this.argument_array = ['parent', 'id', 'classname', 'src'];
-        this.classData(arguments);
-        this.content = /*html*/`<img id="${this.id}" class="${this.classname}" src="${this.src}">`;
-        this.render(parent, this.content);
+    constructor(parent, id, className, src) {
+        super("img", id, className);
+        this.element.src = src
+        docID(parent).appendChild(this.element);
     }
 }

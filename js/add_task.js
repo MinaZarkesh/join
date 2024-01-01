@@ -10,9 +10,12 @@ function initAddtask() {
     label_description = new Labeldiv('contentbig', "description" , "Description", true);
     new Divinput('contentbig', "description-textarea", "Enter a Description", "desc-input", "textarea", "textarea");
     new Requiered('description-textarea');
-    div_date = new Divdate('contentbig','due-date', 'Due date', false);
+    new Labeldiv('contentbig','due-date', 'Due date', false);
+    new Divdate('due-date', 'date-input' , 'input-field input-blue font-t6')
+    // div_date = new Divdate('contentbig','due-date', 'Due date', false);
     new Requiered('due-date');
-    new Childdiv('content-con', 'priority', 'Priority', false, 'priority-button');
+    new Labeldiv('content-con', 'priority', 'Priority', false);
+    new Div('priority', 'priority-button')
     new Urgencybtn('priority-button', "Urgent");
     new Urgencybtn('priority-button', "Medium");
     new Urgencybtn('priority-button', "Low");

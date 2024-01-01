@@ -1,10 +1,8 @@
-class Span extends World {
+class Span extends Elements {
 
-    constructor(parent, id, classname, data) {
-        super()
-        this.argument_array = ['parent', 'id', 'classname', 'data',];
-        this.classData(arguments);
-        this.content = /*html*/`<span id="${this.id}" class="${this.classname}">${this.data}</span>`
-        this.render(parent, this.content);
+    constructor(parent, id, className, data) {
+        super('span', id, className)
+        this.element.textContent = data;
+        docID(parent).appendChild(this.element);
     }
 }

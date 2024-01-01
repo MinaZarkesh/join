@@ -69,6 +69,8 @@
 
 .card-desc {
     color:grey;
+    display: flex;
+    flex-direction: column;
 }
 
 .progress-con {

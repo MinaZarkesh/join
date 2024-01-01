@@ -436,22 +436,6 @@ let oldTasks = [
   },
   {
     container: "await-feedback-con",
-    category: ["Engine"],
-    title: "Titel: Weihnachtsfeier",
-    description:
-      "Das ist die Description, hier etwas text : handy telefonieren",
-    date: "2023-12-23",
-    priority: "Urgent",
-    priorityImg: "../assets/img/urgentImg.png",
-    assignedTo: ["Marcel Bauer", "Anton Mayer", "Emmanuel Mauer"],
-    assignedToNameTag: ["MB", "AM", "EM"],
-    assignedToColor: ["--variant16", "--variant09", "--variant10"],
-    subtasks: ["Subtask1", "Start Page Layout"],
-    subtaskschecked: ["checked", "unchecked"],
-    id: 2,
-  },
-  {
-    container: "await-feedback-con",
     category: ["Office"],
     title: "Titel: Essen",
     description:
@@ -496,6 +480,22 @@ let oldTasks = [
     subtasks: ["Grill aufstellen", "Spaß haben"],
     subtaskschecked: ["checked", "checked"],
     id: 5,
+  },
+  {
+    container: "in-progress-con",
+    category: ["Engine"],
+    title: "Titel: Weihnachtsfeier",
+    description:
+      "Das ist die Description, hier etwas text : handy telefonieren",
+    date: "2023-12-23",
+    priority: "Urgent",
+    priorityImg: "../assets/img/urgentImg.png",
+    assignedTo: ["Marcel Bauer", "Anton Mayer", "Emmanuel Mauer"],
+    assignedToNameTag: ["MB", "AM", "EM"],
+    assignedToColor: ["--variant16", "--variant09", "--variant10"],
+    subtasks: ["Subtask1", "Start Page Layout"],
+    subtaskschecked: ["checked", "unchecked"],
+    id: 9
   },
 ];
 

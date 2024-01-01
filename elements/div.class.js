@@ -1,13 +1,8 @@
-class Div extends World {
+class Div extends Elements {
 
-    constructor(parent, id, classname, data) {
-        super()
-        this.argument_array = ['parent', 'id', 'classname', 'data'];
-        this.classData(arguments);
-        this.content = /*html*/`
-        <div id="${this.id}" class="${this.classname}">
-            ${this.data}
-        </div>`
-        this.render(this.parent, this.content);
+    constructor(parent, id, className, data) {
+        super('div', id, className)
+        this.element.textContent = data == undefined ? "" : data;
+        docID(parent).appendChild(this.element);
     }
 }

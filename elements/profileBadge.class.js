@@ -15,7 +15,3 @@ class ProfilBagde extends World {
         new Span(this.container_id, this.span_id, this.span_class, text);
     }
 }
-
-{/* <div id='profile_badgeCon-${this.contact_idx}'  class="profile-badge" style="background-color: var(${this.contact_color});">
-<span id=''>${this.contact_name_tag}</span>
-</div> */}

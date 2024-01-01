@@ -1,7 +1,4 @@
 class BoardBigCard extends World {
-
-    // container;
-    // container_parent = "main-board";
     container_id = "main-bord-card";
     container_class = this.container_id;
     department;
@@ -34,7 +31,7 @@ class BoardBigCard extends World {
         super();
         this.department = new Div(parent, this.department_id, this.department_class);
         this.depart(e, this.department_id);
-        new Img(parent, "","card-close","../assets/img/close.png");
+        new Img(parent, "card-close","card-close","../assets/img/close.png");
         this.title = new Div(parent, this.title_id, this.title_class);
         new Span(this.title_id, "", "",e.title);
         this.description = new Div(parent, this.description_id, this.description_class);
@@ -53,6 +50,7 @@ class BoardBigCard extends World {
         this.subtasks = new Div(parent, this.subtasks_id, this.subtasks_class);
         this.edit = new Div(parent, this.edit_id, this.edit_class);
         this.editContent()
+        docID("card-close").onclick = closeCard;
         this.subtasksContent(e);
     }
 
@@ -99,5 +97,5 @@ class BoardBigCard extends World {
         new Div(this.edit_id, div_id_2, div_class);
         new Img(div_id_2, "edit-img-2","","../assets/img/edit.png");
         new Span(div_id_2, "","","Edit");
-    }    
+    }
 }
