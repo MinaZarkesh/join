@@ -95,7 +95,7 @@ function dropdownReset(parent, imgid) {
 
 function createContactListTask() {
     createContactBox("contact-list-parent");
-    oldContacts.forEach((e) => {
+    contacts.forEach((e) => {
         new Div("contact-list-parent", "contact-list-parent-div", "tasks-contacts");
         new ProfilBadge("contact-list-parent-div", e.idx, e.color, e.nameTag);
         new Checkbox("contact-list-parent",`check-${e.idx}`, "checkbox");
@@ -141,7 +141,7 @@ function listRender(list_Con, tasks_Parent) {
     let counter = 0;
     let active_array = activeCounter(tasks_Parent);
     if (list_Con == "associate-con") {createContactBox(list_Con)}
-    let items = list_Con === "associate-con" ? oldContacts : categorys;
+    let items = list_Con === "associate-con" ? contacts : categorys;
     let item_Name = list_Con === "associate-con" ? 'contact_itemNameTag' : 'category_itemNameTag';
     docID(list_Con).innerHTML = "";
     itemsForEach(counter, list_Con, active_array, items)

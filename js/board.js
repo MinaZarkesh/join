@@ -1,4 +1,4 @@
-
+Board_task = [];
 function initBoard() {
   init();
   new Div("main-board", "board-head-con"); //the head container  
@@ -17,8 +17,8 @@ function initBoard() {
 }
 
 function createBoardCards() {
-  oldTasks.forEach((e) => {
-    new BoardCard(e);
+  oldTasks.forEach((e, index) => {
+    Board_task.push(new BoardCard(e))
   })
 }
 

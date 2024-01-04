@@ -97,7 +97,7 @@ function setInputs(array) {
 function createContactBox(parent) {
   let parentArray = contact_boxes; //später Parameter
   //  sortContactItems(oldContacts);
-  oldContacts.sort((a, b) =>
+  contacts.sort((a, b) =>
   a.name > b.name ? 1 : b.name > a.name ? -1 : 0);
 
   // for (let i = 0; i < oldContacts.length; i++) {

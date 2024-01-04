@@ -1,4 +1,4 @@
-class BoardBigCard extends World {
+class BoardBigCard extends Elements {
     container_id = "main-bord-card";
     container_class = this.container_id;
     department;
