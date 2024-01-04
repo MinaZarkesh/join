@@ -20,7 +20,7 @@ class UnsortedListElement extends World{
         new Img(this.div_id, this.img_1_id, "", this.img_1_src);
         new Img(this.div_id, this.img_2_id, "", this.img_2_src);
         docID(this.input_id).value = subtask;
-        docID(this.img_1_id).onclick = function() {subtaskChange('${this.input_id}', index)}
+        docID(this.img_1_id).onclick = function() {subtaskChange(`${this.input_id}`, index)}
         docID(this.img_2_id).onclick = function() {deleteSubtask(index)};
     }
 }

@@ -151,7 +151,11 @@ function listRender(list_Con, tasks_Parent) {
 function itemsForEach(counter, list_Con, active_array, items) {
     items.forEach((e, index) => {
         if (active_array[index] == true && counter < 8) {
-            list_Con === "associate-con"? bagdeAssociate(e) : bagdeDepartment(e, index);
+            if (list_Con === "associate-con") {
+                new ProfilBadge("associate-con", e.idx, e.color, e.nameTag);
+            } else {
+                new ProfilBagde("department-con", e.idx, e.color, e.nameTag);
+            }
         }
         if (active_array[index] == true) {
             counter++;
@@ -162,26 +166,6 @@ function itemsForEach(counter, list_Con, active_array, items) {
 function numberBadge(list_Con, item_Name, plus_number, counter) {
     plus_number = counter - 7;
     new ProfilBadge(list_Con, `${item_Name}-${plus_number}`, `--default`, `${plus_number}+`)
-    // docID(list_Con).innerHTML += /*html*/` 
-    //     <div class="profile-badge" style="background-color: var(--default);">
-    //         <span id=''>${plus_number}+</span>
-    //     </div>`
-}
-
-function bagdeAssociate(e) {
-    // docID("associate-con").innerHTML += /*html*/`
-    //     ${e.profile_badge}
-    // `  
-    new ProfilBadge("associate-con", e.idx, e.color, e.nameTag)
-}
-
-function bagdeDepartment(e, index){
-    // docID("department-con").innerHTML += /*html*/`
-    //     <div class="profile-badge" style="background-color: var(${e.color});">
-    //         <span id='department_itemNameTag-${index}'>${e.nameTag}</span>
-    //     </div>
-    // `
-    new ProfilBagde("department-con", e.idx, e.color, e.nameTag)
 }
 
 function activeCounter(selector) {
@@ -211,7 +195,6 @@ function writeMe(event) {
 
 function subtasksFocusIn() {
     if (!docID('img-check')) {
-        // docID('subtask-div').innerHTML += '<img id="img-check" onclick="addSubtask()" src="../assets/img/check.png">';
         new Img('subtask-div', 'img-check',"", "../assets/img/check.png");
         docID('img-check').onclick = addSubtask;
     } else {
@@ -271,15 +254,19 @@ function deleteSubtask(i) {
 function subtaskChange(value, i) {
     let edit_value = docID(value).value;
     let upadate_id = "edit-subtask";
-    docID('subtasks-con').innerHTML = /*html*/`
-        <div class="input-con blue-border" id="subtasklist-div">
-            <input id="${upadate_id}" type="text" class="font-t6" value="${edit_value}">
-            <img id="subtasklist-img" onclick="deleteSubtask(${i})" src="../assets/img/delete.png" class="margin-10">
-            <img id="subtasklist-check-img" onclick="updateSubtask(${i},'${upadate_id}')" src="../assets/img/check.png">
-        </div>
-    `
     new Divinputimg('subtasks-con', "input-con blue-border", 'text', "", "../assets/img/delete.png");
     new Img('subtasks-con-div',"subtasklist-check-img", "", "../assets/img/check.png");
+    docID('subtasks-con-div').onclick = undefined;
+    docID('subtasks-con-img').onclick = function () {deleteSubtask(i)};
+    docID('subtasklist-check-img').onclick = function () {updateSubtask(i,`${upadate_id}`)};
+    docID('input-con-Add').value = edit_value;
+    // docID('subtasks-con').innerHTML = /*html*/`
+    //     <div class="input-con blue-border" id="subtasklist-div">
+    //         <input id="${upadate_id}" type="text" class="font-t6" value="${edit_value}">
+    //         <img id="subtasklist-img" onclick="" src="../assets/img/delete.png" class="margin-10">
+    //         <img id="subtasklist-check-img" onclick="updateSubtask(${i},'${upadate_id}')" src="../assets/img/check.png">
+    //     </div>
+    // `
 }
 
 function updateSubtask(i, upadate_id) {
@@ -360,9 +347,9 @@ function theSelectors(selector){
     }
     if (selector == '.tasks-contacts') {
         if (!id == []) {createContactBox("associate-con")};
-        contact_boxes.forEach((e, index) => {
-            if(id.includes(`${index}`)) {
-                contact_idx.push(e.contact_idx)
+            contact_boxes.forEach((e, index) => {
+                if(id.includes(`${index}`)) {
+                    contact_idx.push(e.contact_idx)
             }
         })
     } else {

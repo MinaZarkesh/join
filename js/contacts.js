@@ -165,13 +165,23 @@ function sortContactItems(parent) {
 }
 
 function renderFloatingContacts(idx) {
-  contact = oldContacts[idx];
-  createFloatingContacts(contact);
-  setActive(idx);
+  oldContacts.forEach((e, index) => {
+    if (idx == e.idx) {
+      contact = oldContacts[index];
+      createFloatingContacts(contact);
+      setActive(e.idx);
+    }
+  })
+  
 }
 
 function deleteContact(idx) {
-  oldContacts.splice(idx, 1);
+  oldContacts.forEach((e, index) => {
+    if(idx == e.idx) {
+      oldContacts.splice(index, 1);
+    }
+  })
+
   // sortContactItems(contact_boxes);
   renderContactList();
   docID("floating-contacts").innerHTML = "";

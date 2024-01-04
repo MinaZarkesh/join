@@ -16,8 +16,10 @@ class Divdate extends Elements {
         let time = new Date;
         let year = time.getFullYear();
         let month = time.getMonth() + 1;
+        let formatted_month = month < 10 ? "0" + month : month
         let day = time.getDate()
-        let today = `${year}-${month}-${day}`; 
+        let formatted_day = day < 10 ? "0" + day : day
+        let today = `${year}-${formatted_month}-${formatted_day}`; 
 
         return today
     }
