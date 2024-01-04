@@ -1,5 +1,6 @@
 let contacts_inputs;
 let letter;
+let parent_array = "contact-list";
 
 function initContacts() {
   init();
@@ -8,25 +9,14 @@ function initContacts() {
 function renderContactList() {
   //Teile String in Array aus Buchstaben
   alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  let parent_array = "contact-list";
-
   docID(parent_array).innerHTML = "";
-  //Contact_boxes füllen
-  // if (!contact_boxes.length > 0) {
-  //   createContactBox(parent_array);
-  //   //update Values
-  // }
   //Fülle die ContactListe neu
   alphabet.forEach((ltr, i) => {
     letter = ltr; //for checkLetter
-
-    filtered_contacts = oldContacts.filter(checkLetter);
-    // filtered_contacts = contact_boxes.filter(checkLetter);
+    filtered_contacts = contacts.filter(checkLetter);
     if (filtered_contacts.length > 0) {
-      // docID(parent_array).innerHTML += createLetterBox(ltr);
       createLetterBox(ltr, parent_array, i);
       filtered_contacts.forEach((e) => {
-        // docID(parent_array).innerHTML += e.contact_item;
         new Div(parent_array, `contact-item-${e.idx}`, "contact-list-row");
         docID(`contact-item-${e.idx}`).onclick = function () {renderFloatingContacts(e.idx)};
         new ProfilBagde(`contact-item-${e.idx}`, e.idx, e.color, e.nameTag);
@@ -41,19 +31,12 @@ function renderContactList() {
 
 function checkLetter(contact) {
   firstLetter = contact.name.charAt(0).toUpperCase();
-  // firstLetter = contact.contact_name.charAt(0).toUpperCase();
   return firstLetter == letter;
 }
 
 function createLetterBox(letter, parent, index) {
   new Div(parent, `${parent}-div-${index}`, "letter-box");
   new Span(`${parent}-div-${index}`, `letter${letter}`, 'letter', letter);
-
-  // return /*html*/ `
-  //   <div class="letter-box">
-  //     <span id="letter${letter}" class="letter">${letter}</span>
-  //   </div>
-  // `;
 }
 
 function setActive(idx) {
@@ -64,9 +47,9 @@ function setActive(idx) {
 }
 
 
-function resetActive(idx) {
-  for (let i = 0; i < oldContacts.length; i++) {
-    let contact = oldContacts[i];
+function resetActive() {
+  for (let i = 0; i < contacts.length; i++) {
+    let contact = contacts[i];
     //reset attributes from before
     docID(`contact-item-${contact.idx}`).classList.remove("active-contact");
   }
@@ -74,21 +57,13 @@ function resetActive(idx) {
 
 function layoutContactsOverlay(idx) { //es wird keine index übergeben.
   createInputElements();
-  // contacts_inputs = [input_name, input_email, input_phone];
-  // docID("inputs-con").innerHTML = setInputs(contacts_inputs);
-
   new Button("edit-contact-button-group", "overlay-secondary-btn", "secondary-button font-t5");
   new Button("edit-contact-button-group","overlay-primary-btn", "button font-t5", function () {saveEditContact(`${idx}`)} )
-
-    // docID("edit-contact-button-group").innerHTML = /*html*/ `
-  //   <button id="overlay-secondary-btn" onclick="" class="secondary-button font-t5" ></button>
-  //   <button id="overlay-primary-btn" onclick="saveEditContact('${idx}')" class="button font-t5"></button>
-  // `;
 }
 
 function createEditContact(id) {
   renderEditContact(id);
-  oldContacts[id].fillEditContact(id);
+  contacts[id].fillEditContact(id);
 }
 
 function fillEditContact() {
@@ -100,9 +75,8 @@ function fillEditContact() {
 let edit_contact;
 
 function saveEditContact(idx) {
-  edit_contact = oldContacts[idx];
+  edit_contact = contacts[idx];
   updateContactItem(edit_contact);
-  // edit_contact.updateContactItem();
   renderContactList();
   renderFloatingContacts(edit_contact.idx);
   closeButton();
@@ -115,14 +89,14 @@ function updateContactItem(contact) {
     contact.mail = docID(input_email.input_id).value;
     contact.phone = docID(input_phone.input_id).value;
   }
-  sortContactItems(oldContacts);
+  sortContactItems(contacts);
 }
 
 function addNewContact() {
   // let parent_array = oldContacts;
   let added_contact;
   //variables for parameters
-  let parent = "contact-list";
+  let parent = parent_array;
   let profileColor = setRandomColor();
   let profileNameTag = "??";
   let input_name_value;
@@ -141,7 +115,6 @@ function addNewContact() {
   );
 
   added_contact = oldContacts[idx];
-  // sortContactItems(added_contact.parentArray);
   renderContactList();
   renderFloatingContacts(added_contact.idx);
   closeButton();
@@ -165,9 +138,9 @@ function sortContactItems(parent) {
 }
 
 function renderFloatingContacts(idx) {
-  oldContacts.forEach((e, index) => {
+  contacts.forEach((e, index) => {
     if (idx == e.idx) {
-      contact = oldContacts[index];
+      contact = contacts[index];
       createFloatingContacts(contact);
       setActive(e.idx);
     }
@@ -176,9 +149,9 @@ function renderFloatingContacts(idx) {
 }
 
 function deleteContact(idx) {
-  oldContacts.forEach((e, index) => {
+  contacts.forEach((e, index) => {
     if(idx == e.idx) {
-      oldContacts.splice(index, 1);
+      contacts.splice(index, 1);
     }
   })
 
@@ -197,7 +170,7 @@ function renderEditContact(id) {
   //change Values
   docID("edit-contact-overlay-headline").textContent = "Edit contact";
   // docID("edit-contact-con-overlay").innerHTML = contact_boxes[id].profile_badge;
-  new ProfilBagde("edit-contact-con-overlay", id, oldContacts[id].color, oldContacts[id].nameTag)
+  new ProfilBagde("edit-contact-con-overlay", id, contacts[id].color, contacts[id].nameTag)
 //   docID("edit-contact-button-group").innerHTML = /*html*/ `
 //   <button id="overlay-secondary-btn" onclick="deleteContact('${id}')" class="secondary-button font-t5" >Delete</button>
 //   <button id="overlay-primary-btn" onclick="saveEditContact('${id}')" class="button font-t5">Save <img src="../assets/img/check.svg"></button>
