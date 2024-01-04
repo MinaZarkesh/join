@@ -6,14 +6,14 @@ let subtask = [];
 function initAddtask() {
     init();
     new Divinput('contentbig', 'taskName', "Enter a title", "task-title", "input-field", "input");
-    new Requiered('taskName');
+    new Span('taskName','taskName-requiered', "requiered font-label");
     label_description = new Labeldiv('contentbig', "description" , "Description", true);
     new Divinput('contentbig', "description-textarea", "Enter a Description", "desc-input", "textarea", "textarea");
-    new Requiered('description-textarea');
+    new Span('description-textarea', 'description-textarea-requiered', "requiered font-label");
     new Labeldiv('contentbig','due-date', 'Due date', false);
     new Divdate('due-date', 'date-input' , 'input-field input-blue font-t6')
     // div_date = new Divdate('contentbig','due-date', 'Due date', false);
-    new Requiered('due-date');
+    new Span('due-date', 'due-date-requiered', "requiered font-label");
     new Labeldiv('content-con', 'priority', 'Priority', false);
     new Div('priority', 'priority-button')
     new Urgencybtn('priority-button', "Urgent");
@@ -59,15 +59,16 @@ function dropdownMenu(imgid, parent, select) {
     }
 }
 
-function createDropMenu(list_Parent, parent, tasks_Parent, select, imgid, list_Con, input_id) {
-    if (!docID(list_Parent)) {
-        docID(parent).innerHTML += `<div id="${list_Parent}"></div>`;
+function createDropMenu(list_parent, parent, tasks_parent, select, imgid, list_Con, input_id) {
+    if (!docID(list_parent)) {
+        // docID(parent).innerHTML += `<div id="${list_parent}"></div>`;
+        new Div(parent, list_parent);
     }
-    docID(list_Parent).classList.remove('d-none');
-    if (document.querySelectorAll(tasks_Parent).length == 0) {
+    docID(list_parent).classList.remove('d-none');
+    if (document.querySelectorAll(tasks_parent).length == 0) {
         select == 'assigned' ? createContactListTask() : createCategoryList();
     }
-    if (select == "assigned") {contact_boxes = []}
+    if (select == "assigned") {contact_boxes = []}  // wird das noch gebraucht?
     select == 'assigned' ? dropdownContacts = true : dropdownCategory = true;  
     docID(imgid).src = "../assets/img/arrow_up.png";
     docID(list_Con).classList.add('d-none'); 
@@ -77,7 +78,7 @@ function createDropMenu(list_Parent, parent, tasks_Parent, select, imgid, list_C
 function dropUp(select, list_Parent, imgid, list_Con, input_id, tasks_Parent) {
     select == 'assigned' ? dropdownContacts = false : dropdownCategory = false;
     dropdownReset(list_Parent, imgid);
-    contact_boxes = (select === "assigned") ? [] : contact_boxes;
+    contact_boxes = (select === "assigned") ? [] : contact_boxes; // wird das noch gebraucht
     docID(imgid).src = "../assets/img/arrow_drop_down.png";
     docID(list_Con).classList.remove('d-none');
     docID(input_id).parentElement.classList.remove('blue-border');
@@ -93,30 +94,33 @@ function dropdownReset(parent, imgid) {
 }
 
 function createContactListTask() {
-    let checkbox;
     createContactBox("contact-list-parent");
-    contact_boxes.forEach((e, index) => {
-        docID("contact-list-parent").innerHTML += /*html*/`
-            <div class="tasks-contacts">
-                ${e.profile_badge}
-                ${e.contact_name}
-            </div>
-        `  
-        new Checkbox("contact-list-parent",`check-${index}`, "checkbox").content;
+    oldContacts.forEach((e) => {
+        new Div("contact-list-parent", "contact-list-parent-div", "tasks-contacts");
+        new ProfilBadge("contact-list-parent-div", e.idx, e.color, e.nameTag);
+        new Checkbox("contact-list-parent",`check-${e.idx}`, "checkbox");
+        // docID("contact-list-parent").innerHTML += /*html*/`
+        //     <div class="tasks-contacts">
+        //         ${e.profile_badge}
+        //         ${e.contact_name}
+        //     </div>
+        // `
     })
 }
 function createCategoryList() {
     let filtered_Contact = filterList();
     filtered_Contact.forEach( (e, index) => {
-        docID("category-list-parent").innerHTML += /*html*/`
-            <div id="tasks-category-${index}" class="tasks-category">
-                <div id='profile_badgeCon-${index}'  class="profile-badge" style="background-color: var(${e.color});">
-                    <span id='category_itemNameTag-${index}'>${e.nameTag}</span>
-                </div>
-                ${e.name}
-            </div>
-        `
+        new Div("category-list-parent",`tasks-category-${e.idx}`, "tasks-category");
+        new ProfilBagde(`tasks-category-${e.idx}`, e.idx, e.color, e.nameTag);
         new Checkbox(`tasks-category-${index}`, `check-${index}`, "checkbox");
+        // docID("category-list-parent").innerHTML += /*html*/`
+        //     <div id="tasks-category-${index}" class="tasks-category">
+        //         <div id='profile_badgeCon-${index}'  class="profile-badge" style="background-color: var(${e.color});">
+        //             <span id='category_itemNameTag-${index}'>${e.nameTag}</span>
+        //         </div>
+        //         ${e.name}
+        //     </div>
+        // `
     })
 }
 
@@ -137,7 +141,7 @@ function listRender(list_Con, tasks_Parent) {
     let counter = 0;
     let active_array = activeCounter(tasks_Parent);
     if (list_Con == "associate-con") {createContactBox(list_Con)}
-    let items = list_Con === "associate-con" ? contact_boxes : categorys;
+    let items = list_Con === "associate-con" ? oldContacts : categorys;
     let item_Name = list_Con === "associate-con" ? 'contact_itemNameTag' : 'category_itemNameTag';
     docID(list_Con).innerHTML = "";
     itemsForEach(counter, list_Con, active_array, items)
@@ -157,24 +161,27 @@ function itemsForEach(counter, list_Con, active_array, items) {
 
 function numberBadge(list_Con, item_Name, plus_number, counter) {
     plus_number = counter - 7;
-    docID(list_Con).innerHTML += /*html*/` 
-        <div class="profile-badge" style="background-color: var(--default);">
-            <span id='${item_Name}-${plus_number}'>${plus_number}+</span>
-        </div>`
+    new ProfilBadge(list_Con, `${item_Name}-${plus_number}`, `--default`, `${plus_number}+`)
+    // docID(list_Con).innerHTML += /*html*/` 
+    //     <div class="profile-badge" style="background-color: var(--default);">
+    //         <span id=''>${plus_number}+</span>
+    //     </div>`
 }
 
 function bagdeAssociate(e) {
-    docID("associate-con").innerHTML += /*html*/`
-        ${e.profile_badge}
-    `  
+    // docID("associate-con").innerHTML += /*html*/`
+    //     ${e.profile_badge}
+    // `  
+    new ProfilBadge("associate-con", e.idx, e.color, e.nameTag)
 }
 
 function bagdeDepartment(e, index){
-    docID("department-con").innerHTML += /*html*/`
-        <div class="profile-badge" style="background-color: var(${e.color});">
-            <span id='department_itemNameTag-${index}'>${e.nameTag}</span>
-        </div>
-    `
+    // docID("department-con").innerHTML += /*html*/`
+    //     <div class="profile-badge" style="background-color: var(${e.color});">
+    //         <span id='department_itemNameTag-${index}'>${e.nameTag}</span>
+    //     </div>
+    // `
+    new ProfilBagde("department-con", e.idx, e.color, e.nameTag)
 }
 
 function activeCounter(selector) {
@@ -204,7 +211,9 @@ function writeMe(event) {
 
 function subtasksFocusIn() {
     if (!docID('img-check')) {
-        docID('subtask-div').innerHTML += '<img id="img-check" onclick="addSubtask()" src="../assets/img/check.png">';
+        // docID('subtask-div').innerHTML += '<img id="img-check" onclick="addSubtask()" src="../assets/img/check.png">';
+        new Img('subtask-div', 'img-check',"", "../assets/img/check.png");
+        docID('img-check').onclick = addSubtask;
     } else {
         docID('img-check').classList.remove('d-none');
     }
@@ -243,9 +252,9 @@ function addSubtask() {
 
 function subtaskListRender() {
     docID("subtasks-con").innerHTML = "";
-    new UnsortedList('subtasks-con');
+    new Elements("ul",'subtasks-con',"subtasks-list");
     for (let i = 0; i < subtask.length; i++) {
-        new UnsortedListElement("subtasks-list", subtask[i], i);
+        new UnsortedListElement("subtasks-con", subtask[i], i);
     }
 }
 
@@ -269,6 +278,8 @@ function subtaskChange(value, i) {
             <img id="subtasklist-check-img" onclick="updateSubtask(${i},'${upadate_id}')" src="../assets/img/check.png">
         </div>
     `
+    new Divinputimg('subtasks-con', "input-con blue-border", 'text', "", "../assets/img/delete.png");
+    new Img('subtasks-con-div',"subtasklist-check-img", "", "../assets/img/check.png");
 }
 
 function updateSubtask(i, upadate_id) {

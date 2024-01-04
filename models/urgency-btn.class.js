@@ -1,7 +1,7 @@
 class Urgencybtn extends World{
-    urgencyImg = `<img src="../assets/img/urgentImg.png">`;
-    mediumImg = `<img src="../assets/img/Medium.png">`;
-    lowImg = `<img src="../assets/img/low.png">`;
+    urgencyImg = `../assets/img/urgentImg.png`;
+    mediumImg = `../assets/img/Medium.png`;
+    lowImg = `../assets/img/low.png`;
     urgencyClass = "btn-red";
     mediumClass = "btn-orange";
     lowClass = "btn-green";
@@ -14,10 +14,10 @@ class Urgencybtn extends World{
         this.img = this.which(btnName, this.urgencyImg, this.mediumImg, this.lowImg);
         this.colorclass = this.which(btnName, this.urgencyClass, this.mediumClass, this.lowClass);
         this.id = this.which(btnName, this.urgencyClass, this.mediumClass, this.lowClass);
-        this.content= /*html*/`
-            <button id="${this.id}" onclick="activeUrgency('${this.id}')"  class="urgency-btn ${this.colorclass}">${btnName} ${this.img}</button>
-            `
-        this.render(parent, this.content);
+
+        new Button(parent, this.id, `urgency-btn ${this.colorclass}`, function () {activeUrgency(this.id)});
+        new Span(this.id, "","",btnName);
+        new Img(this.id,"","",this.img);
     }
 
 

@@ -95,28 +95,22 @@ function setInputs(array) {
 }
 
 function createContactBox(parent) {
- let parentArray = contact_boxes; //später Parameter
-//  sortContactItems(oldContacts);
-oldContacts.sort((a, b) =>
-a.name > b.name
-  ? 1
-  : b.name > a.name
-  ? -1
-  : 0
-);
+  let parentArray = contact_boxes; //später Parameter
+  //  sortContactItems(oldContacts);
+  oldContacts.sort((a, b) =>
+  a.name > b.name ? 1 : b.name > a.name ? -1 : 0);
 
- console.log(oldContacts);
-  for (let i = 0; i < oldContacts.length; i++) {
-    const profileColor = oldContacts[i].color;
-    const profileNameTag = oldContacts[i].nameTag;
-    const contact_name = oldContacts[i].name;
-    const contact_email = oldContacts[i].mail;
-    const contact_phone = oldContacts[i].phone;
+  // for (let i = 0; i < oldContacts.length; i++) {
+  //   const profileColor = oldContacts[i].color;
+  //   const profileNameTag = oldContacts[i].nameTag;
+  //   const contact_name = oldContacts[i].name;
+  //   const contact_email = oldContacts[i].mail;
+  //   const contact_phone = oldContacts[i].phone;
 
-    parentArray.push(
-      new Contact(parent, profileColor, profileNameTag, contact_name, contact_email, contact_phone, i)
-    );
-  }
+  //   parentArray.push(
+  //     new Contact(parent, profileColor, profileNameTag, contact_name, contact_email, contact_phone, i)
+  //   );
+  // }
 
 
 //   parentArray.forEach(element => {
@@ -219,6 +213,7 @@ let oldContacts = [
     mail: "wschatt@gmail.com",
     phone: "+49-123-123",
     nameTag: "WS",
+    idx: 0,
   },
   {
     name: "Anja Schulz",
@@ -226,6 +221,7 @@ let oldContacts = [
     mail: "schulz@hotmail.com",
     phone: "49-123-123",
     nameTag: "AS",
+    idx: 1,
   },
   {
     name: "Benedikt Ziegler",
@@ -233,6 +229,7 @@ let oldContacts = [
     mail: "benedikt@gmail.com",
     phone: "49-123-123",
     nameTag: "BZ",
+    idx: 2,
   },
   {
     name: "David Eisenberg",
@@ -240,6 +237,7 @@ let oldContacts = [
     mail: "davidberg@gmail.com",
     phone: "49-123-123",
     nameTag: "DE",
+    idx: 3,
   },
   {
     name: "Eva Fischer",
@@ -247,6 +245,7 @@ let oldContacts = [
     mail: "eva@gmail.com",
     phone: "49-222-222",
     nameTag: "EF",
+    idx: 4,
   },
   {
     name: "Emmanuel Mauer",
@@ -254,6 +253,7 @@ let oldContacts = [
     mail: "emmanuelma@gmail.com",
     phone: "49-222-222",
     nameTag: "EM",
+    idx: 5,
   },
   {
     name: "Marcel Bauer",
@@ -261,6 +261,7 @@ let oldContacts = [
     mail: "bauer@gmail.com",
     phone: "49-222-222",
     nameTag: "MB",
+    idx: 6,
   },
   {
     name: "Tatjana Wolf",
@@ -268,6 +269,7 @@ let oldContacts = [
     mail: "wolf@gmail.com",
     phone: "49-222-222",
     nameTag: "TW",
+    idx: 7,
   },
   {
     name: "Sofia Müller",
@@ -275,6 +277,7 @@ let oldContacts = [
     mail: "sofiam@gmail.com",
     phone: "49-222-222",
     nameTag: "SM",
+    idx: 8,
   },
   {
     name: "Anton Mayer",
@@ -282,6 +285,7 @@ let oldContacts = [
     mail: "antom@gmail.com",
     phone: "49-123-123",
     nameTag: "AM",
+    idx: 9,
   },
   // {
   //   name: "Anja Schulz",

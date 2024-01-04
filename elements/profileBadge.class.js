@@ -1,4 +1,4 @@
-class ProfilBagde extends World {
+class ProfilBagde{
     container;
     container_id;
     container_class = "profile-badge";
@@ -7,8 +7,7 @@ class ProfilBagde extends World {
 
 
     constructor(parent, index, color, text) {
-        super()
-        this.container_id = `profile_badgeCon-${index}`;
+        this.container_id = `${parent}-profile_badgeCon-${index}`;
         this.span_id = `contact_itemNameTag-${index}`
         new Div(parent, this.container_id, this.container_class);
         docID(this.container_id).style = `background-color: var(${color})`;

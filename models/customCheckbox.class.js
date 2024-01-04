@@ -6,6 +6,5 @@ class CustomCheckbox extends World{
     new Div(parent, this.div_id, "row");
     new Checkbox(this.div_id, name, "checkbox");
     new Label(this.div_id, name, text);
-
   }
 }

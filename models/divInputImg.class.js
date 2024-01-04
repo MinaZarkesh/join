@@ -1,37 +1,47 @@
 class Divinputimg extends World{
+  div_id;
+  div_onclick;
+  img_id;
+  img_onclick;
   imgId;
-  idname;
-  childId;
-  childname;
   inputfocus;
 
-  constructor(parent, classname, type, placeholder, imgsrc) {
+  constructor(parent, className, type, placeholder, imgsrc) {
     super();
-    this.idname = `${parent}-img`;
-    this.input_id = `${classname}-${type}-input-id`;
+    this.div_id = `${parent}-div`;
+    this.img_id = `${parent}-img`;
+    this.input_id = `${className}-${type}-input-id`;
+    this.inputForSelect(parent, className);
+    this.div_onclick = imgsrc.includes('+.png') ? function () {submitSubtask('input-con-Add')}: "";
 
-    this.inputForSelect(parent, classname);
-    this.childname = `${parent}-div`;
-    this.imgId = imgsrc.includes('arrow_drop_down.png') ? `id='${this.idname}' onclick="dropdownMenu('${this.idname}', '${parent}', '${parent}')"`: "";
-    this.imgId = imgsrc.includes('+.png') ? `id='${this.idname}' onclick="submitHelpFunction()"`: this.imgId;
-    this.childId = imgsrc.includes('+.png') ? `id='${this.childname}' onclick="submitHelpFunction()"`:"";
+    this.img_onclick = imgsrc.includes('arrow_drop_down.png') ? function () {dropdownMenu(this.img_id, parent, parent)} : "";
+    this.img_onclick = imgsrc.includes('+.png') ? function () {submitSubtask('input-con-Add')}: this.imgId;
+    // this.img_onclick = imgsrc.includes('icon-lock') ? togglePassword() : this.imgId; //die toggle Funktion gibt es noch nicht.
     this.inputfocus =  imgsrc.includes('+.png') ? `onfocusin='subtasksFocusIn()'`:this.imgId;
-    this.imgId = imgsrc.includes('icon-lock') ? `id='${parent}-img' onclick='togglePassword()'`: this.imgId;
-    this.content = /*html*/ `
-    <div class="${classname}" ${this.childId}>
-        <input id=${this.input_id} type="${type}" placeholder="${placeholder}" ${this.inputfocus} class="font-t6">
-        <img ${this.imgId} src="${imgsrc}">
-    </div>`;
-    this.render(parent, this.content);
+
+
+    // this.content = /*html*/ `
+    // <div class="${className}" ${this.childId}>
+    //     <input id=${this.input_id} type="${type}" placeholder="${placeholder}" ${this.inputfocus} class="font-t6">
+    //     <img ${this.imgId} src="${imgsrc}">
+    // </div>`;
+    // this.render(parent, this.content);
+    new Div(parent, this.div_id, className);
+    new Input(this.div_id, this.input_id, "font-t6", type, placeholder );
+    new Img(this.div_id, this.img_id, "", imgsrc)
+    docID(this.div_id).onclick = this.div_onclick;
+    docID(this.img_id).onclick = this.img_onclick;
+
   }
 
-  inputForSelect(parent, classname) {
+  inputForSelect(parent, className) {
     if (parent == 'assigned' || parent == 'category') {
-      this.input_id = `${classname}-${parent}-input-id`;
+      this.input_id = `${className}-${parent}-input-id`;
     }
     if (parent == 'subtask') {
-      this.input_id = `${classname}-Add`;
+      this.input_id = `${className}-Add`;
     }
   }
 }
+
 

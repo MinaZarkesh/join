@@ -1,32 +1,25 @@
 class MenuLink extends World {
     name;
+    anchor_id;
+    anchor_class = "nav-link font-body";
+    anchor_href;
+    img;
+    img_id;
+    img_src;
     constructor(id) {
         super();
         this.classname = "active";
         this.name = id.charAt(0).toUpperCase() + id.slice(1);
         this.name = this.name.replace("_t", " T");
-        // onClick="activeLink(${id})" 
-        this.content = `<a class="nav-link font-body" href="${id}.html">
-                        <img src="../assets/img/${id}_menu.png" alt="${id}" />${this.name}
-                    </a>`
-        this.render('navbar', this.content);
+        this.anchor_id = `${id}-link`;
+        this.anchor_href = `${id}.html`;
+        this.img_id = `${this.anchor_id}-img`
+        this.img_src = `../assets/img/${id}_menu.png`;
+        
+        new Anchor('navbar', this.anchor_id, this.anchor_class, this.anchor_href);
+        this.img = new Img(this.anchor_id, this.img_id, undefined, this.img_src);
+        new Span(this.anchor_id, "", "", this.name);
+        docID(this.img_id).alt = id;
     }
-
-
-
-    
-    // activeLink(id){
-    //     console.log("activeLink: ", id);
-    //     document.querySelector('.click').addEventListener('click', (e) => {
-    //         // Do whatever you want
-    //         docID(id).classList.add(className); 
-    //       });
-    // }
 }
 
-{/* <div>
-    <a id="summary" onclick="checkIndex('summary')"><img src="../assets/img/summary.png" /><span>Summary</span></a>
-</div> */}
-
-{/* <a href="#">
-        <img src="../assets/img/summary.png" alt="summary" />Summary</a> */}

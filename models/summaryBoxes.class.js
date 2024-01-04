@@ -1,5 +1,6 @@
 class SummaryBox {
   item;
+  headline_amount;
 
   // for calcPosition
   containerWidth;
@@ -16,46 +17,48 @@ class SummaryBox {
   left;
   index;
   taskAmount;
-  // id = "summaryBox";
-
-  //in der summary.js
-  //item_amount = 6;
-  //task_amounts[index]
-  //descriptions[index]
-  //images[index]
 
   constructor(id, index) {
     this.id = id;
     this.index = index;
     this.taskAmount = task_amounts[index]; //Variable aus summary.js
-    this.item = this.generateItemHTML();
-    this.itemRender();
+    this.item = this.generateItemHTML(id, index);
+    // this.itemRender();
     this.checkScreenView(index);
     this.renderPosition();
   }
 
-  generateItemHTML() {
-    return /*html*/ `
-<div onclick="navToBoard()" id="item-${this.id}-${this.index}" class="col">  <div class="row">
-<img src=${images[this.index]}>
-<h1 id="task_amounts-${this.id}-${this.index}">${task_amounts[this.index]}</h1>
-</div>
-<h6>
-${descriptions[this.index]}
-</h6></div>
-`;
+  generateItemHTML(id, index) {
+    new Div(`${id}-${index}`, `item-${id}-${index}`, "col");
+    new Div(`item-${id}-${index}`, `item-${id}-${index}-row`, 'row')
+    new Img(`item-${id}-${index}-row`, "","", images[index])
+    this.headline_amount = new Headline("h1", `item-${id}-${index}-row`, `task_amounts-${id}-${index}`, "", task_amounts[this.index])
+    new Headline("h6",`item-${id}-${index}-row`, "", "",descriptions[index])
+    docID(`item-${id}-${index}`).onclick = navToBoard;
+//     return /*html*/ `
+//       <div onclick="navToBoard()" id="item-${this.id}-${this.index}" class="col">  
+//         <div class="row">
+//           <img src=${images[this.index]}>
+//           <h1 id="task_amounts-${this.id}-${this.index}">${task_amounts[this.index]}</h1>
+//         </div>
+//         <h6>${descriptions[this.index]}</h6>
+//       </div>
+// `;
   }
 
-  itemRender() {
-    docID(`${this.id}-${this.index}`).innerHTML = this.item;
-  }
+  // itemRender() {
+  //   docID(`${this.id}-${this.index}`).innerHTML = this.item;
+  // }
 
   updateTaskAmount(taskAmount, index) {
-    if (this.taskAmount != taskAmount) {
-      this.taskAmount = taskAmount;
-      docID(`task_amounts-${this.id}-${index}`).innerHTML = this.taskAmount;
-      console.log("updated: ", index, this.taskAmount);
-    }
+    docID(`task_amounts-${this.id}-${index}`).textContent = taskAmount;
+    console.log("updated: ", index, this.taskAmount);
+
+    // if (this.taskAmount != taskAmount) {
+    //   this.taskAmount = taskAmount;
+    //   docID(`task_amounts-${this.id}-${index}`).innerHTML = this.taskAmount;
+    //   console.log("updated: ", index, this.taskAmount);
+    // }
   }
 
   renderPosition() {
@@ -152,3 +155,12 @@ ${descriptions[this.index]}
       this.gapColoumn / 2 + index * this.itemWidth + index * this.gapColoumn;
   }
 }
+
+
+  // id = "summaryBox";
+
+  //in der summary.js
+  //item_amount = 6;
+  //task_amounts[index]
+  //descriptions[index]
+  //images[index]

@@ -67,10 +67,11 @@ function createFirstBox() {
  `;
 }
 
+
 function updateTaskAmounts() {
   for (let index = 0; index < new_task_amounts.length; index++) {
     const new_number = new_task_amounts[index];
-    if (new_number != task_amounts[index]) {
+    if (new_number != task_amounts[index] && index < summary_boxes.length) {
       task_amounts[index] = new_number;
       summary_boxes[index].updateTaskAmount(new_number, index);
       //TODO: update Server;

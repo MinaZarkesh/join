@@ -5,7 +5,6 @@ function initContacts() {
   init();
   renderContactList();
 }
-
 function renderContactList() {
   //Teile String in Array aus Buchstaben
   alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -13,73 +12,114 @@ function renderContactList() {
 
   docID(parent_array).innerHTML = "";
   //Contact_boxes füllen
-  if (!contact_boxes.length > 0) {
-    createContactBox(parent_array);
-    //update Values
-  }
+  // if (!contact_boxes.length > 0) {
+  //   createContactBox(parent_array);
+  //   //update Values
+  // }
   //Fülle die ContactListe neu
-  alphabet.forEach((ltr) => {
+  alphabet.forEach((ltr, i) => {
     letter = ltr; //for checkLetter
-    filtered_contacts = contact_boxes.filter(checkLetter);
+
+    filtered_contacts = oldContacts.filter(checkLetter);
+    // filtered_contacts = contact_boxes.filter(checkLetter);
     if (filtered_contacts.length > 0) {
-      docID(parent_array).innerHTML += createLetterBox(ltr);
+      // docID(parent_array).innerHTML += createLetterBox(ltr);
+      createLetterBox(ltr, parent_array, i);
       filtered_contacts.forEach((e) => {
-        docID(parent_array).innerHTML += e.contact_item;
+        // docID(parent_array).innerHTML += e.contact_item;
+        new Div(parent_array, `contact-item-${e.idx}`, "contact-list-row");
+        docID(`contact-item-${e.idx}`).onclick = function () {renderFloatingContacts(e.idx)};
+        new ProfilBagde(`contact-item-${e.idx}`, e.idx, e.color, e.nameTag);
+        new Div(`contact-item-${e.idx}`, `contact-item-${e.idx}-div`, "contact-list-coloumn");
+        new Span(`contact-item-${e.idx}-div`, `contact_itemName-${e.idx}`,"", e.name);
+        new Headline('h6', `contact-item-${e.idx}-div`, `contact_itemMail-${e.idx}`, "", e.mail);
       });
     }
   });
 }
 
+
 function checkLetter(contact) {
-  firstLetter = contact.contact_name.charAt(0).toUpperCase();
+  firstLetter = contact.name.charAt(0).toUpperCase();
+  // firstLetter = contact.contact_name.charAt(0).toUpperCase();
   return firstLetter == letter;
 }
 
-function createLetterBox(letter) {
-  return /*html*/ `
-    <div class="letter-box">
-  <span id="letter${letter}" class="letter">${letter}</span>
-</div>
-  `;
+function createLetterBox(letter, parent, index) {
+  new Div(parent, `${parent}-div-${index}`, "letter-box");
+  new Span(`${parent}-div-${index}`, `letter${letter}`, 'letter', letter);
+
+  // return /*html*/ `
+  //   <div class="letter-box">
+  //     <span id="letter${letter}" class="letter">${letter}</span>
+  //   </div>
+  // `;
 }
 
-function resetActive() {
-  for (let i = 0; i < contact_boxes.length; i++) {
-    let contact = contact_boxes[i];
+function setActive(idx) {
+  resetActive(idx);
+  //set new attributes
+  docID(`contact-item-${idx}`).classList.add("active-contact");
+  // 
+}
+
+
+function resetActive(idx) {
+  for (let i = 0; i < oldContacts.length; i++) {
+    let contact = oldContacts[i];
     //reset attributes from before
-    docID(contact.contact_item_id).classList.remove("active-contact");
+    docID(`contact-item-${contact.idx}`).classList.remove("active-contact");
   }
 }
 
-function layoutContactsOverlay(idx) {
+function layoutContactsOverlay(idx) { //es wird keine index übergeben.
   createInputElements();
-  contacts_inputs = [input_name, input_email, input_phone];
-  docID("inputs-con").innerHTML = setInputs(contacts_inputs);
+  // contacts_inputs = [input_name, input_email, input_phone];
+  // docID("inputs-con").innerHTML = setInputs(contacts_inputs);
 
-  docID("edit-contact-button-group").innerHTML = /*html*/ `
-    <button id="overlay-secondary-btn" onclick="" class="secondary-button font-t5" ></button>
-    <button id="overlay-primary-btn" onclick="saveEditContact('${idx}')" class="button font-t5"></button>
-  `;
+  new Button("edit-contact-button-group", "overlay-secondary-btn", "secondary-button font-t5");
+  new Button("edit-contact-button-group","overlay-primary-btn", "button font-t5", function () {saveEditContact(`${idx}`)} )
+
+    // docID("edit-contact-button-group").innerHTML = /*html*/ `
+  //   <button id="overlay-secondary-btn" onclick="" class="secondary-button font-t5" ></button>
+  //   <button id="overlay-primary-btn" onclick="saveEditContact('${idx}')" class="button font-t5"></button>
+  // `;
 }
 
 function createEditContact(id) {
   renderEditContact(id);
-  contact_boxes[id].fillEditContact(id);
+  oldContacts[id].fillEditContact(id);
+}
+
+function fillEditContact() {
+  docID(input_name.input_id).value = this.contact_name;
+  docID(input_email.input_id).value = this.contact_email;
+  docID(input_phone.input_id).value = this.contact_phone;
 }
 
 let edit_contact;
 
 function saveEditContact(idx) {
-  edit_contact = contact_boxes[idx];
-  edit_contact.updateContactItem();
-  console.log(edit_contact);
+  edit_contact = oldContacts[idx];
+  updateContactItem(edit_contact);
+  // edit_contact.updateContactItem();
   renderContactList();
-  renderFloatingContacts(edit_contact.contact_idx);
-   closeButton();
+  renderFloatingContacts(edit_contact.idx);
+  closeButton();
+}
+
+function updateContactItem(contact) {
+  if (input_name.value != "" && input_email.value != "" && !input_phone.value != ""
+  ) {
+    contact.name = docID(input_name.input_id).value;
+    contact.mail = docID(input_email.input_id).value;
+    contact.phone = docID(input_phone.input_id).value;
+  }
+  sortContactItems(oldContacts);
 }
 
 function addNewContact() {
-  let parent_array = contact_boxes;
+  // let parent_array = oldContacts;
   let added_contact;
   //variables for parameters
   let parent = "contact-list";
@@ -88,40 +128,24 @@ function addNewContact() {
   let input_name_value;
   let input_email_value;
   let input_phone_value;
-  let idx = parent_array.length;
+  let idx = oldContacts.length;
 
-  if (
-    input_name.value != "" &&
-    input_email.value != "" &&
-    !input_phone.value != ""
-  ) {
+  if (input_name.value != "" && input_email.value != "" && !input_phone.value != "") {
     input_name_value = docID(input_name.input_id).value;
     input_email_value = docID(input_email.input_id).value;
     input_phone_value = docID(input_phone.input_id).value;
   }
 
-  console.log("inputs: ", input_name_value);
-
-  parent_array.push(
-    new Contact(
-      parent,
-      profileColor,
-      profileNameTag,
-      input_name_value,
-      input_email_value,
-      input_phone_value,
-      idx
-    )
+  oldContacts.push(
+    new Contact(parent, profileColor, profileNameTag, input_name_value, input_email_value, input_phone_value, idx)
   );
 
-  added_contact = parent_array[idx];
-  sortContactItems(added_contact.parentArray);
+  added_contact = oldContacts[idx];
+  // sortContactItems(added_contact.parentArray);
   renderContactList();
-  renderFloatingContacts(added_contact.contact_idx);
+  renderFloatingContacts(added_contact.idx);
   closeButton();
 }
-
-
 
 function sortContactItems(parent) {
   parent.sort((a, b) =>
@@ -141,14 +165,14 @@ function sortContactItems(parent) {
 }
 
 function renderFloatingContacts(idx) {
-  contact = contact_boxes[idx];
-  contact.createFloatingContacts();
-  contact.setActive();
+  contact = oldContacts[idx];
+  createFloatingContacts(contact);
+  setActive(idx);
 }
 
 function deleteContact(idx) {
-  contact_boxes.splice(idx, 1);
-  sortContactItems(contact_boxes);
+  oldContacts.splice(idx, 1);
+  // sortContactItems(contact_boxes);
   renderContactList();
   docID("floating-contacts").innerHTML = "";
   closeButton();
@@ -161,12 +185,18 @@ function closeButton() {
 function renderEditContact(id) {
   layoutContactsOverlay();
   //change Values
-  docID("edit-contact-overlay-headline").innerHTML = "Edit contact";
-  docID("edit-contact-con-overlay").innerHTML = contact_boxes[id].profile_badge;
-  docID("edit-contact-button-group").innerHTML = /*html*/ `
-  <button id="overlay-secondary-btn" onclick="deleteContact('${id}')" class="secondary-button font-t5" >Delete</button>
-  <button id="overlay-primary-btn" onclick="saveEditContact('${id}')" class="button font-t5">Save <img src="../assets/img/check.svg"></button>
-`;
+  docID("edit-contact-overlay-headline").textContent = "Edit contact";
+  // docID("edit-contact-con-overlay").innerHTML = contact_boxes[id].profile_badge;
+  new ProfilBagde("edit-contact-con-overlay", id, oldContacts[id].color, oldContacts[id].nameTag)
+//   docID("edit-contact-button-group").innerHTML = /*html*/ `
+//   <button id="overlay-secondary-btn" onclick="deleteContact('${id}')" class="secondary-button font-t5" >Delete</button>
+//   <button id="overlay-primary-btn" onclick="saveEditContact('${id}')" class="button font-t5">Save <img src="../assets/img/check.svg"></button>
+// `
+  new Button("edit-contact-button-group", "overlay-secondary-btn", "secondary-button font-t5", function () {deleteContact('${id}')}, 'Delete');
+  new Button("edit-contact-button-group", "overlay-primary-btn", "button font-t5", function () {saveEditContact('${id}')})
+  new Span("overlay-primary-btn", "", "",'Save');
+  new Img("overlay-primary-btn", "","","../assets/img/check.svg");
+;
   //change Style
   docID("overlay-contacts").style.display = "flex";
   docID("overlay-contacts").style.left = "0";
@@ -175,18 +205,102 @@ function renderEditContact(id) {
 
 function renderAddContact() {
   layoutContactsOverlay();
-  docID("edit-contact-overlay-headline").innerHTML = "Add Contact";
-  docID("edit-contact-con-overlay").innerHTML = /*html*/ `
-<img id='edit-contact-overlay-img' src="../assets/img/person-white.svg">
-`;
-  docID("edit-contact-button-group").innerHTML = /*html*/ `
-  <button id="overlay-secondary-btn" onclick="closeButton()" class="secondary-button font-t5" >  Cancel <img src="../assets/img/clear.png"></button>
-  <button id="overlay-primary-btn" onclick="addNewContact()" class="button font-t5"> Create contact <img src="../assets/img/check.svg"></button>
-`;
+  docID("edit-contact-overlay-headline").textContent = "Add Contact";
+//   docID("edit-contact-con-overlay").innerHTML = /*html*/ `
+// <img id='edit-contact-overlay-img' src="../assets/img/person-white.svg">
+// `;
+//   docID("edit-contact-button-group").innerHTML = /*html*/ `
+//   <button id="overlay-secondary-btn" onclick="closeButton()" class="secondary-button font-t5" >  Cancel <img src="../assets/img/clear.png"></button>
+//   <button id="overlay-primary-btn" onclick="addNewContact()" class="button font-t5"> Create contact <img src="../assets/img/check.svg"></button>
+// `;
+new Img("edit-contact-con-overlay", 'edit-contact-overlay-img', "", "../assets/img/person-white.svg");
+new Button("edit-contact-button-group", "overlay-secondary-btn", "secondary-button font-t5", function () {closeButton()}, 'Cancel');
+new Button("edit-contact-button-group", "overlay-primary-btn", "button font-t5", function () {addNewContact()}, 'Create contact');
   //change Style values
   docID("overlay-contacts").style.left = "unset";
   docID("overlay-contacts").style.display = "flex";
   docID("contact-overlay-subtitle").style.display = "flex";
   docID("overlay-secondary-btn").style.width = "unset";
   docID("overlay-primary-btn").style.width = "fit-content";
+}
+
+function createFloatingContacts(e) {
+  let parent = "floating-contacts";
+  let con_id = `floating-con${e.idx}`;
+  let con_class = "floating-con";
+  let hl_id = `floating-headline${e.idx}`;
+  let hl_class = "floating-headline";
+  let profile_con = "floating-profile-badge";
+  let hl_txt_con_id = `floating-headline-text-con${e.idx}`;
+  let hl_txt_con_class = "floating-headline-text-con";
+  let hl_lnk_con_id = `floating-headline-links-con${e.idx}`;
+  let hl_lnk_con_class = `floating-headline-links-con`;
+  let hl_lnk_id = `floating-headline-link${e.idx}`;
+  let hl_lnk_class = "floating-headline-link";
+  let hl_lnk_span_id = `floating-headline-link${e.idx}-span`;
+  let hl_lnk_2_id = `floating-headline-link-2-${e.idx}`;
+  let div_22_id = `${con_id}-22`;
+  let div_15_id_1 = `${con_id}-15-1`;
+  let div_15_id_1_span_id = 'floating-contacts-mail-value-1';
+  let div_15_id_1_span_class = 'color-primary';
+  let div_15_id_2 = `${con_id}-15-2`;
+  let div_15_id_2_span_id = 'floating-contactsPhoneValue-2';
+
+  docID("floating-contacts").innerHTML = "";
+  new Div(parent, con_id, con_class);
+  new Div(con_id, hl_id , hl_class);
+  new Div(hl_id, profile_con);
+  new ProfilBagde(profile_con, e.idx, e.color, e.nameTag);
+  new Div(hl_id, hl_txt_con_id, hl_txt_con_class);
+  new Headline('h1', hl_txt_con_id, "", e.name);
+  new Div(hl_txt_con_id, hl_lnk_con_id, hl_lnk_con_class);
+  new Div(hl_lnk_con_id, hl_lnk_id, hl_lnk_class);
+  new Img(hl_lnk_id, "", "", "../assets/img/edit.png");
+  new Span(hl_lnk_id,hl_lnk_span_id, "", "Edit");
+  docID(hl_lnk_span_id).onclick = function () {createEditContact(e.idx)};
+  new Div(hl_lnk_con_id, hl_lnk_2_id, "floating-headline-link");
+  docID(hl_lnk_2_id).onclick = function () {deleteContact(e.idx)};
+  new Img(hl_lnk_2_id, "", "", "../assets/img/delete.png");
+  new Span(hl_lnk_2_id,"","", "Delete");
+  new Headline('h2', con_id, "","", 'Contact Information');
+  new Div(con_id, div_22_id, "gap-22");
+  new Div(div_22_id, div_15_id_1, "gap-15");
+  new Headline('h6', div_15_id_1, "","", 'Email');
+  new Span(div_15_id_1, div_15_id_1_span_id, div_15_id_1_span_class, e.mail)
+  new Div(div_22_id, div_15_id_2, "gap-15");
+  new Headline('h6', div_15_id_2, "","", 'Phone');
+  new Span(div_15_id_2, div_15_id_2_span_id, "", e.phone);
+
+  // docID("floating-contacts").innerHTML = /*html*/ `
+  //       <div class="floating-con">
+  //         <div class="floating-headline">
+  //           <div id="floating-profile-badge">
+  //             ${this.profile_badge}
+  //           </div>
+  //           <div class="floating-headline-text-con">
+  //             <h1>${this.contact_name}</h1>
+  //             <div class="floating-headline-links-con">
+  //               <div class="floating-headline-link">
+  //                 <img src="../assets/img/edit.png" alt="" />
+  //                 <span onclick="createEditContact(${this.contact_idx})" > Edit</span>
+  //               </div>
+  //               <div onclick="deleteContact(${this.contact_idx})" class="floating-headline-link">
+  //                 <img src="../assets/img/delete.png" alt="" />
+  //                 <span> Delete</span>
+  //               </div>
+  //             </div>
+  //           </div>
+  //         </div>
+  //         <h2>Contact Information</h2>
+  //         <div class="gap-22">
+  //           <div class="gap-15">
+  //             <h6>Email</h6>
+  //             <span id="floating-contacts-mail-value" class="color-primary">${this.contact_email}</span>
+  //           </div>
+  //           <div class="gap-15">
+  //             <h6>Phone</h6>
+  //             <span id="floating-contactsPhoneValue">${this.contact_phone}</span>
+  //           </div>
+  //         </div>
+  //       </div>`;
 }
