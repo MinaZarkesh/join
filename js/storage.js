@@ -5,7 +5,7 @@ let input_phone;
 let input_password;
 let input_confirm_password;
 let contact_boxes = [];
-let contacts = oldContacts;
+
 /**
  * The token used for remote storage authentication.
  * @type {string}
@@ -344,7 +344,7 @@ let oldContacts = [
   //   nameTag: "SM",
   // },
 ];
-
+let contacts = oldContacts;
 
 
 
