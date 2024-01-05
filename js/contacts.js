@@ -1,11 +1,15 @@
 let contacts_inputs;
 let letter;
 let parent_array = "contact-list";
+let edit_contact;
+
 
 function initContacts() {
   init();
   renderContactList();
 }
+
+
 function renderContactList() {
   //Teile String in Array aus Buchstaben
   alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -34,16 +38,17 @@ function checkLetter(contact) {
   return firstLetter == letter;
 }
 
+
 function createLetterBox(letter, parent, index) {
   new Div(parent, `${parent}-div-${index}`, "letter-box");
   new Span(`${parent}-div-${index}`, `letter${letter}`, 'letter', letter);
 }
 
+
 function setActive(idx) {
-  resetActive(idx);
+  resetActive();
   //set new attributes
   docID(`contact-item-${idx}`).classList.add("active-contact");
-  // 
 }
 
 
@@ -55,16 +60,22 @@ function resetActive() {
   }
 }
 
+
 function layoutContactsOverlay(idx) { //es wird keine index übergeben.
   createInputElements();
+  contacts_inputs = [input_name, input_email, input_phone];
+  docID("inputs-con").innerHTML = setInputs(contacts_inputs);
+
   new Button("edit-contact-button-group", "overlay-secondary-btn", "secondary-button font-t5");
   new Button("edit-contact-button-group","overlay-primary-btn", "button font-t5", function () {saveEditContact(`${idx}`)} )
 }
 
+
 function createEditContact(id) {
   renderEditContact(id);
-  contacts[id].fillEditContact(id);
+  // contacts[id].fillEditContact(id);
 }
+
 
 function fillEditContact() {
   docID(input_name.input_id).value = this.contact_name;
@@ -72,7 +83,6 @@ function fillEditContact() {
   docID(input_phone.input_id).value = this.contact_phone;
 }
 
-let edit_contact;
 
 function saveEditContact(idx) {
   edit_contact = contacts[idx];
@@ -82,6 +92,7 @@ function saveEditContact(idx) {
   closeButton();
 }
 
+
 function updateContactItem(contact) {
   if (input_name.value != "" && input_email.value != "" && !input_phone.value != ""
   ) {
@@ -89,11 +100,11 @@ function updateContactItem(contact) {
     contact.mail = docID(input_email.input_id).value;
     contact.phone = docID(input_phone.input_id).value;
   }
-  sortContactItems(contacts);
+  // sortContactItems(contacts);
 }
 
+
 function addNewContact() {
-  // let parent_array = oldContacts;
   let added_contact;
   //variables for parameters
   let parent = parent_array;
@@ -110,11 +121,11 @@ function addNewContact() {
     input_phone_value = docID(input_phone.input_id).value;
   }
 
-  oldContacts.push(
+  contacts.push(
     new Contact(parent, profileColor, profileNameTag, input_name_value, input_email_value, input_phone_value, idx)
   );
 
-  added_contact = oldContacts[idx];
+  added_contact = contacts[idx];
   renderContactList();
   renderFloatingContacts(added_contact.idx);
   closeButton();
@@ -131,8 +142,8 @@ function sortContactItems(parent) {
 
   for (let i = 0; i < parent.length; i++) {
     //nachdem neu sortieren auch die Idexes updaten
-    const element = parent[i];
-    element.contact_idx = i;
+    // const element = parent[i];
+    // element.contact_idx = i;
     element.renderContactItem();
   }
 }
@@ -145,7 +156,6 @@ function renderFloatingContacts(idx) {
       setActive(e.idx);
     }
   })
-  
 }
 
 function deleteContact(idx) {
