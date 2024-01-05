@@ -79,15 +79,20 @@ function isRequiered(id) {
 
 
 function createInputElements() {
-  input_name = new Divinputimg("inputs-con","imput-img-div","text","Name","../assets/img/icon-person.png");
-  input_email = new Divinputimg("inputs-con", "imput-img-div", "mail", "Email", "../assets/img/icon-mail.png");
-  input_phone = new Divinputimg("inputs-con", "imput-img-div", "phone", "Phone", "../assets/img/icon-call.svg");
-  input_password = new Divinputimg("inputs-con", "imput-img-div", "password", "Password", "../assets/img/icon-lock-closed.png");
-  input_confirm_password = new Divinputimg("inputs-con", "imput-img-div", "confirmPassword", "Confirm Password", "../assets/img/icon-lock-closed.png");
+  input_confirm_password = new Divinputimg("inputs-con", "imput-img-div", "password", "Confirm Password", "../assets/img/icon-lock-closed.png", "input-con-confirm-password-input-id", "input-con-confirm-password-input-div-id");
+  input_name = new Divinputimg("inputs-con","imput-img-div","text","Name","../assets/img/icon-person.png", "input-con-name-input-id", "input-con-name-input-div-id");
+  input_email = new Divinputimg("inputs-con", "imput-img-div", "mail", "Email", "../assets/img/icon-mail.png", "input-con-email-input-id", "input-con-email-input-div-id");
+  input_phone = new Divinputimg("inputs-con", "imput-img-div", "phone", "Phone", "../assets/img/icon-call.svg", "input-con-phone-input-id", "input-con-phone-input-div-id");
+  input_password = new Divinputimg("inputs-con", "imput-img-div", "password", "Password", "../assets/img/icon-lock-closed.png", "input-con-password-input-id", "input-con-password-input-div-id");
 }
 
 function setInputs(array) {
-  let element = "";
+
+  // docID("inputs-con").innerHTML = "";
+  // input_name.render("inputs-con", input_name);
+
+
+   let element = "";
   for (let i = 0; i < array.length; i++) {
     element += array[i].content;
   }

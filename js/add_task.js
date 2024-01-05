@@ -20,13 +20,13 @@ function initAddtask() {
     new Urgencybtn('priority-button', "Medium");
     new Urgencybtn('priority-button', "Low");
     new Labeldiv('content-con', 'assigned', 'Assigned to', true);
-    new Divinputimg('assigned', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png');
+    new Divinputimg('assigned', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png', 'input-con-text-input-id', 'assigned-div'); //+ id + div_id
     new Div('content-con', 'associate-con', '');
     new Labeldiv('content-con', 'category', 'Category', false);
-    new Divinputimg('category', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png');
+    new Divinputimg('category', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png',  'input-con-text-input-id', 'category-div'); //+ id + div_id
     new Div('content-con', 'department-con', '');
     new Labeldiv('content-con', 'subtask', 'Subtask', true);
-    new Divinputimg('subtask', 'input-con', 'text', 'Add new subtask', '../assets/img/+.png');
+    new Divinputimg('subtask', 'input-con', 'text', 'Add new subtask', '../assets/img/+.png',  'input-con-text-input-id', 'subtask-div'); //+ id + div_id
     new Div('subtask', 'subtasks-con', '');
 }
 

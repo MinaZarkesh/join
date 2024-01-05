@@ -16,6 +16,10 @@
   gap: 8px;
 }
 
+.content-con{
+  color: black;
+}
+
 .fixed {
   position: fixed;
   display: flex;

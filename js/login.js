@@ -8,7 +8,7 @@ let login_checkbox;
 
 function initLogin() {
   createInputElements();
-  createAllElements();
+  // createAllElements();
   renderLoginElements("Login");
 }
 
