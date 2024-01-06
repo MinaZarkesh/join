@@ -74,25 +74,14 @@ function resetActive() {
 function layoutContactsOverlay(idx) {
   //es wird keine index übergeben.
   createInputElements();
-   contacts_inputs = [input_name, input_email, input_phone];
+  contacts_inputs = [input_name, input_email, input_phone];
 
-   docID("inputs-con").innerHTML ="";
+  docID("inputs-con").innerHTML ="";
   //  docID("inputs-con").innerHTML = setInputs(contacts_inputs);
   input_name.render("inputs-con", input_name.content);
 
-  new Button(
-    "edit-contact-button-group",
-    "overlay-secondary-btn",
-    "secondary-button font-t5"
-  );
-  new Button(
-    "edit-contact-button-group",
-    "overlay-primary-btn",
-    "button font-t5",
-    function () {
-      saveEditContact(`${idx}`);
-    }
-  );
+  new Button("edit-contact-button-group", "overlay-secondary-btn", "secondary-button font-t5");
+  new Button("edit-contact-button-group", "overlay-primary-btn", "button font-t5", function () {saveEditContact(`${idx}`);});
 }
 
 function createEditContact(id) {

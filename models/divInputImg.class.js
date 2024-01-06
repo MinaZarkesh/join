@@ -1,19 +1,23 @@
-class Divinputimg extends World {
+class Divinputimg{
+  parent_div
+  child_div;
   div_id;
   div_onclick;
   img_id;
   img_onclick;
   imgId;
+  input;
   inputfocus;
   placeholder;
   type;
   content;
 
   constructor(parent, className, type, placeholder, imgsrc, id, div_id) {
-    super();
+    // super();
     this.div_id = div_id;
     // this.div_id = `${parent}-div`;
     this.img_id = `${parent}-img`;
+    this.parent_div = parent;
     // this.input_id = `${className}-${type}-input-id`;
     this.input_id = id;
     this.inputForSelect(parent, className);
@@ -26,20 +30,20 @@ class Divinputimg extends World {
     this.type = type;
 
     this.content = /*html*/ `
-    <div class="${className}" ${this.div_id}>
+      <div class="${className}" ${this.div_id}>
         <input id=${this.input_id} type="${type}" placeholder="${placeholder}" ${this.inputfocus} class="font-t6">
         <img ${this.img_id} src="${imgsrc}">
-    </div>`;
+      </div>`;
 
- this.render(parent, this.content);
+//  this.render(parent, this.content);
 
 //Wenn ich das Objekt neu rendere, dann erkennt er es als Object und nicht als html-element
-//  new Div(parent, this.div_id, className);
-//  new Input(this.div_id, this.input_id, "font-t6", this.type, this.placeholder);
-//  new Img(this.div_id, this.img_id, "", imgsrc);
+ this.child_div = new Div(parent, this.div_id, className);
+ this.input = new Input(this.div_id, this.input_id, "font-t6", this.type, this.placeholder);
+ new Img(this.div_id, this.img_id, "", imgsrc);
 
-    // docID(this.div_id).onclick = this.div_onclick;
-    // docID(this.img_id).onclick = this.img_onclick;
+    docID(this.div_id).onclick = this.div_onclick;
+    docID(this.img_id).onclick = this.img_onclick;
   }
 
   inputForSelect(parent, className) {

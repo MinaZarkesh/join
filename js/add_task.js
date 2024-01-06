@@ -3,6 +3,7 @@ let dropdownCategory = false;
 let label_description; 
 let div_date;
 let subtask = [];
+let Span_element;
 function initAddtask() {
     init();
     new Divinput('contentbig', 'taskName', "Enter a title", "task-title", "input-field", "input");
@@ -13,7 +14,7 @@ function initAddtask() {
     new Labeldiv('contentbig','due-date', 'Due date', false);
     new Divdate('due-date', 'date-input' , 'input-field input-blue font-t6')
     // div_date = new Divdate('contentbig','due-date', 'Due date', false);
-    new Span('due-date', 'due-date-requiered', "requiered font-label");
+    Span_element = new Span('due-date', 'due-date-requiered', "requiered font-label");
     new Labeldiv('content-con', 'priority', 'Priority', false);
     new Div('priority', 'priority-button')
     new Urgencybtn('priority-button', "Urgent");
@@ -259,7 +260,7 @@ function subtaskChange(value, i) {
     docID('subtasks-con-div').onclick = undefined;
     docID('subtasks-con-img').onclick = function () {deleteSubtask(i)};
     docID('subtasklist-check-img').onclick = function () {updateSubtask(i,`${upadate_id}`)};
-    docID('input-con-Add').value = edit_value;
+    docID(value).value = edit_value;
     // docID('subtasks-con').innerHTML = /*html*/`
     //     <div class="input-con blue-border" id="subtasklist-div">
     //         <input id="${upadate_id}" type="text" class="font-t6" value="${edit_value}">

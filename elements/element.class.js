@@ -1,8 +1,8 @@
-class Elements extends World {
+class Elements{
 
     element;
     constructor(html_tag, id, className) {
-        super();
+        // super();
         this.element = document.createElement(html_tag);
         this.element.id =  id;
         this.element.className = className;
