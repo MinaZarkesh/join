@@ -72,31 +72,12 @@ function resetActive() {
 }
 let text;
 
-function layoutContactsOverlay(idx) {
+function layoutContactsOverlay() {
   docID("inputs-con").innerHTML ="";
   //es wird keine index übergeben.
-  // createInputElements();
-  // contacts_inputs = [input_name, input_email, input_phone];
   input_name = new Divinputimg("inputs-con","imput-img-div","text","Name","../assets/img/icon-person.png", "input-con-name-input-id", "input-con-name-input-div-id");
   input_email = new Divinputimg("inputs-con", "imput-img-div", "mail", "Email", "../assets/img/icon-mail.png", "input-con-email-input-id", "input-con-email-input-div-id");
   input_phone = new Divinputimg("inputs-con", "imput-img-div", "phone", "Phone", "../assets/img/icon-call.svg", "input-con-phone-input-id", "input-con-phone-input-div-id");
-  // new Button("edit-contact-button-group", "overlay-secondary-btn", "secondary-button font-t5");
-  // new Button("edit-contact-button-group", "overlay-primary-btn", "button font-t5", function () {saveEditContact(`${idx}`);});
- // docID("inputs-con").innerHTML = setInputs(contacts_inputs);
-  // docID(input_name.div_id).innerHTML ="Halli Hallo";
-  // docID(input_email.div_id).innerHTML ="";
-  //  docID(input_password.div_id).innerHTML ="";
-  //  docID(input_confirm_password.div_id).innerHTML ="";
-
-//  docID("inputs-con").innerHTML ="";
-//  docID("inputs-con").innerHTML =  input_name.child_div;
-//  //docID("inputs-con").appendChild(input_name.div_id);
-   // text = input_name.child_div.element.getInnerHTML(input_name);
- //  docID(input_name.div_id).innerHTML = input_name.child_div.element.innerHTML;
-    
-  // input_name.render("inputs-con", input_name.content);
-
-  
 }
 
 function createEditContact(id) {
@@ -128,7 +109,6 @@ function updateContactItem(contact) {
     contact.mail = docID(input_email.input_id).value;
     contact.phone = docID(input_phone.input_id).value;
   }
-  // sortContactItems(contacts);
 }
 
 function addNewContact() {
@@ -235,7 +215,7 @@ function renderEditContact(id) {
   docID('edit-contact-button-group').innerHTML= "";
   new Button("edit-contact-button-group", "overlay-secondary-btn", "secondary-button font-t5",
     function () {
-      deleteContact("${id}");
+      deleteContact(`${id}`);
     },
     "Delete"
   );
@@ -244,7 +224,7 @@ function renderEditContact(id) {
     "overlay-primary-btn",
     "button font-t5",
     function () {
-      saveEditContact("${id}");
+      saveEditContact(`${id}`);
     }
   );
   new Span("overlay-primary-btn", "", "", "Save");
@@ -324,15 +304,9 @@ function createFloatingContacts(e) {
   new Div(parent, con_id, con_class);
   new Div(con_id, hl_id, hl_class);
   new Div(hl_id, profile_con);
-
-  // document.getElementById("hl_id")
-  //.innerHTML += /*html*/`
-  //   <div id="profile_con"></div>
-  // `;
-
   new ProfilBagde(profile_con, e.idx, e.color, e.nameTag);
   new Div(hl_id, hl_txt_con_id, hl_txt_con_class);
-  new Headline("h1", hl_txt_con_id, "", e.name);
+  new Headline("h1", hl_txt_con_id, "", "", e.name);
   new Div(hl_txt_con_id, hl_lnk_con_id, hl_lnk_con_class);
   new Div(hl_lnk_con_id, hl_lnk_id, hl_lnk_class);
   new Img(hl_lnk_id, "", "", "../assets/img/edit.png");
