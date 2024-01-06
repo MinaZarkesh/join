@@ -79,6 +79,7 @@ function isRequiered(id) {
 
 
 function createInputElements() {
+ 
   input_confirm_password = new Divinputimg("inputs-con", "imput-img-div", "password", "Confirm Password", "../assets/img/icon-lock-closed.png", "input-con-confirm-password-input-id", "input-con-confirm-password-input-div-id");
   input_name = new Divinputimg("inputs-con","imput-img-div","text","Name","../assets/img/icon-person.png", "input-con-name-input-id", "input-con-name-input-div-id");
   input_email = new Divinputimg("inputs-con", "imput-img-div", "mail", "Email", "../assets/img/icon-mail.png", "input-con-email-input-id", "input-con-email-input-div-id");
@@ -91,9 +92,14 @@ function setInputs(array) {
   // docID("inputs-con").innerHTML = "";
   // input_name.render("inputs-con", input_name);
 
+  docID(input_name.div_id).innerHTML ="";
+  docID(input_email.div_id).innerHTML ="";
+  docID(input_password.div_id).innerHTML ="";
+  docID(input_confirm_password.div_id).innerHTML ="";
 
    let element = "";
   for (let i = 0; i < array.length; i++) {
+    docID(input_name.div_id).innerHTML ="";
     element += array[i].content;
   }
   return element;

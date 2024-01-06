@@ -6,6 +6,7 @@ class Elements{
         this.element = document.createElement(html_tag);
         this.element.id =  id;
         this.element.className = className;
+        // this.html_tag = html_tag;
     }
 
     depart(e, parent) {

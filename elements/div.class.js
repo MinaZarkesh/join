@@ -4,5 +4,6 @@ class Div extends Elements {
         super('div', id, className)
         this.element.textContent = data == undefined ? "" : data;
         docID(parent).appendChild(this.element);
+        
     }
 }
