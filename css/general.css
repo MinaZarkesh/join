@@ -268,35 +268,17 @@ a:active {
 
 /**************  Ckeckbox    *************/
 
-[type="checkbox"] {
+#inputs-con-div{
+  margin-top: 16px;
   position: relative;
-  left: -200px;
-  opacity: 0;
-  /* -webkit-appearance: none; */
+  display: flex;
+  flex-direction: row;
+  height: 24px;
+  gap: 8px;
 }
 
-input[type="checkbox"] {
-  position: absolute;
-  vertical-align: middle;
+ input[type="checkbox"] {
   width: fit-content;
-}
-
-[type="checkbox"] + label::before {
-  width: 24px;
-  height: 24px;
-  background-image: url(../assets/img/checket.svg);
-  content: "";
-  float: left;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-[type="checkbox"]:checked + label::before {
-  background-image: url(../assets/img/box.svg);
-  width: 24px;
-  height: 24px;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 /* requiered field */

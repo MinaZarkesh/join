@@ -1,5 +1,3 @@
-let singup_inputs;
-let login_inputs;
 let login_form;
 let back_btn;
 let custom_checkbox_remember_me;
@@ -7,37 +5,31 @@ let custom_checkbox_accept_privacy;
 let login_checkbox;
 
 function initLogin() {
-//   createInputElements();
   createAllElements();
   renderLoginElements("Login");
 }
+
 
 function createAllElements() {
   login_form = "inputs-con";
   checkbox_text = "Remember Me";
   checkbox_id = "checkbox-remember-me";
-  // custom_checkbox_remember_me = new CustomCheckbox(login_form,checkbox_id,checkbox_text);
-  // custom_checkbox_accept_privacy = new CustomCheckbox(login_form,checkbox_id, checkbox_text);
   setBackBtnsignup();
 }
 
 function renderLoginElements(bool) {
     docID("inputs-con").textContent = "";
     docID("login-form-button-group").textContent = "";
+    
     if(bool == 'Login') {
         input_email = new Divinputimg("inputs-con", "imput-img-div", "mail", "Email", "../assets/img/icon-mail.png", "input-con-email-input-id", "input-con-email-input-div-id");
         input_password = new Divinputimg("inputs-con", "imput-img-div", "password", "Password", "../assets/img/icon-lock-closed.png", "input-con-password-input-id", "input-con-password-input-div-id");
-        custom_checkbox_remember_me = new CustomCheckbox(login_form,checkbox_id,checkbox_text);
+        custom_checkbox_remember_me = new CustomCheckbox("inputs-con","checkbox-remember-me","Remember Me");
         new Button("login-form-button-group", "", "button font-t5", navToSummary, 'Log in');
         new Button("login-form-button-group", "", "secondary-button font-t5", navToSummary, 'Guest Log in');
     }
-  // bool = "Login";
-//   let input_fields;
-//   let button;
-//   singup_inputs = [input_name, input_email, input_password, input_confirm_password];
 
   if (bool === "Sign up") {
-    // input_fields = singup_inputs;
     checkbox_text = "";
     input_name = new Divinputimg("inputs-con","imput-img-div","text","Name","../assets/img/icon-person.png", "input-con-name-input-id", "input-con-name-input-div-id");
     input_email = new Divinputimg("inputs-con", "imput-img-div", "mail", "Email", "../assets/img/icon-mail.png", "input-con-email-input-id", "input-con-email-input-div-id");
@@ -58,14 +50,9 @@ function renderLoginElements(bool) {
 
 function setBackBtnsignup() {
   back_btn = new BackBtn("login-item","signup",() => renderLoginElements("Login"));
-
-  // return BackBtnsignup.content;
 }
 
-// function setCheckBox(id, checkbox_text) {
-//   let custom_checkbox_login = new CustomCheckbox(login_form, id, checkbox_text);
-//   return custom_checkbox_login;
-// }
+
 
 /*** Sign-up ***/
 
@@ -113,8 +100,6 @@ function saveInputValues() {
     console.log("Login: ",name_value,email_value,password_value, confirm_password_value
     );
   }
-
-  // renderLoginElements('Login')
 }
 
 function isCheckSignupForm(){

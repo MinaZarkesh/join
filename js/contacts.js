@@ -11,7 +11,7 @@ function initContacts() {
 function renderContactList() {
   //Teile String in Array aus Buchstaben
   alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  docID(parent_array).innerHTML = "";
+  docID(parent_array).textContent = "";
   //Fülle die ContactListe neu
   alphabet.forEach((ltr, i) => {
     letter = ltr; //for checkLetter
@@ -73,7 +73,7 @@ function resetActive() {
 let text;
 
 function layoutContactsOverlay() {
-  docID("inputs-con").innerHTML = "";
+  docID("inputs-con").textContent = "";
   input_name = new Divinputimg(
     "inputs-con",
     "imput-img-div",
@@ -168,7 +168,7 @@ function deleteContact(idx) {
     }
   });
   renderContactList();
-  docID("floating-contacts").innerHTML = "";
+  docID("floating-contacts").textContent = "";
   closeButton();
 }
 
@@ -178,7 +178,7 @@ function closeButton() {
 
 function renderEditContact(id) {
   layoutContactsOverlay();
-  docID("edit-contact-con-overlay").innerHTML = "";
+  docID("edit-contact-con-overlay").textContent = "";
   new ProfilBagde(
     "edit-contact-con-overlay",
     id,
@@ -187,7 +187,7 @@ function renderEditContact(id) {
   );
   //change Values
   docID("edit-contact-overlay-headline").textContent = "Edit contact";
-  docID("edit-contact-button-group").innerHTML = "";
+  docID("edit-contact-button-group").textContent = "";
   new Button(
     "edit-contact-button-group",
     "overlay-secondary-btn",
@@ -215,8 +215,8 @@ function renderEditContact(id) {
 
 function renderAddContact() {
   layoutContactsOverlay();
-  docID("edit-contact-con-overlay").innerHTML = "";
-  docID("edit-contact-button-group").innerHTML = "";
+  docID("edit-contact-con-overlay").textContent = "";
+  docID("edit-contact-button-group").textContent = "";
 
   docID("edit-contact-overlay-headline").textContent = "Add Contact";
   new Img(
@@ -273,7 +273,7 @@ function createFloatingContacts(e) {
   let div_15_id_2 = `${con_id}-15-2`;
   let div_15_id_2_span_id = "floating-contactsPhoneValue-2";
 
-  docID("floating-contacts").innerHTML = "";
+  docID("floating-contacts").textContent = "";
   new Div(parent, con_id, con_class);
   new Div(con_id, hl_id, hl_class);
   new Div(hl_id, profile_con);
