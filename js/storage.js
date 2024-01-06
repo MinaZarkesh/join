@@ -5,6 +5,7 @@ let input_phone;
 let input_password;
 let input_confirm_password;
 let contact_boxes = [];
+let newContact;
 
 /**
  * The token used for remote storage authentication.
@@ -61,7 +62,6 @@ function docID(id) {
 async function init() {
   includeHTML();
   openNavMenu()
-  //createInputElements();
 }
 
 function openNavMenu() {
@@ -76,57 +76,20 @@ function isRequiered(id) {
     This field is required
   `
 }
-
-
-function createInputElements() {
+// function createInputElements() {
  
-  input_confirm_password = new Divinputimg("inputs-con", "imput-img-div", "password", "Confirm Password", "../assets/img/icon-lock-closed.png", "input-con-confirm-password-input-id", "input-con-confirm-password-input-div-id");
-  input_name = new Divinputimg("inputs-con","imput-img-div","text","Name","../assets/img/icon-person.png", "input-con-name-input-id", "input-con-name-input-div-id");
-  input_email = new Divinputimg("inputs-con", "imput-img-div", "mail", "Email", "../assets/img/icon-mail.png", "input-con-email-input-id", "input-con-email-input-div-id");
-  input_phone = new Divinputimg("inputs-con", "imput-img-div", "phone", "Phone", "../assets/img/icon-call.svg", "input-con-phone-input-id", "input-con-phone-input-div-id");
-  input_password = new Divinputimg("inputs-con", "imput-img-div", "password", "Password", "../assets/img/icon-lock-closed.png", "input-con-password-input-id", "input-con-password-input-div-id");
-}
-
-function setInputs(array) {
-
-  // docID("inputs-con").innerHTML = "";
-  // input_name.render("inputs-con", input_name);
-
-  docID(input_name.div_id).innerHTML ="";
-  docID(input_email.div_id).innerHTML ="";
-  docID(input_password.div_id).innerHTML ="";
-  docID(input_confirm_password.div_id).innerHTML ="";
-
-   let element = "";
-  for (let i = 0; i < array.length; i++) {
-    docID(input_name.div_id).innerHTML ="";
-    element += array[i].content;
-  }
-  return element;
-}
+//   input_confirm_password = new Divinputimg("inputs-con", "imput-img-div", "password", "Confirm Password", "../assets/img/icon-lock-closed.png", "input-con-confirm-password-input-id", "input-con-confirm-password-input-div-id");
+//   input_name = new Divinputimg("inputs-con","imput-img-div","text","Name","../assets/img/icon-person.png", "input-con-name-input-id", "input-con-name-input-div-id");
+//   input_email = new Divinputimg("inputs-con", "imput-img-div", "mail", "Email", "../assets/img/icon-mail.png", "input-con-email-input-id", "input-con-email-input-div-id");
+//   input_phone = new Divinputimg("inputs-con", "imput-img-div", "phone", "Phone", "../assets/img/icon-call.svg", "input-con-phone-input-id", "input-con-phone-input-div-id");
+//   input_password = new Divinputimg("inputs-con", "imput-img-div", "password", "Password", "../assets/img/icon-lock-closed.png", "input-con-password-input-id", "input-con-password-input-div-id");
+// }
 
 function createContactBox(parent) {
   let parentArray = contact_boxes; //später Parameter
   //  sortContactItems(oldContacts);
   contacts.sort((a, b) =>
   a.name > b.name ? 1 : b.name > a.name ? -1 : 0);
-
-  // for (let i = 0; i < oldContacts.length; i++) {
-  //   const profileColor = oldContacts[i].color;
-  //   const profileNameTag = oldContacts[i].nameTag;
-  //   const contact_name = oldContacts[i].name;
-  //   const contact_email = oldContacts[i].mail;
-  //   const contact_phone = oldContacts[i].phone;
-
-  //   parentArray.push(
-  //     new Contact(parent, profileColor, profileNameTag, contact_name, contact_email, contact_phone, i)
-  //   );
-  // }
-
-
-//   parentArray.forEach(element => {
-//     element.renderContactItem();
-//   });
 }
 
 
@@ -297,67 +260,43 @@ let oldContacts = [
     phone: "49-123-123",
     nameTag: "AM",
     idx: 9,
-  },
-  // {
-  //   name: "Anja Schulz",
-  //   color: "--variant13",
-  //   mail: "schulz@hotmail.com",
-  //   phone: "49-123-123",
-  //   nameTag: "AS",
-  // },
-  // {
-  //   name: "Benedikt Ziegler",
-  //   color: "--default",
-  //   mail: "benedikt@gmail.com",
-  //   phone: "49-123-123",
-  //   nameTag: "BZ",
-  // },
-  // {
-  //   name: "David Eisenberg",
-  //   color: "--variant14",
-  //   mail: "davidberg@gmail.com",
-  //   phone: "49-123-123",
-  //   nameTag: "DE",
-  // },
-  // {
-  //   name: "Eva Fischer",
-  //   color: "--variant06",
-  //   mail: "eva@gmail.com",
-  //   phone: "49-222-222",
-  //   nameTag: "EF",
-  // },
-  // {
-  //   name: "Emmanuel Mauer",
-  //   color: "--variant10",
-  //   mail: "emmanuelma@gmail.com",
-  //   phone: "49-222-222",
-  //   nameTag: "EM",
-  // },
-  // {
-  //   name: "Marcel Bauer",
-  //   color: "--variant16",
-  //   mail: "bauer@gmail.com",
-  //   phone: "49-222-222",
-  //   nameTag: "MB",
-  // },
-  // {
-  //   name: "Tatjana Wolf",
-  //   color: "--variant15",
-  //   mail: "wolf@gmail.com",
-  //   phone: "49-222-222",
-  //   nameTag: "TW",
-  // },
-  // {
-  //   name: "Sofia Müller",
-  //   color: "--variant04",
-  //   mail: "sofiam@gmail.com",
-  //   phone: "49-222-222",
-  //   nameTag: "SM",
-  // },
+  }
 ];
+
 let contacts = oldContacts;
 
+function addNewContact() {
+  let idx = setNewIdx();
 
+  contacts.push({
+    name: "",
+    color: setRandomColor(),
+    mail: "",
+    phone: "",
+    nameTag: "??",
+    idx: idx,
+  });
+  newContact = contacts[idx];
+}
+
+function checkEmptyInputs() {
+  return (
+    input_name.value != "" &&
+    input_email.value != "" &&
+    !input_phone.value != ""
+  );
+}
+
+function setNewIdx() {
+  let contact_index = 0;
+  //erhöhe die Variable contact_index solange bis docID() null ergibt, also noch nicht vergeben ist.
+  //So wird die Zahl erhöht, bis eine nicht vergeben wurde.
+  do contact_index++;
+  while (docID(`contact-item-${contact_index}`) != null);
+  {
+    return contact_index;
+  }
+}
 
 
 
