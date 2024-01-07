@@ -6,6 +6,7 @@ let input_password;
 let input_confirm_password;
 let contact_boxes = [];
 let newContact;
+let users = [];
 
 /**
  * The token used for remote storage authentication.
@@ -76,14 +77,6 @@ function isRequiered(id) {
     This field is required
   `
 }
-// function createInputElements() {
- 
-//   input_confirm_password = new Divinputimg("inputs-con", "imput-img-div", "password", "Confirm Password", "../assets/img/icon-lock-closed.png", "input-con-confirm-password-input-id", "input-con-confirm-password-input-div-id");
-//   input_name = new Divinputimg("inputs-con","imput-img-div","text","Name","../assets/img/icon-person.png", "input-con-name-input-id", "input-con-name-input-div-id");
-//   input_email = new Divinputimg("inputs-con", "imput-img-div", "mail", "Email", "../assets/img/icon-mail.png", "input-con-email-input-id", "input-con-email-input-div-id");
-//   input_phone = new Divinputimg("inputs-con", "imput-img-div", "phone", "Phone", "../assets/img/icon-call.svg", "input-con-phone-input-id", "input-con-phone-input-div-id");
-//   input_password = new Divinputimg("inputs-con", "imput-img-div", "password", "Password", "../assets/img/icon-lock-closed.png", "input-con-password-input-id", "input-con-password-input-div-id");
-// }
 
 function createContactBox(parent) {
   let parentArray = contact_boxes; //später Parameter
@@ -292,7 +285,7 @@ function setNewIdx() {
   //erhöhe die Variable contact_index solange bis docID() null ergibt, also noch nicht vergeben ist.
   //So wird die Zahl erhöht, bis eine nicht vergeben wurde.
   do contact_index++;
-  while (docID(`contact-item-${contact_index}`) != null);
+   while (docID(`contact-item-${contact_index}`) != null);
   {
     return contact_index;
   }
@@ -301,7 +294,7 @@ function setNewIdx() {
 
 
 // let user = [];
-// let users = [];
+
 // let index = 0;
 // let contact = [];
 // let contacts = [];
@@ -457,81 +450,67 @@ let oldTasks = [
 
 //********************************** */
 
-// let oldUsers = [
-//   {
-//     name: "Guest",
-//     mail: "guest@guest.de",
-//     nameTag: "G",
-//     password: "test123",
-//     phone: "+49 1111 111 11 1",
-//     token: STORAGE_TOKEN,
-//   },
-//   {
-//     name: "Mina M Zarkesh",
-//     mail: "mina@test.de",
-//     nameTag: "MZ",
-//     password: "test123",
-//     phone: "+49 1111 111 11 1",
-//     token: STORAGE_TOKEN,
-//   },
+let oldUsers = [
+  {
+    name: "Guest",
+    mail: "guest@guest.de",
+    nameTag: "G",
+    password: "test123",
+    token: STORAGE_TOKEN,
+  },
+  {
+    name: "Junus Ergin",
+    mail: "junus@test.de",
+    nameTag: "JE",
+    password: "test",
+    token: STORAGE_TOKEN,
+  },
+  {
+    name: "Anton Mayer",
+    mail: "antonmayer@test.de",
+    nameTag: "AM",
+    password: "test123",
+    token: STORAGE_TOKEN,
+  },
+  {
+    name: "Anton Mayer",
+    mail: "antom@gmail.com",
+    nameTag: "AM",
+    password: "test123",
+    token: STORAGE_TOKEN,
+  },
+  {
+    name: "Sofia Muller",
+    mail: "sofiam@gmail.com",
+    nameTag: "SM",
+    password: "mypassword123",
+    token: STORAGE_TOKEN,
+  },
+  {
+    name: "Anja Schulz",
+    mail: "schulz@hotmail.com",
+    nameTag: "AS",
+    password: "mypassword123",
+    token: STORAGE_TOKEN,
+  },
+  {
+    name: "Ali",
+    mail: "ali@ali",
+    nameTag: "AA",
+    password: "123",
+    phone: "+49 1111 111 11 1",
+    token: STORAGE_TOKEN,
+  },
+  {
+    name: "Peter Pan",
+    mail: "pp@nox.de",
+    nameTag: "PP",
+    password: "wendy",
+    token: STORAGE_TOKEN,
+  },
+];
 
-//   {
-//     name: "Junus Ergin",
-//     mail: "junus@test.de",
-//     nameTag: "JE",
-//     password: "test",
-//     phone: "+49 1111 111 11 1",
-//     token: STORAGE_TOKEN,
-//   },
-//   {
-//     name: "Anton Mayer",
-//     mail: "antonmayer@test.de",
-//     nameTag: "AM",
-//     password: "test123",
-//     phone: "+49 1111 111 11 1",
-//     token: STORAGE_TOKEN,
-//   },
-//   {
-//     name: "Anton Mayer",
-//     mail: "antom@gmail.com",
-//     nameTag: "AM",
-//     password: "test123",
-//     phone: "+49 1111 111 11 1",
-//     token: STORAGE_TOKEN,
-//   },
-//   {
-//     name: "Sofia Muller",
-//     mail: "sofiam@gmail.com",
-//     nameTag: "SM",
-//     password: "mypassword123",
-//     phone: "+49 1111 111 11 1",
-//     token: STORAGE_TOKEN,
-//   },
-//   {
-//     name: "Anja Schulz",
-//     mail: "schulz@hotmail.com",
-//     nameTag: "AS",
-//     password: "mypassword123",
-//     phone: "+49 1111 111 11 1",
-//     token: STORAGE_TOKEN,
-//   },
-//   {
-//     name: "Ali",
-//     mail: "ali@ali",
-//     nameTag: "AA",
-//     password: "123",
-//     phone: "+49 1111 111 11 1",
-//     token: STORAGE_TOKEN,
-//   },
-//   {
-//     name: "Peter Pan",
-//     mail: "pp@nox.de",
-//     nameTag: "PP",
-//     password: "wendy",
-//     phone: "+49 1111 111 11 1",
-//     token: STORAGE_TOKEN,
-//   },
-// ];
+users = oldUsers;
 
 //********************************************* */
 // resetUsers =

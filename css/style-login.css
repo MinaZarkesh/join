@@ -119,13 +119,21 @@ main {
   padding-left: 16px;
 }
 
-#label-accept-privacy a {
+#labelcheckbox-accept-privacy a {
   color: var(--primary);
+  
 }
 
 #label-remember-me :hover {
   cursor: pointer;
   padding-right: 0;
+}
+
+#labelcheckbox-accept-privacy{
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  padding-left: 0;
 }
 
 #login-item h1 {
