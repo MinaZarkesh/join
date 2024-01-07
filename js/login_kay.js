@@ -200,7 +200,6 @@ function isSamePassword(){
 }
 
 function addNewUser() {
-
   let newUser = {
     name: input_name_value,
     mail: input_email_value,
@@ -210,4 +209,3 @@ function addNewUser() {
   };
   users.push(newUser);
 }
-

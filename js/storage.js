@@ -309,7 +309,6 @@ function createNameTag(name) {
 }
 
 // let user = [];
-
 // let index = 0;
 // let contact = [];
 // let contacts = [];
@@ -471,57 +470,48 @@ let oldUsers = [
     mail: "guest@guest.de",
     nameTag: "G",
     password: "test123",
-    token: STORAGE_TOKEN,
   },
   {
     name: "Junus Ergin",
     mail: "junus@test.de",
     nameTag: "JE",
     password: "test",
-    token: STORAGE_TOKEN,
   },
   {
     name: "Anton Mayer",
     mail: "antonmayer@test.de",
     nameTag: "AM",
     password: "test123",
-    token: STORAGE_TOKEN,
   },
   {
     name: "Anton Mayer",
     mail: "antom@gmail.com",
     nameTag: "AM",
     password: "test123",
-    token: STORAGE_TOKEN,
   },
   {
     name: "Sofia Muller",
     mail: "sofiam@gmail.com",
     nameTag: "SM",
     password: "mypassword123",
-    token: STORAGE_TOKEN,
   },
   {
     name: "Anja Schulz",
     mail: "schulz@hotmail.com",
     nameTag: "AS",
     password: "mypassword123",
-    token: STORAGE_TOKEN,
-  },
-  {
-    name: "Ali",
-    mail: "ali@ali",
-    nameTag: "AA",
-    password: "123",
-    phone: "+49 1111 111 11 1",
-    token: STORAGE_TOKEN,
   },
   {
     name: "Peter Pan",
     mail: "pp@nox.de",
     nameTag: "PP",
     password: "wendy",
-    token: STORAGE_TOKEN,
+  },
+  {
+    name: "Mina  M  Zarkesh",
+    mail: "mina@email.de",
+    nameTag: "MZ",
+    password: "hallo123",
   },
 ];
 
