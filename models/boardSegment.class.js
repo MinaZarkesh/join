@@ -1,4 +1,4 @@
-class BoardSegment extends World {
+class BoardSegment{
 
     container;
     con_id;
@@ -21,7 +21,6 @@ class BoardSegment extends World {
 
 
     constructor(parent, segment, headline) {
-        super();
         this.con_id = `${segment}-con`;
         this.headline_con_id = `${segment}-headline-con`;
         this.button_id = `${segment}-btn`
