@@ -1,4 +1,4 @@
-class BoardBigCard extends Elements {
+class BoardBigCard{
     container_id = "main-bord-card";
     container_class = this.container_id;
     department;
@@ -28,9 +28,8 @@ class BoardBigCard extends Elements {
     edit_class = `big-card-edit`;
 
     constructor(e, parent) {
-        super();
         this.department = new Div(parent, this.department_id, this.department_class);
-        this.depart(e, this.department_id);
+        this.department.depart(e, this.department_id);
         new Img(parent, "card-close","card-close","../assets/img/close.png");
         this.title = new Div(parent, this.title_id, this.title_class);
         new Span(this.title_id, "", "",e.title);

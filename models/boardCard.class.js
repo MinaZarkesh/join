@@ -1,4 +1,4 @@
-class BoardCard extends Elements {
+class BoardCard{
     task;
     container;
     container_id;
@@ -18,7 +18,6 @@ class BoardCard extends Elements {
     associates_class = "card-associates";
 
     constructor(e) {
-        super();
         this.container_id = e.container.replace("-con", "") + `-card-${e.id}`;
         this.departments_id= this.container_id + 'department-con';
         this.description_id = this.container_id + 'description-con';
@@ -27,7 +26,7 @@ class BoardCard extends Elements {
         // this.task = taskElement();
         this.container = new Div(e.container, this.container_id, this.container_class);
         this.departments = new Div(this.container_id, this.departments_id, this.departments_class, this.departments_content);
-        this.depart(e, this.departments_id);
+        this.departments.depart(e, this.departments_id);
         this.description = new Div(this.container_id, this.description_id, this.description_class,);
         this.title(e, this.description_id)
         this.subtask = new Div(this.container_id, this.subtask_id, this.subtask_class);

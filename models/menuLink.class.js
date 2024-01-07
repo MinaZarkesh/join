@@ -1,4 +1,4 @@
-class MenuLink extends World {
+class MenuLink{
     name;
     anchor_id;
     anchor_class = "nav-link font-body";
@@ -7,7 +7,7 @@ class MenuLink extends World {
     img_id;
     img_src;
     constructor(id) {
-        super();
+        // super();
         this.classname = "active";
         this.name = id.charAt(0).toUpperCase() + id.slice(1);
         this.name = this.name.replace("_t", " T");

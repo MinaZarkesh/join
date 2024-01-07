@@ -1,7 +1,6 @@
-class CustomCheckbox extends World{
+class CustomCheckbox{
   div_id;
   constructor(parent, name, text) {
-    super();
     this.div_id = `${parent}-div`;
     new Div(parent, this.div_id, "");
     new Checkbox(this.div_id, name, "checkbox");
