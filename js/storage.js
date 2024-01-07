@@ -261,15 +261,16 @@ let contacts = oldContacts;
 function addNewContact() {
   let idx = setNewIdx();
 
-  contacts.push({
+  newContact ={
     name: "",
     color: setRandomColor(),
     mail: "",
     phone: "",
     nameTag: "??",
     idx: idx,
-  });
-  newContact = contacts[idx];
+  };
+
+  contacts.push(newContact);
 }
 
 function checkEmptyInputs() {

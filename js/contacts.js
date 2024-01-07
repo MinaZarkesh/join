@@ -66,8 +66,10 @@ function setActive(idx) {
 function resetActive() {
   for (let i = 0; i < contacts.length; i++) {
     let contact = contacts[i];
+    // console.log( i, contact);
+
     //reset attributes from before
-    docID(`contact-item-${contact.idx}`).classList.remove("active-contact");
+     docID(`contact-item-${contact.idx}`).classList.remove("active-contact");
   }
 }
 let text;
@@ -134,6 +136,7 @@ function updateContactItem(contact) {
 function renderNewContact() {
   addNewContact()
   idx = contacts.indexOf(newContact);
+
   saveContact(idx);
 }
 
