@@ -1,4 +1,4 @@
-class Divinputimg extends Elements{
+class Divinputimg{
   parent_div;
   child_div;
   div_id;
@@ -14,7 +14,7 @@ class Divinputimg extends Elements{
   // content;
   constructor(parent, className, type, placeholder, imgsrc, id, div_id) {
   //  super();
-   super('div', id, className)
+  //  super('div', id, className)
     this.div_id = div_id;
     // this.div_id = `${parent}-div`;
     this.img_id = `${parent}-img`;
