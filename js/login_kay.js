@@ -204,11 +204,10 @@ function addNewUser() {
   let newUser = {
     name: input_name_value,
     mail: input_email_value,
-    nameTag: "??",
+    nameTag: createNameTag(input_name_value),
     password: input_password_value,
     token: STORAGE_TOKEN,
   };
-
   users.push(newUser);
-
 }
+

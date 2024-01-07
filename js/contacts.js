@@ -118,6 +118,7 @@ function fillEditContact(e) {
 
 function saveContact(idx) {
   edit_contact = contacts[idx];
+  // contacts[idx].nameTag = createNameTag(contacts[idx].name);
 
   updateContactItem(edit_contact);
   renderContactList();
@@ -130,13 +131,15 @@ function updateContactItem(contact) {
     contact.name = docID(input_name.input_id).value;
     contact.mail = docID(input_email.input_id).value;
     contact.phone = docID(input_phone.input_id).value;
+    contact.nameTag = createNameTag(contact.name);
   }
 }
 
 function renderNewContact() {
   addNewContact()
-  idx = contacts.indexOf(newContact);
 
+  idx = contacts.indexOf(newContact);
+  contacts[idx].nameTag = createNameTag(contacts[idx].name);
   saveContact(idx);
 }
 

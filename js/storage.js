@@ -292,7 +292,21 @@ function setNewIdx() {
   }
 }
 
-
+/**
+ * Generates a name tag based on the given name.
+ * made by Mina Zarkesh
+ * @param {string} name - The name to generate the name tag from.
+ * @return {string} The generated name tag.
+ */
+/**TODO upperCase */
+function createNameTag(name) {
+  let currentName = name;
+  let nameArray = currentName.split(" ");
+  let nameTag = nameArray[0].charAt(0);
+  nameTag += nameArray[nameArray.length - 1].charAt(0);
+  nameTag = nameTag.toUpperCase();
+  return nameTag;
+}
 
 // let user = [];
 
