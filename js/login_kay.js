@@ -169,7 +169,7 @@ function saveInputValues() {
   let confirm_password_value;
 
   if (isCheckSignupForm() && isSamePassword()) {
-    if (!containsMails()) {
+    if (!isContainedMails()) {
       name_value = input_name_value;
       email_value = input_email_value;
       password_value = input_password_value;
@@ -211,18 +211,12 @@ function addNewUser() {
 let email;
 let emails = [];
 
-function containsMails() {
+function isContainedMails() {
   input_email_value = docID("input-con-email-input-id").value;
-
-  for (let i = 0; i < users.length; i++) {
-    email = users[i].mail;
-    emails.push(email);
-  }
-  if (emails.includes(input_email_value)) {
-    return true;
-  } else {
-    return false;
-  }
+  users.forEach((user) => {
+    emails.push(user.mail);
+  });
+  return emails.includes(input_email_value) ? (bool = true) : (bool = false);
 }
 
 function loginUser() {
@@ -230,7 +224,7 @@ function loginUser() {
   input_email_value = docID("input-con-email-input-id").value;
   input_password_value = docID("input-con-password-input-id").value;
 
-  if (containsMails()) {
+  if (isContainedMails()) {
     let login_idx = emails.indexOf(input_email_value);
     active_user = users[login_idx];
 
@@ -243,5 +237,9 @@ function loginUser() {
       docID("input-con-password-input-id").value = "";
       alert("Das Passwort stimmt nicht überein, bitte noch einmal eingeben.");
     }
+  } else {
+    docID("input-con-email-input-id").value = "";
+    docID("input-con-password-input-id").value = "";
+    alert("Die Email stimmt nicht überein, bitte noch einmal eingeben.");
   }
 }

@@ -32,11 +32,28 @@ let images = [
 
 async function initSummary() {
   init();
-  // activeUser();
-  // updateUserValues();
+  greetings();
   createSummaryBoxes(); //creates summary-boxes beim laden
   // updateTaskAmounts();
 }
+
+function greetings(){
+  const currentHour = new Date().getHours();
+  let greeting = "";
+
+  if (currentHour >= 0 && currentHour < 12) {
+      greeting = "Good Morning";
+  } else if (currentHour >= 15 && currentHour < 18) {
+      greeting = "Good Afternoon";
+  } else if (currentHour >= 18 && currentHour < 21) {
+      greeting = "Good Evening";
+  } else {
+      greeting = "Good Night";
+  }
+
+docID("greetings").innerHTML = `${greeting}, ${active_user.name}`;
+}
+
 
 function createSummaryBoxes() {
 
