@@ -161,27 +161,24 @@ function saveInputValues() {
   input_confirm_password_value = docID(
     "input-con-confirm-password-input-id"
   ).value;
-
   isCheckedBox = docID("checkbox-accept-privacy").checked;
+
   let name_value;
   let email_value;
   let password_value;
   let confirm_password_value;
 
   if (isCheckSignupForm() && isSamePassword()) {
+   
+    if(checkMails()){
+      name_value = input_name_value;
+      email_value = input_email_value;
+      password_value = input_password_value;
+      confirm_password_value = input_confirm_password_value;
+  
+      addNewUser();
+    }
 
-    name_value = input_name_value;
-    email_value = input_email_value;
-    password_value = input_password_value;
-    confirm_password_value = input_confirm_password_value;
-    console.log(
-      "Login: ",
-      name_value,
-      email_value,
-      password_value,
-      confirm_password_value
-    );
-    addNewUser();
   }
 }
 
@@ -195,7 +192,7 @@ function isCheckSignupForm() {
   );
 }
 
-function isSamePassword(){
+function isSamePassword() {
   return input_password_value == input_confirm_password_value;
 }
 
@@ -208,4 +205,26 @@ function addNewUser() {
     token: STORAGE_TOKEN,
   };
   users.push(newUser);
+}
+
+let email;
+let emails = [];
+
+function checkMails() {
+  for (let i = 0; i < users.length; i++) {
+    email = users[i].mail;
+    emails.push(email);
+  }
+  if (!emails.includes(input_email_value)) {
+    return true;
+  } else {
+    docID("input-con-email-input-id").value = '';
+    alert("Diese Mail ist schon registriert. Loggen Sie sich ein oder nutzen Sie eine andere Mail-Adresse.");
+    return false;
+  }
+}
+
+
+function loginUser(){
+  
 }

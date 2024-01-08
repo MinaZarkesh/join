@@ -298,7 +298,6 @@ function setNewIdx() {
  * @param {string} name - The name to generate the name tag from.
  * @return {string} The generated name tag.
  */
-/**TODO upperCase */
 function createNameTag(name) {
   let currentName = name;
   let nameArray = currentName.split(" ");

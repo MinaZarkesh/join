@@ -1,31 +1,49 @@
 class Divinputimg{
-  parent_div;
+parent_div;
   child_div;
   div_id;
-  div_element;
+div_element;
   div_onclick;
   img_id;
   img_onclick;
   imgId;
-  input;
+input;
   inputfocus;
   placeholder;
   type;
-  // content;
+ // content;
   constructor(parent, className, type, placeholder, imgsrc, id, div_id) {
-  //  super();
+ //  super();
   //  super('div', id, className)
     this.div_id = div_id;
-    // this.div_id = `${parent}-div`;
+// this.div_id = `${parent}-div`;
     this.img_id = `${parent}-img`;
-    this.parent_div = parent;
+this.parent_div = parent;
     // this.input_id = `${className}-${type}-input-id`;
     this.input_id = id;
     this.inputForSelect(parent, className);
+
     this.div_onclick = imgsrc.includes("+.png") ? function () {submitSubtask("input-con-Add")}: "";
     this.img_onclick = imgsrc.includes("arrow_drop_down.png") ? function () {dropdownMenu(this.img_id, parent, parent)}: "";
     this.img_onclick = imgsrc.includes("+.png") ? function () {submitSubtask("input-con-Add")} : this.img_onclick;
     // this.img_onclick = imgsrc.includes('icon-lock') ? togglePassword() : this.imgId; //die toggle Funktion gibt es noch nicht.
+
+    this.div_onclick = imgsrc.includes("+.png")
+      ? function () {
+          submitSubtask("input-con-Add");
+        }
+      : "";
+    this.img_onclick = imgsrc.includes("arrow_drop_down.png")
+      ? function () {
+          dropdownMenu(this.img_id, parent, parent);
+        }
+      : "";
+    this.img_onclick = imgsrc.includes("+.png")
+      ? function () {
+          submitSubtask("input-con-Add");
+        }
+      : this.imgId;
+
     this.inputfocus = imgsrc.includes("+.png")
       ? `onfocusin='subtasksFocusIn()'`
       : this.imgId;
@@ -41,8 +59,8 @@ class Divinputimg{
     //  this.render(parent, this.content);
 
     //Wenn ich das Objekt neu rendere, dann erkennt er es als Object und nicht als html-element
-    new Div(parent, this.div_id, className);
-    // new Div(this.div_id, , className);
+   new Div(parent, this.div_id, className);
+   // new Div(this.div_id, , className);
     this.input = new Input(
       this.div_id,
       this.input_id,
@@ -50,8 +68,8 @@ class Divinputimg{
       this.type,
       this.placeholder
     );
-    new Img(this.div_id, this.img_id, "", imgsrc);
-   
+   new Img(this.div_id, this.img_id, "", imgsrc);    
+
     this.child_div = docID(parent).innerHTML;
     
     docID(this.div_id).onclick = this.div_onclick;
