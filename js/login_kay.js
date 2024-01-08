@@ -42,14 +42,14 @@ function renderLoginElements(bool) {
     );
     new Button(
       "login-form-button-group",
-      "",
+      "login-button",
       "button font-t5",
-      navToSummary,
+      loginUser,
       "Log in"
     );
     new Button(
       "login-form-button-group",
-      "",
+      "guest-login-button",
       "secondary-button font-t5",
       navToSummary,
       "Guest Log in"
@@ -169,16 +169,18 @@ function saveInputValues() {
   let confirm_password_value;
 
   if (isCheckSignupForm() && isSamePassword()) {
-   
-    if(checkMails()){
+    if (!containsMails()) {
       name_value = input_name_value;
       email_value = input_email_value;
       password_value = input_password_value;
       confirm_password_value = input_confirm_password_value;
-  
       addNewUser();
+    } else {
+      docID("input-con-email-input-id").value = "";
+      alert(
+        "Diese Mail ist schon registriert. Loggen Sie sich ein oder nutzen Sie eine andere Mail-Adresse."
+      );
     }
-
   }
 }
 
@@ -202,7 +204,6 @@ function addNewUser() {
     mail: input_email_value,
     nameTag: createNameTag(input_name_value),
     password: input_password_value,
-    token: STORAGE_TOKEN,
   };
   users.push(newUser);
 }
@@ -210,21 +211,37 @@ function addNewUser() {
 let email;
 let emails = [];
 
-function checkMails() {
+function containsMails() {
+  input_email_value = docID("input-con-email-input-id").value;
+
   for (let i = 0; i < users.length; i++) {
     email = users[i].mail;
     emails.push(email);
   }
-  if (!emails.includes(input_email_value)) {
+  if (emails.includes(input_email_value)) {
     return true;
   } else {
-    docID("input-con-email-input-id").value = '';
-    alert("Diese Mail ist schon registriert. Loggen Sie sich ein oder nutzen Sie eine andere Mail-Adresse.");
     return false;
   }
 }
 
+function loginUser() {
+  active_user = "";
+  input_email_value = docID("input-con-email-input-id").value;
+  input_password_value = docID("input-con-password-input-id").value;
 
-function loginUser(){
-  
+  if (containsMails()) {
+    let login_idx = emails.indexOf(input_email_value);
+    active_user = users[login_idx];
+
+    if (active_user.password == input_password_value) {
+      active_user = JSON.stringify(active_user);
+      console.log("Login erfolgreich", active_user);
+      sessionUsersave(active_user);
+      navToSummary();
+    } else {
+      docID("input-con-password-input-id").value = "";
+      alert("Das Passwort stimmt nicht überein, bitte noch einmal eingeben.");
+    }
+  }
 }

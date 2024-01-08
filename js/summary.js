@@ -30,8 +30,10 @@ let images = [
   "../assets/img/done_summary.png",
 ];
 
-function initSummary() {
+async function initSummary() {
   init();
+  // activeUser();
+  // updateUserValues();
   createSummaryBoxes(); //creates summary-boxes beim laden
   // updateTaskAmounts();
 }
@@ -98,3 +100,4 @@ function changeScreenView() {
     element.renderPosition(index);
   }
 }
+

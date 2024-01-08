@@ -7,6 +7,7 @@ let input_confirm_password;
 let contact_boxes = [];
 let newContact;
 let users = [];
+let active_user;
 
 /**
  * The token used for remote storage authentication.
@@ -61,7 +62,9 @@ function docID(id) {
 }
 
 async function init() {
-  includeHTML();
+  // includeHTML();
+  activeUser();
+  updateUserValues();
   openNavMenu()
 }
 
@@ -70,6 +73,10 @@ function openNavMenu() {
   new MenuLink("add_task");
   new MenuLink("board");
   new MenuLink("contacts");
+}
+
+function updateUserValues(){
+  docID("header-name-tag").innerHTML = active_user.nameTag;
 }
 
 function isRequiered(id) {
@@ -358,20 +365,44 @@ function createNameTag(name) {
 //   return tasks, task, taskIndex;
 // }
 
-// /**
-//  * Checks the index and redirects the user to a specific link.
-//  * made by Mina Zarkesh
-//  *
-//  * @param {string} link - The link to redirect the user to.
-//  * @return {undefined} This function does not return a value.
-//  */
-// // function checkIndex(link) {
-// //   index = getCurrentUserVariable();
-// //   if (index === null) {
-// //     index = 0;
-// //   }
-// //   window.location.href = `${link}.html?id=${index}`;
-// // }
+function activeUser() {
+  if (localStorage.getItem('activeuser') === null) {
+      if (sessionStorage.getItem('activeuser') === null) {
+          window.location.href = './index.html';
+          // return false;?
+      }
+      else {
+        sessionUserload()
+        // window.location.href = './summary.html';
+          return true; //welche Variable wird true gesetzt?
+      }
+  } else {
+    localUserload();
+    // window.location.href = './summary.html';
+  }
+}
+
+function localUsersave(user) {
+  localStorage.setItem('activeuser', user);
+}
+
+function sessionUsersave(user) {
+  sessionStorage.setItem('activeuser', user);
+}
+//Backend speichern?
+function localUserload() {
+  let user = localStorage.getItem('activeuser');
+ active_user = JSON.parse(user);
+ }
+
+function sessionUserload() {
+  let user = sessionStorage.getItem('activeuser');
+  active_user = JSON.parse(user);
+}
+
+
+
+
 
 // /**************** TasksArray, wird später ersetzt werden *****************/
 
