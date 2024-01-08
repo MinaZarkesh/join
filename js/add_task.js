@@ -53,7 +53,7 @@ function dropdownMenu(imgid, parent, select) {
     let input_id = select == 'assigned' ? "input-con-assigned-input-id" : "input-con-category-input-id";
     let tasks_Parent = select == 'assigned' ? ".tasks-contacts" : ".tasks-category";
     let drop_Down = select == 'assigned' ? dropdownContacts : dropdownCategory;
-    if(!drop_Down) { // oder dropdownContacts
+    if(!drop_Down) {
         createDropMenu(list_Parent, parent, tasks_Parent, select, imgid, list_Con, input_id);
     } else {
         dropUp(select, list_Parent, imgid, list_Con, input_id, tasks_Parent);
@@ -69,7 +69,7 @@ function createDropMenu(list_parent, parent, tasks_parent, select, imgid, list_C
     if (document.querySelectorAll(tasks_parent).length == 0) {
         select == 'assigned' ? createContactListTask() : createCategoryList();
     }
-    if (select == "assigned") {contact_boxes = []}  // wird das noch gebraucht?
+    if (select == "assigned")
     select == 'assigned' ? dropdownContacts = true : dropdownCategory = true;  
     docID(imgid).src = "../assets/img/arrow_up.png";
     docID(list_Con).classList.add('d-none'); 

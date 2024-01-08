@@ -22,21 +22,9 @@ class Divinputimg{
     // this.input_id = `${className}-${type}-input-id`;
     this.input_id = id;
     this.inputForSelect(parent, className);
-    this.div_onclick = imgsrc.includes("+.png")
-      ? function () {
-          submitSubtask("input-con-Add");
-        }
-      : "";
-    this.img_onclick = imgsrc.includes("arrow_drop_down.png")
-      ? function () {
-          dropdownMenu(this.img_id, parent, parent);
-        }
-      : "";
-    this.img_onclick = imgsrc.includes("+.png")
-      ? function () {
-          submitSubtask("input-con-Add");
-        }
-      : this.imgId;
+    this.div_onclick = imgsrc.includes("+.png") ? function () {submitSubtask("input-con-Add")}: "";
+    this.img_onclick = imgsrc.includes("arrow_drop_down.png") ? function () {dropdownMenu(this.img_id, parent, parent)}: "";
+    this.img_onclick = imgsrc.includes("+.png") ? function () {submitSubtask("input-con-Add")} : this.img_onclick;
     // this.img_onclick = imgsrc.includes('icon-lock') ? togglePassword() : this.imgId; //die toggle Funktion gibt es noch nicht.
     this.inputfocus = imgsrc.includes("+.png")
       ? `onfocusin='subtasksFocusIn()'`
