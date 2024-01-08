@@ -44,14 +44,18 @@ function renderLoginElements(bool) {
       "login-form-button-group",
       "login-button",
       "button font-t5",
-      loginUser,
+      function () {
+        loginUser("Login");
+      },
       "Log in"
     );
     new Button(
       "login-form-button-group",
       "guest-login-button",
       "secondary-button font-t5",
-      navToSummary,
+      function () {
+        loginUser("Guest");
+      },
       "Guest Log in"
     );
   }
@@ -219,27 +223,36 @@ function isContainedMails() {
   return emails.includes(input_email_value) ? (bool = true) : (bool = false);
 }
 
-function loginUser() {
-  active_user = "";
-  input_email_value = docID("input-con-email-input-id").value;
-  input_password_value = docID("input-con-password-input-id").value;
+function loginUser(bool) {
+  if (bool == "Login") {
+    active_user = "";
+    input_email_value = docID("input-con-email-input-id").value;
+    input_password_value = docID("input-con-password-input-id").value;
 
-  if (isContainedMails()) {
-    let login_idx = emails.indexOf(input_email_value);
-    active_user = users[login_idx];
+    if (isContainedMails()) {
+      let login_idx = emails.indexOf(input_email_value);
+      active_user = users[login_idx];
 
-    if (active_user.password == input_password_value) {
-      active_user = JSON.stringify(active_user);
-      console.log("Login erfolgreich", active_user);
-      sessionUsersave(active_user);
-      navToSummary();
+      if (active_user.password == input_password_value) {
+        active_user = JSON.stringify(active_user);
+        console.log("Login erfolgreich", active_user);
+        sessionUsersave(active_user);
+        navToSummary();
+      } else {
+        docID("input-con-password-input-id").value = "";
+        alert("Das Passwort stimmt nicht überein, bitte noch einmal eingeben.");
+      }
     } else {
+      docID("input-con-email-input-id").value = "";
       docID("input-con-password-input-id").value = "";
-      alert("Das Passwort stimmt nicht überein, bitte noch einmal eingeben.");
+      alert("Die Email stimmt nicht überein, bitte noch einmal eingeben.");
     }
-  } else {
-    docID("input-con-email-input-id").value = "";
-    docID("input-con-password-input-id").value = "";
-    alert("Die Email stimmt nicht überein, bitte noch einmal eingeben.");
+  }
+  else if((bool == "Guest")) {
+    active_user = users[0];
+    active_user = JSON.stringify(active_user);
+    console.log("Login Guest erfolgreich", active_user);
+    sessionUsersave(active_user);
+    navToSummary();
   }
 }

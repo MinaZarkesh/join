@@ -51,7 +51,7 @@ function greetings(){
       greeting = "Good Night";
   }
 
-docID("greetings").innerHTML = `${greeting}, ${active_user.name}`;
+  docID("greetings").innerHTML =  (active_user.name == "Guest") ? `${greeting}` : `${greeting}, ${active_user.name}`;
 }
 
 
