@@ -14,7 +14,9 @@ function initBoard() {
     "search-text-input-id",
     "search-con-div"
   ); //+ id + div_id
-  new Button("search-con", "", "button", "", "Ask Task");
+  new Button("search-con", "", "button",   function () {
+    filterTasks();
+  }, "Add Task");
   new Img("board-head-con", "", "", "../assets/img/cross white.png");
   new Div("main-board", "board-content-con", ""); //the content container
   new BoardSegment("board-content-con", "to-do", "To do");
@@ -119,6 +121,39 @@ function getTasksIdx() {
     }
   }
   return task_idx;
+}
+
+let filteredTasks = [];
+let filteredTasks_Ids = [];
+
+function filterTasks(){
+  word = docID("search-text-input-id").value;
+filteredTasks = [];
+filteredTasks_Ids =[];
+filteredTasks = document.querySelectorAll(".board-card");
+
+filteredTasks.forEach((e)=>{
+  e.classList.add("d-none");
+})
+
+  // word = "Weihnacht";
+  tasks.forEach((e) => {
+    if(isMatch(e, word)){
+      let id = e.container.replace("-con", "") + `-card-${e.id}`;
+       filteredTasks_Ids.push(id);
+    }
+  })
+
+  filteredTasks_Ids.forEach((e)=>{
+    docID(e).classList.remove("d-none");
+});
+}
+
+function isMatch(obj, word){
+let title = obj.title.includes(word, word.toUpperCase, word.toLowerCase);
+let description = obj.description.includes(word, word.toUpperCase, word.toLowerCase);
+let yourNameArray = obj.subtasks.includes(word, word.toUpperCase, word.toLowerCase) // Array
+ return title || description || yourNameArray;
 }
 
 /**
