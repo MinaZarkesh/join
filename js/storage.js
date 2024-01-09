@@ -136,16 +136,19 @@ categorys = [
     name: "Office",
     color: "--variant02",
     nameTag: "OF",
+    idx: 0
   },
   {
     name: "Design",
     color: "--variant03",
     nameTag: "DN",
+    idx: 1
   },
   {
     name: "Engine",
     color: "--variant04",
     nameTag: "EN",
+    idx: 2
   },
 ];
 
