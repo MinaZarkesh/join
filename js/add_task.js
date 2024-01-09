@@ -273,23 +273,6 @@ function subtaskChange(value, i) {
             updateSubtask(i,`${value}`);
         }
     })
-    // neu schreiben. 
-    // let edit_value = docID(value).value;
-    // let upadate_id = "edit-subtask";
-    // new Divinputimg('subtasks-con', "input-con blue-border", 'text', "", "../assets/img/delete.png", 'input-con-text-input-id', 'subtask-div');
-    // new Img('subtasks-con-div',"subtasklist-check-img", "", "../assets/img/check.png");
-    // docID('subtasks-con-div').onclick = undefined;
-    // docID('subtasks-con-img').onclick = function () {deleteSubtask(i)};
-    // docID('subtasklist-check-img').onclick = function () {updateSubtask(i,`${upadate_id}`)};
-    // docID(value).value = edit_value;
-    
-    // docID('subtasks-con').innerHTML = /*html*/`
-    //     <div class="input-con blue-border" id="subtasklist-div">
-    //         <input id="${upadate_id}" type="text" class="font-t6" value="${edit_value}">
-    //         <img id="subtasklist-img" onclick="" src="../assets/img/delete.png" class="margin-10">
-    //         <img id="subtasklist-check-img" onclick="updateSubtask(${i},'${upadate_id}')" src="../assets/img/check.png">
-    //     </div>
-    // `
 }
 
 function updateSubtask(i, upadate_id) {

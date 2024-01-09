@@ -82,9 +82,7 @@ function createSummaryBoxes() {
   docID(summaryBox_div_id).innerHTML = "";
 
   for (let i = 0; i < item_amount; i++) {
-    docID(summaryBox_div_id).innerHTML += /*html*/ `
-    <div id="${summaryBox_div_id}-${i}"></div>
-    `;
+    new Div(summaryBox_div_id, `${summaryBox_div_id}-${i}`)
     summary_boxes.push(new SummaryBox(summaryBox_div_id, i));
   }
   createFirstBox();

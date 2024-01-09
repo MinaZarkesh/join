@@ -30,10 +30,22 @@ tasks = oldTasks;
 // let taskIndex;
 
 let segements_array = [
-  "to-do-con",
-  "in-progress-con",
-  "await-feedback-con",
-  "done-con",
+  {
+    con: "to-do-con",
+    headline: "To do",
+  },
+  {
+    con: "in-progress-con",
+    headline: "In progress",
+  },
+  {
+    con: "await-feedback-con",
+    headline: "Await feedback",
+  },
+  {
+    con: "done-con",
+    headline: "Done",
+  }
 ];
 
 /**
@@ -124,7 +136,7 @@ function createContactBox(parent) {
 function getTasksAmounts() {
   task_amounts = [];
   segements_array.forEach((e) => {
-    task_amounts.push(tasks.filter((obj) => obj.container == e).length);
+    task_amounts.push(tasks.filter((obj) => obj.container == e.con).length);
   });
   return task_amounts;
 }

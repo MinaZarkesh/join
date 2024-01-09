@@ -1,43 +1,51 @@
 Board_task = [];
 let current_Dragged_Element;
-
-function initBoard() {
-  init();
-  new Div("main-board", "board-head-con"); //the head container
-  new Div("board-head-con", "search-con");
-  new Divinputimg(
-    "search-con",
-    "search",
-    "text",
-    "Find Task",
-    "../assets/img/searchLupe.png",
-    "search-text-input-id",
-    "search-con-div"
-  ); //+ id + div_id
-  new Button("search-con", "", "button",   function () {
-    filterTasks();
-  }, "Add Task");
-  new Img("board-head-con", "", "", "../assets/img/cross white.png");
-  new Div("main-board", "board-content-con", ""); //the content container
-  new BoardSegment("board-content-con", "to-do", "To do");
-  // new BoardCard('to-do-con', 0);
-  new BoardSegment("board-content-con", "in-progress", "In progress");
-  new BoardSegment("board-content-con", "await-feedback", "Await Feedback");
-  new BoardSegment("board-content-con", "done", "Done");
-  createBoardCards();
-  new Div("main-card-div", "main-board-card");
-}
-
 let toDoDiv;
 let inProgressDiv;
 let awaitFeedBackDiv;
 let doneDiv;
 
+function initBoard() {
+  init();
+  new Div("main-board", "board-head-con"); //the head container
+  new Div("board-head-con", "search-con");
+  new Divinputimg("search-con", "search", "text", "Find Task", "../assets/img/searchLupe.png", "search-text-input-id","search-con-div"); //+ id + div_id
+  new docID('search-text-input-id').onclick = keyboardActive();
+  new Button("search-con", "", "button", function () {filterTasks();}, "Add Task");
+  new Img("board-head-con", "", "", "../assets/img/cross white.png");
+  new Div("main-board", "board-content-con", ""); //the content container
+  new BoardSegment("board-content-con", "to-do", "To do");
+  // new BoardCard('to-do-con', 0);
+  new BoardSegment("board-content-con", "in-progress", "In progress");
+  new BoardSegment("board-content-con", "await-feedback", "Await feedback");
+  new BoardSegment("board-content-con", "done", "Done");
+  createBoardCards();
+  new Div("main-card-div", "main-board-card");
+}
+
+
+function keyboardActive() {
+  docID('search-text-input-id').addEventListener("keydown", (e) => {
+    if(e.key == 'Enter') {
+      filterTasks();
+    }
+  })
+}
+
+
 function renderBoardSegments() {
   loadTasks();
-  resetSegments();
+  // resetSegments();
+  neu();
   Board_task = [];
   createBoardCards();
+}
+
+function neu() {
+  docID("to-do-div").innerHTML = "";
+  docID("in-progress-div").innerHTML = "";
+  docID("await-feedback-div").innerHTML = "";
+  docID("done-div").innerHTML = "";
 }
 
 function resetSegments() {
@@ -59,8 +67,10 @@ function createBoardCards() {
 }
 
 function renderNoTasks() {
- task_amounts = getTasksAmounts();
- for (let i = 0; i < task_amounts.length; i++)  task_amounts[i] == 0 ? new Div(segements_array[i], "noTask-div-id", "noTask-div", "No Taks To Do"): "";
+  task_amounts = getTasksAmounts();
+  for (let i = 0; i < task_amounts.length; i++) {
+    task_amounts[i] == 0 ? new Div(segements_array[i].con.replace("-con", "-div"), "noTask-div-id", "noTask-div", `No Task ${segements_array[i].headline}`) : "";
+  }  
 }
 
 function openBigCard(id) {
@@ -90,7 +100,7 @@ function editBigCard(id) {
 
 function startDragging(e) {
   current_Dragged_Element = e;
-  
+
 }
 
 function allowDrop(ev) {
@@ -126,40 +136,51 @@ function getTasksIdx() {
 let filteredTasks = [];
 let filteredTasks_Ids = [];
 
-function filterTasks(){
+function filterTasks() {
   word = docID("search-text-input-id").value;
-  if(word != ''){
+  if (word != '') {
     filteredTasks = [];
-    filteredTasks_Ids =[];
+    filteredTasks_Ids = [];
     filteredTasks = document.querySelectorAll(".board-card");
-    
-    filteredTasks.forEach((e)=>{
+
+    filteredTasks.forEach((e) => {
       e.classList.add("d-none");
     })
-    
-      // word = "Weihnacht";
-      tasks.forEach((e) => {
-        if(isMatch(e, word)){
-          let id = e.container.replace("-con", "") + `-card-${e.id}`;
-           filteredTasks_Ids.push(id);
-        }
-      })
-    
-      filteredTasks_Ids.forEach((e)=>{
-        docID(e).classList.remove("d-none");
+
+    // word = "Weihnacht";
+    tasks.forEach((e) => {
+      if (isMatch(e, word)) {
+        let id = e.container.replace("-con", "") + `-card-${e.id}`;
+        filteredTasks_Ids.push(id);
+      }
+    })
+
+    filteredTasks_Ids.forEach((e) => {
+      docID(e).classList.remove("d-none");
     });
   }
-  else{
+  else {
     renderBoardSegments();
   }
 }
 
-function isMatch(obj, word){
-let title = obj.title.includes(word, word.toUpperCase, word.toLowerCase);
-let description = obj.description.includes(word, word.toUpperCase, word.toLowerCase);
-let yourNameArray = obj.subtasks.includes(word, word.toUpperCase, word.toLowerCase) // Array
- return title || description || yourNameArray;
+function isMatch(obj, word) {
+  let title = obj.title.toLowerCase().includes(word.toLowerCase());
+  let description = obj.description.toLowerCase().includes(word.toLowerCase());
+  let yourNameArray = nameArray(obj, word);
+  return title || description || yourNameArray;
 }
+
+function nameArray(obj, word) {
+  output = false;
+  obj.subtasks.forEach((e) => {
+    if (e.toLowerCase().includes(word.toLowerCase())) {
+      output = true;
+    }
+  })
+  return output;
+}
+
 
 /**
  * Filters the contacts based on the input search value.
