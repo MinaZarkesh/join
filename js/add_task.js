@@ -257,16 +257,30 @@ function deleteSubtask(i) {
 }
 
 function subtaskChange(value, i) {
-
+    let img_id_1 = value.replace("sub-", "") + `-img-1`;
+    let img_id_2 = value.replace("sub-", "") + `-img-2`;
+    docID(value).focus();
+    docID(img_id_1).src = "../assets/img/delete.png";
+    docID(img_id_1).onclick = function () {deleteSubtask(i)};
+    docID(img_id_2).src = "../assets/img/check.png";
+    docID(img_id_2).classList.remove('sub-change-img');
+    docID(img_id_2).classList.add('sub-change-img');
+    docID(img_id_2).onclick = function () {updateSubtask(i,`${value}`)};
+    docID(value).addEventListener("keydown", (e) => {
+        if(e.key == 'Enter') {
+            updateSubtask(i,`${value}`);
+        }
+    })
     // neu schreiben. 
-    let edit_value = docID(value).value;
-    let upadate_id = "edit-subtask";
-    new Divinputimg('subtasks-con', "input-con blue-border", 'text', "", "../assets/img/delete.png", 'input-con-text-input-id', 'subtask-div');
-    new Img('subtasks-con-div',"subtasklist-check-img", "", "../assets/img/check.png");
-    docID('subtasks-con-div').onclick = undefined;
-    docID('subtasks-con-img').onclick = function () {deleteSubtask(i)};
-    docID('subtasklist-check-img').onclick = function () {updateSubtask(i,`${upadate_id}`)};
-    docID(value).value = edit_value;
+    // let edit_value = docID(value).value;
+    // let upadate_id = "edit-subtask";
+    // new Divinputimg('subtasks-con', "input-con blue-border", 'text', "", "../assets/img/delete.png", 'input-con-text-input-id', 'subtask-div');
+    // new Img('subtasks-con-div',"subtasklist-check-img", "", "../assets/img/check.png");
+    // docID('subtasks-con-div').onclick = undefined;
+    // docID('subtasks-con-img').onclick = function () {deleteSubtask(i)};
+    // docID('subtasklist-check-img').onclick = function () {updateSubtask(i,`${upadate_id}`)};
+    // docID(value).value = edit_value;
+    
     // docID('subtasks-con').innerHTML = /*html*/`
     //     <div class="input-con blue-border" id="subtasklist-div">
     //         <input id="${upadate_id}" type="text" class="font-t6" value="${edit_value}">
@@ -277,8 +291,12 @@ function subtaskChange(value, i) {
 }
 
 function updateSubtask(i, upadate_id) {
-    subtask[i] = docID(upadate_id).value;
-    subtaskListRender();
+    if(!docID(upadate_id).value) {
+        deleteSubtask(i);
+    } else {
+        subtask[i] = docID(upadate_id).value;
+        subtaskListRender();
+    }
 }
 
 function clearTask() {
@@ -297,7 +315,6 @@ function clearTask() {
     docID('input-con-Add').value = "";
     subtask = [];
     subtaskListRender();
-
 }
 
 function uncountCounter(selector) {
