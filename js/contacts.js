@@ -153,6 +153,20 @@ function renderFloatingContacts(idx) {
   });
 }
 
+// function sortContactItems(parent) {
+//   parent.sort((a, b) =>
+//     a.contact_name > b.contact_name
+//       ? 1
+//       : b.contact_name > a.contact_name
+//       ? -1
+//       : 0
+//   );
+
+//   parent.forEach((element) => {
+//     element.renderContactItem();
+//   });
+// }
+
 function deleteContact(idx) {
   contacts.forEach((e, index) => {
     if (idx == e.idx) {

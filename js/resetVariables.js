@@ -218,16 +218,19 @@ let  oldCategorys = [
       name: "Office",
       color: "--variant02",
       nameTag: "OF",
+      checked: false,
     },
     {
       name: "Design",
       color: "--variant03",
       nameTag: "DN",
+      checked: false,
     },
     {
       name: "Engine",
       color: "--variant04",
       nameTag: "EN",
+      checked: false,
     },
   ];
   

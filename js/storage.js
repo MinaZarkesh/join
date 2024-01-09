@@ -1,3 +1,11 @@
+let contact_boxes = [];
+let filtered_contacts = [];
+
+let users = [];
+let contacts = [];
+let categorys = [];
+let tasks = [];
+
 let input_name;
 let input_email;
 let input_phone;
@@ -6,14 +14,11 @@ let input_confirm_password;
 
 let newContact;
 let active_user;
-let contact_boxes = [];
-let filtered_contacts = [];
-let users = [];
 
 users = oldUsers;
 contacts = oldContacts;
-let categorys;
 categorys = oldCategorys;
+tasks = oldTasks;
 
 // let index = 0;
 // let contact = [];
@@ -99,190 +104,25 @@ function isRequiered(id) {
   `;
 }
 
+//eigentlich sort Array, aber mit Kay zusammen ändern
 function createContactBox(parent) {
   let parentArray = contact_boxes; //später Parameter
-  //  sortContactItems(oldContacts);
   contacts.sort((a, b) =>
   a.name > b.name ? 1 : b.name > a.name ? -1 : 0);
 }
 
-
-/**
- * Generates a random color from the 'backgroundcolors' array and returns it.
- * made by Mina Zarkesh
- *
- * @return {string} The randomly generated color.
- */
-function setRandomColor() {
-  let randomNumber = Math.floor(Math.random() * backgroundcolors.length);
-  let color = backgroundcolors[randomNumber];
-  // console.log("Random Index: "+randomNumber+ " random color: "+color);
-  return color;
+function checkEmptyInputs() {
+  return (
+    input_name.value != "" &&
+    input_email.value != "" &&
+    !input_phone.value != ""
+  );
 }
-
-async function includeHTML() {
-  let z, i, elmnt, file, xhttp;
-  /*loop through a collection of all HTML elements:*/
-  z = document.getElementsByTagName("*");
-  for (i = 0; i < z.length; i++) {
-    elmnt = z[i];
-    /*search for elements with a certain attribute:*/
-    file = elmnt.getAttribute("w3-include-html");
-    if (file) {
-      /*make an HTTP request using the attribute value as the file name:*/
-      xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4) {
-          if (this.status == 200) {
-            elmnt.innerHTML = this.responseText;
-          }
-          if (this.status == 404) {
-            elmnt.innerHTML = "Page not found.";
-          }
-          /*remove the attribute, and call this function once more:*/
-          elmnt.removeAttribute("w3-include-html");
-          includeHTML();
-        }
-      };
-      xhttp.open("GET", file, true);
-      xhttp.send();
-      /*exit the function:*/
-      return;
-    }
-  }
-}
-
-categorys = [
-  {
-    name: "Office",
-    color: "--variant02",
-    nameTag: "OF",
-  },
-  {
-    name: "Design",
-    color: "--variant03",
-    nameTag: "DN",
-  },
-  {
-    name: "Engine",
-    color: "--variant04",
-    nameTag: "EN",
-  },
-];
-
-let backgroundcolors = [
-  "--default",
-  "--variant02",
-  "--variant03",
-  "--variant04",
-  "--variant05",
-  "--variant06",
-  "--variant07",
-  "--variant08",
-  "--variant09",
-  "--variant10",
-  "--variant11",
-  "--variant12",
-  "--variant13",
-  "--variant14",
-  "--variant15",
-  "--variant16",
-];
-
-// /***************** Contacts **********************************/
-
-/**
- * Creates an array of contacts for Backup
- */
-let oldContacts = [
-  {
-    name: "Wilhelmina Schattschneider",
-    color: "--variant09",
-    mail: "wschatt@gmail.com",
-    phone: "+49-123-123",
-    nameTag: "WS",
-    idx: 0,
-  },
-  {
-    name: "Anja Schulz",
-    color: "--variant13",
-    mail: "schulz@hotmail.com",
-    phone: "49-123-123",
-    nameTag: "AS",
-    idx: 1,
-  },
-  {
-    name: "Benedikt Ziegler",
-    color: "--default",
-    mail: "benedikt@gmail.com",
-    phone: "49-123-123",
-    nameTag: "BZ",
-    idx: 2,
-  },
-  {
-    name: "David Eisenberg",
-    color: "--variant14",
-    mail: "davidberg@gmail.com",
-    phone: "49-123-123",
-    nameTag: "DE",
-    idx: 3,
-  },
-  {
-    name: "Eva Fischer",
-    color: "--variant06",
-    mail: "eva@gmail.com",
-    phone: "49-222-222",
-    nameTag: "EF",
-    idx: 4,
-  },
-  {
-    name: "Emmanuel Mauer",
-    color: "--variant10",
-    mail: "emmanuelma@gmail.com",
-    phone: "49-222-222",
-    nameTag: "EM",
-    idx: 5,
-  },
-  {
-    name: "Marcel Bauer",
-    color: "--variant16",
-    mail: "bauer@gmail.com",
-    phone: "49-222-222",
-    nameTag: "MB",
-    idx: 6,
-  },
-  {
-    name: "Tatjana Wolf",
-    color: "--variant15",
-    mail: "wolf@gmail.com",
-    phone: "49-222-222",
-    nameTag: "TW",
-    idx: 7,
-  },
-  {
-    name: "Sofia Müller",
-    color: "--variant04",
-    mail: "sofiam@gmail.com",
-    phone: "49-222-222",
-    nameTag: "SM",
-    idx: 8,
-  },
-  {
-    name: "Anton Mayer",
-    color: "--variant09",
-    mail: "antom@gmail.com",
-    phone: "49-123-123",
-    nameTag: "AM",
-    idx: 9,
-  }
-];
-
-let contacts = oldContacts;
 
 function addNewContact() {
   let idx = setNewIdx();
 
-  newContact = {
+ newContact = {
     name: "",
     color: setRandomColor(),
     mail: "",
@@ -394,14 +234,6 @@ function localUserload() {
 function sessionUserload() {
   let user = sessionStorage.getItem("activeuser");
   active_user = JSON.parse(user);
-}
-
-function checkEmptyInputs() {
-  return (
-    input_name.value != "" &&
-    input_email.value != "" &&
-    !input_phone.value != ""
-  );
 }
 
 // async function includeHTML() {
