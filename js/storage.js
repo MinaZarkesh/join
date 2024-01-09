@@ -11,8 +11,9 @@ let filtered_contacts = [];
 let users = [];
 
 users = oldUsers;
-let contacts = oldContacts;
-let categorys = oldCategorys;
+contacts = oldContacts;
+let categorys;
+categorys = oldCategorys;
 
 // let index = 0;
 // let contact = [];
