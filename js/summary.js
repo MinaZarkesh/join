@@ -6,7 +6,6 @@ let item_amount = 6;
 let summaryBox_div_id = "summary-box";
 // task_amounts = [1, 2, 3, 40, 5, 6, 7]; //verändern durch Tasks
 
-
 // let new_task_amounts = [1, 12, 3, 9, 5, 6, 8]; //zum Testen
 //empty Array for new summary_boxes
 let summary_boxes = [];
@@ -31,61 +30,59 @@ let images = [
   "../assets/img/done_summary.png",
   "../assets/img/done_summary.png",
 ];
-let amounts = [1,2,3,4,5,6];
-let sum; 
+
+let sum;
 
 async function initSummary() {
   init();
   greetings();
-  // fillTaskAmounts();
-  amounts =  await fillTaskAmounts();
+
+  task_amounts = await updateTaskAmounts();
   createSummaryBoxes(); //creates summary-boxes beim laden
-  // debugger;
-  await updateTaskAmounts();
 }
 
+async function updateTaskAmounts() {
+  await loadTasks();
+  let amounts = [];
+  sum = 0;
 
-
-
-async function fillTaskAmounts(){
- await loadTasks();
-  amounts=[];
   amounts = getTasksAmounts();
-  sum=0;
- amounts.forEach(item =>{
-  sum +=item;
-});
-sum = sum - amounts[amounts.length-1];
-amounts.splice(0, 0, 12);
-amounts.splice(1, 0, sum);
-task_amounts = amounts;
-return amounts;
+  amounts.forEach((item) => {
+    sum += item;
+  });
+  sum = sum - amounts[amounts.length - 1];
+
+  amounts.splice(0, 0, tasks.filter((obj) => obj.priority == "Urgent").length); //wieviele Tasks sind urgent
+  amounts.splice(1, 0, sum);
+  task_amounts = amounts;
+  return amounts;
 }
 
-function greetings(){
+function greetings() {
   const currentHour = new Date().getHours();
   let greeting = "";
 
   if (currentHour >= 0 && currentHour < 12) {
-      greeting = "Good Morning";
+    greeting = "Good Morning";
   } else if (currentHour >= 15 && currentHour < 18) {
-      greeting = "Good Afternoon";
+    greeting = "Good Afternoon";
   } else if (currentHour >= 18 && currentHour < 21) {
-      greeting = "Good Evening";
+    greeting = "Good Evening";
   } else {
-      greeting = "Good Night";
+    greeting = "Good Night";
   }
 
-  docID("greetings").innerHTML =  (active_user.name == "Guest") ? `${greeting}` : `${greeting}, ${active_user.name}`;
+  docID("greetings").innerHTML =
+    active_user.name == "Guest"
+      ? `${greeting}`
+      : `${greeting}, ${active_user.name}`;
 }
 
-
 function createSummaryBoxes() {
-
   docID(summaryBox_div_id).innerHTML = "";
 
   for (let i = 0; i < item_amount; i++) {
-    docID(summaryBox_div_id).innerHTML += /*html*/`
+    docID(summaryBox_div_id).innerHTML += /*html*/ `
     <div id="${summaryBox_div_id}-${i}"></div>
     `;
     summary_boxes.push(new SummaryBox(summaryBox_div_id, i));
@@ -111,20 +108,6 @@ function createFirstBox() {
  `;
 }
 
-
-async function updateTaskAmounts() {
-
-  for (let index = 0; index < amounts.length; index++) {
-    // const new_number = task_amounts[index];
-    //   task_amounts[index] = new_number;
-   
-    // docID(`task_amounts-summary-box-${index}`).innerHTML = amounts[index];
-
-    // return amounts;
-      //TODO: update Server;
-  }
-}
-
 function navToBoard() {
   console.log("Nav to Board");
   window.location = "../html/board.html";
@@ -144,4 +127,3 @@ function changeScreenView() {
     element.renderPosition(index);
   }
 }
-
