@@ -1,12 +1,22 @@
 Board_task = [];
+let current_Dragged_Element;
+
 function initBoard() {
   init();
-  new Div("main-board", "board-head-con"); //the head container  
+  new Div("main-board", "board-head-con"); //the head container
   new Div("board-head-con", "search-con");
-  new Divinputimg("search-con", 'search', 'text', "Find Task", '../assets/img/searchLupe.png', 'search-text-input-id', 'search-con-div'); //+ id + div_id
-  new Button("search-con","","button","", "Ask Task");
-  new Img("board-head-con", '', '', '../assets/img/cross white.png');
-  new Div("main-board", "board-content-con", ''); //the content container
+  new Divinputimg(
+    "search-con",
+    "search",
+    "text",
+    "Find Task",
+    "../assets/img/searchLupe.png",
+    "search-text-input-id",
+    "search-con-div"
+  ); //+ id + div_id
+  new Button("search-con", "", "button", "", "Ask Task");
+  new Img("board-head-con", "", "", "../assets/img/cross white.png");
+  new Div("main-board", "board-content-con", ""); //the content container
   new BoardSegment("board-content-con", "to-do", "To do");
   // new BoardCard('to-do-con', 0);
   new BoardSegment("board-content-con", "in-progress", "In progress");
@@ -16,28 +26,114 @@ function initBoard() {
   new Div("main-card-div", "main-board-card");
 }
 
+let toDoDiv;
+let inProgressDiv;
+let awaitFeedBackDiv;
+let doneDiv;
+
+function renderBoardSegments() {
+  resetSegments();
+  Board_task = [];
+  createBoardCards();
+}
+
+function resetSegments() {
+  //TODO: eine Zwischen Div bauen, die man leeren kann macht mehr Sinn.
+  toDoDiv = `<div id="to-do-headline-con" class="segment-class"><span id="undefined" class="">To do</span><button id="to-do-btn" class="segments-btn"><img id="" class="" src="../assets/img/+.png"></button></div>`;
+  docID("to-do-con").innerHTML = toDoDiv;
+  inProgressDiv = `<div id="in-progress-headline-con" class="segment-class"><span id="undefined" class="">In Progress</span><button id="in-progress-btn" class="segments-btn"><img id="" class="" src="../assets/img/+.png"></button></div>`;
+  docID("in-progress-con").innerHTML = inProgressDiv;
+  awaitFeedBackDiv = `<div id="await-feedback-headline-con" class="segment-class"><span id="undefined" class="">Await Feedback</span><button id="await-feedback-btn" class="segments-btn"><img id="" class="" src="../assets/img/+.png"></button></div>`;
+  docID("await-feedback-con").innerHTML = awaitFeedBackDiv;
+  doneDiv = `<div id="done-headline-con" class="segment-class"><span id="undefined" class="">Done</span><button id="done-btn" class="segments-btn"><img id="" class="" src="../assets/img/+.png"></button></div>`;
+  docID("done-con").innerHTML = doneDiv;
+}
+
 function createBoardCards() {
-  oldTasks.forEach((e, index) => {
-    Board_task.push(new BoardCard(e))
-  })
+  tasks.forEach((e, index) => {
+    Board_task.push(new BoardCard(e));
+  });
+}
+
+let test_array = [
+  "to-do-con",
+  "in-progress-con",
+  "await-feedback-con",
+  "done-con",
+];
+
+function renderNoTasks() {
+  getTasksAmounts();
+ for (let i = 0; i < tasks_amounts.length; i++)  tasks_amounts[i] == 0 ? new Div(test_array[i], "noTask-div-id", "noTask-div", "No Taks To Do"): "";
+}
+
+function getTasksAmounts() {
+  tasks_amounts = [];
+  test_array.forEach((e) => {
+    tasks_amounts.push(tasks.filter((obj) => obj.container == e).length);
+  });
+  return tasks_amounts;
 }
 
 function openBigCard(id) {
-  console.log('angekommen');
-  docID('main-card-div').classList.remove('d-none');
-  oldTasks.forEach((e) => {
-    if(e.id == id) {
+  console.log("angekommen");
+  docID("main-card-div").classList.remove("d-none");
+  tasks.forEach((e) => {
+    if (e.id == id) {
       new BoardBigCard(e, "main-board-card");
     }
-  })
+  });
 }
 
 function closeCard() {
-  docID('main-board-card').innerHTML= '';
-  docID('main-card-div').classList.add('d-none');
+  docID("main-board-card").innerHTML = "";
+  docID("main-card-div").classList.add("d-none");
 }
 
+function editBigCard(id) {
+  console.log("editBigCard");
+  docID("main-card-div").classList.remove("d-none");
+  tasks.forEach((e) => {
+    if (e.id == id) {
+      new editBoardBigCard(e, "main-board-card");
+    }
+  });
+}
 
+function startDragging(e) {
+  current_Dragged_Element = e;
+  console.log(current_Dragged_Element);
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function moveTo(category) {
+  console.log(category);
+  let id = getTasksIdx();
+  tasks[id].container = `${category}-con`;
+  renderBoardSegments();
+  renderNoTasks();
+}
+
+function dragOver(category) {
+  allowDrop(event);
+  console.log(category);
+}
+
+function getTasksIdx() {
+  let task_idx;
+
+  for (let i = 0; i < tasks.length; i++) {
+    const element_idx = tasks[i].id;
+
+    if (current_Dragged_Element == element_idx) {
+      task_idx = i;
+    }
+  }
+  return task_idx;
+}
 
 /**
  * Filters the contacts based on the input search value.
@@ -47,12 +143,12 @@ function closeCard() {
  */
 // function filterContacts() {
 //     renderAssignetTo();
-  
+
 //     let contactScroll = docID("assignetTo");
 //     let search = docID("assignetToInput").value.replace(" ", "").toLowerCase();
 //     contactScroll.classList.remove("d-none");
 //     const contactsAddTasks = document.querySelectorAll(".assignetToAddTask");
-  
+
 //     contactsAddTasks.forEach((contactAddTask) => {
 //       const contactNameElement = contactAddTask.querySelector(".contactName");
 //       const contactName = contactNameElement.textContent.replace(" ", "").toLowerCase();

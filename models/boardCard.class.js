@@ -34,6 +34,8 @@ class BoardCard{
         this.associates = new Div(this.container_id, this.associates_id, this.associates_class);
         this.assosciates(this.associates_id, e)
         docID(this.container_id).onclick = function () {openBigCard(e.id)};
+        docID(this.container_id).ondragstart = function () {startDragging(e.id)}; // 
+        docID(this.container_id).draggable = true;
     }
 
     title(e, parent) {
@@ -60,6 +62,7 @@ class BoardCard{
         docID(div_id).style = `background-color: var(${e.assignedToColor[index]})`;
     });
     }
+
 
     // depart(e, parent) {
     //     let color;

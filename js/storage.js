@@ -5,6 +5,7 @@ let users = [];
 let contacts = [];
 let categorys = [];
 let tasks = [];
+let tasks_amounts = [];
 
 let input_name;
 let input_email;
@@ -186,7 +187,6 @@ async function loadUsers() {
 
 async function loadContacts() {
   contacts = JSON.parse(await getItem("contacts"));
-  createContactBox();
   console.log(contacts);
   // contact = contacts[index];
   // return contacts, contact, contactIndex;
