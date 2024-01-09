@@ -4,11 +4,13 @@ let screen_size = 1023; //ab wann Wechsel zu Desktop Version
 //erstelle die Werte für die Items
 let item_amount = 6;
 let summaryBox_div_id = "summary-box";
-let task_amounts = [1, 2, 3, 40, 5, 6, 7]; //verändern durch Tasks
+// task_amounts = [1, 2, 3, 40, 5, 6, 7]; //verändern durch Tasks
 
-let new_task_amounts = [1, 12, 3, 9, 5, 6, 8]; //zum Testen
+
+// let new_task_amounts = [1, 12, 3, 9, 5, 6, 8]; //zum Testen
 //empty Array for new summary_boxes
 let summary_boxes = [];
+let new_number;
 
 let descriptions = [
   "Tasks urgent",
@@ -29,12 +31,35 @@ let images = [
   "../assets/img/done_summary.png",
   "../assets/img/done_summary.png",
 ];
+let amounts = [1,2,3,4,5,6];
+let sum; 
 
 async function initSummary() {
   init();
   greetings();
+  // fillTaskAmounts();
+  amounts =  await fillTaskAmounts();
   createSummaryBoxes(); //creates summary-boxes beim laden
-  // updateTaskAmounts();
+  // debugger;
+  await updateTaskAmounts();
+}
+
+
+
+
+async function fillTaskAmounts(){
+ await loadTasks();
+  amounts=[];
+  amounts = getTasksAmounts();
+  sum=0;
+ amounts.forEach(item =>{
+  sum +=item;
+});
+sum = sum - amounts[amounts.length-1];
+amounts.splice(0, 0, 12);
+amounts.splice(1, 0, sum);
+task_amounts = amounts;
+return amounts;
 }
 
 function greetings(){
@@ -87,14 +112,16 @@ function createFirstBox() {
 }
 
 
-function updateTaskAmounts() {
-  for (let index = 0; index < new_task_amounts.length; index++) {
-    const new_number = new_task_amounts[index];
-    if (new_number != task_amounts[index] && index < summary_boxes.length) {
-      task_amounts[index] = new_number;
-      summary_boxes[index].updateTaskAmount(new_number, index);
+async function updateTaskAmounts() {
+
+  for (let index = 0; index < amounts.length; index++) {
+    // const new_number = task_amounts[index];
+    //   task_amounts[index] = new_number;
+   
+    // docID(`task_amounts-summary-box-${index}`).innerHTML = amounts[index];
+
+    // return amounts;
       //TODO: update Server;
-    }
   }
 }
 

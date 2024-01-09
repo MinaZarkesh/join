@@ -1,7 +1,7 @@
 class SummaryBox {
   item;
   headline_amount;
-
+  id;
   // for calcPosition
   containerWidth;
   containerHeight;

@@ -32,6 +32,7 @@ let awaitFeedBackDiv;
 let doneDiv;
 
 function renderBoardSegments() {
+  loadTasks();
   resetSegments();
   Board_task = [];
   createBoardCards();
@@ -55,24 +56,9 @@ function createBoardCards() {
   });
 }
 
-let test_array = [
-  "to-do-con",
-  "in-progress-con",
-  "await-feedback-con",
-  "done-con",
-];
-
 function renderNoTasks() {
-  getTasksAmounts();
- for (let i = 0; i < tasks_amounts.length; i++)  tasks_amounts[i] == 0 ? new Div(test_array[i], "noTask-div-id", "noTask-div", "No Taks To Do"): "";
-}
-
-function getTasksAmounts() {
-  tasks_amounts = [];
-  test_array.forEach((e) => {
-    tasks_amounts.push(tasks.filter((obj) => obj.container == e).length);
-  });
-  return tasks_amounts;
+ task_amounts = getTasksAmounts();
+ for (let i = 0; i < task_amounts.length; i++)  task_amounts[i] == 0 ? new Div(segements_array[i], "noTask-div-id", "noTask-div", "No Taks To Do"): "";
 }
 
 function openBigCard(id) {
@@ -102,7 +88,7 @@ function editBigCard(id) {
 
 function startDragging(e) {
   current_Dragged_Element = e;
-  console.log(current_Dragged_Element);
+  
 }
 
 function allowDrop(ev) {
@@ -110,16 +96,16 @@ function allowDrop(ev) {
 }
 
 function moveTo(category) {
-  console.log(category);
   let id = getTasksIdx();
   tasks[id].container = `${category}-con`;
+  setItem("tasks", tasks);
+  loadTasks();
   renderBoardSegments();
   renderNoTasks();
 }
 
 function dragOver(category) {
   allowDrop(event);
-  console.log(category);
 }
 
 function getTasksIdx() {

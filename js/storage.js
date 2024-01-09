@@ -5,7 +5,7 @@ let users = [];
 let contacts = [];
 let categorys = [];
 let tasks = [];
-let tasks_amounts = [];
+let task_amounts = [];
 
 let input_name;
 let input_email;
@@ -28,6 +28,13 @@ tasks = oldTasks;
 // let task = [];
 // let tasks = [];
 // let taskIndex;
+
+let segements_array = [
+  "to-do-con",
+  "in-progress-con",
+  "await-feedback-con",
+  "done-con",
+];
 
 /**
  * The token used for remote storage authentication.
@@ -111,6 +118,15 @@ function createContactBox(parent) {
   let parentArray = contact_boxes; //später Parameter
   contacts.sort((a, b) =>
   a.name > b.name ? 1 : b.name > a.name ? -1 : 0);
+}
+
+
+function getTasksAmounts() {
+  task_amounts = [];
+  segements_array.forEach((e) => {
+    task_amounts.push(tasks.filter((obj) => obj.container == e).length);
+  });
+  return task_amounts;
 }
 
 function checkEmptyInputs() {
