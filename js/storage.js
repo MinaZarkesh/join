@@ -5,6 +5,7 @@ let users = [];
 let contacts = [];
 let categorys = [];
 let tasks = [];
+let task_amounts = [];
 
 let input_name;
 let input_email;
@@ -27,6 +28,13 @@ tasks = oldTasks;
 // let task = [];
 // let tasks = [];
 // let taskIndex;
+
+let segements_array = [
+  "to-do-con",
+  "in-progress-con",
+  "await-feedback-con",
+  "done-con",
+];
 
 /**
  * The token used for remote storage authentication.
@@ -93,6 +101,7 @@ function openNavMenu() {
   new MenuLink("contacts");
 }
 
+//create Header
 function updateUserValues() {
   //creates Header
   docID("header-name-tag").innerHTML = active_user.nameTag;
@@ -109,6 +118,15 @@ function createContactBox(parent) {
   let parentArray = contact_boxes; //später Parameter
   contacts.sort((a, b) =>
   a.name > b.name ? 1 : b.name > a.name ? -1 : 0);
+}
+
+
+function getTasksAmounts() {
+  task_amounts = [];
+  segements_array.forEach((e) => {
+    task_amounts.push(tasks.filter((obj) => obj.container == e).length);
+  });
+  return task_amounts;
 }
 
 function checkEmptyInputs() {
@@ -185,21 +203,24 @@ async function loadUsers() {
 
 async function loadContacts() {
   contacts = JSON.parse(await getItem("contacts"));
-  console.log(contacts);
+  // console.log(contacts);
+  
   // contact = contacts[index];
   // return contacts, contact, contactIndex;
 }
 
 async function loadTasks() {
   tasks = JSON.parse(await getItem("tasks"));
-  console.log(tasks);
+  // console.log(tasks);
+
   // task = tasks[index];
   // return tasks, task, taskIndex;
 }
 
 async function loadCategorys() {
   categorys = JSON.parse(await getItem("categorys"));
-  console.log(categorys);
+  // console.log(categorys);
+
   // task = tasks[index];
   // return tasks, task, taskIndex;
 }

@@ -95,7 +95,7 @@ function dropdownReset(parent, imgid) {
 }
 
 function createContactListTask() {
-    createContactBox();
+    createContactBox("contact-list-parent");
     let div_id;
     contacts.forEach((e) => {
         div_id = `contact-list-parent-div-${e.idx}`;
