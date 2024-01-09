@@ -118,7 +118,7 @@ function fillEditContact(e) {
 
 function saveContact(idx) {
   edit_contact = contacts[idx];
-  // contacts[idx].nameTag = createNameTag(contacts[idx].name);
+  // contacts[idx].nameTag = setNameTag(contacts[idx].name);
 
   updateContactItem(edit_contact);
   renderContactList();
@@ -131,7 +131,7 @@ function updateContactItem(contact) {
     contact.name = docID(input_name.input_id).value;
     contact.mail = docID(input_email.input_id).value;
     contact.phone = docID(input_phone.input_id).value;
-    contact.nameTag = createNameTag(contact.name);
+    contact.nameTag = setNameTag(contact.name);
   }
 }
 
@@ -139,22 +139,8 @@ function renderNewContact() {
   addNewContact()
 
   idx = contacts.indexOf(newContact);
-  contacts[idx].nameTag = createNameTag(contacts[idx].name);
+  contacts[idx].nameTag = setNameTag(contacts[idx].name);
   saveContact(idx);
-}
-
-function sortContactItems(parent) {
-  parent.sort((a, b) =>
-    a.contact_name > b.contact_name
-      ? 1
-      : b.contact_name > a.contact_name
-      ? -1
-      : 0
-  );
-
-  parent.forEach((element) => {
-    element.renderContactItem();
-  });
 }
 
 function renderFloatingContacts(idx) {

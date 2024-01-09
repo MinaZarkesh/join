@@ -206,7 +206,7 @@ function addNewUser() {
   let newUser = {
     name: input_name_value,
     mail: input_email_value,
-    nameTag: createNameTag(input_name_value),
+    nameTag: setNameTag(input_name_value),
     password: input_password_value,
   };
   users.push(newUser);

@@ -1,13 +1,26 @@
-let filtered_contacts = [];
 let input_name;
 let input_email;
 let input_phone;
 let input_password;
 let input_confirm_password;
-let contact_boxes = [];
+
 let newContact;
-let users = [];
 let active_user;
+let contact_boxes = [];
+let filtered_contacts = [];
+let users = [];
+
+users = oldUsers;
+let contacts = oldContacts;
+let categorys = oldCategorys;
+
+// let index = 0;
+// let contact = [];
+// let contacts = [];
+// let contactIndex;
+// let task = [];
+// let tasks = [];
+// let taskIndex;
 
 /**
  * The token used for remote storage authentication.
@@ -56,42 +69,66 @@ async function getItem(key) {
     });
 }
 
-
 function docID(id) {
   return document.getElementById(id);
 }
 
 async function init() {
-  // includeHTML();
-  activeUser();
-  updateUserValues();
-  openNavMenu()
+  activeUser(); //set activeUser
+  updateUserValues(); //set Header
+  openNavMenu(); // set NavBar
 }
 
 function openNavMenu() {
+  //fill NavBar
   new MenuLink("summary");
   new MenuLink("add_task");
   new MenuLink("board");
   new MenuLink("contacts");
 }
 
-function updateUserValues(){
+function updateUserValues() {
+  //creates Header
   docID("header-name-tag").innerHTML = active_user.nameTag;
 }
 
 function isRequiered(id) {
-  docID(id).innerHTML = /*html*/`
+  docID(id).innerHTML = /*html*/ `
     This field is required
-  `
+  `;
 }
 
 function createContactBox(parent) {
   let parentArray = contact_boxes; //später Parameter
   //  sortContactItems(oldContacts);
-  contacts.sort((a, b) =>
-  a.name > b.name ? 1 : b.name > a.name ? -1 : 0);
+  contacts.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 }
 
+function addNewContact() {
+  let idx = setNewIdx();
+
+  newContact = {
+    name: "",
+    color: setRandomColor(),
+    mail: "",
+    phone: "",
+    nameTag: "??",
+    idx: idx,
+  };
+
+  contacts.push(newContact);
+}
+
+function setNewIdx() {
+  let contact_index = 0;
+  //erhöhe die Variable contact_index solange bis docID() null ergibt, also noch nicht vergeben ist.
+  //So wird die Zahl erhöht, bis eine nicht vergeben wurde.
+  do contact_index++;
+  while (docID(`contact-item-${contact_index}`) != null);
+  {
+    return contact_index;
+  }
+}
 
 /**
  * Generates a random color from the 'backgroundcolors' array and returns it.
@@ -106,178 +143,82 @@ function setRandomColor() {
   return color;
 }
 
-async function includeHTML() {
-  let z, i, elmnt, file, xhttp;
-  /*loop through a collection of all HTML elements:*/
-  z = document.getElementsByTagName("*");
-  for (i = 0; i < z.length; i++) {
-    elmnt = z[i];
-    /*search for elements with a certain attribute:*/
-    file = elmnt.getAttribute("w3-include-html");
-    if (file) {
-      /*make an HTTP request using the attribute value as the file name:*/
-      xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4) {
-          if (this.status == 200) {
-            elmnt.innerHTML = this.responseText;
-          }
-          if (this.status == 404) {
-            elmnt.innerHTML = "Page not found.";
-          }
-          /*remove the attribute, and call this function once more:*/
-          elmnt.removeAttribute("w3-include-html");
-          includeHTML();
-        }
-      };
-      xhttp.open("GET", file, true);
-      xhttp.send();
-      /*exit the function:*/
-      return;
+/**
+ * Generates a name tag based on the given name.
+ * made by Mina Zarkesh
+ * @param {string} name - The name to generate the name tag from.
+ * @return {string} The generated name tag.
+ */
+function setNameTag(name) {
+  let currentName = name;
+  let nameArray = currentName.split(" ");
+  let nameTag = nameArray[0].charAt(0);
+  nameTag += nameArray[nameArray.length - 1].charAt(0);
+  nameTag = nameTag.toUpperCase();
+  return nameTag;
+}
+
+async function loadUsers() {
+  // if (!index) {
+  //   index = 0;
+  // }
+  users = JSON.parse(await getItem("users"));
+  console.log(users);
+  // user = users[index];
+  // return users, user, index;
+}
+
+async function loadContacts() {
+  contacts = JSON.parse(await getItem("contacts"));
+  console.log(contacts);
+  // contact = contacts[index];
+  // return contacts, contact, contactIndex;
+}
+
+async function loadTasks() {
+  tasks = JSON.parse(await getItem("tasks"));
+  console.log(tasks);
+  // task = tasks[index];
+  // return tasks, task, taskIndex;
+}
+
+async function loadCategorys() {
+  categorys = JSON.parse(await getItem("categorys"));
+  console.log(categorys);
+  // task = tasks[index];
+  // return tasks, task, taskIndex;
+}
+
+function activeUser() {
+  if (localStorage.getItem("activeuser") === null) {
+    if (sessionStorage.getItem("activeuser") === null) {
+      window.location.href = "./index.html";
+      // return false;?
+    } else {
+      sessionUserload();
+      return true; //welche Variable wird true gesetzt?
     }
+  } else {
+    localUserload();
   }
 }
 
-categorys = [
-  {
-    name: "Office",
-    color: "--variant02",
-    nameTag: "OF",
-  },
-  {
-    name: "Design",
-    color: "--variant03",
-    nameTag: "DN",
-  },
-  {
-    name: "Engine",
-    color: "--variant04",
-    nameTag: "EN",
-  },
-];
+function localUsersave(user) {
+  localStorage.setItem("activeuser", user);
+}
 
-let backgroundcolors = [
-  "--default",
-  "--variant02",
-  "--variant03",
-  "--variant04",
-  "--variant05",
-  "--variant06",
-  "--variant07",
-  "--variant08",
-  "--variant09",
-  "--variant10",
-  "--variant11",
-  "--variant12",
-  "--variant13",
-  "--variant14",
-  "--variant15",
-  "--variant16",
-];
+function sessionUsersave(user) {
+  sessionStorage.setItem("activeuser", user);
+}
 
-// /***************** Contacts **********************************/
+function localUserload() {
+  let user = localStorage.getItem("activeuser");
+  active_user = JSON.parse(user);
+}
 
-/**
- * Creates an array of contacts for Backup
- */
-let oldContacts = [
-  {
-    name: "Wilhelmina Schattschneider",
-    color: "--variant09",
-    mail: "wschatt@gmail.com",
-    phone: "+49-123-123",
-    nameTag: "WS",
-    idx: 0,
-  },
-  {
-    name: "Anja Schulz",
-    color: "--variant13",
-    mail: "schulz@hotmail.com",
-    phone: "49-123-123",
-    nameTag: "AS",
-    idx: 1,
-  },
-  {
-    name: "Benedikt Ziegler",
-    color: "--default",
-    mail: "benedikt@gmail.com",
-    phone: "49-123-123",
-    nameTag: "BZ",
-    idx: 2,
-  },
-  {
-    name: "David Eisenberg",
-    color: "--variant14",
-    mail: "davidberg@gmail.com",
-    phone: "49-123-123",
-    nameTag: "DE",
-    idx: 3,
-  },
-  {
-    name: "Eva Fischer",
-    color: "--variant06",
-    mail: "eva@gmail.com",
-    phone: "49-222-222",
-    nameTag: "EF",
-    idx: 4,
-  },
-  {
-    name: "Emmanuel Mauer",
-    color: "--variant10",
-    mail: "emmanuelma@gmail.com",
-    phone: "49-222-222",
-    nameTag: "EM",
-    idx: 5,
-  },
-  {
-    name: "Marcel Bauer",
-    color: "--variant16",
-    mail: "bauer@gmail.com",
-    phone: "49-222-222",
-    nameTag: "MB",
-    idx: 6,
-  },
-  {
-    name: "Tatjana Wolf",
-    color: "--variant15",
-    mail: "wolf@gmail.com",
-    phone: "49-222-222",
-    nameTag: "TW",
-    idx: 7,
-  },
-  {
-    name: "Sofia Müller",
-    color: "--variant04",
-    mail: "sofiam@gmail.com",
-    phone: "49-222-222",
-    nameTag: "SM",
-    idx: 8,
-  },
-  {
-    name: "Anton Mayer",
-    color: "--variant09",
-    mail: "antom@gmail.com",
-    phone: "49-123-123",
-    nameTag: "AM",
-    idx: 9,
-  }
-];
-
-let contacts = oldContacts;
-
-function addNewContact() {
-  let idx = setNewIdx();
-
-  newContact ={
-    name: "",
-    color: setRandomColor(),
-    mail: "",
-    phone: "",
-    nameTag: "??",
-    idx: idx,
-  };
-
-  contacts.push(newContact);
+function sessionUserload() {
+  let user = sessionStorage.getItem("activeuser");
+  active_user = JSON.parse(user);
 }
 
 function checkEmptyInputs() {
@@ -288,269 +229,34 @@ function checkEmptyInputs() {
   );
 }
 
-function setNewIdx() {
-  let contact_index = 0;
-  //erhöhe die Variable contact_index solange bis docID() null ergibt, also noch nicht vergeben ist.
-  //So wird die Zahl erhöht, bis eine nicht vergeben wurde.
-  do contact_index++;
-   while (docID(`contact-item-${contact_index}`) != null);
-  {
-    return contact_index;
-  }
-}
-
-/**
- * Generates a name tag based on the given name.
- * made by Mina Zarkesh
- * @param {string} name - The name to generate the name tag from.
- * @return {string} The generated name tag.
- */
-function createNameTag(name) {
-  let currentName = name;
-  let nameArray = currentName.split(" ");
-  let nameTag = nameArray[0].charAt(0);
-  nameTag += nameArray[nameArray.length - 1].charAt(0);
-  nameTag = nameTag.toUpperCase();
-  return nameTag;
-}
-
-// let user = [];
-// let index = 0;
-// let contact = [];
-// let contacts = [];
-// let contactIndex;
-// let task = [];
-// let tasks = [];
-// let taskIndex;
-
-/**
- * Loads users from the database at the specified index.
- * made by Mina Zarkesh
- * @param {number} index - The index of the user to load.
- * @return {Array} - An array containing all the users and the user at the specified index.
- */
-// async function loadUsers(index) {
-//   if (!index) {
-//     index = 0;
+// async function includeHTML() {
+//   let z, i, elmnt, file, xhttp;
+//   /*loop through a collection of all HTML elements:*/
+//   z = document.getElementsByTagName("*");
+//   for (i = 0; i < z.length; i++) {
+//     elmnt = z[i];
+//     /*search for elements with a certain attribute:*/
+//     file = elmnt.getAttribute("w3-include-html");
+//     if (file) {
+//       /*make an HTTP request using the attribute value as the file name:*/
+//       xhttp = new XMLHttpRequest();
+//       xhttp.onreadystatechange = function () {
+//         if (this.readyState == 4) {
+//           if (this.status == 200) {
+//             elmnt.innerHTML = this.responseText;
+//           }
+//           if (this.status == 404) {
+//             elmnt.innerHTML = "Page not found.";
+//           }
+//           /*remove the attribute, and call this function once more:*/
+//           elmnt.removeAttribute("w3-include-html");
+//           includeHTML();
+//         }
+//       };
+//       xhttp.open("GET", file, true);
+//       xhttp.send();
+//       /*exit the function:*/
+//       return;
+//     }
 //   }
-//   users = JSON.parse(await getItem("users"));
-//   user = users[index];
-//   return users, user, index;
 // }
-
-/**
- * Loads contacts from the specified index.
- * made by Mina Zarkesh
- * @param {number} index - The index of the contact to load.
- * @return {Array} contacts - The array of loaded contacts.
- * @return {Object} contact - The loaded contact at the specified index.
- * @return {number} contactIndex - The index of the loaded contact.
- */
-// async function loadContacts(index) {
-//   contacts = JSON.parse(await getItem("contacts"));
-//   contact = contacts[index];
-//   return contacts, contact, contactIndex;
-// }
-
-/**
- * Loads tasks from storage and returns the specified task and its index.
- * made by Mina Zarkesh
- *
- * @param {number} index - The index of the task to retrieve.
- * @return {Array} - An array containing all the tasks, the specified task, and its index.
- */
-// async function loadTasks(index) {
-//   tasks = JSON.parse(await getItem("tasks"));
-//   task = tasks[index];
-//   return tasks, task, taskIndex;
-// }
-
-function activeUser() {
-  if (localStorage.getItem('activeuser') === null) {
-      if (sessionStorage.getItem('activeuser') === null) {
-          window.location.href = './index.html';
-          // return false;?
-      }
-      else {
-        sessionUserload()
-        // window.location.href = './summary.html';
-          return true; //welche Variable wird true gesetzt?
-      }
-  } else {
-    localUserload();
-    // window.location.href = './summary.html';
-  }
-}
-
-function localUsersave(user) {
-  localStorage.setItem('activeuser', user);
-}
-
-function sessionUsersave(user) {
-  sessionStorage.setItem('activeuser', user);
-}
-//Backend speichern?
-function localUserload() {
-  let user = localStorage.getItem('activeuser');
- active_user = JSON.parse(user);
- }
-
-function sessionUserload() {
-  let user = sessionStorage.getItem('activeuser');
-  active_user = JSON.parse(user);
-}
-
-
-
-
-
-// /**************** TasksArray, wird später ersetzt werden *****************/
-
-/**
- * Creates an array of tasks for Backup
- */
-let oldTasks = [
-  {
-    container: "to-do-con",
-    category: ["Office", "Design"],
-    title: "Kochwelt Page & Recipe Recommender",
-    description: "Build start page with recipe recommendation.",
-    date: "2023-01-23",
-    priority: "Medium",
-    priorityImg: "../assets/img/medium.png",
-    assignedTo: ["Emmanuel Mauer", "Marcel Bauer", "Anton Mayer"],
-    assignedToNameTag: ["EM", "MB", "AM"],
-    assignedToColor: ["--variant10", "--variant16", "--variant09"],
-    subtasks: ["Implement Recipe Recommendation", "Start Page Layout"],
-    subtaskschecked: ["checked", "checked"],
-    id: 1,
-  },
-  {
-    container: "await-feedback-con",
-    category: ["Office"],
-    title: "Titel: Essen",
-    description:
-      "Das ist die Description, hier etwas text : handy telefonieren",
-    date: "2023-12-30",
-    priority: "Low",
-    priorityImg: "../assets/img/low.png",
-    assignedTo: ["Marcel Bauer", "Anton Mayer", "Emmanuel Mauer"],
-    assignedToNameTag: ["MB", "AM", "EM"],
-    assignedToColor: ["--variant16", "--variant09", "--variant10"],
-    subtasks: ["Start Page Layout", "Subtask2"],
-    subtaskschecked: ["unchecked", "unchecked"],
-    id: 3,
-  },
-  {
-    container: "in-progress-con",
-    category: ["Design"],
-    title: "Titel: Halloweenparty, Ähh Silvester",
-    description:
-      "Das ist die Description, hier etwas text : handy telefonieren",
-    date: "2023-12-31",
-    priority: "Urgent",
-    priorityImg: "../assets/img/urgentImg.png",
-    assignedTo: ["Marcel Bauer", "Anton Mayer", "Emmanuel Mauer"],
-    assignedToNameTag: ["MB", "AM", "EM"],
-    assignedToColor: ["--variant16", "--variant09", "--variant10"],
-    subtasks: ["Start Page Layout", "Subtask3"],
-    subtaskschecked: ["unchecked", "checked"],
-    id: 4,
-  },
-  {
-    container: "done-con",
-    category: ["Engine", "Office"],
-    title: "Titel: Sommer Grillparty",
-    description: "Wir treffen uns alle zur Grillparty",
-    date: "2023-12-27",
-    priority: "Low",
-    priorityImg: "../assets/img/low.png",
-    assignedTo: ["Marcel Bauer", "Anton Mayer", "Emmanuel Mauer"],
-    assignedToNameTag: ["MB", "AM", "EM"],
-    assignedToColor: ["--variant16", "--variant09", "--variant10"],
-    subtasks: ["Grill aufstellen", "Spaß haben"],
-    subtaskschecked: ["checked", "checked"],
-    id: 5,
-  },
-  {
-    container: "in-progress-con",
-    category: ["Engine"],
-    title: "Titel: Weihnachtsfeier",
-    description:
-      "Das ist die Description, hier etwas text : handy telefonieren",
-    date: "2023-12-23",
-    priority: "Urgent",
-    priorityImg: "../assets/img/urgentImg.png",
-    assignedTo: ["Marcel Bauer", "Anton Mayer", "Emmanuel Mauer"],
-    assignedToNameTag: ["MB", "AM", "EM"],
-    assignedToColor: ["--variant16", "--variant09", "--variant10"],
-    subtasks: ["Subtask1", "Start Page Layout"],
-    subtaskschecked: ["checked", "unchecked"],
-    id: 9
-  },
-];
-
-// let openTasks = oldTasks;
-
-//********************************** */
-
-let oldUsers = [
-  {
-    name: "Guest",
-    mail: "guest@guest.de",
-    nameTag: "G",
-    password: "test123",
-  },
-  {
-    name: "Junus Ergin",
-    mail: "junus@test.de",
-    nameTag: "JE",
-    password: "test",
-  },
-  {
-    name: "Anton Mayer",
-    mail: "antonmayer@test.de",
-    nameTag: "AM",
-    password: "test123",
-  },
-  {
-    name: "Anton Mayer",
-    mail: "antom@gmail.com",
-    nameTag: "AM",
-    password: "test123",
-  },
-  {
-    name: "Sofia Muller",
-    mail: "sofiam@gmail.com",
-    nameTag: "SM",
-    password: "mypassword123",
-  },
-  {
-    name: "Anja Schulz",
-    mail: "schulz@hotmail.com",
-    nameTag: "AS",
-    password: "mypassword123",
-  },
-  {
-    name: "Peter Pan",
-    mail: "pp@nox.de",
-    nameTag: "PP",
-    password: "wendy",
-  },
-  {
-    name: "Mina  M  Zarkesh",
-    mail: "mina@email.de",
-    nameTag: "MZ",
-    password: "hallo123",
-  },
-];
-
-users = oldUsers;
-
-//********************************************* */
-// resetUsers =
-//   '[{"name": "Guest", "mail": "guest@guest.de", "nameTag": "G", "password": "test123", "phone": "+49 1111 111 11 1", "color": "--default", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Mina M Zarkesh", "mail": "mina@test.de", "nameTag": "MZ", "password": "test123", "phone": "+49 1111 111 11 1", "color": "--default", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Junus Ergin", "mail": "junus@test.de", "nameTag": "JE", "password": "test", "phone": "+49 1111 111 11 1", "color": "--variant03", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Anton Mayer", "mail": "antonmayer@test.de", "nameTag": "AM", "password": "test123", "phone": "+49 1111 111 11 1", "color": "--variant12", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Anton Mayer", "mail": "antom@gmail.com", "nameTag": "AM", "password": "test123", "phone": "+49 1111 111 11 1", "color": "--variant07", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Sofia Muller", "mail": "sofiam@gmail.com", "nameTag": "SM", "password": "mypassword123", "phone": "+49 1111 111 11 1", "color": "--variant02", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}, {"name": "Anja Schulz", "mail": "schulz@hotmail.com", "nameTag": "AS", "password": "mypassword123", "phone": "+49 1111 111 11 1", "color": "--variant15", "token": "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE"}]';
-
-
-
-
