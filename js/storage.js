@@ -203,21 +203,24 @@ async function loadUsers() {
 
 async function loadContacts() {
   contacts = JSON.parse(await getItem("contacts"));
-  console.log(contacts);
+  // console.log(contacts);
+  
   // contact = contacts[index];
   // return contacts, contact, contactIndex;
 }
 
 async function loadTasks() {
   tasks = JSON.parse(await getItem("tasks"));
-  console.log(tasks);
+  // console.log(tasks);
+
   // task = tasks[index];
   // return tasks, task, taskIndex;
 }
 
 async function loadCategorys() {
   categorys = JSON.parse(await getItem("categorys"));
-  console.log(categorys);
+  // console.log(categorys);
+
   // task = tasks[index];
   // return tasks, task, taskIndex;
 }

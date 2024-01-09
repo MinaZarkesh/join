@@ -128,25 +128,30 @@ let filteredTasks_Ids = [];
 
 function filterTasks(){
   word = docID("search-text-input-id").value;
-filteredTasks = [];
-filteredTasks_Ids =[];
-filteredTasks = document.querySelectorAll(".board-card");
-
-filteredTasks.forEach((e)=>{
-  e.classList.add("d-none");
-})
-
-  // word = "Weihnacht";
-  tasks.forEach((e) => {
-    if(isMatch(e, word)){
-      let id = e.container.replace("-con", "") + `-card-${e.id}`;
-       filteredTasks_Ids.push(id);
-    }
-  })
-
-  filteredTasks_Ids.forEach((e)=>{
-    docID(e).classList.remove("d-none");
-});
+  if(word != ''){
+    filteredTasks = [];
+    filteredTasks_Ids =[];
+    filteredTasks = document.querySelectorAll(".board-card");
+    
+    filteredTasks.forEach((e)=>{
+      e.classList.add("d-none");
+    })
+    
+      // word = "Weihnacht";
+      tasks.forEach((e) => {
+        if(isMatch(e, word)){
+          let id = e.container.replace("-con", "") + `-card-${e.id}`;
+           filteredTasks_Ids.push(id);
+        }
+      })
+    
+      filteredTasks_Ids.forEach((e)=>{
+        docID(e).classList.remove("d-none");
+    });
+  }
+  else{
+    renderBoardSegments();
+  }
 }
 
 function isMatch(obj, word){
