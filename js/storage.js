@@ -93,6 +93,7 @@ function openNavMenu() {
   new MenuLink("contacts");
 }
 
+//create Header
 function updateUserValues() {
   //creates Header
   docID("header-name-tag").innerHTML = active_user.nameTag;
@@ -185,6 +186,7 @@ async function loadUsers() {
 
 async function loadContacts() {
   contacts = JSON.parse(await getItem("contacts"));
+  createContactBox();
   console.log(contacts);
   // contact = contacts[index];
   // return contacts, contact, contactIndex;
