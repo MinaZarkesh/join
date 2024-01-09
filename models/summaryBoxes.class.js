@@ -122,14 +122,9 @@ class SummaryBox {
     this.rowAmount = 4;
     this.gapColoumn = 8;
     this.gapRow = 8;
-
     this.containerWidth = window.innerWidth * 0.9 - 2;
     this.height = window.innerHeight * 0.8 - 2; // gesamtbreite - 10% (nav) - 10% (header) -2px für Rand
-    //  this.height = 506.92; //um den Fehler zu analysieren
-
-    this.itemWidth =
-      this.containerWidth / this.item_amountPerRow - this.gapColoumn;
-
+    this.itemWidth = this.containerWidth / this.item_amountPerRow - this.gapColoumn;
     this.itemHeight = this.height / this.rowAmount - this.gapRow;
 
     this.row = 0;
