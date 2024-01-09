@@ -22,9 +22,11 @@ function initAddtask() {
     new Urgencybtn('priority-button', "Low");
     new Labeldiv('content-con', 'assigned', 'Assigned to', true);
     new Divinputimg('assigned', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png', 'input-con-text-input-id', 'assigned-div'); //+ id + div_id
+    docID('input-con-assigned-input-id').onclick = function () {dropdownMenu(`assigned-img`, 'assigned', 'assigned')};
     new Div('content-con', 'associate-con', '');
     new Labeldiv('content-con', 'category', 'Category', false);
     new Divinputimg('category', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png',  'input-con-text-input-id', 'category-div'); //+ id + div_id
+    docID('input-con-category-input-id').onclick = function () {dropdownMenu(`category-img`, 'category', 'category')};
     new Div('content-con', 'department-con', '');
     new Labeldiv('content-con', 'subtask', 'Subtask', true);
     new Divinputimg('subtask', 'input-con', 'text', 'Add new subtask', '../assets/img/+.png',  'input-con-text-input-id', 'subtask-div'); //+ id + div_id
@@ -177,7 +179,7 @@ function activeCounter(selector) {
     let matches = document.querySelectorAll(selector);
     let array = [];
     for (let i = 0; i < matches.length; i++) {
-        array.push(matches[i].children[1].checked);
+        array.push(matches[i].children[2].checked);
     }
     return array
 }
