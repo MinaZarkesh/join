@@ -177,10 +177,11 @@ li input {
 
 .list-element {
     display: flex;
-    padding: 12px 10px;
+    padding: 12px 10px 12px 29px;
+    align-items: center;
 }
 
-.list-element img {
+.subtask-element{
     margin-right: 5px;
     height: 20px;
     width: 20px;
@@ -209,7 +210,6 @@ li input {
     top: 50%;
     transform: translateY(-50%);
     color: black;
-    left: -7%;
     padding: 7px 11px;
 }
 
@@ -217,7 +217,7 @@ li input {
     display: flex;
 }
 
-#subtask-img, #img-check, #subtasklist-img, #subtasklist-check-img {
+#subtask-img, #img-check, #subtasklist-img, #subtasklist-check-img, .sub-change-img {
     width: 15px;
     height: 15px;
     border-radius: 50%;

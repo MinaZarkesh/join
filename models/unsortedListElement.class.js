@@ -16,10 +16,11 @@ class UnsortedListElement extends World{
         this.img_2_id = `${this.li_id}-img-2`;
         new ListElement(parent, this.li_id, "list");
         new Div(this.li_id, this.div_id , "list-element");
-        new Input(this.div_id, this.input_id, "", "text",);
-        new Img(this.div_id, this.img_1_id, "", this.img_1_src);
-        new Img(this.div_id, this.img_2_id, "", this.img_2_src);
+        new Input(this.div_id, this.input_id, "", "text", "Subtask eintragen");
+        new Img(this.div_id, this.img_1_id, "subtask-element", this.img_1_src);
+        new Img(this.div_id, this.img_2_id, "subtask-element", this.img_2_src);
         docID(this.input_id).value = subtask;
+        docID(this.input_id).onclick = function() {subtaskChange(`sub-list-${index}`, index)}
         docID(this.img_1_id).onclick = function() {subtaskChange(`sub-list-${index}`, index)}
         docID(this.img_2_id).onclick = function() {deleteSubtask(index)};
     }

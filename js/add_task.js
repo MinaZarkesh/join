@@ -69,7 +69,6 @@ function createDropMenu(list_parent, parent, tasks_parent, select, imgid, list_C
     if (document.querySelectorAll(tasks_parent).length == 0) {
         select == 'assigned' ? createContactListTask() : createCategoryList();
     }
-    if (select == "assigned")
     select == 'assigned' ? dropdownContacts = true : dropdownCategory = true;  
     docID(imgid).src = "../assets/img/arrow_up.png";
     docID(list_Con).classList.add('d-none'); 
@@ -79,7 +78,6 @@ function createDropMenu(list_parent, parent, tasks_parent, select, imgid, list_C
 function dropUp(select, list_Parent, imgid, list_Con, input_id, tasks_Parent) {
     select == 'assigned' ? dropdownContacts = false : dropdownCategory = false;
     dropdownReset(list_Parent, imgid);
-    contact_boxes = (select === "assigned") ? [] : contact_boxes; // wird das noch gebraucht
     docID(imgid).src = "../assets/img/arrow_drop_down.png";
     docID(list_Con).classList.remove('d-none');
     docID(input_id).parentElement.classList.remove('blue-border');
@@ -95,11 +93,14 @@ function dropdownReset(parent, imgid) {
 }
 
 function createContactListTask() {
-    createContactBox("contact-list-parent");
+    // createContactBox("contact-list-parent");
+    let div_id;
     contacts.forEach((e) => {
-        new Div("contact-list-parent", "contact-list-parent-div", "tasks-contacts");
-        new ProfilBadge("contact-list-parent-div", e.idx, e.color, e.nameTag);
-        new Checkbox("contact-list-parent",`check-${e.idx}`, "checkbox");
+        div_id = `contact-list-parent-div-${e.idx}`;
+        new Div("contact-list-parent", div_id, "tasks-contacts");
+        new ProfilBagde(div_id, e.idx, e.color, e.nameTag);
+        new Span(div_id, `span-${e.idx}`,"", e.name)
+        new Checkbox(div_id,`check-${e.idx}`, "checkbox");
         // docID("contact-list-parent").innerHTML += /*html*/`
         //     <div class="tasks-contacts">
         //         ${e.profile_badge}
@@ -109,11 +110,14 @@ function createContactListTask() {
     })
 }
 function createCategoryList() {
+    let div_id;
     let filtered_Contact = filterList();
-    filtered_Contact.forEach( (e, index) => {
-        new Div("category-list-parent",`tasks-category-${e.idx}`, "tasks-category");
-        new ProfilBagde(`tasks-category-${e.idx}`, e.idx, e.color, e.nameTag);
-        new Checkbox(`tasks-category-${index}`, `check-${index}`, "checkbox");
+    filtered_Contact.forEach( (e) => {
+        div_id = `tasks-category-${e.idx}`;
+        new Div("category-list-parent",div_id, "tasks-category");
+        new ProfilBagde(div_id, e.idx, e.color, e.nameTag);
+        new Span(div_id, `category-span-${e.idx}`,"", e.name)
+        new Checkbox(div_id, `category-check-${e.idx}`, "checkbox");
         // docID("category-list-parent").innerHTML += /*html*/`
         //     <div id="tasks-category-${index}" class="tasks-category">
         //         <div id='profile_badgeCon-${index}'  class="profile-badge" style="background-color: var(${e.color});">
@@ -153,7 +157,7 @@ function itemsForEach(counter, list_Con, active_array, items) {
     items.forEach((e, index) => {
         if (active_array[index] == true && counter < 8) {
             if (list_Con === "associate-con") {
-                new ProfilBadge("associate-con", e.idx, e.color, e.nameTag);
+                new ProfilBagde("associate-con", e.idx, e.color, e.nameTag);
             } else {
                 new ProfilBagde("department-con", e.idx, e.color, e.nameTag);
             }
@@ -166,7 +170,7 @@ function itemsForEach(counter, list_Con, active_array, items) {
 
 function numberBadge(list_Con, item_Name, plus_number, counter) {
     plus_number = counter - 7;
-    new ProfilBadge(list_Con, `${item_Name}-${plus_number}`, `--default`, `${plus_number}+`)
+    new ProfilBagde(list_Con, `${item_Name}-${plus_number}`, `--default`, `${plus_number}+`)
 }
 
 function activeCounter(selector) {
@@ -253,14 +257,30 @@ function deleteSubtask(i) {
 }
 
 function subtaskChange(value, i) {
-    let edit_value = docID(value).value;
-    let upadate_id = "edit-subtask";
-    new Divinputimg('subtasks-con', "input-con blue-border", 'text', "", "../assets/img/delete.png");
-    new Img('subtasks-con-div',"subtasklist-check-img", "", "../assets/img/check.png");
-    docID('subtasks-con-div').onclick = undefined;
-    docID('subtasks-con-img').onclick = function () {deleteSubtask(i)};
-    docID('subtasklist-check-img').onclick = function () {updateSubtask(i,`${upadate_id}`)};
-    docID(value).value = edit_value;
+    let img_id_1 = value.replace("sub-", "") + `-img-1`;
+    let img_id_2 = value.replace("sub-", "") + `-img-2`;
+    docID(value).focus();
+    docID(img_id_1).src = "../assets/img/delete.png";
+    docID(img_id_1).onclick = function () {deleteSubtask(i)};
+    docID(img_id_2).src = "../assets/img/check.png";
+    docID(img_id_2).classList.remove('sub-change-img');
+    docID(img_id_2).classList.add('sub-change-img');
+    docID(img_id_2).onclick = function () {updateSubtask(i,`${value}`)};
+    docID(value).addEventListener("keydown", (e) => {
+        if(e.key == 'Enter') {
+            updateSubtask(i,`${value}`);
+        }
+    })
+    // neu schreiben. 
+    // let edit_value = docID(value).value;
+    // let upadate_id = "edit-subtask";
+    // new Divinputimg('subtasks-con', "input-con blue-border", 'text', "", "../assets/img/delete.png", 'input-con-text-input-id', 'subtask-div');
+    // new Img('subtasks-con-div',"subtasklist-check-img", "", "../assets/img/check.png");
+    // docID('subtasks-con-div').onclick = undefined;
+    // docID('subtasks-con-img').onclick = function () {deleteSubtask(i)};
+    // docID('subtasklist-check-img').onclick = function () {updateSubtask(i,`${upadate_id}`)};
+    // docID(value).value = edit_value;
+    
     // docID('subtasks-con').innerHTML = /*html*/`
     //     <div class="input-con blue-border" id="subtasklist-div">
     //         <input id="${upadate_id}" type="text" class="font-t6" value="${edit_value}">
@@ -271,8 +291,12 @@ function subtaskChange(value, i) {
 }
 
 function updateSubtask(i, upadate_id) {
-    subtask[i] = docID(upadate_id).value;
-    subtaskListRender();
+    if(!docID(upadate_id).value) {
+        deleteSubtask(i);
+    } else {
+        subtask[i] = docID(upadate_id).value;
+        subtaskListRender();
+    }
 }
 
 function clearTask() {
@@ -291,7 +315,6 @@ function clearTask() {
     docID('input-con-Add').value = "";
     subtask = [];
     subtaskListRender();
-
 }
 
 function uncountCounter(selector) {
