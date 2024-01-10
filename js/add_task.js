@@ -4,6 +4,10 @@ let label_description;
 let div_date;
 let subtask = [];
 let Span_element;
+let task_assigned_to = [];
+let task_assigned_to_nametag = [];
+let task_assigned_to_color = [];
+let departments = [];
 function initAddtask() {
     init();
     new Divinput('contentbig', 'taskName', "Enter a title", "task-title", "input-field", "input");
@@ -301,8 +305,8 @@ function addTask() {
     let description = docID('desc-input').value;
     let date = docID('date-input').value;
     let urgency = theUrgency();
-    let associates = theSelectors('.tasks-contacts');
-    let departments = theSelectors('.tasks-category');
+    theSelectors('.tasks-contacts');
+    theSelectors('.tasks-category');
     let subtasks = subtask;
     let sub_checked = Subtaskschecked();
 
@@ -314,12 +318,13 @@ function addTask() {
         date: date,
         priority: urgency[0],
         priorityImg: urgency[1],
-        assignedTo: [contacts[associates[0]].name, contacts[associates[1]].name, contacts[associates[2]].name],
-        assignedToNameTag: [contacts[associates[0]].nameTag, contacts[associates[1]].nameTag, contacts[associates[2]].nameTag],
-        assignedToColor: [contacts[associates[0]].color, contacts[associates[1]].color, contacts[associates[2]].color],
+        assignedTo: task_assigned_to,
+        task_assigned_to_nametag: task_assigned_to_nametag,
+        task_assigned_to_color: task_assigned_to_color,
         subtasks: subtasks,
         sub_checked: sub_checked 
     }
+    tasks.push(newTask);
     clearTask();
 }
 
@@ -342,6 +347,8 @@ function theSelectors(selector){
     let work;
     let id = [];
     let idx = [];
+
+
     for (let i = 0; i < matches.length; i++) {
         if (matches[i].children[2].checked) {
             work = matches[i].children[1].id;
@@ -358,7 +365,12 @@ function theSelectors(selector){
     } else {
         idx = id;
     }
-    return idx
+    idx.forEach((e) => {
+        task_assigned_to.push(contacts[e].name);
+        task_assigned_to_nametag.push(contacts[e].nameTag);
+        task_assigned_to_color.push(contacts[e].color);
+        departments.push(categorys[e].name);
+    })
 }
 
 function Subtaskschecked() {
