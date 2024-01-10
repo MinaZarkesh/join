@@ -1,4 +1,4 @@
-class Textarena extends Elements{
+class Textarea extends Elements{
 
     constructor(parent, id, className, placeholder) {
         super('textarea', id, className);

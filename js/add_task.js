@@ -13,7 +13,9 @@ function initAddtask() {
     new Divinput('contentbig', 'taskName', "Enter a title", "task-title", "input-field", "input");
     new Span('taskName','taskName-requiered', "requiered font-label");
     label_description = new Labeldiv('contentbig', "description" , "Description", true);
-    new Divinput('contentbig', "description-textarea", "Enter a Description", "desc-input", "textarea", "textarea");
+    new Div('contentbig', "description-textarea");
+    new Textarea("description-textarea", "desc-input", "textarea", "Enter a Description" );
+    // new Divinput('contentbig', "description-textarea", "Enter a Description", "desc-input", "textarea", "textarea");
     new Span('description-textarea', 'description-textarea-requiered', "requiered font-label");
     new Labeldiv('contentbig','due-date', 'Due date', false);
     new Divdate('due-date', 'date-input' , 'input-field input-blue font-t6')

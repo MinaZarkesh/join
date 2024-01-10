@@ -43,7 +43,7 @@
 
 #content-con {
     width: 90%;
-    margin: 0 5%;
+    margin: 0px 5% 35px 5%;
 }
 
 #contentbig {
@@ -61,7 +61,7 @@
     outline: none;
     border-color: rgba(0, 0, 0, 0.2);
     border-radius: 0 10px 10px 10px;
-    padding-top: 18px;
+    padding-top: 5px;
     padding-left: 16px;
     font-size: 19px;
     line-height: 120%;
@@ -114,6 +114,9 @@
 }
 
 .urgency-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 136px;
     height: 51px;
     padding: 10px 10px;
@@ -122,6 +125,7 @@
     background-color: white;
     border: none;
     border-bottom: 2px solid transparent;
+    gap: 5px;
 }
 
 .btn-red {
@@ -235,8 +239,18 @@ li input {
     right: 5%;
     gap: 25px;
     font-size: 23px;
+    height: 65px;
 }
 
 #add-task-btn:hover {
     box-shadow: 0px 5px 10px var(--black20);
+}
+
+@media (max-width: 1023px) {
+    #button-con {
+        position: unset;
+        justify-content: flex-end;
+        margin-right: 23px;
+        margin-bottom: 23px;
+    }
 }
