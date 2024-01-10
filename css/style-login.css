@@ -11,6 +11,13 @@ main {
   background-color: var(--white);
 }
 
+.checkbox {
+  position: relative;
+  right: unset;
+  left: unset;
+  content: url(../assets/img/blue-checkbox.svg);
+}
+
 #button-group {
   position: absolute;
   top: 4.6%;
