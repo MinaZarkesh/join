@@ -67,6 +67,15 @@ main {
   font-size: 16px;
   height: fit-content;
   line-height: 19px;
+  /* color: var(--menuColor); */
+}
+
+.link-group-a {
+  color: var(--white);
+}
+
+.link-group-a:hover{
+  color: var(--menuColor);
 }
 
 #login-item .row button {
@@ -207,6 +216,10 @@ main {
     width: 15%;
     max-width: 64px;
   }
+
+  
+
+
 
   .signup-back-btn {
     left: 8%;

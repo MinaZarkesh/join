@@ -138,19 +138,26 @@ function setBackBtnsignup() {
 /*** Sign-up ***/
 
 function changeStyle(bool) {
+ let links = document.querySelectorAll("#login-link-group a");
+
   if (bool === "Sign up") {
     docID("button-group").style.display = "none";
     docID("logo-login").src = "../assets/img/Logo-middle_white.png";
     docID("login-main").style.backgroundColor = "var(--primary)";
-    docID("login-link-group").style.color = "var(--white)";
     docID("inputs-con-div").style.justifyContent = "center";
     docID("login-form-button-group").style.justifyContent = "center";
     docID("signup-back-btn").style.display = "flex";
+    docID("login-link-group").innerHTML = "";
+   new Anchor("login-link-group", "", "link-group-a", "../html/PrivacyPolicy.html", "Private Policy");
+   new Anchor("login-link-group", "", "link-group-a", "../html/LegalNotice.html", "Legal Notice");
   } else {
     docID("signup-back-btn").style.display = "none";
     docID("button-group").style.display = "flex";
     docID("login-main").style.backgroundColor = "var(--white)";
     docID("logo-login").src = "../assets/img/Logo-middle_blue.png";
+    docID("login-link-group").innerHTML = "";
+    new Anchor("login-link-group", "", "", "../html/PrivacyPolicy.html", "Private Policy");
+    new Anchor("login-link-group", "", "", "../html/LegalNotice.html", "Legal Notice");
   }
 }
 
@@ -247,12 +254,16 @@ function loginUser(bool) {
       docID("input-con-password-input-id").value = "";
       alert("Die Email stimmt nicht überein, bitte noch einmal eingeben.");
     }
-  }
-  else if((bool == "Guest")) {
+  } else if (bool == "Guest") {
     active_user = users[0];
     active_user = JSON.stringify(active_user);
     console.log("Login Guest erfolgreich", active_user);
     sessionUsersave(active_user);
     navToSummary();
+  }
+
+  function rememberMe() {
+    // if(){
+    // }
   }
 }
