@@ -273,6 +273,16 @@ function sessionUserload() {
   active_user = JSON.parse(user);
 }
 
+let isShown = false;
+function showHeaderDropdown(){
+  if(! isShown){
+    docID("dropdown-menu").classList.add("show");
+  }else{
+    docID("dropdown-menu").classList.remove("show");
+  }
+  isShown = !isShown;
+}
+
 // async function includeHTML() {
 //   let z, i, elmnt, file, xhttp;
 //   /*loop through a collection of all HTML elements:*/
