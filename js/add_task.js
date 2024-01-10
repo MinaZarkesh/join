@@ -31,6 +31,7 @@ function initAddtask() {
     new Labeldiv('content-con', 'subtask', 'Subtask', true);
     new Divinputimg('subtask', 'input-con', 'text', 'Add new subtask', '../assets/img/+.png',  'input-con-text-input-id', 'subtask-div'); //+ id + div_id
     new Div('subtask', 'subtasks-con', '');
+    setNavBarActive("add_task-link");
 }
 
 

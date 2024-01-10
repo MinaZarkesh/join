@@ -23,7 +23,7 @@
   background-color: var(--active);
 }
 
-.vertical-menu a.active {
+.vertical-menu a.nav-active {
   background-color: var(--secondary);
   color: var(--menuColor);
 }

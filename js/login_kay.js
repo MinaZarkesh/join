@@ -7,9 +7,18 @@ let input_password_value;
 let input_confirm_password_value;
 let isCheckedBox;
 
+let name_value;
+let email_value;
+let password_value;
+let confirm_password_value;
+
+let email;
+let emails = [];
+
 function initLogin() {
   setBackBtnsignup();
   renderLoginElements("Login");
+  
 }
 
 function renderLoginElements(bool) {
@@ -138,19 +147,26 @@ function setBackBtnsignup() {
 /*** Sign-up ***/
 
 function changeStyle(bool) {
+ let links = document.querySelectorAll("#login-link-group a");
+
   if (bool === "Sign up") {
     docID("button-group").style.display = "none";
     docID("logo-login").src = "../assets/img/Logo-middle_white.png";
     docID("login-main").style.backgroundColor = "var(--primary)";
-    docID("login-link-group").style.color = "var(--white)";
     docID("inputs-con-div").style.justifyContent = "center";
     docID("login-form-button-group").style.justifyContent = "center";
     docID("signup-back-btn").style.display = "flex";
+    docID("login-link-group").innerHTML = "";
+   new Anchor("login-link-group", "", "link-group-a", "../html/PrivacyPolicy.html", "Private Policy");
+   new Anchor("login-link-group", "", "link-group-a", "../html/LegalNotice.html", "Legal Notice");
   } else {
     docID("signup-back-btn").style.display = "none";
     docID("button-group").style.display = "flex";
     docID("login-main").style.backgroundColor = "var(--white)";
     docID("logo-login").src = "../assets/img/Logo-middle_blue.png";
+    docID("login-link-group").innerHTML = "";
+    new Anchor("login-link-group", "", "", "../html/PrivacyPolicy.html", "Private Policy");
+    new Anchor("login-link-group", "", "", "../html/LegalNotice.html", "Legal Notice");
   }
 }
 
@@ -167,10 +183,7 @@ function saveInputValues() {
   ).value;
   isCheckedBox = docID("checkbox-accept-privacy").checked;
 
-  let name_value;
-  let email_value;
-  let password_value;
-  let confirm_password_value;
+
 
   if (isCheckSignupForm() && isSamePassword()) {
     if (!isContainedMails()) {
@@ -212,9 +225,6 @@ function addNewUser() {
   users.push(newUser);
 }
 
-let email;
-let emails = [];
-
 function isContainedMails() {
   input_email_value = docID("input-con-email-input-id").value;
   users.forEach((user) => {
@@ -236,7 +246,14 @@ function loginUser(bool) {
       if (active_user.password == input_password_value) {
         active_user = JSON.stringify(active_user);
         console.log("Login erfolgreich", active_user);
-        sessionUsersave(active_user);
+
+        if(docID("checkbox-remember-me").checked){
+          sessionStorage.removeItem("activeuser");
+          localUsersave(active_user)
+        }else{
+          localStorage.removeItem("activeuser");
+          sessionUsersave(active_user);
+        } 
         navToSummary();
       } else {
         docID("input-con-password-input-id").value = "";
@@ -247,8 +264,7 @@ function loginUser(bool) {
       docID("input-con-password-input-id").value = "";
       alert("Die Email stimmt nicht überein, bitte noch einmal eingeben.");
     }
-  }
-  else if((bool == "Guest")) {
+  } else if (bool == "Guest") {
     active_user = users[0];
     active_user = JSON.stringify(active_user);
     console.log("Login Guest erfolgreich", active_user);

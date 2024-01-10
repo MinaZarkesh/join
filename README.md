@@ -107,3 +107,5 @@ variables snake_case
 
   - Ich habe überall die Benennung der Variablen zu unseren neuen Regeln angepasst, außer in der AddTasks und den dazugehörigen classes, weil ich nicht genau wusste, wie das alles zusammen passt und die dazugehörigen Dateien sind noch nicht richtig umbenannt, weil wir dafür noch nicht festgelegt hatten.
   - Außerdem habe ich gemerkt, dass das DropDownMenu bei Assigned nicht mehr die Contacts anzeigt, aber ich weiß nicht ob das Absicht ist.
+
+

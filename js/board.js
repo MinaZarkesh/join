@@ -21,6 +21,7 @@ function initBoard() {
   new BoardSegment("board-content-con", "done", "Done");
   createBoardCards();
   new Div("main-card-div", "main-board-card");
+  setNavBarActive("board-link");
 }
 
 

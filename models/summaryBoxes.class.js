@@ -66,6 +66,8 @@ class SummaryBox {
     docID(`item-${this.id}-${this.index}`).style.height = `${this.itemHeight}px`;
     docID(`item-${this.id}-${this.index}`).style.left = `${this.left}px`;
     docID(`item-${this.id}-${this.index}`).style.top = `${this.top}px`;
+    // docID(`item-${this.id}-${this.index}`).style.justify = "center";
+    // justify-content: center;
   }
 
   checkScreenView(index) {

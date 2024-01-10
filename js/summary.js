@@ -39,6 +39,7 @@ async function initSummary() {
 
   task_amounts = await updateTaskAmounts();
   createSummaryBoxes(); //creates summary-boxes beim laden
+  setNavBarActive("summary-link");
 }
 
 async function updateTaskAmounts() {
@@ -62,9 +63,9 @@ function greetings() {
   const currentHour = new Date().getHours();
   let greeting = "";
 
-  if (currentHour >= 0 && currentHour < 12) {
+  if (currentHour >= 6 && currentHour < 12) {
     greeting = "Good Morning";
-  } else if (currentHour >= 15 && currentHour < 18) {
+  } else if (currentHour >= 12 && currentHour < 18) {
     greeting = "Good Afternoon";
   } else if (currentHour >= 18 && currentHour < 21) {
     greeting = "Good Evening";
