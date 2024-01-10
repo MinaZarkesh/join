@@ -7,6 +7,14 @@ let input_password_value;
 let input_confirm_password_value;
 let isCheckedBox;
 
+let name_value;
+let email_value;
+let password_value;
+let confirm_password_value;
+
+let email;
+let emails = [];
+
 function initLogin() {
   setBackBtnsignup();
   renderLoginElements("Login");
@@ -174,10 +182,7 @@ function saveInputValues() {
   ).value;
   isCheckedBox = docID("checkbox-accept-privacy").checked;
 
-  let name_value;
-  let email_value;
-  let password_value;
-  let confirm_password_value;
+
 
   if (isCheckSignupForm() && isSamePassword()) {
     if (!isContainedMails()) {
@@ -219,9 +224,6 @@ function addNewUser() {
   users.push(newUser);
 }
 
-let email;
-let emails = [];
-
 function isContainedMails() {
   input_email_value = docID("input-con-email-input-id").value;
   users.forEach((user) => {
@@ -243,7 +245,14 @@ function loginUser(bool) {
       if (active_user.password == input_password_value) {
         active_user = JSON.stringify(active_user);
         console.log("Login erfolgreich", active_user);
-        sessionUsersave(active_user);
+
+        if(docID("checkbox-remember-me").checked){
+          sessionStorage.removeItem("activeuser");
+          localUsersave(active_user)
+        }else{
+          localStorage.removeItem("activeuser");
+          sessionUsersave(active_user);
+        } 
         navToSummary();
       } else {
         docID("input-con-password-input-id").value = "";
@@ -260,10 +269,5 @@ function loginUser(bool) {
     console.log("Login Guest erfolgreich", active_user);
     sessionUsersave(active_user);
     navToSummary();
-  }
-
-  function rememberMe() {
-    // if(){
-    // }
   }
 }
