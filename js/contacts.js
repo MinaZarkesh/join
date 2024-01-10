@@ -7,6 +7,7 @@ let text; // ?? wird das überhaupt benutzt ?
 function initContacts() {
   init();
   renderContactList();
+  setNavBarActive("contacts-link");
 }
 
 function renderContactList() {

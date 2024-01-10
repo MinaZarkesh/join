@@ -105,6 +105,10 @@ async function init() {
   openNavMenu(); // set NavBar
 }
 
+function setNavBarActive(con){
+docID(con).classList.add("nav-active");
+}
+
 function openNavMenu() {
   //fill NavBar
   new MenuLink("summary");

@@ -18,6 +18,7 @@ let emails = [];
 function initLogin() {
   setBackBtnsignup();
   renderLoginElements("Login");
+  
 }
 
 function renderLoginElements(bool) {

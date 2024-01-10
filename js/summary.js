@@ -39,6 +39,7 @@ async function initSummary() {
 
   task_amounts = await updateTaskAmounts();
   createSummaryBoxes(); //creates summary-boxes beim laden
+  setNavBarActive("summary-link");
 }
 
 async function updateTaskAmounts() {
