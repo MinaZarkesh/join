@@ -4,6 +4,10 @@ let label_description;
 let div_date;
 let subtask = [];
 let Span_element;
+let task_assigned_to = [];
+let task_assigned_to_nametag = [];
+let task_assigned_to_color = [];
+let departments = [];
 function initAddtask() {
     init();
     new Divinput('contentbig', 'taskName', "Enter a title", "task-title", "input-field", "input");
@@ -104,12 +108,6 @@ function createContactListTask() {
         new ProfilBagde(div_id, e.idx, e.color, e.nameTag);
         new Span(div_id, `span-${e.idx}`,"", e.name)
         new Checkbox(div_id,`check-${e.idx}`, "checkbox");
-        // docID("contact-list-parent").innerHTML += /*html*/`
-        //     <div class="tasks-contacts">
-        //         ${e.profile_badge}
-        //         ${e.contact_name}
-        //     </div>
-        // `
     })
 }
 function createCategoryList() {
@@ -121,14 +119,6 @@ function createCategoryList() {
         new ProfilBagde(div_id, e.idx, e.color, e.nameTag);
         new Span(div_id, `category-span-${e.idx}`,"", e.name)
         new Checkbox(div_id, `category-check-${e.idx}`, "checkbox");
-        // docID("category-list-parent").innerHTML += /*html*/`
-        //     <div id="tasks-category-${index}" class="tasks-category">
-        //         <div id='profile_badgeCon-${index}'  class="profile-badge" style="background-color: var(${e.color});">
-        //             <span id='category_itemNameTag-${index}'>${e.nameTag}</span>
-        //         </div>
-        //         ${e.name}
-        //     </div>
-        // `
     })
 }
 
@@ -315,32 +305,40 @@ function addTask() {
     let description = docID('desc-input').value;
     let date = docID('date-input').value;
     let urgency = theUrgency();
-    let associates = theSelectors('.tasks-contacts');
-    let departments = theSelectors('.tasks-contacts');
+    theSelectors('.tasks-contacts');
+    theSelectors('.tasks-category');
     let subtasks = subtask;
     let sub_checked = Subtaskschecked();
 
     let newTask = {
-        "title": title,
-        "description": description,
-        "date": date,
-        "urgency": urgency,
-        "associates": associates,
-        "departments": departments,
-        "subtasks": subtasks,
-        "sub_checked": sub_checked 
+        container: "to-do-con",
+        category: departments,
+        title: title,
+        description: description,
+        date: date,
+        priority: urgency[0],
+        priorityImg: urgency[1],
+        assignedTo: task_assigned_to,
+        task_assigned_to_nametag: task_assigned_to_nametag,
+        task_assigned_to_color: task_assigned_to_color,
+        subtasks: subtasks,
+        sub_checked: sub_checked 
     }
+    tasks.push(newTask);
     clearTask();
 }
 
 function theUrgency() {
     let btns = ["btn-red", "btn-orange", "btn-green" ];
-    let output;
-    btns.forEach((element) => {
+    let output =[];
+    btns.forEach((element, index) => {
         if (docID(element).classList.value.includes('active')) {
-            output = element;
-        }
-    })
+            element = "btn-red" ?? output.push('Urgent');
+            element = "btn-orange" ?? output.push('Medium');
+            element = "btn-green" ?? output.push('Low');
+            output.push(docID(element).children[1].src)
+            }
+        })
     return output;
 }
 
@@ -349,8 +347,10 @@ function theSelectors(selector){
     let work;
     let id = [];
     let idx = [];
+
+
     for (let i = 0; i < matches.length; i++) {
-        if (matches[i].children[1].checked) {
+        if (matches[i].children[2].checked) {
             work = matches[i].children[1].id;
             id.push(work.match(/\d+/)[0]);
         }
@@ -365,7 +365,12 @@ function theSelectors(selector){
     } else {
         idx = id;
     }
-    return idx
+    idx.forEach((e) => {
+        task_assigned_to.push(contacts[e].name);
+        task_assigned_to_nametag.push(contacts[e].nameTag);
+        task_assigned_to_color.push(contacts[e].color);
+        departments.push(categorys[e].name);
+    })
 }
 
 function Subtaskschecked() {

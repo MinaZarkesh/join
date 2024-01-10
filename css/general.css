@@ -335,6 +335,7 @@ a:active {
 /* checkbox */
 
 .checkbox {
+  position: absolute;
   right: 20px;
   left: unset;
   content: url('../assets/img/blue-checkbox.svg');
