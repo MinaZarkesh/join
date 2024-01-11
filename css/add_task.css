@@ -117,8 +117,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 136px;
-    height: 51px;
+    width: 25%;
     padding: 10px 10px;
     border-radius: 10px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
@@ -127,6 +126,12 @@
     border-bottom: 2px solid transparent;
     gap: 5px;
 }
+
+.urgency-img {
+    height: 15px;
+    width: 20px;
+}
+
 
 .btn-red {
     --_activ: var(--activ, #FF3D00);
@@ -250,7 +255,29 @@ li input {
     #button-con {
         position: unset;
         justify-content: flex-end;
-        margin-right: 23px;
+        margin-right: 5%;
         margin-bottom: 23px;
+    }
+
+    #clear-task, #add-task-btn{
+        width: 21%;
+        font-size: calc(13px + 10 * ((100vw - 320px) / 703));
+    }
+
+    #AddTaskMainCon {
+        align-items: center;
+    }
+
+    #addtaskcon {
+        width: 100%;
+    }
+
+    .urgency-span {
+        font-size: calc(13px + 9 * ((100vw - 320px) / 703));
+    }
+
+    .urgency-img {
+        height: calc(9px + 6 * ((100vw - 320px) / 703));
+        width: calc(11px + 9 * ((100vw - 320px) / 703));
     }
 }

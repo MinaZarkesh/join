@@ -1,6 +1,6 @@
 class Urgencybtn extends World{
     urgencyImg = `../assets/img/urgentImg.png`;
-    mediumImg = `../assets/img/Medium.png`;
+    mediumImg = `../assets/img/medium.svg`;
     lowImg = `../assets/img/low.png`;
     urgencyClass = "btn-red";
     mediumClass = "btn-orange";
@@ -16,8 +16,8 @@ class Urgencybtn extends World{
         this.id = this.which(btnName, this.urgencyClass, this.mediumClass, this.lowClass);
 
         new Button(parent, this.id, `urgency-btn ${this.colorclass}`, function () {activeUrgency(this.id)});
-        new Span(this.id, "","",btnName);
-        new Img(this.id,"","",this.img);
+        new Span(this.id, "","urgency-span",btnName);
+        new Img(this.id,"","urgency-img",this.img);
     }
 
 
