@@ -3,18 +3,29 @@ body{
 }
 
 main {
-  margin-left: 20px;
+  padding-left: 5%;
   display: flex;
   flex-direction: column;
-  padding-right: 20px;
+  padding-right: 5%;
+  padding-top: 2%;
   overflow-y: scroll;
 }
 
 .spaceBetween {
   display: flex;
   justify-content: space-between;
-  /* padding-right: 20px; */
+  align-items: center;
 }
+.signup-back-btn {
+    display: flex;
+    width: 37px;
+    height: 37px;
+    padding: 2.5px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    position: relative;
+  }
 
 a{
     display: unset;
@@ -74,4 +85,8 @@ h1 {
   line-height: 120%; /* 22.8px */
   display: flex;
   align-items: flex-start;
+}
+
+li{
+    list-style: none;
 }
