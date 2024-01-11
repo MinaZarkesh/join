@@ -1,0 +1,77 @@
+body{
+    overflow: hidden;
+}
+
+main {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+  overflow-y: scroll;
+}
+
+.spaceBetween {
+  display: flex;
+  justify-content: space-between;
+  /* padding-right: 20px; */
+}
+
+a{
+    display: unset;
+}
+h1 {
+  color: var(--black, #000);
+  font-family: Open Sans;
+  font-size: 61px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 73.2px */
+  margin-top: 20px;
+}
+
+.highlight {
+  color: var(--primary);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.ol-list {
+  display: flex;
+  align-items: flex-start;
+  gap: 35px;
+  align-self: stretch;
+}
+
+.marker-list {
+  color: var(--Ligth-blue, #005dff);
+  font-family: "Open Sans";
+  font-size: 33px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 39.6px */
+}
+
+.li-list h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.li-list p{
+    margin-top: 0;
+}
+
+.headline {
+  color: var(--Ligth-blue, #005dff);
+  font-family: "Open Sans";
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 22.8px */
+  display: flex;
+  align-items: flex-start;
+}

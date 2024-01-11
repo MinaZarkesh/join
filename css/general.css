@@ -53,6 +53,10 @@
   --variant16: #462f8a;
 }
 
+*, ::after, ::before{
+  box-sizing: border-box;
+}
+
 .font-body {
   color: var(--menu-color, #42526e);
   /* Version 2/body */
