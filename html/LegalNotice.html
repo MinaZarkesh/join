@@ -2,182 +2,209 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join Legal Notice</title>
-    <link rel="icon" type="image/x-icon" href="../assets/img/favIcon.svg">
+    <title>Join</title>
+    <link rel="icon" type="image/x-icon" href="../assets/img/favIcon.svg" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="../css/general.css" />
+    <link rel="stylesheet" href="../css/navbar.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/help.css" />
+    <script src="../models/world.class.js"></script>
+    <script src="../js/resetVariables.js"></script>
+    <script src="../elements/element.class.js"></script>
+    <script src="../elements/anchor.class.js"></script>
+    <script src="../elements/img.class.js"></script>
+    <script src="../elements/span.class.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../models/menuLink.class.js"></script>
   </head>
-
   <body>
-  </body>
-  </html>
-
-
-
-Legal Notice
-<!-- dropdown-menu -->
-<!-- <div class="d-flex">
-  <ul id="dropdown-menu" class="dropdown-menu">
-    <li><a class="dropdown-item" href="../html/LegalNotice.html">Legal Notice</a></li>
-    <li><a class="dropdown-item" href="..\html\PrivacyPolicy.html">Privacy Policy</a></li>
-    <li><a class="dropdown-item" href="..\html\index.html">Log Out</a></li>
-  </ul>
-</div> -->
-    <!-- <div w3-include-html="../assets/templates/header.html"></div>
-    <div style="display: flex">
-      <div class="menu-left">
-        <div class="menu-list">
-          <div>
-            <a id="summary" onclick="checkIndex('summary')"
-              ><img src="../assets/img/summary.png" /><span>Summary</span></a
-            >
-          </div>
-          <div>
-            <a id="add_task" onclick="checkIndex('add_task')"
-              ><img src="../assets/img/add_task.png" /><span>Add Task</span></a
-            >
-            href="..\html\add_task.html
-          </div>
-          <div>
-            <a id="board" onclick="checkIndex('board')"
-              ><img src="../assets/img/board_navbar.png" /><span>Board</span></a
-            >
-          </div>
-          <div>
-            <a id="contacts" onclick="checkIndex('contacts')"
-              ><img src="../assets/img/contact_navbar.png" /><span
-                >Contacts</span
-              ></a
-            >
-          </div>
+    <header id="header-div" class="">
+      <img class="img-fluid" src="../assets/img/logo-white.png" alt="logo" />
+      <div class="header-row">
+        <span class="span-size font-t6">Kanban Project Management Tool</span>
+        <img class="help-icon" src="../assets/img/help.png" alt="help-icon" />
+        <div class="d-flex">
+          <ul id="dropdown-menu" class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="../html/LegalNotice.html"
+                >Legal Notice</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="..\html\PrivacyPolicy.html"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="..\html\index.html">Log Out</a>
+            </li>
+          </ul>
         </div>
-        <div class="footerImpress">
-          <a
-            class="privacy-position"
-            target="_blank"
-            rel="noopener noreferrer"
-            href="..\html\PrivacyPolicy.html"
-            >Privacy Policy</a
-          >
-          <a
-            class="legalNoticePosition"
-            target="_blank"
-            rel="noopener noreferrer"
-            href="..\html\LegalNotice.html"
-            >Legal Notice</a
-          >
-        </div>
+        <div onclick="showHeaderDropdown()" id="header-name-tag"></div>
       </div>
-      <section class="NoticeContent">
-        <div class="space-between">
-          <h1 class="NoticeTitel">Legal Notice</h1>
-          <button onclick="window.location.href='index.html';">
+    </header>
+    <div class="main-site">
+      <main>
+        <div class="spaceBetween">
+          <h1>Legal Notice</h1>
+          <button
+            class="signup-back-btn"
+            onclick="window.history.go(-1); return false;"
+          >
             <img src="../assets/img/icon-arrow-left-line-blue.png" alt="" />
           </button>
         </div>
-        <div>
-          <div>
-            <h2 class="subtitleLegalnotice">Imprint</h2>
-            <p class="noticeTextContent">
-              Miyssr Ali, Mina Zarkesh, Michael Povoa und Kristian Cebic.
-              Mina Zarkesh
-            </p>
-            <p class="noticeTextContent">Rosenheimer Str. 139, 81671 München</p>
-            <p class="pointOut">Exploring the Board</p>
-            <p class="noticeTextContent">Email: [Email]</p>
+        <div class="legal-content">
+          <div class="list">
+            <span class="marker-list">Imprint</span>
+            <div class="list">
+              <ul>
+                <li>Kay Schumacher, Mina Zarkesh.</li>
+                <li>
+                  Students of
+                  <span class="highlight">Developer Akademie GmbH</span>
+                </li>
+                <li>Rosenheimer Str. 139, 81671 München</li>
+              </ul>
+              <div>
+                <span class="headline">Exploring the Board</span>
+                <span>
+                  Email:
+                  <a class="highlight" href="mailto:mina_zarkesh@gmx.de"
+                    >Mina Zarkesh</a
+                  >
+                  ,
+                  <a class="highlight" href="mailto:#">Kay Schumacher</a>
+                </span>
+              </div>
+            </div>
           </div>
           <div>
-            <p class="pointOut">Acceptance of terms</p>
-            <p class="noticeTextContent">
+            <span class="headline">Acceptance of terms</span>
+            <p class="font-body">
               By accessing and using
-              <span class="pointOutLight">Join</span> (Product), you acknowledge
-              and agree to the following terms and conditions, and any policies,
+              <span class="highlight">Join</span> (Product), you acknowledge and
+              agree to the following terms and conditions, and any policies,
               guidelines, or amendments thereto that may be presented to you
               from time to time. We, the listed students, may update or change
               the terms and conditions from time to time without notice.
             </p>
           </div>
           <div>
-            <p class="pointOut">Scope and ownership of the product</p>
-            <p class="noticeTextContent">
-              <span class="pointOutLight">Join</span> has been developed as part
-              of a student group project in a web development bootcamp at
-              the<span class="pointOutLight">Developer Akademie GmbH</span>. It
-              has an educational purpose and is not intended for extensive
-              personal & business usage. As such, we cannot guarantee consistent
+            <span class="headline">Scope and ownership of the product</span>
+            <p class="font-body">
+              <span class="highlight">Join</span> has been developed as part of
+              a student group project in a web development bootcamp at the
+              <span class="highlight">Developer Akademie GmbH</span>. It has an
+              educational purpose and is not intended for extensive personal &
+              business usage. As such, we cannot guarantee consistent
               availability, reliability, accuracy, or any other aspect of
-              quality regarding this Product.
-            </p>
-
-            <p class="noticeTextContent">
-              The design of <span class="pointOutLight">Join</span> is owned by
-              the <span class="pointOutLight">Developer Akademie GmbH</span>.
+              quality regarding this Product. <br />
+              <br />
+              The design of <span class="highlight">Join</span> is owned by the
+              <span class="highlight">Developer Akademie GmbH</span>.
               Unauthorized use, reproduction, modification, distribution, or
               replication of the design is strictly prohibited.
             </p>
           </div>
           <div>
-            <p class="pointOut">Proprietary rights</p>
-            <p class="noticeTextContent">
+            <span class="headline">Proprietary rights</span>
+            <p class="font-body">
               Aside from the design owned by
-              <span class="pointOutLight">Developer Akademie GmbH </span>, we,
-              the listed students, retain all proprietary rights in
-              <span class="pointOutLight">Join</span>, including any associated
+              <span class="highlight">Developer Akademie GmbH </span>, we, the
+              listed students, retain all proprietary rights in
+              <span class="highlight">Join</span>, including any associated
               copyrighted material, trademarks, and other proprietary
               information.
             </p>
           </div>
           <div>
-            <p class="pointOut">Use of the product</p>
-            <p class="noticeTextContent">
-              <span class="pointOutLight">Join</span> is intended to be used for
+            <span class="headline">Use of the product</span>
+            <p class="font-body">
+              <span class="highlight">Join</span> is intended to be used for
               lawful purposes only, in accordance with all applicable laws and
-              regulations. Any use of<span class="pointOutLight">Join</span> for
+              regulations. Any use of <span class="highlight">Join</span> for
               illegal activities, or to harass, harm, threaten, or intimidate
               another person, is strictly prohibited. You are solely responsible
               for your interactions with other users of
-              <span class="pointOutLight">Join</span>.
+              <span class="highlight">Join</span>.
             </p>
           </div>
           <div>
-            <p class="pointOut">
-              Disclaimer of warranties and limitation of liability
-            </p>
-            <p class="noticeTextContent">
-              <span class="pointOutLight">Join</span> is provided "as is"
-              without warranty of any kind, whether express or implied,
-              including but not limited to the implied warranties of
-              merchantability, fitness for a particular purpose, and
-              non-infringement. In no event will we, the listed students, or the
-              Developer Akademie, be liable for any direct, indirect,
-              incidental, special, consequential or exemplary damages, including
-              but not limited to, damages for loss of profits, goodwill, use,
-              data, or other intangible losses, even if we have been advised of
-              the possibility of such damages, arising out of or in connection
-              with the use or performance of
-              <span class="pointOutLight">Join</span>.
+            <span class="headline"
+              >Disclaimer of warranties and limitation of liability</span
+            >
+            <p class="font-body">
+              <span class="highlight">Join</span> is provided "as is" without
+              warranty of any kind, whether express or implied, including but
+              not limited to the implied warranties of merchantability, fitness
+              for a particular purpose, and non-infringement. In no event will
+              we, the listed students, or the
+              <span class="highlight">Developer Akademie</span>, be liable for
+              any direct, indirect, incidental, special, consequential or
+              exemplary damages, including but not limited to, damages for loss
+              of profits, goodwill, use, data, or other intangible losses, even
+              if we have been advised of the possibility of such damages,
+              arising out of or in connection with the use or performance of
+              <span class="highlight">Join</span>.
             </p>
           </div>
           <div>
-            <p class="pointOut">Indemnity</p>
-            <p class="noticeTextContent">
-              agree to indemnify, defend and hold harmless us, the listed
+            <span class="headline">Indemnity</span>
+            <p class="font-body">
+              You agree to indemnify, defend and hold harmless us, the listed
               students, the
-              <span class="pointOutLight">Developer Akademie</span>, and our
+              <span class="highlight">Developer Akademie</span>, and our
               affiliates, partners, officers, directors, agents, and employees,
               from and against any claim, demand, loss, damage, cost, or
               liability (including reasonable legal fees) arising out of or
-              relating to your use of
-              <span class="pointOutLight">Join</span> and/or your breach of this
-              Legal Notice.
+              relating to your use of <span class="highlight">Join</span> and/or
+              your breach of this Legal Notice.
             </p>
-
-            <p class="noticeTextContent">
-              For any questions or notices, please contact us at [Contact
-              Email].
+            <br />
+            <br />
+            <p>
+              For any questions or notices, please contact us at
+              <a class="highlight" href="mailto:mina_zarkesh@gmx.de"
+                >Mina Zarkesh</a
+              >
+              or <a class="highlight" href="mailto:#">Kay Schumacher</a>.
+              <br />
+              <br />
+               Date: January 12, 2024
             </p>
-
-            <p class="noticeTextContent">Date: July 26, 2023</p>
           </div>
         </div>
-      </section>
-    </div> -->
+      </main>
+      <nav id="navbar" class="vertical-menu"></nav>
+    </div>
+  </body>
+</html>
 
+<!-- 
+      
+      <div>
+        <p class="pointOut">Indemnity</p>
+        <p class="noticeTextContent">
+          agree to indemnify, defend and hold harmless us, the listed
+          students, the
+          <span class="pointOutLight">Developer Akademie</span>, and our
+          affiliates, partners, officers, directors, agents, and employees,
+          from and against any claim, demand, loss, damage, cost, or
+          liability (including reasonable legal fees) arising out of or
+          relating to your use of
+          <span class="pointOutLight">Join</span> and/or your breach of this
+          Legal Notice.
+        </p>
+
+        <p class="noticeTextContent">
+          For any questions or notices, please contact us at [Contact
+          Email].
+        </p>
+
+        <p class="noticeTextContent">Date: July 26, 2023</p>
+      </div>
+    </div>
+  </section> -->
