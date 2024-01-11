@@ -131,6 +131,11 @@ ul,
   color: var(--Ligth-blue, #005dff);
 }
 
+.loggedOut{
+/* display: flex; */
+display: none;
+}
+
 @media (max-width: 1023px) {
   #navbar {
     display: none;
