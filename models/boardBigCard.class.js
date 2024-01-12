@@ -96,6 +96,7 @@ class BoardBigCard{
         new Div(this.edit_id, div_id_2, div_class);
         new Img(div_id_2, "edit-img-2","","../assets/img/edit.png");
         new Span(div_id_2, "","","Edit");
-        docID(div_id_1).onclick = function () {deleteCard(e.idx)};
+        docID(div_id_1).onclick = function () {deleteCard(e.id)};
+        docID(div_id_2).onclick = function () {editCard(e)};
     }
 }

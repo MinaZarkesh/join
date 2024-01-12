@@ -25,6 +25,7 @@ function initBoard() {
   new BoardSegment("board-content-con", "await-feedback", "Await feedback");
   new BoardSegment("board-content-con", "done", "Done");
   createBoardCards();
+
   new Div("main-card-div", "main-board-card");
   setNavBarActive("board-link");
 }
@@ -47,7 +48,7 @@ function keyboardActive() {
 
 
 function renderBoardSegments() {
-  loadTasks();
+  // loadTasks();
   // resetSegments();
   neu();
   Board_task = [];
@@ -87,7 +88,6 @@ function renderNoTasks() {
 }
 
 function openBigCard(id) {
-  console.log("angekommen");
   docID("main-card-div").classList.remove("d-none");
   tasks.forEach((e) => {
     if (e.id == id) {
@@ -101,15 +101,7 @@ function closeCard(parent, child) {
   docID(parent).classList.add("d-none");
 }
 
-function editBigCard(id) {
-  console.log("editBigCard");
-  docID("main-card-div").classList.remove("d-none");
-  tasks.forEach((e) => {
-    if (e.id == id) {
-      new editBoardBigCard(e, "main-board-card");
-    }
-  });
-}
+
 
 function startDragging(e) {
   current_Dragged_Element = e;
@@ -192,8 +184,57 @@ function nameArray(obj, word) {
   return output;
 }
 
-// function deleteCard() {
-//     subtask.splice(i, 1);
-//     subtaskListRender();
-//     return // element slicen und Liste neu rendern
-// }
+function deleteCard(idx) {
+    tasks.forEach((e, index) => {
+      if (idx == e.id) {
+        tasks.splice(index, 1);
+      }
+    });
+    closeCard("main-card-div", "main-board-card");
+    renderBoardSegments();
+}
+
+function editCard(e) {
+  docID("main-board-card").innerHTML = "";
+  new Img("main-board-card", "card-close","card-close","../assets/img/close.png");
+  docID("card-close").onclick = function () {closeCard("main-card-div", "main-board-card")};
+  new AddTaskBox("main-board-card", false, "Edit Task");
+  docID('task-title').value = e.title;
+  docID('desc-input').value = e.description;
+  docID('date-input').value = e.date;
+  editUrgency(e);
+  dropdownMenu('assigned-img', 'assigned', 'assigned');
+  checkTheBox(e);
+  dropdownMenu('assigned-img', 'assigned', 'assigned');
+  dropdownMenu('category-img', 'category', 'category');
+  checkTheCategory(e);
+  dropdownMenu('category-img', 'category', 'category');
+  addEditSubtasks(e);
+}
+
+function editUrgency(e) {
+  e.priority = "Urgent"? activeUrgency("btn-red"):"";
+  e.priority = "Medium"? activeUrgency("btn-orange"):"";
+  e.priority = "Low"? activeUrgency("btn-green"):"";
+}
+
+function checkTheBox(e) {
+  e.associates.forEach((ele) => {
+    docID(`check-${ele}`).checked = true;
+  })
+}
+
+function checkTheCategory(e) {
+  categorys.forEach((element) => {
+    if (e.category.includes(element.name)) {
+      docID(`category-check-${element.idx}`).checked = true;
+    }
+  })
+}
+
+function addEditSubtasks(e) {
+  e.subtasks.forEach((ele) => {
+    subtask.push(ele);
+  })
+  subtaskListRender();
+}
