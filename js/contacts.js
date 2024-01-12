@@ -6,6 +6,8 @@ let text; // ?? wird das überhaupt benutzt ?
 
 function initContacts() {
   init();
+  activeUser(); //set activeUser
+  updateUserValues();
   renderContactList();
   setNavBarActive("contacts-link");
 }
@@ -295,17 +297,3 @@ function createFloatingContacts(e) {
   new Headline("h6", div_15_id_2, "", "", "Phone");
   new Span(div_15_id_2, div_15_id_2_span_id, "", e.phone);
 }
-
-// function sortContactItems(parent) {
-//   parent.sort((a, b) =>
-//     a.contact_name > b.contact_name
-//       ? 1
-//       : b.contact_name > a.contact_name
-//       ? -1
-//       : 0
-//   );
-
-//   parent.forEach((element) => {
-//     element.renderContactItem();
-//   });
-// }

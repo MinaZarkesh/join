@@ -9,6 +9,8 @@ let filteredTasks_Ids = [];
 
 function initBoard() {
   init();
+  activeUser(); //set activeUser
+  updateUserValues();
   new Div("main-board", "board-head-con"); //the head container
   new Div("board-head-con", "search-con");
   new Divinputimg("search-con", "search", "text", "Find Task", "../assets/img/searchLupe.png", "search-text-input-id","search-con-div"); //+ id + div_id

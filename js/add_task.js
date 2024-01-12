@@ -10,6 +10,8 @@ let task_assigned_to_color = [];
 let departments = [];
 function initAddtask() {
     init();
+    activeUser(); //set activeUser
+    updateUserValues();
     new AddTaskBox("AddTaskMainCon", true)
     setNavBarActive("add_task-link");
 }
