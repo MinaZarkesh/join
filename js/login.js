@@ -85,6 +85,7 @@ function changeStyle(bool) {
 
 function navToSummary() {
   window.location = "../html/summary.html";
+  setHeader();
 }
 
 function saveInputValues() {

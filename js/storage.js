@@ -48,6 +48,9 @@ let segements_array = [
   }
 ];
 
+
+
+
 /**
  * The token used for remote storage authentication.
  * @type {string}
@@ -100,9 +103,29 @@ function docID(id) {
 }
 
 async function init() {
-  activeUser(); //set activeUser
-  updateUserValues(); //set Header
+  
+  setHeader();
+  // updateUserValues(); //set Header
+
+}
+
+function setHeader(){
   openNavMenu(); // set NavBar
+  if(localStorage.getItem("activeuser") === null && sessionStorage.getItem("activeuser") === null){
+    docID("header-name-tag").style.display = "none";
+    // docID("navbar").style.display = "none";
+    //aktuelle NavBar in eigene Div, die im responsive zur NavBar wird.
+    // wenn nicht eingeloggt, dann wird dieser part display none und somit verschwindet diese auch im responsive, aber die normale Navbar bleibt.
+    docID("navbar-con").style.display = "none";
+    docID("navbar").style.justifyContent = "flex-end";
+  }else{
+    docID("header-name-tag").style.display = "flex";
+    docID("navbar").style.justifyContent = "space-between";
+    docID("navbar-con").style.display = "flex";
+    activeUser(); //set activeUser
+    updateUserValues();
+  }
+
 }
 
 function setNavBarActive(con){
@@ -111,10 +134,14 @@ docID(con).classList.add("nav-active");
 
 function openNavMenu() {
   //fill NavBar
-  new MenuLink("summary");
-  new MenuLink("add_task");
-  new MenuLink("board");
-  new MenuLink("contacts");
+  new Div("navbar", "navbar-con");
+  new MenuLink("navbar-con","summary"); //parent "navbar"
+  new MenuLink("navbar-con","add_task");
+  new MenuLink("navbar-con","board");
+  new MenuLink("navbar-con","contacts");
+  new Div("navbar", "navbar-bottom");
+  new Anchor("navbar-bottom", "nav-privacy","",  "../html/PrivacyPolicy.html", "Privacy Policy");
+  new Anchor("navbar-bottom", "nav-legal","", "../html/LegalNotice.html", "Legal Notice");
 }
 
 //create Header
