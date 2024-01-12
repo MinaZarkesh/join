@@ -1,9 +1,9 @@
 class AddTaskBox {
 
 
-    constructor(headline) {
-        new Div("AddTaskMainCon", "addtaskCon");  //Haupt-div
-        headline ?? this.headline();
+    constructor(parent, headline) {
+        new Div(parent, "addtaskCon");  //Haupt-div
+        headline ? this.headline():"";
         this.content()
         this.endButton();
     }
