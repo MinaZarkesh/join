@@ -10,6 +10,9 @@ let task_assigned_to_color = [];
 let departments = [];
 function initAddtask() {
     init();
+    // new Div("addtaskCon", 'taskHeadline');
+    new Headline('h1','taskHeadline',"","", "Add Task");
+    new Div("content-con", "contentbig");
     new Divinput('contentbig', 'taskName', "Enter a title", "task-title", "input-field", "input");
     new Span('taskName','taskName-requiered', "requiered font-label");
     label_description = new Labeldiv('contentbig', "description" , "Description", true);
@@ -37,6 +40,8 @@ function initAddtask() {
     new Labeldiv('content-con', 'subtask', 'Subtask', true);
     new Divinputimg('subtask', 'input-con', 'text', 'Add new subtask', '../assets/img/+.png',  'input-con-text-input-id', 'subtask-div'); //+ id + div_id
     new Div('subtask', 'subtasks-con', '');
+    new Button("button-con", "clear-task", "secondary-button", clearTask, "Clear Task");
+    new Button("button-con", "add-task-btn", "button", addTask, "Add Task");
     setNavBarActive("add_task-link");
 }
 
@@ -304,8 +309,16 @@ function uncountCounter(selector) {
 
 function addTask() {
     let title = docID('task-title').value;
-    let description = docID('desc-input').value;
     let date = docID('date-input').value;
+    if (!title) {
+        docID('taskName-requiered').textContent = 'This field is requiered';
+        return
+    }
+    if (!date) {
+        docID('due-date-requiered').textContent = 'This field is requiered';
+        return
+    }
+    let description = docID('desc-input').value;
     let urgency = theUrgency();
     theSelectors('.tasks-contacts');
     theSelectors('.tasks-category');
@@ -330,6 +343,15 @@ function addTask() {
     clearTask();
 }
 
+function requiered(title, id) {
+    if (!title) {
+        docID(id).textContent = 'This field is requiered';
+        return false;
+    } else {
+        return true;
+    }
+}
+
 function theUrgency() {
     let btns = ["btn-red", "btn-orange", "btn-green" ];
     let output =[];
@@ -339,6 +361,9 @@ function theUrgency() {
             element = "btn-orange" ?? output.push('Medium');
             element = "btn-green" ?? output.push('Low');
             output.push(docID(element).children[1].src)
+            }else {
+                element = "btn-green";
+                output.push(docID(element).children[1].src)
             }
         })
     return output;
