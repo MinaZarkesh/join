@@ -48,8 +48,8 @@ class BoardBigCard{
         this.associatesCard(e);
         this.subtasks = new Div(parent, this.subtasks_id, this.subtasks_class);
         this.edit = new Div(parent, this.edit_id, this.edit_class);
-        this.editContent()
-        docID("card-close").onclick = closeCard;
+        this.editContent(e)
+        docID("card-close").onclick = function () {closeCard("main-card-div", "main-board-card")};
         this.subtasksContent(e);
     }
 
@@ -86,7 +86,7 @@ class BoardBigCard{
         })
     }
 
-    editContent() {
+    editContent(e) {
         let div_id_1 = `${this.edit_id}-1`;
         let div_id_2 = `${this.edit_id}-2`;
         let div_class = `edit-img-con`
@@ -96,5 +96,6 @@ class BoardBigCard{
         new Div(this.edit_id, div_id_2, div_class);
         new Img(div_id_2, "edit-img-2","","../assets/img/edit.png");
         new Span(div_id_2, "","","Edit");
+        docID(div_id_1).onclick = function () {deleteCard(e.idx)};
     }
 }

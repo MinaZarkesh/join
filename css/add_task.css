@@ -236,7 +236,7 @@ li input {
     margin-right: 10px !important;
 }
 
-#button-con {
+.button-con {
     display: flex;
     align-items: center;
     position: absolute;
@@ -252,7 +252,7 @@ li input {
 }
 
 @media (max-width: 1023px) {
-    #button-con {
+    .button-con {
         position: unset;
         justify-content: flex-end;
         margin-right: 5%;
@@ -262,6 +262,20 @@ li input {
     #clear-task, #add-task-btn{
         width: 21%;
         font-size: calc(13px + 10 * ((100vw - 320px) / 703));
+    }
+
+    #clear-task{
+        padding: 4px 4px;
+        min-width: unset;
+    }
+
+    #add-task-btn:hover {
+        padding: 4px 0;
+    }
+
+    #clear-task:hover{
+        padding: 4px 2px;
+        min-width: unset;
     }
 
     #AddTaskMainCon {

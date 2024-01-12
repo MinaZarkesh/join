@@ -52,9 +52,9 @@ class AddTaskBox {
     }
 
     endButton() {
-        new Div("addtaskCon", "button-con"); //Div für die Add/Clear Button
+        new Div("addtaskCon", "button-con", "button-con"); //Div für die Add/Clear Button
         new Button("button-con", "clear-task", "secondary-button", clearTask, "Clear Task");
-        new Button("button-con", "add-task-btn", "button", addTask, "Add Task");
+        new Button("button-con", "add-task-btn", "button", addTask, "Create Task");
     }
 
 }
