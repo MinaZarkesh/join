@@ -4,6 +4,8 @@ let toDoDiv;
 let inProgressDiv;
 let awaitFeedBackDiv;
 let doneDiv;
+let filteredTasks = [];
+let filteredTasks_Ids = [];
 
 function initBoard() {
   init();
@@ -12,8 +14,9 @@ function initBoard() {
   new Div("main-board", "board-head-con"); //the head container
   new Div("board-head-con", "search-con");
   new Divinputimg("search-con", "search", "text", "Find Task", "../assets/img/searchLupe.png", "search-text-input-id","search-con-div"); //+ id + div_id
+  docID()
   new docID('search-text-input-id').onclick = keyboardActive();
-  new Button("search-con", "", "button", function () {filterTasks();}, "Add Task");
+  new Button("search-con", "", "button", function () {openAddTask();}, "Add Task");
   new Img("board-head-con", "", "", "../assets/img/cross white.png");
   new Div("main-board", "board-content-con", ""); //the content container
   new BoardSegment("board-content-con", "to-do", "To do");
@@ -23,8 +26,14 @@ function initBoard() {
   new BoardSegment("board-content-con", "done", "Done");
   createBoardCards();
   new Div("main-card-div", "main-board-card");
-  new AddTaskBox("add-card-div");
   setNavBarActive("board-link");
+}
+
+function openAddTask() {
+  docID('add-card-con').classList.remove('d-none');
+  new Img("add-card-div", 'add-card-close', "card-close", "../assets/img/close.png");
+  docID('add-card-close').onclick = function () {closeCard("add-card-con", "add-card-div")}
+  new AddTaskBox("add-card-div");
 }
 
 
@@ -87,9 +96,9 @@ function openBigCard(id) {
   });
 }
 
-function closeCard() {
-  docID("main-board-card").innerHTML = "";
-  docID("main-card-div").classList.add("d-none");
+function closeCard(parent, child) {
+  docID(child).innerHTML = "";
+  docID(parent).classList.add("d-none");
 }
 
 function editBigCard(id) {
@@ -137,8 +146,7 @@ function getTasksIdx() {
   return task_idx;
 }
 
-let filteredTasks = [];
-let filteredTasks_Ids = [];
+
 
 function filterTasks() {
   word = docID("search-text-input-id").value;
@@ -151,7 +159,6 @@ function filterTasks() {
       e.classList.add("d-none");
     })
 
-    // word = "Weihnacht";
     tasks.forEach((e) => {
       if (isMatch(e, word)) {
         let id = e.container.replace("-con", "") + `-card-${e.id}`;
@@ -185,28 +192,8 @@ function nameArray(obj, word) {
   return output;
 }
 
-
-/**
- * Filters the contacts based on the input search value.
- * made by Mina Zarkesh
- * @param {string} search - The search value to filter the contacts.
- * @return {void} No return value.
- */
-// function filterContacts() {
-//     renderAssignetTo();
-
-//     let contactScroll = docID("assignetTo");
-//     let search = docID("assignetToInput").value.replace(" ", "").toLowerCase();
-//     contactScroll.classList.remove("d-none");
-//     const contactsAddTasks = document.querySelectorAll(".assignetToAddTask");
-
-//     contactsAddTasks.forEach((contactAddTask) => {
-//       const contactNameElement = contactAddTask.querySelector(".contactName");
-//       const contactName = contactNameElement.textContent.replace(" ", "").toLowerCase();
-//       if (!search || contactName.includes(search)) {
-//         contactAddTask.style.display = "flex"; // Karte anzeigen, wenn das Suchfeld leer ist oder wenn der Titel, die Kategorie oder die Beschreibung den Suchbegriff enthält
-//       } else {
-//         contactAddTask.style.display = "none"; // Karte ausblenden, wenn der Titel, die Kategorie oder die Beschreibung den Suchbegriff nicht enthält
-//       }
-//     });
-//   }
+// function deleteCard() {
+//     subtask.splice(i, 1);
+//     subtaskListRender();
+//     return // element slicen und Liste neu rendern
+// }
