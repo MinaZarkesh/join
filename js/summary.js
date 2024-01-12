@@ -68,7 +68,7 @@ function greetings() {
 
   if (currentHour >= 6 && currentHour < 12) {
     greeting = "Good Morning";
-  } else if (currentHour >= 12 && currentHour < 18) {
+  } else if (currentHour >= 12 && currentHour < 21) {
     greeting = "Good Afternoon";
   } else if (currentHour >= 18 && currentHour < 21) {
     greeting = "Good Evening";
@@ -76,10 +76,18 @@ function greetings() {
     greeting = "Good Night";
   }
 
-  docID("greetings").innerHTML =
-    active_user.name == "Guest"
-      ? `${greeting}`
-      : `${greeting}, ${active_user.name}`;
+  // docID("greetings").innerHTML =
+  new Div("greetings", "greetings-span","font-t1", greeting);
+     active_user.name == "Guest"
+       ?
+       false :
+
+       docID("greetings-span").innerHTML += ", ";
+       new Div("greetings", "greeting-name", "", "Hans-Jürgen Knüppel-Dudas" );
+      //  `${greeting}`
+    //   : `${greeting}, ${active_user.name}`;
+
+
 }
 
 function createSummaryBoxes() {
