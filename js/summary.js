@@ -92,6 +92,7 @@ function createSummaryBoxes() {
 function createFirstBox() {
   //leert die Box und fügt beide Elemente in einer neuen Div hinzu,
   // um diese wiederum position relative zu machen(in css)
+ 
   docID(`item-${summaryBox_div_id}-0`).innerHTML = /*html*/ `
     <div  id="item-${summaryBox_div_id}-0-1" class="col">  
       <div class="row">
@@ -101,10 +102,11 @@ function createFirstBox() {
       <h6>${descriptions[0]}</h6>
     </div>
     <div onclick="navToBoard()"id="first-box">
-      <h6 id="upcoming-deadline">October 16, 2022</h6>
+      <h6 id="upcoming-deadline"></h6>
       <span>Upcoming Deadline</span>
     </div>
  `;
+  checkDate();
 }
 
 function navToBoard() {
@@ -125,4 +127,24 @@ function changeScreenView() {
     element.checkScreenView(index);
     element.renderPosition(index);
   }
+}
+
+async function checkDate(){
+  await loadTasks();
+   let urgent_tasks = tasks.filter(obj=> obj.priority == "Urgent");
+  let urgent_date;
+
+
+
+urgent_tasks.sort((a, b) =>
+    a.date > b.date
+      ? 1
+      : b.date > a.date
+      ? -1
+      : 0
+  );
+ 
+  urgent_date = urgent_tasks[0].date;
+  urgent_date = new Date(urgent_date).toLocaleDateString("en-US",{ month: 'long',day: 'numeric', year: 'numeric'  });
+  docID("upcoming-deadline").innerHTML = urgent_date;
 }

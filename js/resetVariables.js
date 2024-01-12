@@ -55,7 +55,7 @@ let oldUsers = [
       category: ["Office", "Design"],
       title: "Kochwelt Page & Recipe Recommender",
       description: "Build start page with recipe recommendation.",
-      date: "2023-01-23",
+      date: "2024-01-24",
       priority: "Medium",
       priorityImg: "../assets/img/medium.png",
       assignedTo: ["Emmanuel Mauer", "Marcel Bauer", "Anton Mayer"],
@@ -71,7 +71,7 @@ let oldUsers = [
       title: "Titel: Essen",
       description:
         "Das ist die Description, hier etwas text : handy telefonieren",
-      date: "2023-12-30",
+      date: "2023-08-30",
       priority: "Low",
       priorityImg: "../assets/img/low.png",
       assignedTo: ["Marcel Bauer", "Anton Mayer", "Emmanuel Mauer"],

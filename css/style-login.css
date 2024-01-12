@@ -336,7 +336,7 @@ main {
 
 /* start animation parameter */
 .start-animation {
-  animation-duration: 500ms;
+  animation-duration: 5000ms;
   animation-delay: 300ms;
   animation-fill-mode: forwards;
 }
