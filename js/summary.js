@@ -35,10 +35,13 @@ let sum;
 
 async function initSummary() {
   init();
+  activeUser(); //set activeUser
+  updateUserValues();
   greetings();
 
   task_amounts = await updateTaskAmounts();
-  createSummaryBoxes(); //creates summary-boxes beim laden
+  createSummaryBoxes(); //creates summary-boxes beim 
+  
   setNavBarActive("summary-link");
 }
 

@@ -122,8 +122,6 @@ function setHeader(){
     docID("header-name-tag").style.display = "flex";
     docID("navbar").style.justifyContent = "space-between";
     docID("navbar-con").style.display = "flex";
-    activeUser(); //set activeUser
-    updateUserValues();
   }
 
 }
