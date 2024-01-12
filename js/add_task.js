@@ -10,38 +10,7 @@ let task_assigned_to_color = [];
 let departments = [];
 function initAddtask() {
     init();
-    // new Div("addtaskCon", 'taskHeadline');
-    new Headline('h1','taskHeadline',"","", "Add Task");
-    new Div("content-con", "contentbig");
-    new Divinput('contentbig', 'taskName', "Enter a title", "task-title", "input-field", "input");
-    new Span('taskName','taskName-requiered', "requiered font-label");
-    label_description = new Labeldiv('contentbig', "description" , "Description", true);
-    new Div('contentbig', "description-textarea");
-    new Textarea("description-textarea", "desc-input", "textarea", "Enter a Description" );
-    // new Divinput('contentbig', "description-textarea", "Enter a Description", "desc-input", "textarea", "textarea");
-    new Span('description-textarea', 'description-textarea-requiered', "requiered font-label");
-    new Labeldiv('contentbig','due-date', 'Due date', false);
-    new Divdate('due-date', 'date-input' , 'input-field input-blue font-t6')
-    // div_date = new Divdate('contentbig','due-date', 'Due date', false);
-    Span_element = new Span('due-date', 'due-date-requiered', "requiered font-label");
-    new Labeldiv('content-con', 'priority', 'Priority', false);
-    new Div('priority', 'priority-button')
-    new Urgencybtn('priority-button', "Urgent");
-    new Urgencybtn('priority-button', "Medium");
-    new Urgencybtn('priority-button', "Low");
-    new Labeldiv('content-con', 'assigned', 'Assigned to', true);
-    new Divinputimg('assigned', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png', 'input-con-text-input-id', 'assigned-div'); //+ id + div_id
-    docID('input-con-assigned-input-id').onclick = function () {dropdownMenu(`assigned-img`, 'assigned', 'assigned')};
-    new Div('content-con', 'associate-con', '');
-    new Labeldiv('content-con', 'category', 'Category', false);
-    new Divinputimg('category', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png',  'input-con-text-input-id', 'category-div'); //+ id + div_id
-    docID('input-con-category-input-id').onclick = function () {dropdownMenu(`category-img`, 'category', 'category')};
-    new Div('content-con', 'department-con', '');
-    new Labeldiv('content-con', 'subtask', 'Subtask', true);
-    new Divinputimg('subtask', 'input-con', 'text', 'Add new subtask', '../assets/img/+.png',  'input-con-text-input-id', 'subtask-div'); //+ id + div_id
-    new Div('subtask', 'subtasks-con', '');
-    new Button("button-con", "clear-task", "secondary-button", clearTask, "Clear Task");
-    new Button("button-con", "add-task-btn", "button", addTask, "Add Task");
+    new AddTaskBox(true)
     setNavBarActive("add_task-link");
 }
 
@@ -406,4 +375,3 @@ function Subtaskschecked() {
         checked.push('unchecked');
     })
 }
-
