@@ -123,8 +123,9 @@ function setHeader(){
     docID("navbar").style.justifyContent = "space-between";
     docID("navbar-con").style.display = "flex";
   }
-
 }
+
+
 
 function setNavBarActive(con){
 docID(con).classList.add("nav-active");
@@ -308,6 +309,16 @@ function showHeaderDropdown(){
   isShown = !isShown;
 }
 
+function logout(){
+  if (localStorage.getItem("activeuser") != null) {
+localStorage.removeItem("activeuser");
+  }
+    if (sessionStorage.getItem("activeuser") != null) {
+      sessionStorage.removeItem("activeuser");
+    }
+
+  window.location.href = "./index.html";
+}
 // async function includeHTML() {
 //   let z, i, elmnt, file, xhttp;
 //   /*loop through a collection of all HTML elements:*/
