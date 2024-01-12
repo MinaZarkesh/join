@@ -10,7 +10,7 @@ main {
 /* TODO: Höhe anpassen*/
 #greetings {
   width: 100%;
-  height: 36px; /*in SummaryBoxes.class.js spanHeight anpassen*/
+  height: 120px; /*in SummaryBoxes.class.js spanHeight anpassen*/
   font-size: 24px;
   color: #2a3647;
   display: flex;
@@ -27,9 +27,11 @@ main {
 #greeting-span{
   display: flex;
   flex-wrap: wrap;
+  /* justify-content: center; */
 }
 
 #greeting-name {
+  display: flex;
   color: var(--primary, #4589ff);
   font-family: "Open Sans";
   font-size: 3.5rem;

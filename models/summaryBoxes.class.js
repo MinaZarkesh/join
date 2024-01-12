@@ -82,7 +82,7 @@ class SummaryBox {
   //calc Position for Desktop Version (window.innerWidth>1024) (px)
   calcPositionDesktop(index) {
     this.containerWidth = 798;
-    this.containerHeight = 498;
+    this.containerHeight = 478;
     this.spanheight = 36;
     this.gapColoumn = 16;
     this.gapRow = this.gapColoumn;

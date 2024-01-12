@@ -246,7 +246,7 @@ main {
     position: relative;
     display: flex;
     width: 85%;
-    height: 55%;
+    height: 62%;
     max-width: 397px;
     padding: 3% 1.5%;
     flex-direction: column;
@@ -265,7 +265,7 @@ main {
     margin-bottom: 0;
   }
 
-  #login-item input:not([type="checkbox"]) {
+  /* #login-item input:not([type="checkbox"]) {
     display: flex;
     width: 100%;
     padding: 12px 21px;
@@ -274,7 +274,7 @@ main {
     align-self: stretch;
     border: none;
     border-bottom: 1px solid var(--grey);
-  }
+  } */
 
   #login-item .row label {
     width: 100%;
@@ -301,8 +301,9 @@ main {
     max-width: 364px;
     height: 100%;
     flex-direction: column;
-    align-items: flex-start;
+    /* align-items: flex-start; */
     gap: 8%;
+    padding: 8px;
   }
 
   #login-img {
