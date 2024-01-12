@@ -332,7 +332,7 @@ main {
   width: 265px;
   height: 323px;
   transform: translateX(-50%) translateY(-50%);
-  /* animation-name: imgVanish; */
+  animation-name: imgVanish;
 }
 
 /* start animation parameter */
