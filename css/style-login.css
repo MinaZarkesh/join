@@ -369,8 +369,8 @@ main {
 
 @keyframes imgVanishsmall {
   100% {
-    top: 4%;
-    left: 8%;
+    top: 9%;
+    left: 12%;
     height: 101px;
     width: 15%;
     max-width: 64px;
