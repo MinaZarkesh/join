@@ -331,7 +331,7 @@ main {
   width: 265px;
   height: 323px;
   transform: translateX(-50%) translateY(-50%);
-  animation-name: imgVanish;
+  /* animation-name: imgVanish; */
 }
 
 /* start animation parameter */
@@ -355,6 +355,7 @@ main {
     display: none;
   }
 }
+
 
 /* image move to the left-top corner */
 @keyframes imgVanish {

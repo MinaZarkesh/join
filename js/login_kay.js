@@ -132,6 +132,7 @@ function renderLoginElements(bool) {
       },
       "Sign up"
     );
+
   }
 
   docID("login-headline").textContent = bool;
@@ -192,6 +193,8 @@ function saveInputValues() {
       password_value = input_password_value;
       confirm_password_value = input_confirm_password_value;
       addNewUser();
+      renderLoginElements("Login");
+      new Confirmation("login-main", "You Signed Up successfully", false)
     } else {
       docID("input-con-email-input-id").value = "";
       alert(

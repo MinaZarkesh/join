@@ -157,6 +157,7 @@ function renderFloatingContacts(idx) {
 }
 
 function deleteContact(idx) {
+
   contacts.forEach((e, index) => {
     if (idx == e.idx) {
       contacts.splice(index, 1);

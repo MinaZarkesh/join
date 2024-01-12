@@ -1,14 +1,13 @@
 @font-face {
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   src: url(../assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf);
   src: url(../assets/fonts/OpenSans-VariableFont_wdth,wght.ttf);
 }
 
 @font-face {
-  font-family: 'Inter';
+  font-family: "Inter";
   src: url(../assets/fonts/Inter-VariableFont_slnt,wght.ttf);
 }
-
 
 :root {
   --mediumSize: 768px;
@@ -53,7 +52,9 @@
   --variant16: #462f8a;
 }
 
-*, ::after, ::before{
+*,
+::after,
+::before {
   box-sizing: border-box;
 }
 
@@ -159,10 +160,10 @@ main {
   gap: 10px;
   border: none;
   border-radius: 8px;
-  background: var(--Ligth-blue, #005DFF);
+  background: var(--Ligth-blue, #005dff);
   color: var(--white);
   /* offset-x | offset-y | blur-radius | spread-radius | color */
-   /* stronger */
+  /* stronger */
   box-shadow: 0px 4px 8px 0px var(--black20);
   animation-duration: 100ms;
   animation-timing-function: ease-in-out;
@@ -273,7 +274,7 @@ a:active {
 
 /**************  Ckeckbox    *************/
 
-#inputs-con-div{
+#inputs-con-div {
   margin-top: 16px;
   position: relative;
   display: flex;
@@ -282,7 +283,7 @@ a:active {
   gap: 8px;
 }
 
- input[type="checkbox"] {
+input[type="checkbox"] {
   width: fit-content;
 }
 
@@ -304,9 +305,8 @@ a:active {
 }
 
 .input-field:focus {
-  border-bottom-color: #005DFF ;
+  border-bottom-color: #005dff;
 }
-
 
 .imput-img-div {
   display: flex;
@@ -342,23 +342,75 @@ a:active {
   position: absolute;
   right: 20px;
   left: unset;
-  content: url('../assets/img/blue-checkbox.svg');
+  content: url("../assets/img/blue-checkbox.svg");
   appearance: none;
   opacity: unset;
 }
 
 .checkbox:hover {
-  content: url('../assets/img/blue-checkbox-hover.svg');
+  content: url("../assets/img/blue-checkbox-hover.svg");
 }
 
 .checkbox:checked {
-  content: url('../assets/img/blue-checkbox-checked.svg');
+  content: url("../assets/img/blue-checkbox-checked.svg");
 }
 
 .checkbox:checked:hover {
-  content: url('../assets/img/blue-checkbox-checked-hover.svg');
+  content: url("../assets/img/blue-checkbox-checked-hover.svg");
 }
 
+.confirmation {
+  position: absolute;
+  background-color: var(--primary);
+  color: var(--white);
+  display: flex;
+  right: 5%;
+  bottom: 5%;
+  opacity: 0;
+  /* width: 326px; */
+  padding: 16px 32px;
+  height: 74px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background: var(--primary, #4589ff);
+  gap: 12px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
+}
+
+.confirmation img {
+  /* width: 22px;
+  height: 26px; */
+  filter: brightness(0) invert(1);
+}
+
+.confirmation-animation {
+  animation-duration: 4s;
+  animation-delay: 500ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes confirmation {
+  0% {
+    right: 5%;
+    bottom: 5%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.7;
+  }
+  40% {
+    opacity: 1;
+    right: 5%;
+    bottom: 20%;
+  }
+  100% {
+    right: 5%;
+    bottom: 20%;
+    opacity: 0;
+  }
+}
 
 @media (max-width: 1023px) {
   .main-site {
@@ -399,7 +451,7 @@ a:active {
     font-weight: 400;
     line-height: 120%;
   }
-/* 
+  /* 
   [type="checkbox"] {
     position: relative;
     left: -200px;
