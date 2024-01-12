@@ -307,9 +307,8 @@ main {
 
   #login-img {
     animation-name: imgVanishsmall !important;
+    transform: translateX(50%) translateY(50%);
   }
-
-  
 }
 
 /* start animation bg */
@@ -346,6 +345,10 @@ main {
 
 /* blue bg vanish*/
 @keyframes colorChange {
+
+  80% {
+    z-index: 5;
+  }
   100% {
     background-color: none;
     z-index: 0;
@@ -366,8 +369,8 @@ main {
 
 @keyframes imgVanishsmall {
   100% {
-    top: 8.5%;
-    left: 14%;
+    top: 4%;
+    left: 8%;
     height: 101px;
     width: 15%;
     max-width: 64px;

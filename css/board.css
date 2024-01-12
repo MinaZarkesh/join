@@ -225,7 +225,6 @@
     align-items: center;
     gap: 10px;
     align-self: stretch;
-
     border-radius: 10px;
     border: 1px dashed var(--icon, #A8A8A8);
     background: #E7E7E7;
@@ -234,9 +233,18 @@
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
 }
 
+#add-card-con {
+    background-color: rgba(250,250,250,0.7);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 5; 
+}
+
 #add-card-div {
     position: absolute;
     background-color: white;
-    width: 580px;
+    width: 518px;
     right: 0px;
+    border-radius: 30px 30px 30px 0px;
 }
