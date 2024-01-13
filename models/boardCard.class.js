@@ -32,7 +32,7 @@ class BoardCard{
         this.description = new Div(this.container_id, this.description_id, this.description_class,);
         this.title(e, this.description_id)
         this.subtask = new Div(this.container_id, this.subtask_id, this.subtask_class);
-        this.subtaskContent(this.subtask_id);
+        this.subtaskContent(this.subtask_id, e);
         this.associates = new Div(this.container_id, this.associates_id, this.associates_class);
         this.assosciates(this.associates_id, e)
         docID(this.container_id).onclick = function () {openBigCard(e.id)};
@@ -45,13 +45,19 @@ class BoardCard{
         new Span(parent, "", "card-desc", e.description);
     }
 
-    subtaskContent(parent) {
+    subtaskContent(parent, e) {
+        let checked_sub = 0;
+        let amount_sub = e.subtasks.length;
+        if (e.subtaskschecked) {
+            e.subtaskschecked.forEach((ele) => {ele == 'checked' ? checked_sub++:""});
+        }
+        let procent = checked_sub / amount_sub * 100;
         let progress_div = `${parent}-progress-con`;
         let progress_in_id = `${progress_div}-in`;
         new Div(parent, progress_div , "progress-con");
         new Div(progress_div , progress_in_id, "progress-in");
-        docID(progress_in_id).style = `width: 50%`;
-        new Span(parent, "","","1/2 Subtask")
+        docID(progress_in_id).style = `width: ${procent}%`;
+        new Span(parent, "","",`${checked_sub}/${amount_sub} Subtask`)
     }
 
     assosciates(parent, e) {

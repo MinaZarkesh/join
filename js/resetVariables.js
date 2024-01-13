@@ -57,7 +57,7 @@ let oldUsers = [
       description: "Build start page with recipe recommendation.",
       date: "2024-01-24",
       priority: "Medium",
-      priorityImg: "../assets/img/medium.png",
+      priorityImg: "../assets/img/medium.svg",
       associates: [5, 6, 9],
       assignedTo: ["Emmanuel Mauer", "Marcel Bauer", "Anton Mayer"],
       assignedToNameTag: ["EM", "MB", "AM"],
