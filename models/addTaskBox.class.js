@@ -5,7 +5,7 @@ class AddTaskBox {
         new Div(parent, "addtaskCon");  //Haupt-div
         headline ? this.headline():"";
         this.content()
-        this.endButton();
+        // this.endButton();
     }
 
     headline(headline) {
@@ -51,12 +51,12 @@ class AddTaskBox {
         new Div('subtask', 'subtasks-con', '');
     }
 
-    endButton() {
-        new Div("addtaskCon", "button-con", "button-con"); //Div für die Add/Clear Button
-        new Button("button-con", "clear-task", "secondary-button", clearTask, "Clear Task");
-        new Button("button-con", "add-task-btn", "button", addTask, "Create Task");
-    }
+    // endButton() {
+    //     new Div("addtaskCon", "button-con", "button-con"); //Div für die Add/Clear Button
+    //     new Button("button-con", "clear-task", "secondary-button", clearTask, "Clear Task");
+    //     new Button("button-con", "add-task-btn", "button", addTask, "Create Task");
+    // }
 
-    
+
 
 }

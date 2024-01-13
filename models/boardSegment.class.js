@@ -20,6 +20,7 @@ class BoardSegment{
     img_src = "../assets/img/+.png";
     childDiv;
     childDiv_id;
+    childDiv_class = 'segemnt-content';
 
     constructor(parent, segment, headline) {
         this.con_id = `${segment}-con`;
@@ -34,7 +35,7 @@ class BoardSegment{
         this.headline = new Span(this.headline_con_id, this.headline_id, this.headline_class, this.headline_text);
         this.button = new Button(this.headline_con_id, this.button_id, this.button_class, this.button_onclick);
         this.img = new Img(this.button_id, this.img_id, this.img_class, this.img_src);
-        this.childDiv = new Div(this.con_id, this.childDiv_id)
+        this.childDiv = new Div(this.con_id, this.childDiv_id, this.childDiv_class)
        docID(this.con_id).ondrop = function () {moveTo(segment)}; // 
        docID(this.con_id).ondragover = function () {dragOver(segment)}; 
     }

@@ -13,6 +13,9 @@ function initAddtask() {
     activeUser(); //set activeUser
     updateUserValues();
     new AddTaskBox("AddTaskMainCon", true)
+    new Div("addtaskCon", "button-con", "button-con"); //Div für die Add/Clear Button
+        new Button("button-con", "clear-task", "secondary-button", clearTask, "Clear Task");
+        new Button("button-con", "add-task-btn", "button", addTask, "Create Task");
     setNavBarActive("add_task-link");
 }
 
@@ -274,7 +277,7 @@ function clearTask() {
 function uncountCounter(selector) {
     let matches = document.querySelectorAll(selector);
     for (let i = 0; i < matches.length; i++) {
-        matches[i].children[1].checked = false;
+        matches[i].children[2].checked = false;
     }
 }
 
@@ -295,6 +298,7 @@ function addTask() {
     theSelectors('.tasks-category');
     let subtasks = subtask;
     let sub_checked = Subtaskschecked();
+    let id = getNewId();
 
     let newTask = {
         container: "to-do-con",
@@ -308,10 +312,15 @@ function addTask() {
         task_assigned_to_nametag: task_assigned_to_nametag,
         task_assigned_to_color: task_assigned_to_color,
         subtasks: subtasks,
-        sub_checked: sub_checked 
+        sub_checked: sub_checked,
+        id: id
     }
     tasks.push(newTask);
     clearTask();
+    task_assigned_to = [];
+    task_assigned_to_nametag = [];
+    task_assigned_to_color = [];
+
 }
 
 function requiered(title, id) {
@@ -354,12 +363,7 @@ function theSelectors(selector){
         }
     }
     if (selector == '.tasks-contacts') {
-        if (!id == []) {createContactBox("associate-con")};
-            contact_boxes.forEach((e, index) => {
-                if(id.includes(`${index}`)) {
-                    contact_idx.push(e.contact_idx)
-            }
-        })
+        if (!id == []) {createContactBox()};
     } else {
         idx = id;
     }
@@ -376,4 +380,15 @@ function Subtaskschecked() {
     subtask.forEach(() => {
         checked.push('unchecked');
     })
+    return checked
+}
+
+function getNewId() {
+    let high = 0;
+    tasks.forEach((e) => {
+        if(e.id > high) {
+            high = e.id;
+        }
+    })
+    return high
 }

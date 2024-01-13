@@ -49,7 +49,7 @@ class BoardBigCard{
         this.subtasks = new Div(parent, this.subtasks_id, this.subtasks_class);
         this.edit = new Div(parent, this.edit_id, this.edit_class);
         this.editContent(e)
-        docID("card-close").onclick = function () {closeCard("main-card-div", "main-board-card")};
+        docID("card-close").onclick = function () {closeCard("main-card-div", "main-board-card", e)};
         this.subtasksContent(e);
     }
 

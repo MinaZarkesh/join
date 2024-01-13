@@ -20,7 +20,6 @@ function initBoard() {
   new Img("board-head-con", "", "", "../assets/img/cross white.png");
   new Div("main-board", "board-content-con", ""); //the content container
   new BoardSegment("board-content-con", "to-do", "To do");
-  // new BoardCard('to-do-con', 0);
   new BoardSegment("board-content-con", "in-progress", "In progress");
   new BoardSegment("board-content-con", "await-feedback", "Await feedback");
   new BoardSegment("board-content-con", "done", "Done");
@@ -35,8 +34,9 @@ function openAddTask() {
   new Img("add-card-div", 'add-card-close', "card-close", "../assets/img/close.png");
   docID('add-card-close').onclick = function () {closeCard("add-card-con", "add-card-div")}
   new AddTaskBox("add-card-div");
+  new Div("addtaskCon", "button-con", "button-con"); //Div für die Add/Clear Button
+  new Button("button-con", "add-task-btn", "button", addTask, "Create Task");
 }
-
 
 function keyboardActive() {
   docID('search-text-input-id').addEventListener("keydown", (e) => {
@@ -46,32 +46,18 @@ function keyboardActive() {
   })
 }
 
-
 function renderBoardSegments() {
   // loadTasks();
-  // resetSegments();
-  neu();
+  resetSegments();
   Board_task = [];
   createBoardCards();
 }
 
-function neu() {
+function resetSegments() {
   docID("to-do-div").innerHTML = "";
   docID("in-progress-div").innerHTML = "";
   docID("await-feedback-div").innerHTML = "";
   docID("done-div").innerHTML = "";
-}
-
-function resetSegments() {
-  //TODO: eine Zwischen Div bauen, die man leeren kann macht mehr Sinn.
-  toDoDiv = `<div id="to-do-headline-con" class="segment-class"><span id="undefined" class="">To do</span><button id="to-do-btn" class="segments-btn"><img id="" class="" src="../assets/img/+.png"></button></div>`;
-  docID("to-do-con").innerHTML = toDoDiv;
-  inProgressDiv = `<div id="in-progress-headline-con" class="segment-class"><span id="undefined" class="">In Progress</span><button id="in-progress-btn" class="segments-btn"><img id="" class="" src="../assets/img/+.png"></button></div>`;
-  docID("in-progress-con").innerHTML = inProgressDiv;
-  awaitFeedBackDiv = `<div id="await-feedback-headline-con" class="segment-class"><span id="undefined" class="">Await Feedback</span><button id="await-feedback-btn" class="segments-btn"><img id="" class="" src="../assets/img/+.png"></button></div>`;
-  docID("await-feedback-con").innerHTML = awaitFeedBackDiv;
-  doneDiv = `<div id="done-headline-con" class="segment-class"><span id="undefined" class="">Done</span><button id="done-btn" class="segments-btn"><img id="" class="" src="../assets/img/+.png"></button></div>`;
-  docID("done-con").innerHTML = doneDiv;
 }
 
 function createBoardCards() {
@@ -96,12 +82,23 @@ function openBigCard(id) {
   });
 }
 
-function closeCard(parent, child) {
+function closeCard(parent, child, e) {
+  if (e) {
+    amount = e.subtasks.length;
+    e.subtaskschecked = [];
+    for (let i = 0; i < amount; i++) {
+      if (docID(`main-bord-card-subtasks${i}-checkbox`).checked) {
+        e.subtaskschecked.push("checked");  
+      } else {
+        e.subtaskschecked.push("unchecked");
+      }
+      
+    }
+  }
   docID(child).innerHTML = "";
   docID(parent).classList.add("d-none");
+  renderBoardSegments();
 }
-
-
 
 function startDragging(e) {
   current_Dragged_Element = e;
@@ -210,6 +207,9 @@ function editCard(e) {
   checkTheCategory(e);
   dropdownMenu('category-img', 'category', 'category');
   addEditSubtasks(e);
+
+  new Div("addtaskCon", "button-con", "button-con"); //Div für die Add/Clear Button
+  new Button("button-con", "add-task-btn", "button", function () {updateTasks(e)}, "Ok");
 }
 
 function editUrgency(e) {
@@ -233,8 +233,38 @@ function checkTheCategory(e) {
 }
 
 function addEditSubtasks(e) {
+  subtask = [];
   e.subtasks.forEach((ele) => {
     subtask.push(ele);
   })
   subtaskListRender();
+}
+
+function updateTasks(e) {
+  let urgency = theUrgency();
+  theSelectors('.tasks-contacts');
+  theSelectors('.tasks-category');
+  e.title = docID('task-title').value;
+  e.description = docID('desc-input').value;
+  e.date = docID('date-input').value;
+  e.priority = urgency[0];
+  e.priorityImg = urgency[1];
+  e.assignedTo = task_assigned_to;
+  e.task_assigned_to_nametag = task_assigned_to_nametag;
+  e.task_assigned_to_color = task_assigned_to_color;
+  e.subtasks = subtask;
+  e.subtaskschecked = editSubtaskchecked(e);
+
+  closeCard("main-card-div", "main-board-card");
+  renderBoardSegments();
+}
+
+function editSubtaskchecked(e) {
+  checked = e.subtaskschecked;
+  if (subtask.length > checked.length) {
+    for (let i = checked.length; i < subtask.length; i++) {
+      checked.push('unchecked');
+    }
+  }
+  return checked
 }
