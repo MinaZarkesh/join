@@ -1,8 +1,7 @@
 #edit-contact-overlay {
   position: relative;
   display: inline-flex;
-  height: 100%;
-  max-height: 1024px;
+  height: 100svh;
   flex-direction: column;
   align-items: center;
   gap: 72px;
@@ -16,10 +15,13 @@
   border-radius: 30px 0px 0px 0px;
   display: flex;
   width: 584px;
-  padding: 91px 46px;
+  padding: 5% 46px;
+  /* padding: 91px 46px; */
+  flex: 0.5 4 272px;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 1%; /* 12px */
   background-color: var(--primary);
 }
 .edit-contact-overlay-header h1 {
@@ -49,11 +51,12 @@
   flex-direction: column;
   align-items: center;
   gap: 32px;
+  flex: 4 1;
 }
 
 #inputs-con input:not([type="checkbox"]) {
   display: flex;
-  width: 380px;
+  width: 356px;
   padding: 12px 21px;
   align-items: center;
   gap: 1%;
@@ -116,7 +119,8 @@
 #overlay-contacts {
   position: absolute;
   display: none;
-  top: 10%;
+  height: 100svh;
+  z-index: 1;
+  top: 0;
   right: 0;
-  margin: 12px 8px;
 }

@@ -24,7 +24,7 @@ class Divinputimg {
     this.placeholder = placeholder;
     this.type = type;
     new Div(parent, this.div_id, className);
-    new Input(this.div_id, this.input_id, "font-t6", this.type, this.placeholder);
+    new Input(this.div_id, this.input_id, "font-t6 input-field", this.type, this.placeholder);
     new Img(this.div_id, this.img_id, "", imgsrc);
 
     docID(this.div_id).onclick = this.div_onclick;
