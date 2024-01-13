@@ -205,7 +205,7 @@ function renderEditContact(id) {
   new Img("overlay-primary-btn", "", "", "../assets/img/check.svg");
   //change Style
   docID("overlay-contacts").style.display = "flex";
-  docID("overlay-contacts").style.left = "0";
+  docID("edit-contact-overlay").style.left = "0";
   docID("contact-overlay-subtitle").style.display = "none";
 }
 
@@ -240,11 +240,11 @@ function renderAddContact() {
     "Create contact"
   );
   //change Style values
-  docID("overlay-contacts").style.left = "unset";
+  docID("edit-contact-overlay").style.left = "unset";
   docID("overlay-contacts").style.display = "flex";
   docID("contact-overlay-subtitle").style.display = "flex";
   docID("overlay-secondary-btn").style.width = "unset";
-  docID("overlay-primary-btn").style.width = "fit-content";
+  // docID("overlay-primary-btn").style.width = "fit-content";
 }
 
 function createFloatingContacts(e) {
