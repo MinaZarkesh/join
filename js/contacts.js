@@ -154,6 +154,13 @@ function renderFloatingContacts(idx) {
       setActive(e.idx);
     }
   });
+
+  docID("floating-contacts").style.display="flex";
+  // docID("floating-mobile").style.display="flex";
+  docID("floating-mobile").classList.remove("d-none");
+  docID("floating-contacts").style.zIndex ="1";
+  docID("floating-mobile").style.width ="100%";
+  docID("floating-mobile").style.height ="80%";
 }
 
 function deleteContact(idx) {
@@ -165,6 +172,7 @@ function deleteContact(idx) {
   });
   renderContactList();
   docID("floating-contacts").textContent = "";
+  closeContact()
   closeButton();
 }
 
@@ -297,4 +305,16 @@ function createFloatingContacts(e) {
   new Div(div_22_id, div_15_id_2, "gap-15");
   new Headline("h6", div_15_id_2, "", "", "Phone");
   new Span(div_15_id_2, div_15_id_2_span_id, "", e.phone);
+}
+
+function closeContact(){
+  docID("floating-contacts").style.display ="none";
+  // docID("floating-mobile").style.display ="none";
+  docID("floating-mobile").classList.add("d-none");
+  docID("floating-contacts").textContent ="";
+  docID("floating-contacts").style.zIndex ="-1";
+  docID("floating-mobile").style.width ="0";
+  docID("floating-mobile").style.height ="0";
+resetActive();
+
 }
