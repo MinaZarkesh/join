@@ -48,7 +48,9 @@ class BoardCard{
     subtaskContent(parent, e) {
         let checked_sub = 0;
         let amount_sub = e.subtasks.length;
-        e.subtaskschecked.forEach((ele) => {ele == 'checked' ? checked_sub++:""});
+        if (e.subtaskschecked) {
+            e.subtaskschecked.forEach((ele) => {ele == 'checked' ? checked_sub++:""});
+        }
         let procent = checked_sub / amount_sub * 100;
         let progress_div = `${parent}-progress-con`;
         let progress_in_id = `${progress_div}-in`;

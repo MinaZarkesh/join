@@ -16,7 +16,7 @@ function initBoard() {
   new Divinputimg("search-con", "search", "text", "Find Task", "../assets/img/searchLupe.png", "search-text-input-id","search-con-div"); //+ id + div_id
   docID()
   new docID('search-text-input-id').onclick = keyboardActive();
-  new Button("search-con", "", "button", function () {openAddTask();}, "Add Task");
+  new Button("search-con", "", "button", function () {openAddTask("to-do-con");}, "Add Task");
   new Img("board-head-con", "", "", "../assets/img/cross white.png");
   new Div("main-board", "board-content-con", ""); //the content container
   new BoardSegment("board-content-con", "to-do", "To do");
@@ -29,13 +29,13 @@ function initBoard() {
   setNavBarActive("board-link");
 }
 
-function openAddTask() {
+function openAddTask(container) {
   docID('add-card-con').classList.remove('d-none');
   new Img("add-card-div", 'add-card-close', "card-close", "../assets/img/close.png");
   docID('add-card-close').onclick = function () {closeCard("add-card-con", "add-card-div")}
   new AddTaskBox("add-card-div");
   new Div("addtaskCon", "button-con", "button-con"); //Div für die Add/Clear Button
-  new Button("button-con", "add-task-btn", "button", addTask, "Create Task");
+  new Button("button-con", "add-task-btn", "button", function () {addTask(container)} , "Create Task");
 }
 
 function keyboardActive() {
@@ -51,6 +51,7 @@ function renderBoardSegments() {
   resetSegments();
   Board_task = [];
   createBoardCards();
+  renderNoTasks();
 }
 
 function resetSegments() {
@@ -112,10 +113,10 @@ function allowDrop(ev) {
 function moveTo(category) {
   let id = getTasksIdx();
   tasks[id].container = `${category}-con`;
-  setItem("tasks", tasks);
-  loadTasks();
+  // setItem("tasks", tasks);
+  // loadTasks();
   renderBoardSegments();
-  renderNoTasks();
+  // renderNoTasks();
 }
 
 function dragOver(category) {
