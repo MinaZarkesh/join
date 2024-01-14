@@ -40,8 +40,8 @@ async function initSummary() {
   greetings();
 
   task_amounts = await updateTaskAmounts();
-  createSummaryBoxes(); //creates summary-boxes beim 
-  
+  createSummaryBoxes(); //creates summary-boxes beim
+
   setNavBarActive("summary-link");
 }
 
@@ -77,24 +77,23 @@ function greetings() {
   }
 
   // docID("greetings").innerHTML =
-  new Div("greetings", "greetings-span","font-t1", greeting);
-     active_user.name == "Guest"
-       ?
-       false :
+  new Div("greetings", "greetings-span", "font-t1", greeting);
 
-       docID("greetings-span").innerHTML += ", ";
-       new Div("greetings", "greeting-name", "", "Hans-Jürgen Knüppel-Dudas" );
-      //  `${greeting}`
-    //   : `${greeting}, ${active_user.name}`;
+  new Div("greetings", "greeting-name", "", active_user.name);
 
-
+  if (active_user.name == "Guest") {
+    docID("greeting-name").textContent = "";
+  } else {
+    docID("greetings-span").innerHTML += ", ";
+    docID("greeting-name").textContent = active_user.name;
+  }
 }
 
 function createSummaryBoxes() {
   docID(summaryBox_div_id).innerHTML = "";
 
   for (let i = 0; i < item_amount; i++) {
-    new Div(summaryBox_div_id, `${summaryBox_div_id}-${i}`)
+    new Div(summaryBox_div_id, `${summaryBox_div_id}-${i}`);
     summary_boxes.push(new SummaryBox(summaryBox_div_id, i));
   }
   createFirstBox();
@@ -103,7 +102,7 @@ function createSummaryBoxes() {
 function createFirstBox() {
   //leert die Box und fügt beide Elemente in einer neuen Div hinzu,
   // um diese wiederum position relative zu machen(in css)
- 
+
   docID(`item-${summaryBox_div_id}-0`).innerHTML = /*html*/ `
     <div  id="item-${summaryBox_div_id}-0-1" class="col">  
       <div class="row">
@@ -140,22 +139,18 @@ function changeScreenView() {
   }
 }
 
-async function checkDate(){
+async function checkDate() {
   await loadTasks();
-   let urgent_tasks = tasks.filter(obj=> obj.priority == "Urgent");
+  let urgent_tasks = tasks.filter((obj) => obj.priority == "Urgent");
   let urgent_date;
 
+  urgent_tasks.sort((a, b) => (a.date > b.date ? 1 : b.date > a.date ? -1 : 0));
 
-
-urgent_tasks.sort((a, b) =>
-    a.date > b.date
-      ? 1
-      : b.date > a.date
-      ? -1
-      : 0
-  );
- 
   urgent_date = urgent_tasks[0].date;
-  urgent_date = new Date(urgent_date).toLocaleDateString("en-US",{ month: 'long',day: 'numeric', year: 'numeric'  });
+  urgent_date = new Date(urgent_date).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
   docID("upcoming-deadline").innerHTML = urgent_date;
 }

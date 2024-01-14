@@ -282,6 +282,7 @@ function isContainedMails() {
 
 function loginUser(bool) {
   // bool = "Login";
+  active_user = "";
   if (bool == "Login") {
     active_user = "";
     input_email_value = docID("input-con-email-input-id").value;
