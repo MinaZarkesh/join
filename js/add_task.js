@@ -16,7 +16,7 @@ function initAddtask() {
     new AddTaskBox("AddTaskMainCon", true)
     new Div("addtaskCon", "button-con", "button-con"); //Div für die Add/Clear Button
     new Button("button-con", "clear-task", "secondary-button", clearTask, "Clear Task");
-    new Button("button-con", "add-task-btn", "button", addTask, "Create Task");
+    new Button("button-con", "add-task-btn", "button", function() {addTask("to-do-con")}, "Create Task");
     setNavBarActive("add_task-link");
 }
 

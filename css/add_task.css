@@ -251,6 +251,10 @@ li input {
     box-shadow: 0px 5px 10px var(--black20);
 }
 
+#taskName {
+    flex-direction: column;
+}
+
 @media (max-width: 1023px) {
     .button-con {
         position: unset;
