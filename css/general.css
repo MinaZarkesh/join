@@ -191,7 +191,7 @@ main {
 .secondary-button {
   width: fit-content;
   min-width: 136px;
-  height: 100%; /*war vorher 61px*/
+  height: 48px; /*war vorher 61px*/
   border-radius: 10px;
   padding: 16px 10px 16px 10px;
   border: 1px solid var(--secBtnBorder);
@@ -326,7 +326,7 @@ border: none;
 }
 
 
-.imput-img-div:hover{
+.imput-img-div:hover, .imput-img-div:focus-within, .imput-img-div:focus{
 border-bottom: 1px solid var(--primary);
 }
 
