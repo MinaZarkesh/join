@@ -320,8 +320,9 @@ input[type="checkbox"] {
 
 /* nochmal gemeinsam schauen */
 
-.input-field:hover{
+.input-field{
 outline: none;
+border: none;
 }
 
 

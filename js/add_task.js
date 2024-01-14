@@ -8,6 +8,7 @@ let task_assigned_to = [];
 let task_assigned_to_nametag = [];
 let task_assigned_to_color = [];
 let departments = [];
+let associates_ids = [];
 function initAddtask() {
     init();
     activeUser(); //set activeUser
@@ -310,6 +311,7 @@ function addTask(department) {
         date: date,
         priority: urgency[0],
         priorityImg: urgency[1],
+        associates: associates_ids,
         assignedTo: task_assigned_to,
         assignedToNameTag: task_assigned_to_nametag,
         assignedToColor: task_assigned_to_color,
@@ -337,15 +339,12 @@ function requiered(title, id) {
 function theUrgency() {
     let btns = ["btn-red", "btn-orange", "btn-green" ];
     let output =[];
-    btns.forEach((element, index) => {
+    btns.forEach((element) => {
         if (docID(element).classList.value.includes('active')) {
-            element = "btn-red" ?? output.push('Urgent');
-            element = "btn-orange" ?? output.push('Medium');
-            element = "btn-green" ?? output.push('Low');
+            element == "btn-red" ? output.push('Urgent') : "";
+            element == "btn-orange" ? output.push('Medium'): "";
+            element == "btn-green" ? output.push('Low'): "";
             output.push(docID(element).children[1].src)
-            }else {
-                element = "btn-green";
-                output.push(docID(element).children[1].src)
             }
         })
     return output;
@@ -356,28 +355,42 @@ function theSelectors(selector){
     let work;
     let id = [];
     let idx = [];
+    if (selector == '.tasks-contacts') {
+        task_assigned_to = [];
+        task_assigned_to_nametag = [];
+        task_assigned_to_color = [];
+        associates_ids= [];
+    } else {
+        departments = [];
+    }
 
 
     for (let i = 0; i < matches.length; i++) {
         if (matches[i].children[2].checked) {
             work = matches[i].children[1].id;
             id.push(work.match(/\d+/)[0]);
-            task_assigned_to.push(contacts[id[id.length-1]].name);
-            task_assigned_to_nametag.push(contacts[id[id.length-1]].nameTag);
-            task_assigned_to_color.push(contacts[id[id.length-1]].color);
+            if (selector == '.tasks-contacts') {
+                task_assigned_to.push(contacts[id[id.length-1]].name);
+                task_assigned_to_nametag.push(contacts[id[id.length-1]].nameTag);
+                task_assigned_to_color.push(contacts[id[id.length-1]].color);
+                associates_ids.push(id[id.length-1]);
+            } else {
+                departments.push(categorys[id[id.length-1]].name);
+            }
+            
         }
     }
-    if (selector == '.tasks-contacts') {
-        if (!id == []) {createContactBox()};
-    } else {
-        idx = id;
-        idx.forEach((e) => {
+    // if  {
+    //     if (!id == []) {createContactBox()};
+    // } else {
+    //     idx = id;
+    //     idx.forEach((e) => {
                 // task_assigned_to.push(contacts[e].name);
                 // task_assigned_to_nametag.push(contacts[e].nameTag);
                 // task_assigned_to_color.push(contacts[e].color);
-                departments.push(categorys[e].name);
-            })
-    }
+                // departments.push(categorys[e].name);
+            // })
+    // }
 }
 
 function Subtaskschecked() {
