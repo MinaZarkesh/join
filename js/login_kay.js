@@ -220,7 +220,7 @@ function saveInputValues() {
   ).value;
   isCheckedBox = docID("checkbox-accept-privacy").checked;
 
-  console.log("check", isCheckSignupForm(), isSamePassword());
+  // console.log("check", isCheckSignupForm(), isSamePassword());
 
   if (isCheckSignupForm() && isSamePassword()) {
     if (!isContainedMails()) {
@@ -293,7 +293,7 @@ function loginUser(bool) {
 
       if (active_user.password == input_password_value) {
         active_user = JSON.stringify(active_user);
-        console.log("Login erfolgreich", active_user);
+        // console.log("Login erfolgreich", active_user);
 
         if (docID("checkbox-remember-me").checked) {
           sessionStorage.removeItem("activeuser");
@@ -317,7 +317,7 @@ function loginUser(bool) {
   } else if (bool == "Guest") {
     active_user = users[0];
     active_user = JSON.stringify(active_user);
-    console.log("Login Guest erfolgreich", active_user);
+    // console.log("Login Guest erfolgreich", active_user);
     sessionUsersave(active_user);
     navToSummary();
   }
@@ -326,16 +326,9 @@ function loginUser(bool) {
 function checkAcception() {
   if (docID("checkbox-accept-privacy").checked) {
     docID("signup-form-btn").disabled = false;
-    docID("checkbox-accept-privacy").checked = true;
-    console.log("true", docID("checkbox-accept-privacy").checked);
-    // return docID("checkbox-accept-privacy").checked;
   } else {
     docID("signup-form-btn").disabled = true;
-    docID("checkbox-accept-privacy").checked = false;
-    console.log("false", docID("checkbox-accept-privacy").checked);
-    // return docID("checkbox-accept-privacy").checked;
   }
-  // return  docID("checkbox-accept-privacy").checked;
 }
 
 let istogglePassword = false;
