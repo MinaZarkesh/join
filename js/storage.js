@@ -45,11 +45,8 @@ let segements_array = [
   {
     con: "done-con",
     headline: "Done",
-  }
+  },
 ];
-
-
-
 
 /**
  * The token used for remote storage authentication.
@@ -103,44 +100,64 @@ function docID(id) {
 }
 
 async function init() {
-  
   setHeader();
-  // updateUserValues(); //set Header
-
 }
 
-function setHeader(){
+function setHeader() {
   openNavMenu(); // set NavBar
-  if(localStorage.getItem("activeuser") === null && sessionStorage.getItem("activeuser") === null){
+  if (
+    localStorage.getItem("activeuser") === null &&
+    sessionStorage.getItem("activeuser") === null
+  ) {
     docID("header-name-tag").style.display = "none";
     // docID("navbar").style.display = "none";
     //aktuelle NavBar in eigene Div, die im responsive zur NavBar wird.
     // wenn nicht eingeloggt, dann wird dieser part display none und somit verschwindet diese auch im responsive, aber die normale Navbar bleibt.
     docID("navbar-con").style.display = "none";
     docID("navbar").style.justifyContent = "flex-end";
-  }else{
+  } else {
     docID("header-name-tag").style.display = "flex";
+
+    if (sessionStorage.getItem("activeuser") != 0) {
+      sessionUserload();
+      console.log("SessionStorage");
+      // return true;
+    } else if (localStorage.getItem("activeuser") != 0) {
+      localUserload();
+      console.log("LocalStorage");
+    }
+    updateUserValues(); //set Header
     docID("navbar").style.justifyContent = "space-between";
     docID("navbar-con").style.display = "flex";
   }
 }
 
-
-
-function setNavBarActive(con){
-docID(con).classList.add("nav-active");
+function setNavBarActive(con) {
+  docID(con).classList.add("nav-active");
 }
 
 function openNavMenu() {
   //fill NavBar
   new Div("navbar", "navbar-con");
-  new MenuLink("navbar-con","summary"); //parent "navbar"
-  new MenuLink("navbar-con","add_task");
-  new MenuLink("navbar-con","board");
-  new MenuLink("navbar-con","contacts");
+  new MenuLink("navbar-con", "summary"); //parent "navbar"
+  new MenuLink("navbar-con", "add_task");
+  new MenuLink("navbar-con", "board");
+  new MenuLink("navbar-con", "contacts");
   new Div("navbar", "navbar-bottom");
-  new Anchor("navbar-bottom", "nav-privacy","",  "../html/PrivacyPolicy.html", "Privacy Policy");
-  new Anchor("navbar-bottom", "nav-legal","", "../html/LegalNotice.html", "Legal Notice");
+  new Anchor(
+    "navbar-bottom",
+    "nav-privacy",
+    "",
+    "../html/PrivacyPolicy.html",
+    "Privacy Policy"
+  );
+  new Anchor(
+    "navbar-bottom",
+    "nav-legal",
+    "",
+    "../html/LegalNotice.html",
+    "Legal Notice"
+  );
 }
 
 //create Header
@@ -158,10 +175,8 @@ function isRequiered(id) {
 //eigentlich sort Array, aber mit Kay zusammen ändern
 function createContactBox(parent) {
   let parentArray = contact_boxes; //später Parameter
-  contacts.sort((a, b) =>
-  a.name > b.name ? 1 : b.name > a.name ? -1 : 0);
+  contacts.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 }
-
 
 function getTasksAmounts() {
   task_amounts = [];
@@ -182,7 +197,7 @@ function checkEmptyInputs() {
 function addNewContact() {
   let idx = setNewIdx();
 
- newContact = {
+  newContact = {
     name: "",
     color: setRandomColor(),
     mail: "",
@@ -246,7 +261,7 @@ async function loadUsers() {
 async function loadContacts() {
   contacts = JSON.parse(await getItem("contacts"));
   // console.log(contacts);
-  
+
   // contact = contacts[index];
   // return contacts, contact, contactIndex;
 }
@@ -300,22 +315,22 @@ function sessionUserload() {
 }
 
 let isShown = false;
-function showHeaderDropdown(){
-  if(! isShown){
+function showHeaderDropdown() {
+  if (!isShown) {
     docID("dropdown-menu").classList.add("show");
-  }else{
+  } else {
     docID("dropdown-menu").classList.remove("show");
   }
   isShown = !isShown;
 }
 
-function logout(){
+function logout() {
   if (localStorage.getItem("activeuser") != null) {
-localStorage.removeItem("activeuser");
+    localStorage.removeItem("activeuser");
   }
-    if (sessionStorage.getItem("activeuser") != null) {
-      sessionStorage.removeItem("activeuser");
-    }
+  if (sessionStorage.getItem("activeuser") != null) {
+    sessionStorage.removeItem("activeuser");
+  }
 
   window.location.href = "./index.html";
 }

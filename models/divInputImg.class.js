@@ -7,6 +7,7 @@ class Divinputimg {
   inputfocus;
   placeholder;
   type;
+  imgsrc;
   // content;
   constructor(parent, className, type, placeholder, imgsrc, id, div_id) {
     this.div_id = div_id;
@@ -15,7 +16,7 @@ class Divinputimg {
     // this.input_id = `${className}-${type}-input-id`;
     this.input_id = id;
     this.inputForSelect(parent, className);
-
+    this.imgsrc = imgsrc;
     this.img_onclick = this.div_onclick = imgsrc.includes("+.png") ? function () {submitSubtask("input-con-Add")} : "";
     this.img_onclick = imgsrc.includes("arrow_drop_down.png")? function () {dropdownMenu(`${parent}-img`, parent, parent)} : this.img_onclick;
     this.img_onclick = imgsrc.includes("searchLupe.png")? function () {filterTasks()} : this.img_onclick;
