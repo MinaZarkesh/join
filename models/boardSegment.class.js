@@ -28,6 +28,7 @@ class BoardSegment{
         this.button_id = `${segment}-btn`
         this.headline_text = headline;
         this.childDiv_id = `${segment}-div`;
+        this.button_onclick = function () {openAddTask(`${segment}-con`);};
         // this.childDiv = new Div(this.con_id, this.childDiv_id, this.con_class);
         
         this.container = new Div(parent, this.con_id, this.con_class);

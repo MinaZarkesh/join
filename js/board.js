@@ -39,8 +39,8 @@ function openAddTask(container) {
 }
 
 function boardAddTask(container) {
-  addTask(container);
-  closeCard("add-card-con", "add-card-div");
+  let close = addTask(container);
+  close ? closeCard("add-card-con", "add-card-div") : "";
 }
 
 function keyboardActive() {
@@ -252,6 +252,7 @@ function updateTasks(e) {
   theSelectors('.tasks-contacts');
   theSelectors('.tasks-category');
   e.title = docID('task-title').value;
+  e.category = departments;
   e.description = docID('desc-input').value;
   e.date = docID('date-input').value;
   e.priority = urgency[0];
@@ -263,6 +264,7 @@ function updateTasks(e) {
   e.subtaskschecked = editSubtaskchecked(e);
 
   closeCard("main-card-div", "main-board-card");
+  subtask = [];
   renderBoardSegments();
 }
 
