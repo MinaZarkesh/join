@@ -35,7 +35,12 @@ function openAddTask(container) {
   docID('add-card-close').onclick = function () {closeCard("add-card-con", "add-card-div")}
   new AddTaskBox("add-card-div");
   new Div("addtaskCon", "button-con", "button-con"); //Div für die Add/Clear Button
-  new Button("button-con", "add-task-btn", "button", function () {addTask(container)} , "Create Task");
+  new Button("button-con", "add-task-btn", "button", function () {boardAddTask(container)} , "Create Task");
+}
+
+function boardAddTask(container) {
+  addTask(container);
+  closeCard("add-card-con", "add-card-div");
 }
 
 function keyboardActive() {
@@ -99,6 +104,7 @@ function closeCard(parent, child, e) {
   docID(child).innerHTML = "";
   docID(parent).classList.add("d-none");
   renderBoardSegments();
+  subtasks = [];
 }
 
 function startDragging(e) {
@@ -214,9 +220,9 @@ function editCard(e) {
 }
 
 function editUrgency(e) {
-  e.priority = "Urgent"? activeUrgency("btn-red"):"";
-  e.priority = "Medium"? activeUrgency("btn-orange"):"";
-  e.priority = "Low"? activeUrgency("btn-green"):"";
+  e.priority == "Urgent"? activeUrgency("btn-red"):"";
+  e.priority == "Medium"? activeUrgency("btn-orange"):"";
+  e.priority == "Low"? activeUrgency("btn-green"):"";
 }
 
 function checkTheBox(e) {

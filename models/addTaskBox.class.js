@@ -28,7 +28,8 @@ class AddTaskBox {
         new Textarea("description-textarea", "desc-input", "textarea", "Enter a Description" ); //Textarea
         new Span('description-textarea', 'description-textarea-requiered', "requiered font-label"); //requiered-span für Textarea
         new Labeldiv('contentbig','due-date', 'Due date', false);
-        new Divdate('due-date', 'date-input' , 'input-field input-blue font-t6');
+        new Div('due-date', 'calender-con', 'input-con');
+        new Divdate('calender-con', 'date-input' , 'input-field input-blue font-t6');
         new Span('due-date', 'due-date-requiered', "requiered font-label");
     }
 
