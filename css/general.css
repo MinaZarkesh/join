@@ -405,6 +405,10 @@ border-bottom: 1px solid var(--primary);
   animation-fill-mode: forwards;
 }
 
+#help-item{
+  display: none;
+}
+
 @keyframes confirmation {
   0% {
     right: 5%;
@@ -428,6 +432,11 @@ border-bottom: 1px solid var(--primary);
 }
 
 @media (max-width: 1023px) {
+
+  #help-item{
+    display: flex;
+  }
+
   .main-site {
     flex-direction: column;
     width: 100vw;
