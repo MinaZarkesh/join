@@ -109,8 +109,17 @@ function layoutContactsOverlay() {
 }
 
 function createEditContact(id) {
-  renderEditContact(id);
-  fillEditContact(contacts[id]);
+  let idx=0;
+  // console.log("index im array", id, idx);
+
+contacts.forEach((e, index)=>{
+  if(e.idx == id){
+    idx = index;
+  }
+  
+})
+renderEditContact(idx);
+  fillEditContact(contacts[idx]);
 }
 
 function fillEditContact(e) {
