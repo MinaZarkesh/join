@@ -62,25 +62,21 @@ class BoardCard{
 
     assosciates(parent, e) {
     e.assignedToNameTag.forEach((element, index) => {
-        let div_id = `${parent}-assiciate-${index}`;
-        let span_id = `${div_id}-span`;
-        // new ProfilBagde(parent, index, e.assignedToColor[index], element); // con id Problem. Dadurch verteilt es sich nicht über die Verschiednee Karten
-        new Div(parent, div_id, "profile-badge badge-board");
-        new Span(div_id, span_id, element[index], element);
-        docID(div_id).style = `background-color: var(${e.assignedToColor[index]})`;
+        if(index < 3 ) {
+            let div_id = `${parent}-assiciate-${index}`;
+            let span_id = `${div_id}-span`;
+            // new ProfilBagde(parent, index, e.assignedToColor[index], element); // con id Problem. Dadurch verteilt es sich nicht über die Verschiednee Karten
+             new Div(parent, div_id, "profile-badge badge-board");
+            new Span(div_id, span_id, element[index], element);
+            docID(div_id).style = `background-color: var(${e.assignedToColor[index]})`;
+        }
+        
     });
+        // if (e.assignedToNameTag.length >= 3) {
+
+        //     numberBadge(parent, `${parent}-assiciate-${index}`, index, 2);
+        // }
+        
     }
-
-
-    // depart(e, parent) {
-    //     let color;
-    //     let div_id;
-    //     for (let i = 0; i < e.category.length; i++) {
-    //         color = backgroundcolor(e.category[i]);
-    //         div_id = `${parent}-${i}-div`      
-    //         new Div(parent, div_id, "department-card");
-    //         new Span(div_id,"","", e.category[i]);
-    //         docID(div_id).style = `background-color: var(${color})`;
-    //     }
-    // }
+    
 }

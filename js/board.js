@@ -257,8 +257,8 @@ function updateTasks(e) {
   e.priority = urgency[0];
   e.priorityImg = urgency[1];
   e.assignedTo = task_assigned_to;
-  e.task_assigned_to_nametag = task_assigned_to_nametag;
-  e.task_assigned_to_color = task_assigned_to_color;
+  e.assignedToNameTag = task_assigned_to_nametag;
+  e.assignedToColor = task_assigned_to_color;
   e.subtasks = subtask;
   e.subtaskschecked = editSubtaskchecked(e);
 
