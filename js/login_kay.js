@@ -18,7 +18,6 @@ let emails = [];
 function initLogin() {
   setBackBtnsignup();
   renderLoginElements("Login");
-  
 }
 
 function renderLoginElements(bool) {
@@ -35,6 +34,8 @@ function renderLoginElements(bool) {
       "input-con-email-input-id",
       "input-con-email-input-div-id"
     );
+    docID("input-con-email-input-id").required = true;
+
     input_password = new Divinputimg(
       "inputs-con",
       "imput-img-div",
@@ -44,11 +45,13 @@ function renderLoginElements(bool) {
       "input-con-password-input-id",
       "input-con-password-input-div-id"
     );
+    docID("input-con-password-input-id").required = true;
     custom_checkbox_remember_me = new CustomCheckbox(
       "inputs-con",
       "checkbox-remember-me",
       "Remember Me"
     );
+
     new Button(
       "login-form-button-group",
       "login-button",
@@ -79,6 +82,7 @@ function renderLoginElements(bool) {
       "input-con-name-input-id",
       "input-con-name-input-div-id"
     );
+    docID("input-con-name-input-id").required = true;
     input_email = new Divinputimg(
       "inputs-con",
       "imput-img-div",
@@ -88,6 +92,7 @@ function renderLoginElements(bool) {
       "input-con-email-input-id",
       "input-con-email-input-div-id"
     );
+    docID("input-con-email-input-id").required = true;
     input_password = new Divinputimg(
       "inputs-con",
       "imput-img-div",
@@ -97,6 +102,8 @@ function renderLoginElements(bool) {
       "input-con-password-input-id",
       "input-con-password-input-div-id"
     );
+    docID("input-con-password-input-id").required = true;
+    docID("inputs-con-img").onclick = togglePassword;
     input_confirm_password = new Divinputimg(
       "inputs-con",
       "imput-img-div",
@@ -106,6 +113,7 @@ function renderLoginElements(bool) {
       "input-con-confirm-password-input-id",
       "input-con-confirm-password-input-div-id"
     );
+    docID("input-con-confirm-password-input-id").required = true;
 
     //Inhalt des Labels sind Span und Achor, muss noch geändert werden.
     custom_checkbox_accept_privacy = new CustomCheckbox(
@@ -113,6 +121,7 @@ function renderLoginElements(bool) {
       "checkbox-accept-privacy",
       ""
     ); // normale Checkbox machen
+    docID("checkbox-accept-privacy").required = true;
     custom_checkbox_accept_privacy.text =
       new Span(`labelcheckbox-accept-privacy`, "", "", "I accept the") +
       new Anchor(
@@ -123,6 +132,7 @@ function renderLoginElements(bool) {
         " Privacy Policy"
       );
     // custom_checkbox_accept_privacy.div_id = "checkbox-accept-privacy";
+    docID("checkbox-accept-privacy").onclick = checkAcception;
     new Button(
       "login-form-button-group",
       "signup-form-btn",
@@ -132,7 +142,7 @@ function renderLoginElements(bool) {
       },
       "Sign up"
     );
-
+    docID("signup-form-btn").disabled = true;
   }
 
   docID("login-headline").textContent = bool;
@@ -148,7 +158,7 @@ function setBackBtnsignup() {
 /*** Sign-up ***/
 
 function changeStyle(bool) {
- let links = document.querySelectorAll("#login-link-group a");
+  let links = document.querySelectorAll("#login-link-group a");
 
   if (bool === "Sign up") {
     docID("button-group").style.display = "none";
@@ -158,16 +168,42 @@ function changeStyle(bool) {
     docID("login-form-button-group").style.justifyContent = "center";
     docID("signup-back-btn").style.display = "flex";
     docID("login-link-group").innerHTML = "";
-   new Anchor("login-link-group", "", "link-group-a", "../html/PrivacyPolicy.html", "Private Policy");
-   new Anchor("login-link-group", "", "link-group-a", "../html/LegalNotice.html", "Legal Notice");
+    new Anchor(
+      "login-link-group",
+      "",
+      "link-group-a",
+      "../html/PrivacyPolicy.html",
+      "Private Policy"
+    );
+    new Anchor(
+      "login-link-group",
+      "",
+      "link-group-a",
+      "../html/LegalNotice.html",
+      "Legal Notice"
+    );
   } else {
     docID("signup-back-btn").style.display = "none";
     docID("button-group").style.display = "flex";
     docID("login-main").style.backgroundColor = "var(--white)";
     docID("logo-login").src = "../assets/img/Logo-middle_blue.png";
     docID("login-link-group").innerHTML = "";
-    new Anchor("login-link-group", "", "", "../html/PrivacyPolicy.html", "Private Policy");
-    new Anchor("login-link-group", "", "", "../html/LegalNotice.html", "Legal Notice");
+    docID("login-form-button-group").style.justifyContent = "unset";
+
+    new Anchor(
+      "login-link-group",
+      "",
+      "",
+      "../html/PrivacyPolicy.html",
+      "Private Policy"
+    );
+    new Anchor(
+      "login-link-group",
+      "",
+      "",
+      "../html/LegalNotice.html",
+      "Legal Notice"
+    );
   }
 }
 
@@ -184,7 +220,7 @@ function saveInputValues() {
   ).value;
   isCheckedBox = docID("checkbox-accept-privacy").checked;
 
-
+  // console.log("check", isCheckSignupForm(), isSamePassword());
 
   if (isCheckSignupForm() && isSamePassword()) {
     if (!isContainedMails()) {
@@ -194,7 +230,7 @@ function saveInputValues() {
       confirm_password_value = input_confirm_password_value;
       addNewUser();
       renderLoginElements("Login");
-      new Confirmation("login-main", "You Signed Up successfully", false)
+      new Confirmation("login-main", "You Signed Up successfully", false);
     } else {
       docID("input-con-email-input-id").value = "";
       alert(
@@ -202,6 +238,14 @@ function saveInputValues() {
       );
     }
   }
+
+  //  requiment fields erstellen
+  // else {
+  //   docID("input-con-email-input-id").value = "";
+  //   alert(
+  //     "Diese Tada ist schon registriert. Loggen Sie sich ein oder nutzen Sie eine andere Mail-Adresse."
+  //   );
+  // }
 }
 
 function isCheckSignupForm() {
@@ -237,6 +281,8 @@ function isContainedMails() {
 }
 
 function loginUser(bool) {
+  // bool = "Login";
+  active_user = "";
   if (bool == "Login") {
     active_user = "";
     input_email_value = docID("input-con-email-input-id").value;
@@ -248,15 +294,15 @@ function loginUser(bool) {
 
       if (active_user.password == input_password_value) {
         active_user = JSON.stringify(active_user);
-        console.log("Login erfolgreich", active_user);
+        // console.log("Login erfolgreich", active_user);
 
-        if(docID("checkbox-remember-me").checked){
+        if (docID("checkbox-remember-me").checked) {
           sessionStorage.removeItem("activeuser");
-          localUsersave(active_user)
-        }else{
+          localUsersave(active_user);
+        } else {
           localStorage.removeItem("activeuser");
           sessionUsersave(active_user);
-        } 
+        }
         navToSummary();
       } else {
         docID("input-con-password-input-id").value = "";
@@ -265,13 +311,39 @@ function loginUser(bool) {
     } else {
       docID("input-con-email-input-id").value = "";
       docID("input-con-password-input-id").value = "";
-      alert("Die Email stimmt nicht überein, bitte noch einmal eingeben.");
+      alert(
+        "Bitte gebe deine Email und Password ein oder nutze den Guest Login."
+      );
     }
   } else if (bool == "Guest") {
     active_user = users[0];
     active_user = JSON.stringify(active_user);
-    console.log("Login Guest erfolgreich", active_user);
+    // console.log("Login Guest erfolgreich", active_user);
     sessionUsersave(active_user);
     navToSummary();
+  }
+}
+
+function checkAcception() {
+  if (docID("checkbox-accept-privacy").checked) {
+    docID("signup-form-btn").disabled = false;
+  } else {
+    docID("signup-form-btn").disabled = true;
+  }
+}
+
+let istogglePassword = false;
+
+function togglePassword(id) {
+  let input_id = id;
+  let img_id = input_id + "-img";
+  if (istogglePassword) {
+    docID(input_id).type = "text";
+    docID(img_id).src = "../assets/img/showpassword.png";
+    istogglePassword = false;
+  } else {
+    docID(input_id).type = "password";
+    docID(img_id).src = "../assets/img/icon-lock-closed.png";
+    istogglePassword = true;
   }
 }

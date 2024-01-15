@@ -208,6 +208,10 @@
   gap: 16px;
 }
 
+.floating-headline-link:hover {
+cursor: pointer;
+}
+
 .floating-headline-link {
   color: var(--black);
   display: flex;
@@ -301,7 +305,7 @@
     padding: 5%;
     padding-top: 32px;
     width: 100%;
-    height: 100%;
+    height: 80%;
   }
 
   /*Add Button bearbeiten*/

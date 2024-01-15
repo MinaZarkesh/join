@@ -214,6 +214,7 @@ function renderEditContact(id) {
   //change Style
   docID("overlay-contacts").style.display = "flex";
   docID("edit-contact-overlay").style.left = "0";
+  // docID("edit-contact-overlay").classList.remove("unset");
   docID("contact-overlay-subtitle").style.display = "none";
 }
 
@@ -248,6 +249,7 @@ function renderAddContact() {
     "Create contact"
   );
   //change Style values
+  // docID("edit-contact-overlay").classList.add("unset");
   docID("edit-contact-overlay").style.left = "unset";
   docID("overlay-contacts").style.display = "flex";
   docID("contact-overlay-subtitle").style.display = "flex";

@@ -120,11 +120,11 @@ function setHeader() {
 
     if (sessionStorage.getItem("activeuser") != 0) {
       sessionUserload();
-      console.log("SessionStorage");
+      // console.log("SessionStorage");
       // return true;
     } else if (localStorage.getItem("activeuser") != 0) {
       localUserload();
-      console.log("LocalStorage");
+      // console.log("LocalStorage");
     }
     updateUserValues(); //set Header
     docID("navbar").style.justifyContent = "space-between";
