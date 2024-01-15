@@ -197,7 +197,13 @@
 }
 
 .floating-headline-link:hover {
-cursor: pointer;
+  color: var(--Ligth-blue);
+  font-weight: 700;
+}
+
+.floating-headline-link:hover span{
+  
+  font-weight: 700;
 }
 
 .floating-headline-link {
@@ -206,6 +212,7 @@ cursor: pointer;
   justify-content: center;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
 }
 
 .floating-headline-link img {
@@ -256,6 +263,19 @@ cursor: pointer;
   display: none;
   width: 0;
   height: 0;
+}
+
+.active-contact {
+  background-color: var(--primary);
+}
+.active-contact .contact-list-coloumn span,
+.active-contact .contact-list-coloumn h6 {
+  color: var(--white);
+}
+
+.active-contact:hover {
+  cursor: pointer;
+  background-color: var(--primary);
 }
 
 @media (max-width: 1023px) {

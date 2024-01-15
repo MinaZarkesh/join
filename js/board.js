@@ -7,10 +7,12 @@ let doneDiv;
 let filteredTasks = [];
 let filteredTasks_Ids = [];
 
-function initBoard() {
+async function initBoard() {
   init();
   activeUser(); //set activeUser
   updateUserValues();
+  await loadTasks();
+  await loadContacts();
   new Div("main-board", "board-head-con"); //the head container
   new Div("board-head-con", "search-con");
   new Divinputimg("search-con", "search", "text", "Find Task", "../assets/img/searchLupe.png", "search-text-input-id","search-con-div"); //+ id + div_id

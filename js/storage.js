@@ -18,7 +18,7 @@ let active_user;
 let login_index = 0;
 // users = oldUsers;
 // contacts = oldContacts;
-// categorys = oldCategorys;
+categorys = oldCategorys;
 // tasks = oldTasks;
 
 // let index = 0;
