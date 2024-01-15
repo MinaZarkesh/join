@@ -13,6 +13,7 @@ async function initBoard() {
   updateUserValues();
   await loadTasks();
   await loadContacts();
+  await loadCategorys();
   new Div("main-board", "board-head-con"); //the head container
   new Div("board-head-con", "search-con");
   new Divinputimg("search-con", "search", "text", "Find Task", "../assets/img/searchLupe.png", "search-text-input-id","search-con-div"); //+ id + div_id
@@ -120,8 +121,7 @@ function allowDrop(ev) {
 function moveTo(category) {
   let id = getTasksIdx();
   tasks[id].container = `${category}-con`;
-  // setItem("tasks", tasks);
-  // loadTasks();
+  setItem("tasks", tasks);
   renderBoardSegments();
   // renderNoTasks();
 }
@@ -266,6 +266,7 @@ function updateTasks(e) {
 
   closeCard("main-card-div", "main-board-card");
   subtask = [];
+  setItem("tasks", tasks);
   renderBoardSegments();
 }
 

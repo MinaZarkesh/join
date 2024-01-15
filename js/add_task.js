@@ -16,6 +16,7 @@ async function initAddtask() {
     updateUserValues();
     await loadTasks();
     await loadContacts();
+    await loadCategorys();
     new AddTaskBox("AddTaskMainCon", true)
     new Div("addtaskCon", "button-con", "button-con"); //Div für die Add/Clear Button
     new Button("button-con", "clear-task", "secondary-button", clearTask, "Clear Task");
@@ -247,8 +248,6 @@ function addSubtask() {
         docID('input-con-Add').blur(); //nimmt den Focus von der Input
         subtasksFocusOut();
         subtaskListRender();
-    } else {
-        //hinweisschild
     }
 }
 
@@ -365,14 +364,14 @@ async function addTask(department) {
         id: id
     }
     tasks.push(newTask);
-    await setItem("tasks", tasks);
-  
-    new Confirmation("AddTaskMainCon", "Task added to board", true)
+    
+    let variable = document.getElementsByTagName('main')[0].id;
+    new Confirmation(variable, "Task added to board", true)
     clearTask();
     task_assigned_to = [];
     task_assigned_to_nametag = [];
     task_assigned_to_color = [];
-
+    await setItem("tasks", tasks);
 }
 
 function requiered(title, id) {
