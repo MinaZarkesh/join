@@ -189,13 +189,14 @@ function nameArray(obj, word) {
   return output;
 }
 
-function deleteCard(idx) {
+async function deleteCard(idx) {
     tasks.forEach((e, index) => {
       if (idx == e.id) {
         tasks.splice(index, 1);
       }
     });
     closeCard("main-card-div", "main-board-card");
+    await setItem("tasks", tasks);
     renderBoardSegments();
 }
 
