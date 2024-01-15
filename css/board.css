@@ -64,6 +64,7 @@
 .card-dept {
     display: flex;
     gap: 5px;
+    flex-wrap: wrap;
 }
 
 .department-card {

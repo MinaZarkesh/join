@@ -189,6 +189,9 @@ main {
 }
 
 .secondary-button {
+  align-items: center;
+  display: flex;
+  justify-content: center;
   width: fit-content;
   min-width: 136px;
   height: 48px; /*war vorher 61px*/
@@ -317,6 +320,20 @@ input[type="checkbox"] {
   padding: 0px 21px;
   border-bottom: 1px solid var(--grey); 
 }
+
+.active-contact {
+  background-color: var(--primary);
+}
+.active-contact .contact-list-coloumn span,
+.active-contact .contact-list-coloumn h6 {
+  color: var(--white);
+}
+
+.active-contact:hover {
+  cursor: pointer;
+  background-color: var(--primary);
+}
+
 
 
 /* nochmal gemeinsam schauen */

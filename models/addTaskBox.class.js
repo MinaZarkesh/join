@@ -24,6 +24,8 @@ class AddTaskBox {
         new Div("contentbig", "title-con", "title-con");
         new Divinput("title-con", 'taskName', "Enter a title", "task-title", "input-field", "input"); // Der Titel der Task
         new Span("title-con",'taskName-requiered', "requiered font-label"); // requiered für den Titel
+        docID('task-title').onfocus = function () {blueBorderToggle('task-title')};
+        docID('task-title').onblur = function () {blueBorderToggle('task-title')};
         new Labeldiv('contentbig', "description" , "Description", true); //Überschrift für die Description
         new Div('contentbig', "description-textarea"); // Div der Textarea
         new Textarea("description-textarea", "desc-input", "textarea", "Enter a Description" ); //Textarea

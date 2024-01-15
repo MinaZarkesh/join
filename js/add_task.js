@@ -64,7 +64,7 @@ function createDropMenu(list_parent, parent, tasks_parent, select, imgid, list_C
     select == 'assigned' ? dropdownContacts = true : dropdownCategory = true;  
     docID(imgid).src = "../assets/img/arrow_up.png";
     docID(list_Con).classList.add('d-none'); 
-    docID(input_id).parentElement.classList.add('blue-border');
+    blueBorderToggle(input_id);
 }
 
 function dropUp(select, list_Parent, imgid, list_Con, input_id, tasks_Parent) {
@@ -72,10 +72,19 @@ function dropUp(select, list_Parent, imgid, list_Con, input_id, tasks_Parent) {
     dropdownReset(list_Parent, imgid);
     docID(imgid).src = "../assets/img/arrow_drop_down.png";
     docID(list_Con).classList.remove('d-none');
-    docID(input_id).parentElement.classList.remove('blue-border');
+    blueBorderToggle(input_id);
     listRender(list_Con, tasks_Parent);
-
 }
+
+function blueBorderToggle(input_id) {
+    className = "blue-border";
+    if ((docID(input_id).parentElement.classList.contains(className))) {
+        docID(input_id).parentElement.classList.remove(className);
+    } else {
+        docID(input_id).parentElement.classList.add(className);
+    }
+}
+
 
 function dropdownReset(parent, imgid) {
     if (docID(parent)) {
@@ -93,8 +102,21 @@ function createContactListTask() {
         new ProfilBagde(div_id, e.idx, e.color, e.nameTag);
         new Span(div_id, `span-${e.idx}`,"", e.name)
         new Checkbox(div_id,`check-${e.idx}`, "checkbox");
+        docID(div_id).onclick = function() {CheckboxToggle(`check-${e.idx}`, `contact-list-parent-div-${e.idx}`)};
     })
 }
+
+function CheckboxToggle(id, div_id) {
+    // docID(id).checked != docID(id).checked;
+    if(docID(id).checked == false) {
+        docID(id).checked = true;
+        docID(div_id).classList.add("active-list");
+    }else {
+        docID(id).checked = false;
+        docID(div_id).classList.remove("active-list");
+    }    
+}
+
 function createCategoryList() {
     let div_id;
     let filtered_Contact = filterList();
@@ -104,6 +126,7 @@ function createCategoryList() {
         new ProfilBagde(div_id, e.idx, e.color, e.nameTag);
         new Span(div_id, `category-span-${e.idx}`,"", e.name)
         new Checkbox(div_id, `category-check-${e.idx}`, "checkbox");
+        docID(div_id).onclick = function() {CheckboxToggle(`category-check-${e.idx}`, `tasks-category-${e.idx}`)};
     })
 }
 
@@ -236,6 +259,10 @@ function deleteSubtask(i) {
 }
 
 function subtaskChange(value, i) {
+    subtask.forEach((e,index) => {
+        e = docID(`sub-list-${index}`).value;
+        updateSubtask(index,`sub-list-${index}`)
+    })
     let img_id_1 = value.replace("sub-", "") + `-img-1`;
     let img_id_2 = value.replace("sub-", "") + `-img-2`;
     docID(value).focus();
@@ -245,9 +272,11 @@ function subtaskChange(value, i) {
     docID(img_id_2).classList.remove('sub-change-img');
     docID(img_id_2).classList.add('sub-change-img');
     docID(img_id_2).onclick = function () {updateSubtask(i,`${value}`)};
-    docID(value).addEventListener("keydown", (e) => {
+    docID(value).addEventListener("keyup", (e) => {
         if(e.key == 'Enter') {
             updateSubtask(i,`${value}`);
+        } else {
+            subtask[i] = docID(`sub-list-${i}`).value;
         }
     })
 }
@@ -411,3 +440,4 @@ function getNewId() {
     })
     return high+1
 }
+

@@ -1,4 +1,4 @@
-class UnsortedListElement extends World{
+class UnsortedListElement{
 
     input_id;
     li_id;
@@ -8,7 +8,6 @@ class UnsortedListElement extends World{
     img_2_id;
     img_2_src = "../assets/img/delete.png";
     constructor(parent, subtask, index) {
-        super();
         this.input_id = `sub-list-${index}`;
         this.li_id =`list-${index}`;
         this.div_id = `${this.li_id}-con`;

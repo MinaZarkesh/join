@@ -163,11 +163,11 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 5px 8px;
+    padding: 5px 48px 5px 8px;
     position: relative;
 }
 
-.tasks-contacts:hover, .list-element:hover, .list-element:hover input,
+.tasks-contacts:hover, .tasks-category:hover, .list-element:hover, .list-element:hover input,
 .list-element img:hover, #subtask-img:hover, #img-check:hover, .list:hover::before, .list:hover, .list:hover input  {
     background-color: #D2E3FF;
 }
@@ -255,6 +255,29 @@ li input {
     flex-direction: column;
 }
 
+.active-list {
+    background-color: var(--primary);
+    color: white;
+}
+
+.active-list input {
+    filter: brightness(0) invert(1);
+}
+
+.active-list:hover {
+cursor: pointer;
+background-color: var(--primary);
+}
+
+#clear-task{
+    height: 60px;
+}
+
+#main-bord-card-edit-1 {
+    position: absolute;
+    right: 103px;
+}
+
 @media (max-width: 1023px) {
     .button-con {
         position: unset;
@@ -271,6 +294,7 @@ li input {
     #clear-task{
         padding: 4px 4px;
         min-width: unset;
+        height: 48px;
     }
 
     #add-task-btn:hover {
@@ -297,5 +321,14 @@ li input {
     .urgency-img {
         height: calc(9px + 6 * ((100vw - 320px) / 703));
         width: calc(11px + 9 * ((100vw - 320px) / 703));
+    }
+
+    #main-board-card {
+        width: 100%;
+        max-width: unset;
+    }
+
+    #main-bord-card-title {
+        font-size: calc(20px + 20 * ((100vw - 320px) / 703));
     }
 }
