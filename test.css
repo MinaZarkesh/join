@@ -47,3 +47,36 @@ input[type=submit] {
   background-color: DodgerBlue !important;
   color: #ffffff;
 }
+
+#meinDropdown {
+  position: absolute;
+  right: 0px;
+  animation-name: drive;
+  animation-duration: 500ms;
+  animation-delay: 200ms;
+  animation-fill-mode:forwards;
+}
+
+
+
+
+@keyframes drive {
+  0% {
+    right: 0;
+    top: 100px;
+  }
+  10% {
+    right: 25px;
+    top: 100px;
+  }
+
+  20% {
+    right: 25px;
+    top: 125px;
+  }
+
+  100% {
+    right: 250px;
+    top: 250px;
+  }
+}
