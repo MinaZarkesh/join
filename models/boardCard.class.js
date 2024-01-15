@@ -61,21 +61,21 @@ class BoardCard{
     }
 
     assosciates(parent, e) {
+    let counter;
     e.assignedToNameTag.forEach((element, index) => {
         if(index < 3 ) {
             let div_id = `${parent}-assiciate-${index}`;
             let span_id = `${div_id}-span`;
             // new ProfilBagde(parent, index, e.assignedToColor[index], element); // con id Problem. Dadurch verteilt es sich nicht über die Verschiednee Karten
-             new Div(parent, div_id, "profile-badge badge-board");
+            new Div(parent, div_id, "profile-badge badge-board");
             new Span(div_id, span_id, element[index], element);
             docID(div_id).style = `background-color: var(${e.assignedToColor[index]})`;
         }
-        
+        counter = index;
     });
-        // if (e.assignedToNameTag.length >= 3) {
-
-        //     numberBadge(parent, `${parent}-assiciate-${index}`, index, 2);
-        // }
+        if (e.assignedToNameTag.length >= 4) {
+            numberBadge(parent, `${parent}-assiciate-${counter}`, counter, 2);
+        }
         
     }
     

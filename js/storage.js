@@ -16,10 +16,10 @@ let input_confirm_password;
 let newContact;
 let active_user;
 
-// users = oldUsers;
-// contacts = oldContacts;
+users = oldUsers;
+contacts = oldContacts;
 categorys = oldCategorys;
-// tasks = oldTasks;
+tasks = oldTasks;
 
 // let index = 0;
 // let contact = [];
