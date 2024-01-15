@@ -114,8 +114,8 @@ function setHeader() {
     docID("navbar").style.justifyContent = "flex-end";
   } else {
     docID("header-name-tag").style.display = "flex";
-    if (sessionStorage.getItem("activeuser") != 0) {sessionUserload()}
-    else if (localStorage.getItem("activeuser") != 0) {localUserload()}
+    if (sessionStorage.getItem("activeuser")) {sessionUserload()}
+    else if (localStorage.getItem("activeuser")) {localUserload()}
     updateUserValues();
     docID("navbar").style.justifyContent = "space-between";
     docID("navbar-con").style.display = "flex";
@@ -316,7 +316,7 @@ async function loadCategorys() {
 function activeUser() {
   if (localStorage.getItem("activeuser") === null) {
     if (sessionStorage.getItem("activeuser") === null) {
-      window.location.href = "./index.html";
+      window.location.href = "../html/index.html";
     } else {
       sessionUserload();
       return true;

@@ -36,9 +36,10 @@ let sum;
  * @return {Promise} A promise that resolves when the summary has been initialized.
  */
 async function initSummary() {
-  init();
+  await loadUsers();
   activeUser(); //set activeUser
-  updateUserValues();
+  init();
+  // updateUserValues();
   greetings();
   task_amounts = await updateTaskAmounts();
   createSummaryBoxes(); //creates summary-boxes beim
