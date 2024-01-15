@@ -21,8 +21,9 @@ class AddTaskBox {
 
     bigCon() {
         new Div("content-con", "contentbig"); //Container für Title/Discreption /Due Date
-        new Divinput('contentbig', 'taskName', "Enter a title", "task-title", "input-field", "input"); // Der Titel der Task
-        new Span('taskName','taskName-requiered', "requiered font-label"); // requiered für den Titel
+        new Div("contentbig", "title-con", "title-con");
+        new Divinput("title-con", 'taskName', "Enter a title", "task-title", "input-field", "input"); // Der Titel der Task
+        new Span("title-con",'taskName-requiered', "requiered font-label"); // requiered für den Titel
         new Labeldiv('contentbig', "description" , "Description", true); //Überschrift für die Description
         new Div('contentbig', "description-textarea"); // Div der Textarea
         new Textarea("description-textarea", "desc-input", "textarea", "Enter a Description" ); //Textarea
@@ -57,7 +58,5 @@ class AddTaskBox {
     //     new Button("button-con", "clear-task", "secondary-button", clearTask, "Clear Task");
     //     new Button("button-con", "add-task-btn", "button", addTask, "Create Task");
     // }
-
-
 
 }
