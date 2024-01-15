@@ -371,9 +371,13 @@ function theSelectors(selector){
             work = matches[i].children[1].id;
             id.push(work.match(/\d+/)[0]);
             if (selector == '.tasks-contacts') {
-                task_assigned_to.push(contacts[id[id.length-1]].name);
-                task_assigned_to_nametag.push(contacts[id[id.length-1]].nameTag);
-                task_assigned_to_color.push(contacts[id[id.length-1]].color);
+                contacts.forEach((e) => {
+                    if(e.idx ==id[id.length-1]) {
+                        task_assigned_to.push(e.name);
+                        task_assigned_to_nametag.push(e.nameTag);
+                        task_assigned_to_color.push(e.color);
+                    }
+                })
                 associates_ids.push(id[id.length-1]);
             } else {
                 departments.push(categorys[id[id.length-1]].name);
