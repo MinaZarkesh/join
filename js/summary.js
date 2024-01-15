@@ -4,9 +4,7 @@ let screen_size = 1023; //ab wann Wechsel zu Desktop Version
 //erstelle die Werte für die Items
 let item_amount = 6;
 let summaryBox_div_id = "summary-box";
-// task_amounts = [1, 2, 3, 40, 5, 6, 7]; //verändern durch Tasks
 
-// let new_task_amounts = [1, 12, 3, 9, 5, 6, 8]; //zum Testen
 //empty Array for new summary_boxes
 let summary_boxes = [];
 let new_number;
@@ -30,42 +28,70 @@ let images = [
   "../assets/img/done_summary.png",
   "../assets/img/done_summary.png",
 ];
-
 let sum;
 
+/**
+ * Initializes the summary.
+ *
+ * @return {Promise} A promise that resolves when the summary has been initialized.
+ */
 async function initSummary() {
   init();
   activeUser(); //set activeUser
   updateUserValues();
   greetings();
-
   task_amounts = await updateTaskAmounts();
   createSummaryBoxes(); //creates summary-boxes beim
-
   setNavBarActive("summary-link");
 }
 
+/**
+ * Updates the task amounts.
+ *
+ * @return {Array} The updated task amounts.
+ */
 async function updateTaskAmounts() {
   await loadTasks();
   let amounts = [];
   sum = 0;
-
   amounts = getTasksAmounts();
   amounts.forEach((item) => {
     sum += item;
   });
   sum = sum - amounts[amounts.length - 1];
-
   amounts.splice(0, 0, tasks.filter((obj) => obj.priority == "Urgent").length); //wieviele Tasks sind urgent
   amounts.splice(1, 0, sum);
   task_amounts = amounts;
   return amounts;
 }
 
+/**
+ * Generates a greeting message based on the current hour and displays it on the webpage.
+ *
+ * @param {number} currentHour - The current hour of the day.
+ * @return {void} This function does not return anything.
+ */
 function greetings() {
   const currentHour = new Date().getHours();
   let greeting = "";
+  greeting = getGreeting(currentHour);
+  new Div("greetings", "greetings-span", "font-t1", greeting);
+  new Div("greetings", "greeting-name", "", active_user.name);
+  if (active_user.name == "Guest") {
+    docID("greeting-name").textContent = "";
+  } else {
+    docID("greetings-span").innerHTML += ", ";
+    docID("greeting-name").textContent = active_user.name;
+  }
+}
 
+/**
+ * Generate a greeting based on the current hour.
+ *
+ * @param {number} currentHour - The current hour of the day.
+ * @return {string} The appropriate greeting based on the current hour.
+ */
+function getGreeting(currentHour) {
   if (currentHour >= 6 && currentHour < 12) {
     greeting = "Good Morning";
   } else if (currentHour >= 12 && currentHour < 18) {
@@ -75,20 +101,15 @@ function greetings() {
   } else {
     greeting = "Good Night";
   }
-
-  // docID("greetings").innerHTML =
-  new Div("greetings", "greetings-span", "font-t1", greeting);
-
-  new Div("greetings", "greeting-name", "", active_user.name);
-
-  if (active_user.name == "Guest") {
-    docID("greeting-name").textContent = "";
-  } else {
-    docID("greetings-span").innerHTML += ", ";
-    docID("greeting-name").textContent = active_user.name;
-  }
+  return greeting
 }
 
+/**
+ * Creates summary boxes.
+ *
+ * @param {type} summaryBox_div_id - the id of the summary box div
+ * @return {type} undefined
+ */
 function createSummaryBoxes() {
   docID(summaryBox_div_id).innerHTML = "";
 
@@ -99,10 +120,12 @@ function createSummaryBoxes() {
   createFirstBox();
 }
 
+/**
+ * Create the first box by clearing the existing box and adding elements in a new div to make it position relative in CSS.
+ *
+ * @return {undefined} This function does not return a value.
+ */
 function createFirstBox() {
-  //leert die Box und fügt beide Elemente in einer neuen Div hinzu,
-  // um diese wiederum position relative zu machen(in css)
-
   docID(`item-${summaryBox_div_id}-0`).innerHTML = /*html*/ `
     <div  id="item-${summaryBox_div_id}-0-1" class="col">  
       <div class="row">
@@ -119,19 +142,25 @@ function createFirstBox() {
   checkDate();
 }
 
+/**
+ * Navigates to the board.html page.
+ *
+ * @return {undefined} No return value.
+ */
 function navToBoard() {
-  console.log("Nav to Board");
   window.location = "../html/board.html";
 }
-
-/***************** Event-Listener wenn window resize *****************/
 window.addEventListener("resize", function () {
-  //triggert wenn, Bildschirmgröße verändert wird.
   changeScreenView();
 });
 
+/**
+ * Change the screen view by checking and rendering the position of each summary box.
+ *
+ * @param {Array} summary_boxes - An array of summary boxes.
+ * @return {undefined} This function does not return a value.
+ */
 function changeScreenView() {
-  // console.log(screenWidth);
   for (let index = 0; index < summary_boxes.length; index++) {
     const element = summary_boxes[index];
     element.checkScreenView(index);
@@ -139,13 +168,16 @@ function changeScreenView() {
   }
 }
 
+/**
+ * Retrieves the urgent tasks, sorts them by date, and displays the upcoming deadline.
+ *
+ * @return {void} - This function does not return a value.
+ */
 async function checkDate() {
   await loadTasks();
   let urgent_tasks = tasks.filter((obj) => obj.priority == "Urgent");
   let urgent_date;
-
   urgent_tasks.sort((a, b) => (a.date > b.date ? 1 : b.date > a.date ? -1 : 0));
-
   urgent_date = urgent_tasks[0].date;
   urgent_date = new Date(urgent_date).toLocaleDateString("en-US", {
     month: "long",

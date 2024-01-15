@@ -7,6 +7,14 @@ class UnsortedListElement{
     img_1_src = "../assets/img/blue Pencil.png";
     img_2_id;
     img_2_src = "../assets/img/delete.png";
+
+     /**
+     * Creates an UnsortedListElement instance.
+     * @constructor
+     * @param {HTMLElement} parent - The parent element to which the unsorted list element will be appended.
+     * @param {string} subtask - The subtask content.
+     * @param {number} index - The index of the unsorted list element.
+     */
     constructor(parent, subtask, index) {
         this.input_id = `sub-list-${index}`;
         this.li_id =`list-${index}`;
@@ -25,14 +33,3 @@ class UnsortedListElement{
     }
 }
 
-
-        // this.content= /*html*/`
-        //     <li id="${this.li_id}" class="list">
-        //         <div class="list-element">
-        //             <input id="${this.input_id}" type="text" value="${subtask}">
-        //             <img src="../assets/img/blue Pencil.png" onclick="subtaskChange('${this.input_id}', ${index})">
-        //             <img src="../assets/img/delete.png" onclick="deleteSubtask(${index})">
-        //         </div>
-        //     </li> 
-        //         `  
-        // this.render(parent, this.content);

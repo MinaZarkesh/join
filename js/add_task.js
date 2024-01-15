@@ -101,7 +101,7 @@ function createDropMenu(list_parent, parent, tasks_parent, select, imgid, list_C
  * @param {string} selector - The CSS selector for the elements to filter.
  * @param {string} input_id - The id of the input element to get the search value from.
  */
-function DropdownFilter(selector, input_id) { // selector = .tasks-contacts / .tasks-category
+function DropdownFilter(selector, input_id) { 
     let matches = document.querySelectorAll(selector);
     let search = docID(input_id).value.replace(" ", "").toLowerCase();
     matches.forEach((e, index) => {
@@ -186,7 +186,6 @@ function createContactListTask() {
  * @return {undefined} This function does not return a value.
  */
 function CheckboxToggle(id, div_id) {
-    // docID(id).checked != docID(id).checked;
     if(docID(id).checked == false) {
         docID(id).checked = true;
         docID(div_id).classList.add("active-list");
@@ -420,7 +419,7 @@ function editSubtask(id){
 function deleteSubtask(i) {
     subtask.splice(i, 1);
     subtaskListRender();
-    return // element slicen und Liste neu rendern
+    return
 }
 
 /**

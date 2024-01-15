@@ -7,9 +7,14 @@ class MenuLink{
     img_id;
     img_src;
     parent;
+    
+    /**
+     * Constructs a new instance of the Constructor class.
+     *
+     * @param {Object} parent - the parent object
+     * @param {string} id - the ID of the object
+     */
     constructor(parent, id) {
-        // super();
-        // this.classname = "active";
         this.name = id.charAt(0).toUpperCase() + id.slice(1);
         this.name = this.name.replace("_t", " T");
         this.anchor_id = `${id}-link`;

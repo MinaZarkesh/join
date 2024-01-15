@@ -1,6 +1,14 @@
 class Divdate extends Elements {
-
     min_date;
+
+     /**
+     * Constructor function for creating an instance of the class.
+     *
+     * @param {parent} parent - The parent element to append the input to.
+     * @param {id} id - The id of the input element.
+     * @param {className} className - The class name of the input element.
+     * @return {void}
+     */
     constructor(parent, id, className) {
         super("input", id, className)
         // min="2000-01-02"

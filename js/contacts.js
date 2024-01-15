@@ -2,7 +2,7 @@ let contacts_inputs;
 let letter;
 let parent_array = "contact-list";
 let edit_contact;
-let text; // ?? wird das überhaupt benutzt ?
+let text;
 
 /**
  * Initializes the contacts.
@@ -89,10 +89,6 @@ function setActive(idx) {
  */
 function resetActive() {
   for (let i = 0; i < contacts.length; i++) {
-    let contact = contacts[i];
-    // console.log( i, contact);
-
-    //reset attributes from before
     docID(`contact-item-${contact.idx}`).classList.remove("active-contact");
   }
 }
@@ -142,7 +138,6 @@ function layoutContactsOverlay() {
  */
 function createEditContact(id) {
   let idx = 0;
-  // console.log("index im array", id, idx);
 
   contacts.forEach((e, index) => {
     if (e.idx == id) {

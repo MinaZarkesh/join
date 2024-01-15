@@ -8,12 +8,21 @@ class Divinputimg {
   placeholder;
   type;
   imgsrc;
-  // content;
+
+  /**
+   * Constructor function that initializes the properties of an object.
+   *
+   * @param {Object} parent - The parent object.
+   * @param {string} className - The class name.
+   * @param {string} type - The type.
+   * @param {string} placeholder - The placeholder.
+   * @param {string} imgsrc - The image source.
+   * @param {string} id - The ID.
+   * @param {string} div_id - The div ID.
+   */
   constructor(parent, className, type, placeholder, imgsrc, id, div_id) {
     this.div_id = div_id;
-    // this.div_id = `${parent}-div`;
     this.img_id = `${parent}-img`;
-    // this.input_id = `${className}-${type}-input-id`;
     this.input_id = id;
     this.inputForSelect(parent, className);
     this.imgsrc = imgsrc;
@@ -34,6 +43,12 @@ class Divinputimg {
     docID(this.img_id).onclick = this.img_onclick;
   }
 
+    /**
+   * Generates the input ID based on the parent and class name.
+   *
+   * @param {string} parent - The parent value.
+   * @param {string} className - The class name value.
+   */
   inputForSelect(parent, className) {
     if (parent == "assigned" || parent == "category") {
       this.input_id = `${className}-${parent}-input-id`;

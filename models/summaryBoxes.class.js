@@ -2,7 +2,6 @@ class SummaryBox {
   item;
   headline_amount;
   id;
-  // for calcPosition
   containerWidth;
   containerHeight;
   spanheight;
@@ -23,7 +22,6 @@ class SummaryBox {
     this.index = index;
     this.taskAmount = task_amounts[index]; //Variable aus summary.js
     this.item = this.generateItemHTML(id, index);
-    // this.itemRender();
     this.checkScreenView(index);
     this.renderPosition();
   }
@@ -35,51 +33,28 @@ class SummaryBox {
     this.headline_amount = new Headline("h1", `item-${id}-${index}-row`, `task_amounts-${id}-${index}`, "", task_amounts[this.index])
     new Headline("h6",`item-${id}-${index}-row`, "", "",descriptions[index])
     docID(`item-${id}-${index}`).onclick = navToBoard;
-//     return /*html*/ `
-//       <div onclick="navToBoard()" id="item-${this.id}-${this.index}" class="col">  
-//         <div class="row">
-//           <img src=${images[this.index]}>
-//           <h1 id="task_amounts-${this.id}-${this.index}">${task_amounts[this.index]}</h1>
-//         </div>
-//         <h6>${descriptions[this.index]}</h6>
-//       </div>
-// `;
   }
-
-  // itemRender() {
-  //   docID(`${this.id}-${this.index}`).innerHTML = this.item;
-  // }
 
   updateTaskAmount(taskAmount, index) {
     docID(`task_amounts-${this.id}-${index}`).textContent = taskAmount;
-    console.log("updated: ", index, this.taskAmount);
-
-    // if (this.taskAmount != taskAmount) {
-    //   this.taskAmount = taskAmount;
-    //   docID(`task_amounts-${this.id}-${index}`).innerHTML = this.taskAmount;
-    //   console.log("updated: ", index, this.taskAmount);
-    // }
-  }
+ }
 
   renderPosition() {
     docID(`item-${this.id}-${this.index}`).style.width = `${this.itemWidth}px`;
     docID(`item-${this.id}-${this.index}`).style.height = `${this.itemHeight}px`;
     docID(`item-${this.id}-${this.index}`).style.left = `${this.left}px`;
     docID(`item-${this.id}-${this.index}`).style.top = `${this.top}px`;
-    // docID(`item-${this.id}-${this.index}`).style.justify = "center";
-    // justify-content: center;
   }
 
   checkScreenView(index) {
     if (window.innerWidth > screen_size) {
-      //schreensize in summary.js
       this.calcPositionDesktop(index);
     } else {
       this.calcPositionMobile(index);
     }
   }
 
-  //calc Position for Desktop Version (window.innerWidth>1024) (px)
+
   calcPositionDesktop(index) {
     this.containerWidth = 798;
     this.containerHeight = 478;
@@ -152,12 +127,3 @@ class SummaryBox {
       this.gapColoumn / 2 + index * this.itemWidth + index * this.gapColoumn;
   }
 }
-
-
-  // id = "summaryBox";
-
-  //in der summary.js
-  //item_amount = 6;
-  //task_amounts[index]
-  //descriptions[index]
-  //images[index]

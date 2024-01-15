@@ -95,7 +95,6 @@ function renderLoginElements(bool) {
      */
   if (bool === "Sign up") {
     docID("login-form").onsubmit = function () {
-      // saveInputValues();
       return false;
     };
 
@@ -146,7 +145,7 @@ function renderLoginElements(bool) {
       "inputs-con",
       "checkbox-accept-privacy",
       ""
-    ); // normale Checkbox machen
+    );
     docID("checkbox-accept-privacy").required = true;
     custom_checkbox_accept_privacy.text =
       new Span(`labelcheckbox-accept-privacy`, "", "", "I accept the") +
@@ -157,7 +156,6 @@ function renderLoginElements(bool) {
         "../html/PrivacyPolicy.html",
         " Privacy Policy"
       );
-    // custom_checkbox_accept_privacy.div_id = "checkbox-accept-privacy";
     docID("checkbox-accept-privacy").onclick = checkAcception;
     new Button(
       "login-form-button-group",
@@ -352,7 +350,7 @@ function isContainedMails() {
  * @return {void} This function does not return anything.
  */
 function loginUser(bool) {
-  // bool = "Login";
+
   active_user = "";
   if (bool == "Login") {
     active_user = "";
@@ -387,7 +385,6 @@ function loginUser(bool) {
   } else if (bool == "Guest") {
     active_user = users[0];
     active_user = JSON.stringify(active_user);
-    // console.log("Login Guest erfolgreich", active_user);
     sessionUsersave(active_user);
     navToSummary();
   }

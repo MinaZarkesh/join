@@ -101,7 +101,6 @@ function keyboardActive() {
  * @return {undefined} No return value.
  */
 function renderBoardSegments() {
-  // loadTasks();
   resetSegments();
   Board_task = [];
   createBoardCards();

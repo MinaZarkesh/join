@@ -27,6 +27,12 @@ class BoardBigCard{
     edit_id = this.container_id + "-edit";
     edit_class = `big-card-edit`;
 
+     /**
+     * Constructor for the class.
+     *
+     * @param {type} e - description of the parameter e
+     * @param {type} parent - description of the parameter parent
+     */
     constructor(e, parent) {
         this.department = new Div(parent, this.department_id, this.department_class);
         this.department.depart(e, this.department_id);
@@ -53,12 +59,24 @@ class BoardBigCard{
         this.subtasksContent(e);
     }
 
+     /**
+     * Transforms a given date from the format 'YYYY-MM-DD' to 'DD.MM.YYYY'.
+     *
+     * @param {string} olddate - The date to be transformed in the format 'YYYY-MM-DD'.
+     * @return {string} The transformed date in the format 'DD.MM.YYYY'.
+     */
     dueDateFormat(olddate) {
         let date_part = olddate.split('-');
         let new_date =date_part[2] + '.' + date_part[1] + '.' + date_part[0];
         return new_date
     }
 
+    /**
+     * Generates a function comment for the given function body in a markdown code block with the correct language syntax.
+     *
+     * @param {type} element - description of the parameter 'element'
+     * @return {type} description of the return value
+     */
     associatesCard(element) {
         element.assignedTo.forEach((e, index) => {
             let container_id = `big-associates-${index}`
@@ -68,6 +86,12 @@ class BoardBigCard{
         });
     }
 
+     /**
+     * Generates the function comment for the given function.
+     *
+     * @param {type} e - description of the parameter 'e'
+     * @return {type} description of the return value
+     */
     subtasksContent (e) {
         let checkboxs = [];
         new Span(this.subtasks_id, "", "span-big-card", "Subtasks");
@@ -86,6 +110,11 @@ class BoardBigCard{
         })
     }
 
+     /**
+     * Edit the content.
+     *
+     * @param {Event} e - the event object
+     */
     editContent(e) {
         let div_id_1 = `${this.edit_id}-1`;
         let div_id_2 = `${this.edit_id}-2`;

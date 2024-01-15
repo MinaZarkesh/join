@@ -9,11 +9,9 @@ class Elements{
      * @param {string} className - The class name of the element.
      */
     constructor(html_tag, id, className) {
-        // super();
         this.element = document.createElement(html_tag);
         this.element.id =  id;
         this.element.className = className;
-        // this.html_tag = html_tag;
     }
 
         /**

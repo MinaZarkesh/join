@@ -75,7 +75,6 @@ function renderLoginElements(bool) {
 
   if (bool === "Sign up") {
     docID("login-form").onsubmit = function () {
-      // saveInputValues();
       return false;
     };
 
@@ -126,7 +125,7 @@ function renderLoginElements(bool) {
       "inputs-con",
       "checkbox-accept-privacy",
       ""
-    ); // normale Checkbox machen
+    ); 
     docID("checkbox-accept-privacy").required = true;
     custom_checkbox_accept_privacy.text =
       new Span(`labelcheckbox-accept-privacy`, "", "", "I accept the") +
@@ -137,7 +136,6 @@ function renderLoginElements(bool) {
         "../html/PrivacyPolicy.html",
         " Privacy Policy"
       );
-    // custom_checkbox_accept_privacy.div_id = "checkbox-accept-privacy";
     docID("checkbox-accept-privacy").onclick = checkAcception;
     new Button(
       "login-form-button-group",
@@ -226,8 +224,6 @@ async function saveInputValues() {
   ).value;
   isCheckedBox = docID("checkbox-accept-privacy").checked;
 
-  // console.log("check", isCheckSignupForm(), isSamePassword());
-
   if (isCheckSignupForm() && isSamePassword()) {
     if (!isContainedMails()) {
       name_value = input_name_value;
@@ -244,14 +240,6 @@ async function saveInputValues() {
       );
     }
   }
-
-  //  requiment fields erstellen
-  // else {
-  //   docID("input-con-email-input-id").value = "";
-  //   alert(
-  //     "Diese Tada ist schon registriert. Loggen Sie sich ein oder nutzen Sie eine andere Mail-Adresse."
-  //   );
-  // }
 }
 
 function isCheckSignupForm() {
@@ -290,7 +278,6 @@ function isContainedMails() {
 }
 
 function loginUser(bool) {
-  // bool = "Login";
   active_user = "";
   if (bool == "Login") {
     active_user = "";
@@ -303,7 +290,6 @@ function loginUser(bool) {
 
       if (active_user.password == input_password_value) {
         active_user = JSON.stringify(active_user);
-        // console.log("Login erfolgreich", active_user);
 
         if (docID("checkbox-remember-me").checked) {
           sessionStorage.removeItem("activeuser");
@@ -327,7 +313,6 @@ function loginUser(bool) {
   } else if (bool == "Guest") {
     active_user = users[0];
     active_user = JSON.stringify(active_user);
-    // console.log("Login Guest erfolgreich", active_user);
     sessionUsersave(active_user);
     navToSummary();
   }

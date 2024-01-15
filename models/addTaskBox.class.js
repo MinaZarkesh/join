@@ -1,24 +1,46 @@
 class AddTaskBox {
 
-
+     /**
+     * Constructor function for creating an instance of the class.
+     *
+     * @param {type} parent - the parent element
+     * @param {type} headline - the headline for the element
+     * @return {type} undefined
+     */
     constructor(parent, headline) {
         new Div(parent, "addtaskCon");  //Haupt-div
         headline ? this.headline():"";
         this.content()
-        // this.endButton();
     }
 
+     /**
+     * A description of the entire function.
+     *
+     * @param {type} headline - the headline parameter
+     * @return {type} no return value
+     */
     headline(headline) {
         new Div("addtaskCon", 'taskHeadline'); //Headline-div
         new Headline('h1','taskHeadline',"","", "Add Task"); //The headline
     }
 
+     /**
+     * Generates a content section for the webpage.
+     *
+     * @param {type} paramName - description of parameter
+     * @return {type} description of return value
+     */
     content() {
         new Div("addtaskCon", "content-con"); //Content Haupt-Div
         this.bigCon();
         this.bottomCon();
     }
 
+     /**
+     * Generates the function comment for the given function body.
+     *
+     * @return {void} The function does not return a value.
+     */
     bigCon() {
         new Div("content-con", "contentbig"); //Container für Title/Discreption /Due Date
         new Div("contentbig", "title-con", "title-con");
@@ -36,6 +58,11 @@ class AddTaskBox {
         new Span('due-date', 'due-date-requiered', "requiered font-label");
     }
 
+     /**
+     * Generates the function comment for the given function body.
+     *
+     * @return {undefined} This function does not return any value.
+     */
     bottomCon() {
         new Labeldiv('content-con', 'priority', 'Priority', false);
         new Div('priority', 'priority-button')
@@ -56,11 +83,4 @@ class AddTaskBox {
         new Divinputimg('subtask', 'input-con', 'text', 'Add new subtask', '../assets/img/+.png',  'input-con-text-input-id', 'subtask-div'); //+ id + div_id
         new Div('subtask', 'subtasks-con', '');
     }
-
-    // endButton() {
-    //     new Div("addtaskCon", "button-con", "button-con"); //Div für die Add/Clear Button
-    //     new Button("button-con", "clear-task", "secondary-button", clearTask, "Clear Task");
-    //     new Button("button-con", "add-task-btn", "button", addTask, "Create Task");
-    // }
-
 }

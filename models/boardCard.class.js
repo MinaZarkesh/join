@@ -18,6 +18,12 @@ class BoardCard{
     associates_id;
     associates_class = "card-associates";
 
+     /**
+     * Constructor function for creating an instance of the class.
+     *
+     * @param {type} e - The parameter that represents the input value.
+     * @return {type} - The description of the return value.
+     */
     constructor(e) {
         this.parent = e.container.replace("-con", "-div")
         this.container_id = e.container.replace("-con", "") + `-card-${e.id}`;
@@ -25,7 +31,6 @@ class BoardCard{
         this.description_id = this.container_id + 'description-con';
         this.subtask_id = this.container_id + 'subtask-con';
         this.associates_id = this.container_id + 'assciates-con';
-        // this.task = taskElement();
         this.container = new Div(this.parent, this.container_id, this.container_class);
         this.departments = new Div(this.container_id, this.departments_id, this.departments_class, this.departments_content);
         this.departments.depart(e, this.departments_id);
@@ -36,15 +41,28 @@ class BoardCard{
         this.associates = new Div(this.container_id, this.associates_id, this.associates_class);
         this.assosciates(this.associates_id, e)
         docID(this.container_id).onclick = function () {openBigCard(e.id)};
-        docID(this.container_id).ondragstart = function () {startDragging(e.id)}; // 
+        docID(this.container_id).ondragstart = function () {startDragging(e.id)};
         docID(this.container_id).draggable = true;
     }
 
+     /**
+     * Generates a title element for a card.
+     *
+     * @param {object} e - The data object containing the title and description.
+     * @param {HTMLElement} parent - The parent element where the title will be appended.
+     */
     title(e, parent) {
         new Span(parent, "", "card-title", e.title + "\n \n");
         new Span(parent, "", "card-desc", e.description);
     }
 
+     /**
+     * Generates the function comment for the given function.
+     *
+     * @param {type} parent - description of the parent parameter
+     * @param {type} e - description of the e parameter
+     * @return {type} description of the return value
+     */
     subtaskContent(parent, e) {
         let checked_sub = 0;
         let amount_sub = e.subtasks.length;
@@ -60,13 +78,19 @@ class BoardCard{
         new Span(parent, "","",`${checked_sub}/${amount_sub} Subtask`)
     }
 
+    /**
+     * Associates the parent element with the given values.
+     *
+     * @param {type} parent - the parent element to associate
+     * @param {type} e - the values to associate with the parent element
+     * @return {type} undefined
+     */
     assosciates(parent, e) {
     let counter;
     e.assignedToNameTag.forEach((element, index) => {
         if(index < 3 ) {
             let div_id = `${parent}-assiciate-${index}`;
             let span_id = `${div_id}-span`;
-            // new ProfilBagde(parent, index, e.assignedToColor[index], element); // con id Problem. Dadurch verteilt es sich nicht über die Verschiednee Karten
             new Div(parent, div_id, "profile-badge badge-board");
             new Span(div_id, span_id, element[index], element);
             docID(div_id).style = `background-color: var(${e.assignedToColor[index]})`;
@@ -76,7 +100,6 @@ class BoardCard{
         if (e.assignedToNameTag.length >= 4) {
             numberBadge(parent, `${parent}-assiciate-${counter}`, counter, 2);
         }
-        
     }
     
 }

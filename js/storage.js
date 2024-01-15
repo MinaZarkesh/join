@@ -1,33 +1,19 @@
 let contact_boxes = [];
 let filtered_contacts = [];
-
 let users = [];
 let contacts = [];
 let categorys = [];
 let tasks = [];
 let task_amounts = [];
-
 let input_name;
 let input_email;
 let input_phone;
 let input_password;
 let input_confirm_password;
-
 let newContact;
 let active_user;
 let login_index = 0;
-// users = oldUsers;
-// contacts = oldContacts;
-// categorys = oldCategorys;
-// tasks = oldTasks;
-
-// let index = 0;
-// let contact = [];
-// let contacts = [];
-// let contactIndex;
-// let task = [];
-// let tasks = [];
-// let taskIndex;
+let isShown = false;
 
 let segements_array = [
   {
@@ -95,89 +81,113 @@ async function getItem(key) {
     });
 }
 
+/**
+ * Retrieves an element from the document with the specified ID.
+ *
+ * @param {string} id - The ID of the element to retrieve.
+ * @return {Element | null} The element with the specified ID, or null if no
+ * element was found.
+ */
 function docID(id) {
   return document.getElementById(id);
 }
 
+/**
+ * Initializes the function.
+ *
+ * @return {Promise<void>} Promise that resolves when the initialization is complete.
+ */
 async function init() {
   setHeader();
 }
 
+/**
+ * Sets the header of the page.
+ *
+ * @return {undefined} This function does not return a value.
+ */
 function setHeader() {
-  openNavMenu(); // set NavBar
-  if (
-    localStorage.getItem("activeuser") === null &&
-    sessionStorage.getItem("activeuser") === null
-  ) {
+  openNavMenu(); 
+  if (localStorage.getItem("activeuser") === null && sessionStorage.getItem("activeuser") === null) {
     docID("header-name-tag").style.display = "none";
-    // docID("navbar").style.display = "none";
-    //aktuelle NavBar in eigene Div, die im responsive zur NavBar wird.
-    // wenn nicht eingeloggt, dann wird dieser part display none und somit verschwindet diese auch im responsive, aber die normale Navbar bleibt.
     docID("navbar-con").style.display = "none";
     docID("navbar").style.justifyContent = "flex-end";
   } else {
     docID("header-name-tag").style.display = "flex";
-
-    if (sessionStorage.getItem("activeuser") != 0) {
-      sessionUserload();
-      // console.log("SessionStorage");
-      // return true;
-    } else if (localStorage.getItem("activeuser") != 0) {
-      localUserload();
-      // console.log("LocalStorage");
-    }
-    updateUserValues(); //set Header
+    if (sessionStorage.getItem("activeuser") != 0) {sessionUserload()}
+    else if (localStorage.getItem("activeuser") != 0) {localUserload()}
+    updateUserValues();
     docID("navbar").style.justifyContent = "space-between";
     docID("navbar-con").style.display = "flex";
   }
 }
 
+/**
+ * Sets the navigation bar to active for the given container.
+ *
+ * @param {string} con - The container ID or class.
+ * @return {void} This function does not return a value.
+ */
 function setNavBarActive(con) {
   docID(con).classList.add("nav-active");
 }
 
+/**
+ * Opens the navigation menu by creating and appending several elements to the DOM.
+ *
+ * @param {type} paramName - description of parameter
+ * @return {type} description of return value
+ */
 function openNavMenu() {
-  //fill NavBar
   new Div("navbar", "navbar-con");
-  new MenuLink("navbar-con", "summary"); //parent "navbar"
+  new MenuLink("navbar-con", "summary");
   new MenuLink("navbar-con", "add_task");
   new MenuLink("navbar-con", "board");
   new MenuLink("navbar-con", "contacts");
   new Div("navbar", "navbar-bottom");
-  new Anchor(
-    "navbar-bottom",
-    "nav-privacy",
-    "",
-    "../html/PrivacyPolicy.html",
-    "Privacy Policy"
-  );
-  new Anchor(
-    "navbar-bottom",
-    "nav-legal",
-    "",
-    "../html/LegalNotice.html",
-    "Legal Notice"
-  );
+  new Anchor("navbar-bottom","nav-privacy","", "../html/PrivacyPolicy.html", "Privacy Policy");
+  new Anchor("navbar-bottom","nav-legal","","../html/LegalNotice.html","Legal Notice");
 }
 
-//create Header
+
+/**
+ * Updates the user values.
+ *
+ * @param {type} paramName - description of parameter
+ * @return {type} description of return value
+ */
 function updateUserValues() {
-  //creates Header
   docID("header-name-tag").innerHTML = active_user.nameTag;
 }
 
+/**
+ * Sets the innerHTML of the element with the given id to display a message indicating that the field is required.
+ *
+ * @param {string} id - The id of the element to update.
+ * @return {void} This function does not return anything.
+ */
 function isRequiered(id) {
   docID(id).innerHTML = /*html*/ `
     This field is required
   `;
 }
 
-//eigentlich sort Array, aber mit Kay zusammen ändern
+/**
+ * Creates a contact box and appends it to the given parent element.
+ *
+ * @param {HTMLElement} parent - The parent element to append the contact box to.
+ * @return {void} This function does not return a value.
+ */
 function createContactBox(parent) {
   let parentArray = contact_boxes; //später Parameter
   contacts.sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
 }
 
+/**
+ * Calculates and returns the amounts of tasks for each segment in the `segements_array`.
+ *
+ * @return {Array} An array containing the amounts of tasks for each segment.
+ */
 function getTasksAmounts() {
   task_amounts = [];
   segements_array.forEach((e) => {
@@ -186,6 +196,11 @@ function getTasksAmounts() {
   return task_amounts;
 }
 
+ /**
+ * Checks if the input fields for name, email, and phone are not empty.
+ *
+ * @return {boolean} Returns true if all input fields are not empty, otherwise false.
+ */
 function checkEmptyInputs() {
   return (
     input_name.value != "" &&
@@ -194,6 +209,12 @@ function checkEmptyInputs() {
   );
 }
 
+/**
+ * Adds a new contact to the contacts array.
+ *
+ * @param {type} paramName - description of parameter
+ * @return {type} description of return value
+ */
 function addNewContact() {
   login_index = 0;
   let idx = setNewIdx();
@@ -210,10 +231,13 @@ function addNewContact() {
   contacts.push(newContact);
 }
 
+/**
+ * Generates a new index for a contact item.
+ *
+ * @return {number} The newly generated index for the contact item.
+ */
 function setNewIdx() {
   let contact_index = 0;
-  //erhöhe die Variable contact_index solange bis docID() null ergibt, also noch nicht vergeben ist.
-  //So wird die Zahl erhöht, bis eine nicht vergeben wurde.
   do contact_index++;
   while (docID(`contact-item-${contact_index}`) != null);
   {
@@ -223,20 +247,19 @@ function setNewIdx() {
 
 /**
  * Generates a random color from the 'backgroundcolors' array and returns it.
- * made by Mina Zarkesh
+ * 
  *
  * @return {string} The randomly generated color.
  */
 function setRandomColor() {
   let randomNumber = Math.floor(Math.random() * backgroundcolors.length);
   let color = backgroundcolors[randomNumber];
-  // console.log("Random Index: "+randomNumber+ " random color: "+color);
   return color;
 }
 
 /**
  * Generates a name tag based on the given name.
- * made by Mina Zarkesh
+ * 
  * @param {string} name - The name to generate the name tag from.
  * @return {string} The generated name tag.
  */
@@ -249,72 +272,104 @@ function setNameTag(name) {
   return nameTag;
 }
 
+/**
+ * Loads users from storage and parses them into an object.
+ *
+ * @return {Promise<void>} A promise that resolves when the users are loaded and parsed.
+ */
 async function loadUsers() {
-  // if (!index) {
-  //   index = 0;
-  // }
   users = JSON.parse(await getItem("users"));
-  console.log(users);
-  // user = users[index];
-  // return users, user, index;
 }
 
+/**
+ * Loads the contacts by parsing the JSON data retrieved from the "contacts" item.
+ *
+ * @return {Promise<void>} A Promise that resolves once the contacts are loaded.
+ */
 async function loadContacts() {
   contacts = JSON.parse(await getItem("contacts"));
-  // console.log(contacts);
-  // contact = contacts[index];
-  // return contacts, contact, contactIndex;
 }
 
+/**
+ * Loads tasks from storage and returns them.
+ *
+ * @return {Promise<Array>} The tasks retrieved from storage.
+ */
 async function loadTasks() {
   tasks = JSON.parse(await getItem("tasks"));
-  // console.log(tasks);
-
-  // task = tasks[index];
-  // return tasks, task, taskIndex;
 }
 
+/**
+ * Loads the categorys asynchronously.
+ *
+ * @return {Promise<void>} A Promise that resolves with no value.
+ */
 async function loadCategorys() {
   categorys = JSON.parse(await getItem("categorys"));
-  // console.log(categorys);
-
-  // task = tasks[index];
-  // return tasks, task, taskIndex;
 }
 
+/**
+ * Checks if there is an active user.
+ *
+ * @return {boolean} Returns true if there is an active user, otherwise returns false.
+ */
 function activeUser() {
   if (localStorage.getItem("activeuser") === null) {
     if (sessionStorage.getItem("activeuser") === null) {
       window.location.href = "./index.html";
-      // return false;?
     } else {
       sessionUserload();
-      return true; //welche Variable wird true gesetzt?
+      return true;
     }
   } else {
     localUserload();
   }
 }
 
+/**
+ * Saves the active user to the local storage.
+ *
+ * @param {string} user - The user to be saved.
+ */
 function localUsersave(user) {
   localStorage.setItem("activeuser", user);
 }
 
+/**
+ * Saves the active user to the session storage.
+ *
+ * @param {string} user - The user to be saved.
+ */
 function sessionUsersave(user) {
   sessionStorage.setItem("activeuser", user);
 }
 
+/**
+ * Loads the active user from local storage.
+ *
+ * @return {undefined} There is no return value.
+ */
 function localUserload() {
   let user = localStorage.getItem("activeuser");
   active_user = JSON.parse(user);
 }
 
+/**
+ * Load the active user from session storage.
+ *
+ * @return {undefined} The function does not return a value.
+ */
 function sessionUserload() {
   let user = sessionStorage.getItem("activeuser");
   active_user = JSON.parse(user);
 }
 
-let isShown = false;
+/**
+ * Toggles the visibility of the header dropdown menu.
+ *
+ * @param {boolean} isShown - Indicates whether the dropdown menu is currently shown.
+ * @return {void} No return value.
+ */
 function showHeaderDropdown() {
   if (!isShown) {
     docID("dropdown-menu").classList.add("show");
@@ -324,6 +379,12 @@ function showHeaderDropdown() {
   isShown = !isShown;
 }
 
+/**
+ * Logs out the user by removing the "activeuser" item from the local storage
+ * and session storage. Then redirects the user to the index.html page.
+ *
+ * @return {undefined} No return value.
+ */
 function logout() {
   if (localStorage.getItem("activeuser") != null) {
     localStorage.removeItem("activeuser");
@@ -334,4 +395,3 @@ function logout() {
 
   window.location.href = "./index.html";
 }
-

@@ -259,3 +259,7 @@ let backgroundcolors = [
     "--variant15",
     "--variant16",
   ];
+
+  // task_amounts = [1, 2, 3, 40, 5, 6, 7]; //verändern durch Tasks
+
+  // let new_task_amounts = [1, 12, 3, 9, 5, 6, 8]; //zum Testen
