@@ -223,6 +223,7 @@ function renderEditContact(id) {
   //change Style
   docID("overlay-contacts").style.display = "flex";
   docID("edit-contact-overlay").style.left = "0";
+  docID("edit-contact-overlay").style.animationName = "fadingLeft";
   // docID("edit-contact-overlay").classList.remove("unset");
   docID("contact-overlay-subtitle").style.display = "none";
 }
@@ -260,6 +261,7 @@ function renderAddContact() {
   //change Style values
   // docID("edit-contact-overlay").classList.add("unset");
   docID("edit-contact-overlay").style.left = "unset";
+  docID("edit-contact-overlay").style.animationName = "fadingRight";
   docID("overlay-contacts").style.display = "flex";
   docID("contact-overlay-subtitle").style.display = "flex";
   docID("overlay-secondary-btn").style.width = "unset";

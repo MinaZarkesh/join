@@ -408,6 +408,18 @@ border-bottom: 1px solid var(--primary);
   animation-fill-mode: forwards;
 }
 
+.fadeIn{
+  animation-duration: 500ms;
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+}
+
+.fadeOut{
+  animation-duration: 500ms;
+  animation-delay: 100ms;
+  animation-fill-mode: backwards;
+}
+
 #help-item{
   display: none;
 }
@@ -433,6 +445,29 @@ border-bottom: 1px solid var(--primary);
     opacity: 0;
   }
 }
+
+@keyframes fadingLeft{
+0%{
+  left:-100%;
+}
+100%{
+  left: 0;
+}
+}
+
+@keyframes fadingRight{
+  0%{
+    right:-100%;
+  }
+  100%{
+    right: 0;
+  }
+
+}
+/* 
+@keyframes fadeOut{
+  
+} */
 
 @media (max-width: 1023px) {
 
