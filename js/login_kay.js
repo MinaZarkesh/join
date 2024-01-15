@@ -15,7 +15,8 @@ let confirm_password_value;
 let email;
 let emails = [];
 
-function initLogin() {
+async function initLogin() {
+  await loadUsers();
   setBackBtnsignup();
   renderLoginElements("Login");
 }
@@ -73,6 +74,11 @@ function renderLoginElements(bool) {
   }
 
   if (bool === "Sign up") {
+    docID("login-form").onsubmit = function () {
+      // saveInputValues();
+      return false;
+    };
+
     input_name = new Divinputimg(
       "inputs-con",
       "imput-img-div",
@@ -150,9 +156,9 @@ function renderLoginElements(bool) {
 }
 
 function setBackBtnsignup() {
-  back_btn = new BackBtn("login-item", "signup", () =>
-    renderLoginElements("Login")
-  );
+  back_btn = new BackBtn("login-item", "signup", function () {
+    renderLoginElements("Login");
+  });
 }
 
 /*** Sign-up ***/
@@ -211,7 +217,7 @@ function navToSummary() {
   window.location = "../html/summary.html";
 }
 
-function saveInputValues() {
+async function saveInputValues() {
   input_name_value = docID("input-con-name-input-id").value;
   input_email_value = docID("input-con-email-input-id").value;
   input_password_value = docID("input-con-password-input-id").value;
@@ -228,7 +234,7 @@ function saveInputValues() {
       email_value = input_email_value;
       password_value = input_password_value;
       confirm_password_value = input_confirm_password_value;
-      addNewUser();
+      await addNewUser();
       renderLoginElements("Login");
       new Confirmation("login-main", "You Signed Up successfully", false);
     } else {
@@ -262,7 +268,7 @@ function isSamePassword() {
   return input_password_value == input_confirm_password_value;
 }
 
-function addNewUser() {
+async function addNewUser() {
   let newUser = {
     name: input_name_value,
     mail: input_email_value,
@@ -270,9 +276,12 @@ function addNewUser() {
     password: input_password_value,
   };
   users.push(newUser);
+  await setItem("users", users);
+  await loadUsers();
 }
 
 function isContainedMails() {
+  emails = [];
   input_email_value = docID("input-con-email-input-id").value;
   users.forEach((user) => {
     emails.push(user.mail);

@@ -15,11 +15,11 @@ let input_confirm_password;
 
 let newContact;
 let active_user;
-
-users = oldUsers;
-contacts = oldContacts;
-categorys = oldCategorys;
-tasks = oldTasks;
+let login_index = 0;
+// users = oldUsers;
+// contacts = oldContacts;
+// categorys = oldCategorys;
+// tasks = oldTasks;
 
 // let index = 0;
 // let contact = [];
@@ -195,6 +195,7 @@ function checkEmptyInputs() {
 }
 
 function addNewContact() {
+  login_index = 0;
   let idx = setNewIdx();
 
   newContact = {
