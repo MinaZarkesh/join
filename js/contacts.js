@@ -4,15 +4,16 @@ let parent_array = "contact-list";
 let edit_contact;
 let text; // ?? wird das überhaupt benutzt ?
 
-function initContacts() {
+async function initContacts() {
   init();
   activeUser(); //set activeUser
   updateUserValues();
-  renderContactList();
+  await renderContactList();
   setNavBarActive("contacts-link");
 }
 
-function renderContactList() {
+async function renderContactList() {
+  await loadContacts();
   //Teile String in Array aus Buchstaben
   alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ".split("");
   docID(parent_array).textContent = "";
@@ -24,8 +25,8 @@ function renderContactList() {
       createLetterBox(ltr, parent_array, i);
       filtered_contacts.forEach((e) => {
         new Div(parent_array, `contact-item-${e.idx}`, "contact-list-row");
-        docID(`contact-item-${e.idx}`).onclick = function () {
-          renderFloatingContacts(e.idx);
+        docID(`contact-item-${e.idx}`).onclick = async function () {
+          await renderFloatingContacts(e.idx);
         };
         new ProfilBagde(`contact-item-${e.idx}`, e.idx, e.color, e.nameTag);
         new Div(
@@ -73,7 +74,7 @@ function resetActive() {
     // console.log( i, contact);
 
     //reset attributes from before
-     docID(`contact-item-${contact.idx}`).classList.remove("active-contact");
+    docID(`contact-item-${contact.idx}`).classList.remove("active-contact");
   }
 }
 
@@ -109,16 +110,15 @@ function layoutContactsOverlay() {
 }
 
 function createEditContact(id) {
-  let idx=0;
+  let idx = 0;
   // console.log("index im array", id, idx);
 
-contacts.forEach((e, index)=>{
-  if(e.idx == id){
-    idx = index;
-  }
-  
-})
-renderEditContact(idx);
+  contacts.forEach((e, index) => {
+    if (e.idx == id) {
+      idx = index;
+    }
+  });
+  renderEditContact(idx);
   fillEditContact(contacts[idx]);
 }
 
@@ -128,12 +128,12 @@ function fillEditContact(e) {
   docID(input_phone.input_id).value = e.phone;
 }
 
-function saveContact(idx) {
+async function saveContact(idx) {
   edit_contact = contacts[idx];
-  // contacts[idx].nameTag = setNameTag(contacts[idx].name);
-
   updateContactItem(edit_contact);
-  renderContactList();
+  await  setItem("contacts", contacts);
+  await renderContactList();
+  new Confirmation("contact-main", "Contact succesfully created", false)
   renderFloatingContacts(edit_contact.idx);
   closeButton();
 }
@@ -147,41 +147,41 @@ function updateContactItem(contact) {
   }
 }
 
-function renderNewContact() {
-  addNewContact()
+async function renderNewContact() {
+  addNewContact();
 
   idx = contacts.indexOf(newContact);
   contacts[idx].nameTag = setNameTag(contacts[idx].name);
-  saveContact(idx);
+  await saveContact(idx);
 }
 
-function renderFloatingContacts(idx) {
-  contacts.forEach((e, index) => {
+async function renderFloatingContacts(idx) {
+  contacts.forEach(async (e, index) => {
     if (idx == e.idx) {
       contact = contacts[index];
-      createFloatingContacts(contact);
+      await createFloatingContacts(contact);
       setActive(e.idx);
     }
   });
 
-  docID("floating-contacts").style.display="flex";
+  docID("floating-contacts").style.display = "flex";
   // docID("floating-mobile").style.display="flex";
   docID("floating-mobile").classList.remove("d-none");
-  docID("floating-contacts").style.zIndex ="1";
-  docID("floating-mobile").style.width ="100%";
-  docID("floating-mobile").style.height ="80%";
+  docID("floating-contacts").style.zIndex = "1";
+  docID("floating-mobile").style.width = "100%";
+  docID("floating-mobile").style.height = "80%";
 }
 
-function deleteContact(idx) {
-
+async function deleteContact(idx) {
   contacts.forEach((e, index) => {
     if (idx == e.idx) {
       contacts.splice(index, 1);
     }
   });
-  renderContactList();
+  await  setItem("contacts", contacts);
+  await renderContactList();
   docID("floating-contacts").textContent = "";
-  closeContact()
+  closeContact();
   closeButton();
 }
 
@@ -266,7 +266,7 @@ function renderAddContact() {
   // docID("overlay-primary-btn").style.width = "fit-content";
 }
 
-function createFloatingContacts(e) {
+async function createFloatingContacts(e) {
   let parent = "floating-contacts";
   let con_id = `floating-con${e.idx}`;
   let con_class = "floating-con";
@@ -318,14 +318,13 @@ function createFloatingContacts(e) {
   new Span(div_15_id_2, div_15_id_2_span_id, "", e.phone);
 }
 
-function closeContact(){
-  docID("floating-contacts").style.display ="none";
+function closeContact() {
+  docID("floating-contacts").style.display = "none";
   // docID("floating-mobile").style.display ="none";
   docID("floating-mobile").classList.add("d-none");
-  docID("floating-contacts").textContent ="";
-  docID("floating-contacts").style.zIndex ="-1";
-  docID("floating-mobile").style.width ="0";
-  docID("floating-mobile").style.height ="0";
-resetActive();
-
+  docID("floating-contacts").textContent = "";
+  docID("floating-contacts").style.zIndex = "-1";
+  docID("floating-mobile").style.width = "0";
+  docID("floating-mobile").style.height = "0";
+  resetActive();
 }

@@ -9,10 +9,13 @@ let task_assigned_to_nametag = [];
 let task_assigned_to_color = [];
 let departments = [];
 let associates_ids = [];
-function initAddtask() {
+
+async function initAddtask() {
     init();
     activeUser(); //set activeUser
     updateUserValues();
+    await loadTasks();
+    await loadContacts();
     new AddTaskBox("AddTaskMainCon", true)
     new Div("addtaskCon", "button-con", "button-con"); //Div für die Add/Clear Button
     new Button("button-con", "clear-task", "secondary-button", clearTask, "Clear Task");
@@ -283,7 +286,7 @@ function uncountCounter(selector) {
     }
 }
 
-function addTask(department) {
+async function addTask(department) {
     let container = !department ? "to-do-con": department;
 
     let title = docID('task-title').value;
@@ -321,6 +324,9 @@ function addTask(department) {
         id: id
     }
     tasks.push(newTask);
+    await setItem("tasks", tasks);
+  
+    new Confirmation("AddTaskMainCon", "Task added to board", true)
     clearTask();
     task_assigned_to = [];
     task_assigned_to_nametag = [];
