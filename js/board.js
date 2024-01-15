@@ -14,9 +14,8 @@ function initBoard() {
   new Div("main-board", "board-head-con"); //the head container
   new Div("board-head-con", "search-con");
   new Divinputimg("search-con", "search", "text", "Find Task", "../assets/img/searchLupe.png", "search-text-input-id","search-con-div"); //+ id + div_id
-  docID()
   new docID('search-text-input-id').onclick = keyboardActive();
-  new Button("search-con", "", "button", function () {openAddTask("to-do-con");}, "Add Task");
+  new Button("search-con", "add-task-Task", "button", function () {openAddTask("to-do-con");}, "Add Task");
   new Img("board-head-con", "", "", "../assets/img/cross white.png");
   new Div("main-board", "board-content-con", ""); //the content container
   new BoardSegment("board-content-con", "to-do", "To do");

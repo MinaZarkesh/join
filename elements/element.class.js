@@ -16,7 +16,7 @@ class Elements{
             color = this.backgroundcolor(e.category[i]);
             div_id = `${parent}-${i}-div`      
             new Div(parent, div_id, "department-card");
-            new Span(div_id,"","", e.category[i]);
+            new Span(div_id,"","deparment-span", e.category[i]);
             docID(div_id).style = `background-color: var(${color})`;
         }
     }

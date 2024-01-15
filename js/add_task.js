@@ -124,8 +124,8 @@ function listRender(list_Con, tasks_Parent) {
     let items = list_Con === "associate-con" ? contacts : categorys;
     let item_Name = list_Con === "associate-con" ? 'contact_itemNameTag' : 'category_itemNameTag';
     docID(list_Con).innerHTML = "";
-    itemsForEach(counter, list_Con, active_array, items)
-    if (counter >= 8) {numberBadge(list_Con, item_Name, plus_number, counter)}
+    counter = itemsForEach(counter, list_Con, active_array, items)
+    if (counter >= 8) {numberBadge(list_Con, item_Name, counter, 7)}
 }
 
 function itemsForEach(counter, list_Con, active_array, items) {
@@ -141,10 +141,11 @@ function itemsForEach(counter, list_Con, active_array, items) {
             counter++;
         }
   })
+  return counter;
 }
 
-function numberBadge(list_Con, item_Name, plus_number, counter) {
-    plus_number = counter - 7;
+function numberBadge(list_Con, item_Name, counter, amount) {
+    let plus_number = counter - amount;
     new ProfilBagde(list_Con, `${item_Name}-${plus_number}`, `--default`, `${plus_number}+`)
 }
 
@@ -380,17 +381,7 @@ function theSelectors(selector){
             
         }
     }
-    // if  {
-    //     if (!id == []) {createContactBox()};
-    // } else {
-    //     idx = id;
-    //     idx.forEach((e) => {
-                // task_assigned_to.push(contacts[e].name);
-                // task_assigned_to_nametag.push(contacts[e].nameTag);
-                // task_assigned_to_color.push(contacts[e].color);
-                // departments.push(categorys[e].name);
-            // })
-    // }
+
 }
 
 function Subtaskschecked() {

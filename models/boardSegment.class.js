@@ -20,7 +20,7 @@ class BoardSegment{
     img_src = "../assets/img/+.png";
     childDiv;
     childDiv_id;
-    childDiv_class = 'segemnt-content';
+    childDiv_class = 'segment-content';
 
     constructor(parent, segment, headline) {
         this.con_id = `${segment}-con`;
