@@ -45,10 +45,12 @@ class AddTaskBox {
         new Labeldiv('content-con', 'assigned', 'Assigned to', true);
         new Divinputimg('assigned', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png', 'input-con-text-input-id', 'assigned-div'); //+ id + div_id
         docID('input-con-assigned-input-id').onclick = function () {dropdownMenu(`assigned-img`, 'assigned', 'assigned')};
+        docID('input-con-assigned-input-id').onkeyup = function () {DropdownFilter(`.tasks-contacts`, 'input-con-assigned-input-id')}  // selector = .tasks-contacts / .tasks-category
         new Div('content-con', 'associate-con', '');
         new Labeldiv('content-con', 'category', 'Category', false);
         new Divinputimg('category', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png',  'input-con-text-input-id', 'category-div'); //+ id + div_id
         docID('input-con-category-input-id').onclick = function () {dropdownMenu(`category-img`, 'category', 'category')};
+        docID('input-con-category-input-id').onkeyup = function () {DropdownFilter(`.tasks-category`, 'input-con-category-input-id')}  // selector = .tasks-contacts / .tasks-category
         new Div('content-con', 'department-con', '');
         new Labeldiv('content-con', 'subtask', 'Subtask', true);
         new Divinputimg('subtask', 'input-con', 'text', 'Add new subtask', '../assets/img/+.png',  'input-con-text-input-id', 'subtask-div'); //+ id + div_id

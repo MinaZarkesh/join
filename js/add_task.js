@@ -67,6 +67,18 @@ function createDropMenu(list_parent, parent, tasks_parent, select, imgid, list_C
     blueBorderToggle(input_id);
 }
 
+function DropdownFilter(selector, input_id) { // selector = .tasks-contacts / .tasks-category
+    let matches = document.querySelectorAll(selector);
+    let search = docID(input_id).value.replace(" ", "").toLowerCase();
+    matches.forEach((e, index) => {
+        let match_value = e.children[1].textContent.replace(" ", "").toLowerCase();
+        e.classList.add('d-none');
+        if (!search || match_value.includes(search)){
+            e.classList.remove('d-none');
+        }
+    })
+}
+
 function dropUp(select, list_Parent, imgid, list_Con, input_id, tasks_Parent) {
     select == 'assigned' ? dropdownContacts = false : dropdownCategory = false;
     dropdownReset(list_Parent, imgid);
