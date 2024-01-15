@@ -4,6 +4,11 @@ let parent_array = "contact-list";
 let edit_contact;
 let text; // ?? wird das überhaupt benutzt ?
 
+/**
+ * Initializes the contacts.
+ *
+ * @return {Promise<void>} Returns a promise that resolves when the contacts are initialized.
+ */
 async function initContacts() {
   init();
   activeUser(); //set activeUser
@@ -12,6 +17,11 @@ async function initContacts() {
   setNavBarActive("contacts-link");
 }
 
+/**
+ * Renders the contact list.
+ *
+ * @return {Promise} A promise that resolves when the contact list has been rendered.
+ */
 async function renderContactList() {
   await loadContacts();
   //Teile String in Array aus Buchstaben
@@ -29,45 +39,54 @@ async function renderContactList() {
           await renderFloatingContacts(e.idx);
         };
         new ProfilBagde(`contact-item-${e.idx}`, e.idx, e.color, e.nameTag);
-        new Div(
-          `contact-item-${e.idx}`,
-          `contact-item-${e.idx}-div`,
-          "contact-list-coloumn"
-        );
-        new Span(
-          `contact-item-${e.idx}-div`,
-          `contact_itemName-${e.idx}`,
-          "",
-          e.name
-        );
-        new Headline(
-          "h6",
-          `contact-item-${e.idx}-div`,
-          `contact_itemMail-${e.idx}`,
-          "",
-          e.mail
-        );
+        new Div(`contact-item-${e.idx}`,`contact-item-${e.idx}-div`,"contact-list-coloumn");
+        new Span(`contact-item-${e.idx}-div`,`contact_itemName-${e.idx}`,"",e.name);
+        new Headline("h6",`contact-item-${e.idx}-div`,`contact_itemMail-${e.idx}`, "",e.mail);
       });
     }
   });
 }
 
+/**
+ * Checks if the first letter of the contact's name is equal to a given letter.
+ *
+ * @param {object} contact - The contact object.
+ * @return {boolean} Returns true if the first letter of the contact's name is equal to the given letter, otherwise returns false.
+ */
 function checkLetter(contact) {
   firstLetter = contact.name.charAt(0).toUpperCase();
   return firstLetter == letter;
 }
 
+/**
+ * Create a letter box in the parent element at the specified index.
+ *
+ * @param {string} letter - The letter to be displayed in the letter box.
+ * @param {string} parent - The ID of the parent element where the letter box will be created.
+ * @param {number} index - The index at which the letter box will be inserted in the parent element.
+ */
 function createLetterBox(letter, parent, index) {
   new Div(parent, `${parent}-div-${index}`, "letter-box");
   new Span(`${parent}-div-${index}`, `letter${letter}`, "letter", letter);
 }
 
+/**
+ * Sets the specified contact item as active.
+ *
+ * @param {number} idx - The index of the contact item to be set as active.
+ */
 function setActive(idx) {
   resetActive();
   //set new attributes
   docID(`contact-item-${idx}`).classList.add("active-contact");
 }
 
+/**
+ * Resets the active state of all contacts.
+ *
+ * @param {None} None - This function does not take any parameters.
+ * @return {None} This function does not return a value.
+ */
 function resetActive() {
   for (let i = 0; i < contacts.length; i++) {
     let contact = contacts[i];
@@ -78,6 +97,12 @@ function resetActive() {
   }
 }
 
+/**
+ * Sets up the layout for the contacts overlay.
+ *
+ * @param {type} paramName - description of parameter
+ * @return {type} description of return value
+ */
 function layoutContactsOverlay() {
   docID("inputs-con").textContent = "";
   input_name = new Divinputimg(
@@ -109,6 +134,12 @@ function layoutContactsOverlay() {
   );
 }
 
+/**
+ * Creates an edit contact function.
+ *
+ * @param {number} id - The ID of the contact to edit.
+ * @return {undefined} This function does not return a value.
+ */
 function createEditContact(id) {
   let idx = 0;
   // console.log("index im array", id, idx);
@@ -122,12 +153,27 @@ function createEditContact(id) {
   fillEditContact(contacts[idx]);
 }
 
+/**
+ * Fills the edit contact form with the given contact information.
+ *
+ * @param {Object} e - The contact information to fill the form with.
+ * @param {string} e.name - The name of the contact.
+ * @param {string} e.mail - The email address of the contact.
+ * @param {string} e.phone - The phone number of the contact.
+ */
 function fillEditContact(e) {
   docID(input_name.input_id).value = e.name;
   docID(input_email.input_id).value = e.mail;
   docID(input_phone.input_id).value = e.phone;
 }
 
+/**
+ * Saves a contact by updating the contact item, setting the updated contacts in local storage,
+ * rendering the updated contact list, rendering the floating contacts, and closing the button.
+ *
+ * @param {number} idx - The index of the contact to save.
+ * @return {undefined} There is no return value.
+ */
 async function saveContact(idx) {
   edit_contact = contacts[idx];
   updateContactItem(edit_contact);
@@ -138,6 +184,12 @@ async function saveContact(idx) {
   closeButton();
 }
 
+/**
+ * Update the contact item with the provided information.
+ *
+ * @param {Object} contact - The contact object to be updated.
+ * @return {undefined} This function does not return a value.
+ */
 function updateContactItem(contact) {
   if (checkEmptyInputs()) {
     contact.name = docID(input_name.input_id).value;
@@ -147,14 +199,26 @@ function updateContactItem(contact) {
   }
 }
 
+/**
+ * Renders a new contact by adding it to the contacts list, setting the name tag,
+ * and saving it.
+ *
+ * @param {type} paramName - description of parameter
+ * @return {type} description of return value
+ */
 async function renderNewContact() {
   addNewContact();
-
   idx = contacts.indexOf(newContact);
   contacts[idx].nameTag = setNameTag(contacts[idx].name);
   await saveContact(idx);
 }
 
+/**
+ * Renders the floating contacts based on the given index.
+ *
+ * @param {number} idx - The index to filter the contacts.
+ * @return {void} This function does not return any value.
+ */
 async function renderFloatingContacts(idx) {
   contacts.forEach(async (e, index) => {
     if (idx == e.idx) {
@@ -165,13 +229,18 @@ async function renderFloatingContacts(idx) {
   });
 
   docID("floating-contacts").style.display = "flex";
-  // docID("floating-mobile").style.display="flex";
   docID("floating-mobile").classList.remove("d-none");
   docID("floating-contacts").style.zIndex = "1";
   docID("floating-mobile").style.width = "100%";
   docID("floating-mobile").style.height = "80%";
 }
 
+/**
+ * Deletes a contact from the contacts array by its index.
+ *
+ * @param {number} idx - The index of the contact to be deleted.
+ * @return {Promise<void>} - A promise that resolves when the contact is deleted.
+ */
 async function deleteContact(idx) {
   contacts.forEach((e, index) => {
     if (idx == e.idx) {
@@ -185,10 +254,21 @@ async function deleteContact(idx) {
   closeButton();
 }
 
+/**
+ * Closes the overlay contacts by setting its display style to "none".
+ *
+ * @param {type} - No parameters.
+ * @return {undefined} - No return value.
+ */
 function closeButton() {
   docID("overlay-contacts").style.display = "none";
 }
 
+/**
+ * Renders the edit contact overlay for a specific contact.
+ *
+ * @param {string} id - The ID of the contact to edit.
+ */
 function renderEditContact(id) {
   layoutContactsOverlay();
   docID("edit-contact-con-overlay").textContent = "";
@@ -224,10 +304,15 @@ function renderEditContact(id) {
   docID("overlay-contacts").style.display = "flex";
   docID("edit-contact-overlay").style.left = "0";
   docID("edit-contact-overlay").style.animationName = "fadingLeft";
-  // docID("edit-contact-overlay").classList.remove("unset");
   docID("contact-overlay-subtitle").style.display = "none";
 }
 
+/**
+ * Renders the add contact functionality.
+ *
+ * @param {type} - No parameters needed.
+ * @return {type} - No return value.
+ */
 function renderAddContact() {
   layoutContactsOverlay();
   docID("edit-contact-con-overlay").textContent = "";
@@ -259,15 +344,19 @@ function renderAddContact() {
     "Create contact"
   );
   //change Style values
-  // docID("edit-contact-overlay").classList.add("unset");
   docID("edit-contact-overlay").style.left = "unset";
   docID("edit-contact-overlay").style.animationName = "fadingRight";
   docID("overlay-contacts").style.display = "flex";
   docID("contact-overlay-subtitle").style.display = "flex";
   docID("overlay-secondary-btn").style.width = "unset";
-  // docID("overlay-primary-btn").style.width = "fit-content";
 }
 
+/**
+ * Creates floating contacts.
+ *
+ * @param {object} e - The event object.
+ * @return {Promise} Returns a promise.
+ */
 async function createFloatingContacts(e) {
   let parent = "floating-contacts";
   let con_id = `floating-con${e.idx}`;
@@ -301,10 +390,24 @@ async function createFloatingContacts(e) {
   new Div(hl_lnk_con_id, hl_lnk_id, hl_lnk_class);
   new Img(hl_lnk_id, "", "", "../assets/img/edit.png");
   new Span(hl_lnk_id, hl_lnk_span_id, "", "Edit");
+
+    /**
+   * Sets an onclick event for the element with the specified ID.
+   *
+   * @param {string} hl_lnk_span_id - The ID of the element.
+   * @return {undefined} This function does not return a value.
+   */
   docID(hl_lnk_span_id).onclick = function () {
     createEditContact(e.idx);
   };
   new Div(hl_lnk_con_id, hl_lnk_2_id, "floating-headline-link");
+
+    /**
+   * Executes the `deleteContact` function when the `onclick` event is triggered on the `docID(hl_lnk_2_id)` element.
+   *
+   * @param {type} e.idx - the index of the contact to be deleted
+   * @return {type} - does not return anything
+   */
   docID(hl_lnk_2_id).onclick = function () {
     deleteContact(e.idx);
   };
@@ -320,9 +423,14 @@ async function createFloatingContacts(e) {
   new Span(div_15_id_2, div_15_id_2_span_id, "", e.phone);
 }
 
+/**
+ * Closes the contact panel and resets its state.
+ *
+ * @param {type} paramName - description of parameter
+ * @return {type} description of return value
+ */
 function closeContact() {
   docID("floating-contacts").style.display = "none";
-  // docID("floating-mobile").style.display ="none";
   docID("floating-mobile").classList.add("d-none");
   docID("floating-contacts").textContent = "";
   docID("floating-contacts").style.zIndex = "-1";

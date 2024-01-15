@@ -1,6 +1,13 @@
 class Elements{
 
     element;
+        /**
+     * Creates a new element with the specified HTML tag, ID, and class name.
+     *
+     * @param {string} html_tag - The HTML tag of the element.
+     * @param {string} id - The ID of the element.
+     * @param {string} className - The class name of the element.
+     */
     constructor(html_tag, id, className) {
         // super();
         this.element = document.createElement(html_tag);
@@ -9,6 +16,13 @@ class Elements{
         // this.html_tag = html_tag;
     }
 
+        /**
+     * Generate a function comment for the given function body.
+     *
+     * @param {type} e - description of parameter
+     * @param {type} parent - description of parameter
+     * @return {type} description of return value
+     */
     depart(e, parent) {
         let color;
         let div_id;
@@ -21,6 +35,12 @@ class Elements{
         }
     }
     
+    /**
+ * Returns the background color for a given department.
+ *
+ * @param {string} department - The name of the department.
+ * @return {string} The color associated with the department.
+ */
     backgroundcolor(department) {
         let color;
         categorys.forEach((e) => {

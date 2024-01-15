@@ -1,3 +1,4 @@
+//for reset the Backend
 let oldUsers = [
     {
       name: "Guest",
@@ -239,6 +240,7 @@ let  oldCategorys = [
   },
 ];
   
+//array of colors for profilebadges
 let backgroundcolors = [
     "--default",
     "--variant02",

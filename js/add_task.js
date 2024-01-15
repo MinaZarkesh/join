@@ -10,6 +10,11 @@ let task_assigned_to_color = [];
 let departments = [];
 let associates_ids = [];
 
+/**
+ * Initializes the "Addtask" functionality.
+ *
+ * @return {Promise<void>} Returns a Promise that resolves when the initialization is complete.
+ */
 async function initAddtask() {
     init();
     activeUser(); //set activeUser
@@ -24,7 +29,11 @@ async function initAddtask() {
     setNavBarActive("add_task-link");
 }
 
-
+/**
+ * Sets the active urgency for a given id.
+ *
+ * @param {string} id - The id of the urgency button.
+ */
 function activeUrgency(id) {
     btns = ["btn-red", "btn-orange", "btn-green" ];
     btns.forEach(element => {
@@ -40,6 +49,13 @@ function activeUrgency(id) {
     });
 }
 
+/**
+ * Generates a dropdown menu based on the provided parameters.
+ *
+ * @param {string} imgid - The ID of the image associated with the dropdown menu.
+ * @param {string} parent - The parent element in which the dropdown menu will be created.
+ * @param {string} select - The type of dropdown menu to generate ('assigned' or 'category').
+ */
 function dropdownMenu(imgid, parent, select) {
     let list_Parent = select == 'assigned' ? "contact-list-parent" : "category-list-parent";
     let list_Con = select == 'assigned' ? "associate-con" : "department-con";
@@ -53,6 +69,17 @@ function dropdownMenu(imgid, parent, select) {
     }
 }
 
+/**
+ * Create a drop-down menu.
+ *
+ * @param {string} list_parent - The ID of the parent element for the drop-down menu.
+ * @param {string} parent - The ID of the parent element where the drop-down menu will be appended.
+ * @param {string} tasks_parent - The selector for the tasks parent element.
+ * @param {string} select - The type of drop-down menu to create.
+ * @param {string} imgid - The ID of the image element for the drop-down menu.
+ * @param {string} list_Con - The class name for the container element of the drop-down menu.
+ * @param {string} input_id - The ID of the input element for the drop-down menu.
+ */
 function createDropMenu(list_parent, parent, tasks_parent, select, imgid, list_Con, input_id) {
     if (!docID(list_parent)) {
         // docID(parent).innerHTML += `<div id="${list_parent}"></div>`;
@@ -68,6 +95,12 @@ function createDropMenu(list_parent, parent, tasks_parent, select, imgid, list_C
     blueBorderToggle(input_id);
 }
 
+/**
+ * Filters dropdown options based on the given selector and input_id.
+ *
+ * @param {string} selector - The CSS selector for the elements to filter.
+ * @param {string} input_id - The id of the input element to get the search value from.
+ */
 function DropdownFilter(selector, input_id) { // selector = .tasks-contacts / .tasks-category
     let matches = document.querySelectorAll(selector);
     let search = docID(input_id).value.replace(" ", "").toLowerCase();
@@ -80,6 +113,16 @@ function DropdownFilter(selector, input_id) { // selector = .tasks-contacts / .t
     })
 }
 
+/**
+ * Drops up the select element and performs some actions.
+ *
+ * @param {string} select - The value of the select element.
+ * @param {string} list_Parent - The ID of the parent list element.
+ * @param {string} imgid - The ID of the image element.
+ * @param {string} list_Con - The ID of the list container element.
+ * @param {string} input_id - The ID of the input element.
+ * @param {string} tasks_Parent - The ID of the parent tasks element.
+ */
 function dropUp(select, list_Parent, imgid, list_Con, input_id, tasks_Parent) {
     select == 'assigned' ? dropdownContacts = false : dropdownCategory = false;
     dropdownReset(list_Parent, imgid);
@@ -89,6 +132,12 @@ function dropUp(select, list_Parent, imgid, list_Con, input_id, tasks_Parent) {
     listRender(list_Con, tasks_Parent);
 }
 
+/**
+ * Toggles the blue border class on the parent element of the input with the specified ID.
+ *
+ * @param {string} input_id - The ID of the input element.
+ * @return {undefined} This function does not return a value.
+ */
 function blueBorderToggle(input_id) {
     className = "blue-border";
     if ((docID(input_id).parentElement.classList.contains(className))) {
@@ -98,7 +147,12 @@ function blueBorderToggle(input_id) {
     }
 }
 
-
+/**
+ * Resets the dropdown by hiding the parent element and resetting the image source.
+ *
+ * @param {string} parent - The ID of the parent element.
+ * @param {string} imgid - The ID of the image element.
+ */
 function dropdownReset(parent, imgid) {
     if (docID(parent)) {
         docID(parent).classList.add('d-none');
@@ -106,6 +160,11 @@ function dropdownReset(parent, imgid) {
     docID(imgid).src = "../assets/img/arrow_drop_down.png";
 }
 
+/**
+ * Create a contact list task.
+ *
+ * @return {undefined} This function does not return a value.
+ */
 function createContactListTask() {
     createContactBox("contact-list-parent");
     let div_id;
@@ -119,6 +178,13 @@ function createContactListTask() {
     })
 }
 
+/**
+ * Toggles the checkbox and adds/removes a class to a div based on the checkbox state.
+ *
+ * @param {string} id - The ID of the checkbox element.
+ * @param {string} div_id - The ID of the div element.
+ * @return {undefined} This function does not return a value.
+ */
 function CheckboxToggle(id, div_id) {
     // docID(id).checked != docID(id).checked;
     if(docID(id).checked == false) {
@@ -130,6 +196,11 @@ function CheckboxToggle(id, div_id) {
     }    
 }
 
+/**
+ * Creates a category list based on the filtered contact list.
+ *
+ * @return {undefined} The function does not return a value.
+ */
 function createCategoryList() {
     let div_id;
     let filtered_Contact = filterList();
@@ -143,6 +214,11 @@ function createCategoryList() {
     })
 }
 
+/**
+ * Filters a list based on a given input value.
+ *
+ * @return {Array} The filtered list.
+ */
 function filterList() {
     let output = [];
     let input_value = docID('input-con-assigned-input-id').value.toLowerCase();
@@ -155,7 +231,12 @@ function filterList() {
     return output;
 }
 
-
+/**
+ * Renders a list based on the given list container and tasks parent.
+ *
+ * @param {string} list_Con - The list container.
+ * @param {Element} tasks_Parent - The tasks parent element.
+ */
 function listRender(list_Con, tasks_Parent) {
     let counter = 0;
     let active_array = activeCounter(tasks_Parent);
@@ -167,6 +248,15 @@ function listRender(list_Con, tasks_Parent) {
     if (counter >= 8) {numberBadge(list_Con, item_Name, counter, 7)}
 }
 
+/**
+ * Iterates over each item in the `items` array and performs certain actions based on conditions.
+ *
+ * @param {number} counter - The current value of the counter.
+ * @param {string} list_Con - The value of the `list_Con` variable.
+ * @param {boolean[]} active_array - An array indicating which items are active.
+ * @param {any[]} items - An array of items to iterate over.
+ * @return {number} - The updated value of the counter.
+ */
 function itemsForEach(counter, list_Con, active_array, items) {
     items.forEach((e, index) => {
         if (active_array[index] == true && counter < 8) {
@@ -183,11 +273,28 @@ function itemsForEach(counter, list_Con, active_array, items) {
   return counter;
 }
 
+/**
+ * Generates a number badge for a given list container, item name, counter, and amount.
+ *
+ * @param {string} list_Con - The list container to generate the number badge for.
+ * @param {string} item_Name - The name of the item to generate the number badge for.
+ * @param {number} counter - The counter value.
+ * @param {number} amount - The amount value.
+ * @return {void} This function does not return a value.
+ */
 function numberBadge(list_Con, item_Name, counter, amount) {
     let plus_number = counter - amount;
     new ProfilBagde(list_Con, `${item_Name}-${plus_number}`, `--default`, `${plus_number}+`)
 }
 
+/**
+ * Returns an array indicating whether the checkbox is checked for each element
+ * that matches the given selector.
+ *
+ * @param {string} selector - The CSS selector used to identify the elements.
+ * @return {Array} - An array of boolean values indicating whether the checkbox
+ * is checked for each matched element.
+ */
 function activeCounter(selector) {
     let matches = document.querySelectorAll(selector);
     let array = [];
@@ -197,22 +304,45 @@ function activeCounter(selector) {
     return array
 }
 
+/**
+ * Submits the help function.
+ *
+ * @param {string} id - The ID of the input.
+ * @return {undefined} No return value.
+ */
 function submitHelpFunction() {
     let id = 'input-con-Add';
     submitSubtask(id);
 }
 
+/**
+ * Submits a subtask by focusing on the input element with the specified id,
+ * selecting its contents, and triggering the focusIn event for subtasks.
+ *
+ * @param {string} id - The id of the input element to submit.
+ */
 function submitSubtask(id) {
     docID(id).focus();
     docID(id).select();
     subtasksFocusIn();
 }
 
+/**
+ * Executes the writeMe function.
+ *
+ * @param {Event} event - The event object.
+ * @return {undefined} This function does not return a value.
+ */
 function writeMe(event) {
     event.stopPropagation();
     subtasksFocusOut();
 }
 
+/**
+ * Handles the focus event for the subtasks.
+ *
+ * @return {undefined} No return value.
+ */
 function subtasksFocusIn() {
     if (!docID('img-check')) {
         new Img('subtask-div', 'img-check',"", "../assets/img/check.png");
@@ -231,6 +361,12 @@ function subtasksFocusIn() {
     docID('subtask-img').classList.add('margin-10');
 }
 
+
+/**
+ * Handles the focus out event for the subtasks.
+ *
+ * @return {undefined} This function does not return a value.
+ */
 function subtasksFocusOut() {
     if (docID('img-check')) {
         docID('img-check').classList.add('d-none');
@@ -241,6 +377,12 @@ function subtasksFocusOut() {
     docID('subtask-img').classList.remove('margin-10');
 }
 
+/**
+ * Adds a subtask to the list of subtasks.
+ *
+ * @param {type} paramName - description of parameter
+ * @return {type} description of return value
+ */
 function addSubtask() {
     if (docID('input-con-Add').value != "") {
         subtask.push(docID('input-con-Add').value)
@@ -251,6 +393,12 @@ function addSubtask() {
     }
 }
 
+/**
+ * Renders the subtask list on the webpage.
+ *
+ * @param {type} None - This function does not take any parameters.
+ * @return {type} None - This function does not return anything.
+ */
 function subtaskListRender() {
     docID("subtasks-con").innerHTML = "";
     new Elements("ul",'subtasks-con',"subtasks-list");
@@ -259,6 +407,12 @@ function subtaskListRender() {
     }
 }
 
+/**
+ * Edit a subtask.
+ *
+ * @param {type} id - The ID of the subtask to edit.
+ * @return {type} - The result of the subtask edit operation.
+ */
 function editSubtask(id){
     submitSubtask(id);
 }
@@ -269,6 +423,12 @@ function deleteSubtask(i) {
     return // element slicen und Liste neu rendern
 }
 
+/**
+ * Deletes a subtask from the subtask list at the specified index.
+ *
+ * @param {number} i - The index of the subtask to delete.
+ * @return {undefined} - No return value.
+ */
 function subtaskChange(value, i) {
     subtask.forEach((e,index) => {
         e = docID(`sub-list-${index}`).value;
@@ -292,6 +452,13 @@ function subtaskChange(value, i) {
     })
 }
 
+/**
+ * Updates a subtask based on its index and the ID of the updated subtask.
+ *
+ * @param {number} i - The index of the subtask to be updated.
+ * @param {string} upadate_id - The ID of the updated subtask.
+ * @return {undefined} This function does not return anything.
+ */
 function updateSubtask(i, upadate_id) {
     if(!docID(upadate_id).value) {
         deleteSubtask(i);
@@ -301,6 +468,11 @@ function updateSubtask(i, upadate_id) {
     }
 }
 
+/**
+ * Clears the task form by resetting all input fields and variables.
+ *
+ * @return {void} This function does not return a value.
+ */
 function clearTask() {
     docID('task-title').value = "";
     docID('desc-input').value = "";
@@ -319,6 +491,12 @@ function clearTask() {
     subtaskListRender();
 }
 
+/**
+ * Sets the 'checked' property of all the third child elements of the elements
+ * matched by the given selector to false.
+ *
+ * @param {string} selector - The CSS selector used to match the elements.
+ */
 function uncountCounter(selector) {
     let matches = document.querySelectorAll(selector);
     for (let i = 0; i < matches.length; i++) {
@@ -326,6 +504,12 @@ function uncountCounter(selector) {
     }
 }
 
+/**
+ * Adds a task to the specified department or to the default "to-do-con" container.
+ *
+ * @param {string} department - The department to add the task to (optional).
+ * @return {Promise<void>} - A promise that resolves when the task is added.
+ */
 async function addTask(department) {
     let container = !department ? "to-do-con": department;
 
@@ -374,6 +558,13 @@ async function addTask(department) {
     await setItem("tasks", tasks);
 }
 
+/**
+ * Checks if the title is required and displays an error message if it is empty.
+ *
+ * @param {string} title - The title to check.
+ * @param {number} id - The ID of the document.
+ * @return {boolean} Returns true if the title is not empty, false otherwise.
+ */
 function requiered(title, id) {
     if (!title) {
         docID(id).textContent = 'This field is requiered';
@@ -383,6 +574,11 @@ function requiered(title, id) {
     }
 }
 
+/**
+ * Returns an array with the urgency levels and corresponding image sources of the active buttons.
+ *
+ * @return {Array} An array containing the urgency levels and image sources.
+ */
 function theUrgency() {
     let btns = ["btn-red", "btn-orange", "btn-green" ];
     let output =[];
@@ -397,6 +593,12 @@ function theUrgency() {
     return output;
 }
 
+
+/**
+ * Generates a function comment for the given function body.
+ *
+ * @param {string} selector - The CSS selector used to query the DOM.
+ */
 function theSelectors(selector){
     let matches = document.querySelectorAll(selector);
     let work;
@@ -434,6 +636,11 @@ function theSelectors(selector){
 
 }
 
+/**
+ * Generates a function comment for the given function body.
+ *
+ * @return {Array} The list of checked items.
+ */
 function Subtaskschecked() {
     checked = [];
     subtask.forEach(() => {
@@ -442,6 +649,11 @@ function Subtaskschecked() {
     return checked
 }
 
+/**
+ * Returns a new ID by finding the highest existing ID in the 'tasks' array and incrementing it by 1.
+ *
+ * @return {number} The new ID.
+ */
 function getNewId() {
     let high = 0;
     tasks.forEach((e) => {
