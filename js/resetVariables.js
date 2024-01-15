@@ -72,7 +72,7 @@ let oldUsers = [
       title: "Titel: Essen",
       description:
         "Das ist die Description, hier etwas text : handy telefonieren",
-      date: "2023-08-30",
+      date: "2024-08-30",
       priority: "Low",
       priorityImg: "../assets/img/low.png",
       associates: [6, 9, 5],
@@ -89,7 +89,7 @@ let oldUsers = [
       title: "Titel: Halloweenparty, Ähh Silvester",
       description:
         "Das ist die Description, hier etwas text : handy telefonieren",
-      date: "2023-12-31",
+      date: "2024-12-31",
       priority: "Urgent",
       priorityImg: "../assets/img/urgentImg.png",
       associates: [6, 9, 5],
@@ -105,7 +105,7 @@ let oldUsers = [
       category: ["Engine", "Office"],
       title: "Titel: Sommer Grillparty",
       description: "Wir treffen uns alle zur Grillparty",
-      date: "2023-12-27",
+      date: "2024-12-27",
       priority: "Low",
       priorityImg: "../assets/img/low.png",
       associates: [6, 9, 5],
@@ -122,7 +122,7 @@ let oldUsers = [
       title: "Titel: Weihnachtsfeier",
       description:
         "Das ist die Description, hier etwas text : handy telefonieren",
-      date: "2023-12-23",
+      date: "2024-12-23",
       priority: "Urgent",
       priorityImg: "../assets/img/urgentImg.png",
       associates: [6, 9, 5],
