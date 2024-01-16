@@ -174,8 +174,8 @@ function createContactListTask() {
         new ProfilBagde(div_id, e.idx, e.color, e.nameTag);
         new Span(div_id, `span-${e.idx}`,"", e.name)
         new Checkbox(div_id,`check-${e.idx}`, "checkbox");
-        docID(div_id).onclick = function() {CheckboxToggle(`check-${e.idx}`, `contact-list-parent-div-${e.idx}`)};
-        docID(`check-${e.idx}`).onclick = function() {CheckboxToggle(`check-${e.idx}`, `contact-list-parent-div-${e.idx}`)};
+        docID(div_id).onclick = function() {CheckboxToggle(`check-${e.idx}`, `contact-list-parent-div-${e.idx}`, event)};
+        docID(`check-${e.idx}`).onclick = function() {CheckboxToggle(`check-${e.idx}`, `contact-list-parent-div-${e.idx}`, event)};
     })
 }
 
@@ -186,7 +186,8 @@ function createContactListTask() {
  * @param {string} div_id - The ID of the div element.
  * @return {undefined} This function does not return a value.
  */
-function CheckboxToggle(id, div_id) {
+function CheckboxToggle(id, div_id, event) {
+    event.stopPropagation();
     if(docID(id).checked == false) {
         docID(id).checked = true;
         docID(div_id).classList.add("active-list");
@@ -210,8 +211,10 @@ function createCategoryList() {
         new ProfilBagde(div_id, e.idx, e.color, e.nameTag);
         new Span(div_id, `category-span-${e.idx}`,"", e.name)
         new Checkbox(div_id, `category-check-${e.idx}`, "checkbox");
-        docID(div_id).onclick = function() {CheckboxToggle(`category-check-${e.idx}`, `tasks-category-${e.idx}`)};
-        docID(`category-check-${e.idx}`).onclick = function() {CheckboxToggle(`check-${e.idx}`, `contact-list-parent-div-${e.idx}`)};
+        docID(div_id).onclick = function() {
+            CheckboxToggle(`category-check-${e.idx}`, `tasks-category-${e.idx}`, event)
+            };
+        docID(`category-check-${e.idx}`).onclick = function() {CheckboxToggle(`check-${e.idx}`, `contact-list-parent-div-${e.idx}`, event)};
     })
 }
 
@@ -669,3 +672,22 @@ function getNewId() {
     return high+1
 }
 
+window.onmousedown = function(e) {
+    if (docID('contact-list-parent')) {
+        cont_1 = docID('contact-list-parent').classList.contains('d-none');
+        cont_2 = docID('contact-list-parent').contains(e.target);
+        cont_3 = docID('input-con-assigned-input-id') == e.target;
+        if (!cont_1 && !cont_2 && !cont_3 ) {
+            dropdownMenu(`assigned-img`, 'assigned', 'assigned');
+    }
+    }
+    if(docID('category-list-parent')) {
+        cont_1 = docID('category-list-parent').classList.contains('d-none');
+        cont_2 = docID('category-list-parent').contains(e.target);
+        cont_3 = docID('input-con-category-input-id') == e.target;
+        if (!cont_1 && !cont_2 && !cont_3 ) {
+            dropdownMenu(`category-img`, 'category', 'category');
+    }
+    }
+    
+}
