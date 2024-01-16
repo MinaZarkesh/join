@@ -555,6 +555,10 @@ async function addTask(department) {
     task_assigned_to_nametag = [];
     task_assigned_to_color = [];
     await setItem("tasks", tasks);
+    setTimeout(() => {
+        window.location.href = "../html/board.html";
+    }, 2000)
+    
 }
 
 /**
