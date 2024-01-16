@@ -27,7 +27,6 @@ async function initLogin() {
   renderLoginElements("Login");
 }
 
-
 /**
  * Renders the login elements based on the given boolean value.
  *
@@ -42,7 +41,7 @@ function renderLoginElements(bool) {
     input_email = new Divinputimg(
       "inputs-con",
       "imput-img-div",
-      "mail",
+      "email",
       "Email",
       "../assets/img/icon-mail.png",
       "input-con-email-input-id",
@@ -111,7 +110,7 @@ function renderLoginElements(bool) {
     input_email = new Divinputimg(
       "inputs-con",
       "imput-img-div",
-      "mail",
+      "email",
       "Email",
       "../assets/img/icon-mail.png",
       "input-con-email-input-id",

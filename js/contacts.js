@@ -39,9 +39,24 @@ async function renderContactList() {
           await renderFloatingContacts(e.idx);
         };
         new ProfilBagde(`contact-item-${e.idx}`, e.idx, e.color, e.nameTag);
-        new Div(`contact-item-${e.idx}`,`contact-item-${e.idx}-div`,"contact-list-coloumn");
-        new Span(`contact-item-${e.idx}-div`,`contact_itemName-${e.idx}`,"",e.name);
-        new Headline("h6",`contact-item-${e.idx}-div`,`contact_itemMail-${e.idx}`, "",e.mail);
+        new Div(
+          `contact-item-${e.idx}`,
+          `contact-item-${e.idx}-div`,
+          "contact-list-coloumn"
+        );
+        new Span(
+          `contact-item-${e.idx}-div`,
+          `contact_itemName-${e.idx}`,
+          "",
+          e.name
+        );
+        new Headline(
+          "h6",
+          `contact-item-${e.idx}-div`,
+          `contact_itemMail-${e.idx}`,
+          "",
+          e.mail
+        );
       });
     }
   });
@@ -88,9 +103,10 @@ function setActive(idx) {
  * @return {None} This function does not return a value.
  */
 function resetActive() {
-  for (let i = 0; i < contacts.length; i++) {
-    docID(`contact-item-${contact.idx}`).classList.remove("active-contact");
-  }
+  matches = document.querySelectorAll(".active-contact");
+  matches.forEach((e)=>{
+    e.classList.remove("active-contact");
+  });
 }
 
 /**
@@ -110,15 +126,17 @@ function layoutContactsOverlay() {
     "input-con-name-input-id",
     "input-con-name-input-div-id"
   );
+  docID("input-con-name-input-id").required = true;
   input_email = new Divinputimg(
     "inputs-con",
     "imput-img-div",
-    "mail",
+    "email",
     "Email",
     "../assets/img/icon-mail.png",
     "input-con-email-input-id",
     "input-con-email-input-div-id"
   );
+  docID("input-con-email-input-id").required = true;
   input_phone = new Divinputimg(
     "inputs-con",
     "imput-img-div",
@@ -128,6 +146,8 @@ function layoutContactsOverlay() {
     "input-con-phone-input-id",
     "input-con-phone-input-div-id"
   );
+  docID("input-con-phone-input-id").required = true;
+  docID("input-con-phone-input-id").pattern = '[0-9]{2}-[0-9]{3}-[0-9]{3}';
 }
 
 /**
@@ -172,9 +192,9 @@ function fillEditContact(e) {
 async function saveContact(idx) {
   edit_contact = contacts[idx];
   updateContactItem(edit_contact);
-  await  setItem("contacts", contacts);
+  await setItem("contacts", contacts);
   await renderContactList();
-  new Confirmation("contact-main", "Contact succesfully created", false)
+  new Confirmation("contact-main", "Contact succesfully created", false);
   renderFloatingContacts(edit_contact.idx);
   closeButton();
 }
@@ -242,7 +262,7 @@ async function deleteContact(idx) {
       contacts.splice(index, 1);
     }
   });
-  await  setItem("contacts", contacts);
+  await setItem("contacts", contacts);
   await renderContactList();
   docID("floating-contacts").textContent = "";
   closeContact();
@@ -285,14 +305,18 @@ function renderEditContact(id) {
     },
     "Delete"
   );
+  docID("overlay-secondary-btn").type = "button";
   new Button(
     "edit-contact-button-group",
     "overlay-primary-btn",
     "button font-t5",
-    function () {
-      saveContact(`${id}`);
-    }
+    "",
   );
+
+  docID("edit-contacts-con").onsubmit =  function () {
+    saveContact(id);
+    return false;
+  };
   new Span("overlay-primary-btn", "", "", "Save");
   new Img("overlay-primary-btn", "", "", "../assets/img/check.svg");
   //change Style
@@ -329,15 +353,19 @@ function renderAddContact() {
     },
     "Cancel"
   );
+  docID("overlay-secondary-btn").type = "button";
   new Button(
     "edit-contact-button-group",
     "overlay-primary-btn",
     "button font-t5",
-    function () {
-      renderNewContact();
-    },
+    "",
     "Create contact"
   );
+  
+  docID("edit-contacts-con").onsubmit =  function () {
+    renderNewContact();
+    return false;
+  };
   //change Style values
   docID("edit-contact-overlay").style.left = "unset";
   docID("edit-contact-overlay").style.animationName = "fadingRight";
@@ -386,7 +414,7 @@ async function createFloatingContacts(e) {
   new Img(hl_lnk_id, "", "", "../assets/img/edit.png");
   new Span(hl_lnk_id, hl_lnk_span_id, "", "Edit");
 
-    /**
+  /**
    * Sets an onclick event for the element with the specified ID.
    *
    * @param {string} hl_lnk_span_id - The ID of the element.
@@ -397,7 +425,7 @@ async function createFloatingContacts(e) {
   };
   new Div(hl_lnk_con_id, hl_lnk_2_id, "floating-headline-link");
 
-    /**
+  /**
    * Executes the `deleteContact` function when the `onclick` event is triggered on the `docID(hl_lnk_2_id)` element.
    *
    * @param {type} e.idx - the index of the contact to be deleted
