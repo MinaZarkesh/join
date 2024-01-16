@@ -50,10 +50,98 @@ async function initBoard() {
   new BoardSegment("board-content-con", "await-feedback", "Await feedback");
   new BoardSegment("board-content-con", "done", "Done");
   createBoardCards();
-
   new Div("main-card-div", "main-board-card");
   setNavBarActive("board-link");
+  checkMobile();
 }
+
+let segments;
+let toDoPos;
+let inProgessPos;
+let awaitFeedbackPos;
+let donePos;
+let touchTasks;
+let toDoTouchDiv;
+let doneTouchDiv;
+function checkMobile() {
+  if (window.matchMedia("(max-width: 1023px)").matches) {
+    //Größe vom TouchGerät auch Laptop möglich
+    segments = document.querySelectorAll(".board-segments");
+    console.log(segments);
+    let toDoTouchDiv = document.querySelector(".toDo");
+    let doneTouchDiv = document.querySelector(".done");
+    toDoPos = segments[0].getBoundingClientRect();
+    inProgessPos = segments[1].getBoundingClientRect();
+    awaitFeedbackPos = segments[2].getBoundingClientRect();
+    donePos = segments[3].getBoundingClientRect();
+    console.log(toDoPos, inProgessPos, awaitFeedbackPos, donePos);
+    touchTasks = document.querySelectorAll(".board-card");
+    console.log(touchTasks);
+    touchTasks.forEach(addStart);
+  }
+}
+
+function addStart(elem, index) {
+  elem.addEventListener("touchstart", (e) => {
+    let startX = e.changedTouches[0].clientX;
+    let startY = e.changedTouches[0].clientY;
+    let elemBottom = elem.getBoundingClientRect().bottom;
+    let elemTop = elem.getBoundingClientRect().top;
+    // console.log("touchstart", startX, startY);
+    let parentID = elem.parentElement.id;
+    console.log("touchstart", " bottom: ", elemBottom, " top: ",elemTop, "style: ", elem.style.bottom);
+    elem.addEventListener("touchend", (eve) => {
+      // elem.style.backgroundColor = "red";
+      console.log("touchend");
+       elem.style.zIndex = 0;
+      // touchDivName = elem.id.split("-");
+      // touchDivID = elem.id.split("-");
+      // touchDivID = touchDivID[touchDivID.length-1]
+      // touchDivID = touchTasks.indexOf(elem);
+      // console.log(touchTasks);
+      // console.log("elemente move end:", " left: ", elem.style.left, " top: ",elem.style.top);
+
+      if (elem.getBoundingClientRect().top < awaitFeedbackPos.top) {
+        console.log("toDoPos", elem.getBoundingClientRect().top , awaitFeedbackPos.top);
+
+          // if (!doneTouchDiv.contains(elem)) {
+          //   doneTouchDiv.appendChild(elem);
+          // }
+      }
+      else if (elem.getBoundingClientRect().left > toDoPos.right && elem.getBoundingClientRect().left > inProgessPos.left) {
+        console.log("inProgess");
+          // if (!toDoTouchDiv.contains(elem)) {
+          //   toDoTouchDiv.appendChild(elem);
+          // }
+      }
+
+     setTimeout(()=>{
+      elem.style.left = 0 + "px";
+      elem.style.top = 0 + "px";
+     }, 2000);
+    });
+
+    elem.addEventListener("touchmove", (eve) => {
+      eve.preventDefault();
+    
+      let nextX = eve.changedTouches[0].clientX;
+      let nextY = eve.changedTouches[0].clientY;
+      elem.style.left = nextX - startX + "px";
+      elem.style.top = nextY - startY + "px";
+      elem.style.zIndex = 99999;
+      console.log("touchmove", elem.style.zIndex);
+
+      // console.log("elemente move:", elem.style.left,elem.style.top );
+    });
+  });
+}
+
+// function  moveCardmobile(id, bool){
+//   // docID("main-board-card").style.zIndex = 0;
+// // let img_id = ``;
+//   //  docID(id).style.backgroundColor = "red";
+//    console.log(id, bool);
+// }
 
 /**
  * Opens the add task functionality in the specified container.
@@ -62,12 +150,27 @@ async function initBoard() {
  * @return {undefined} This function does not return a value.
  */
 function openAddTask(container) {
-  docID('add-card-con').classList.remove('d-none');
-  new Img("add-card-div", 'add-card-close', "card-close", "../assets/img/close.png");
-  docID('add-card-close').onclick = function () {closeCard("add-card-con", "add-card-div")}
+  docID("add-card-con").classList.remove("d-none");
+  new Img(
+    "add-card-div",
+    "add-card-close",
+    "card-close",
+    "../assets/img/close.png"
+  );
+  docID("add-card-close").onclick = function () {
+    closeCard("add-card-con", "add-card-div");
+  };
   new AddTaskBox("add-card-div");
   new Div("addtaskCon", "button-con", "button-con"); //Div für die Add/Clear Button
-  new Button("button-con", "add-task-btn", "button", function () {boardAddTask(container)} , "Create Task");
+  new Button(
+    "button-con",
+    "add-task-btn",
+    "button",
+    function () {
+      boardAddTask(container);
+    },
+    "Create Task"
+  );
 }
 
 /**
@@ -88,11 +191,11 @@ function boardAddTask(container) {
  * @return {void} This function does not return a value.
  */
 function keyboardActive() {
-  docID('search-text-input-id').addEventListener("keydown", (e) => {
-    if(e.key == 'Enter') {
+  docID("search-text-input-id").addEventListener("keydown", (e) => {
+    if (e.key == "Enter") {
       filterTasks();
     }
-  })
+  });
 }
 
 /**
@@ -132,7 +235,6 @@ function createBoardCards() {
   });
 }
 
-
 /**
  * Renders the appropriate HTML elements when there are no tasks.
  *
@@ -141,8 +243,15 @@ function createBoardCards() {
 function renderNoTasks() {
   task_amounts = getTasksAmounts();
   for (let i = 0; i < task_amounts.length; i++) {
-    task_amounts[i] == 0 ? new Div(segements_array[i].con.replace("-con", "-div"), "noTask-div-id", "noTask-div", `No Task ${segements_array[i].headline}`) : "";
-  }  
+    task_amounts[i] == 0
+      ? new Div(
+          segements_array[i].con.replace("-con", "-div"),
+          "noTask-div-id",
+          "noTask-div",
+          `No Task ${segements_array[i].headline}`
+        )
+      : "";
+  }
 }
 
 /**
@@ -160,7 +269,6 @@ function openBigCard(id) {
   });
 }
 
-
 /**
  * Closes a card and performs additional actions if an event object is provided.
  *
@@ -174,11 +282,10 @@ function closeCard(parent, child, e) {
     e.subtaskschecked = [];
     for (let i = 0; i < amount; i++) {
       if (docID(`main-bord-card-subtasks${i}-checkbox`).checked) {
-        e.subtaskschecked.push("checked");  
+        e.subtaskschecked.push("checked");
       } else {
         e.subtaskschecked.push("unchecked");
       }
-      
     }
   }
   docID(child).innerHTML = "";
@@ -247,7 +354,6 @@ function getTasksIdx() {
   return task_idx;
 }
 
-
 /**
  * Filters tasks based on a search word.
  *
@@ -256,27 +362,26 @@ function getTasksIdx() {
  */
 function filterTasks() {
   word = docID("search-text-input-id").value;
-  if (word != '') {
+  if (word != "") {
     filteredTasks = [];
     filteredTasks_Ids = [];
     filteredTasks = document.querySelectorAll(".board-card");
 
     filteredTasks.forEach((e) => {
       e.classList.add("d-none");
-    })
+    });
 
     tasks.forEach((e) => {
       if (isMatch(e, word)) {
         let id = e.container.replace("-con", "") + `-card-${e.id}`;
         filteredTasks_Ids.push(id);
       }
-    })
+    });
 
     filteredTasks_Ids.forEach((e) => {
       docID(e).classList.remove("d-none");
     });
-  }
-  else {
+  } else {
     renderBoardSegments();
   }
 }
@@ -308,7 +413,7 @@ function nameArray(obj, word) {
     if (e.toLowerCase().includes(word.toLowerCase())) {
       output = true;
     }
-  })
+  });
   return output;
 }
 
@@ -319,14 +424,14 @@ function nameArray(obj, word) {
  * @return {Promise<void>} - A promise that resolves once the card has been deleted.
  */
 async function deleteCard(idx) {
-    tasks.forEach((e, index) => {
-      if (idx == e.id) {
-        tasks.splice(index, 1);
-      }
-    });
-    closeCard("main-card-div", "main-board-card");
-    await setItem("tasks", tasks);
-    renderBoardSegments();
+  tasks.forEach((e, index) => {
+    if (idx == e.id) {
+      tasks.splice(index, 1);
+    }
+  });
+  closeCard("main-card-div", "main-board-card");
+  await setItem("tasks", tasks);
+  renderBoardSegments();
 }
 
 /**
@@ -337,23 +442,38 @@ async function deleteCard(idx) {
  */
 function editCard(e) {
   docID("main-board-card").innerHTML = "";
-  new Img("main-board-card", "card-close","card-close","../assets/img/close.png");
-  docID("card-close").onclick = function () {closeCard("main-card-div", "main-board-card")};
+  new Img(
+    "main-board-card",
+    "card-close",
+    "card-close",
+    "../assets/img/close.png"
+  );
+  docID("card-close").onclick = function () {
+    closeCard("main-card-div", "main-board-card");
+  };
   new AddTaskBox("main-board-card", false, "Edit Task");
-  docID('task-title').value = e.title;
-  docID('desc-input').value = e.description;
-  docID('date-input').value = e.date;
+  docID("task-title").value = e.title;
+  docID("desc-input").value = e.description;
+  docID("date-input").value = e.date;
   editUrgency(e);
-  dropdownMenu('assigned-img', 'assigned', 'assigned');
+  dropdownMenu("assigned-img", "assigned", "assigned");
   checkTheBox(e);
-  dropdownMenu('assigned-img', 'assigned', 'assigned');
-  dropdownMenu('category-img', 'category', 'category');
+  dropdownMenu("assigned-img", "assigned", "assigned");
+  dropdownMenu("category-img", "category", "category");
   checkTheCategory(e);
-  dropdownMenu('category-img', 'category', 'category');
+  dropdownMenu("category-img", "category", "category");
   addEditSubtasks(e);
 
   new Div("addtaskCon", "button-con", "button-con"); //Div für die Add/Clear Button
-  new Button("button-con", "add-task-btn", "button", function () {updateTasks(e)}, "Ok");
+  new Button(
+    "button-con",
+    "add-task-btn",
+    "button",
+    function () {
+      updateTasks(e);
+    },
+    "Ok"
+  );
 }
 
 /**
@@ -363,9 +483,9 @@ function editCard(e) {
  * @return {void} This function does not return a value.
  */
 function editUrgency(e) {
-  e.priority == "Urgent"? activeUrgency("btn-red"):"";
-  e.priority == "Medium"? activeUrgency("btn-orange"):"";
-  e.priority == "Low"? activeUrgency("btn-green"):"";
+  e.priority == "Urgent" ? activeUrgency("btn-red") : "";
+  e.priority == "Medium" ? activeUrgency("btn-orange") : "";
+  e.priority == "Low" ? activeUrgency("btn-green") : "";
 }
 
 /**
@@ -376,7 +496,7 @@ function editUrgency(e) {
 function checkTheBox(e) {
   e.associates.forEach((ele) => {
     docID(`check-${ele}`).checked = true;
-  })
+  });
 }
 
 /**
@@ -389,7 +509,7 @@ function checkTheCategory(e) {
     if (e.category.includes(element.name)) {
       docID(`category-check-${element.idx}`).checked = true;
     }
-  })
+  });
 }
 
 /**
@@ -402,7 +522,7 @@ function addEditSubtasks(e) {
   subtask = [];
   e.subtasks.forEach((ele) => {
     subtask.push(ele);
-  })
+  });
   subtaskListRender();
 }
 
@@ -410,16 +530,16 @@ function addEditSubtasks(e) {
  * Updates the tasks with the provided information.
  *
  * @param {Event} e - The event object.
- * @return {void} 
+ * @return {void}
  */
 function updateTasks(e) {
   let urgency = theUrgency();
-  theSelectors('.tasks-contacts');
-  theSelectors('.tasks-category');
-  e.title = docID('task-title').value;
+  theSelectors(".tasks-contacts");
+  theSelectors(".tasks-category");
+  e.title = docID("task-title").value;
   e.category = departments;
-  e.description = docID('desc-input').value;
-  e.date = docID('date-input').value;
+  e.description = docID("desc-input").value;
+  e.date = docID("date-input").value;
   e.priority = urgency[0];
   e.priorityImg = urgency[1];
   e.assignedTo = task_assigned_to;
@@ -444,8 +564,8 @@ function editSubtaskchecked(e) {
   checked = e.subtaskschecked;
   if (subtask.length > checked.length) {
     for (let i = checked.length; i < subtask.length; i++) {
-      checked.push('unchecked');
+      checked.push("unchecked");
     }
   }
-  return checked
+  return checked;
 }

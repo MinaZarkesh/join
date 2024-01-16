@@ -45,5 +45,7 @@ class BoardSegment{
         this.childDiv = new Div(this.con_id, this.childDiv_id, this.childDiv_class)
        docID(this.con_id).ondrop = function () {moveTo(segment)}; 
        docID(this.con_id).ondragover = function () {dragOver(segment)}; 
+    //    docID(this.con_id).ontouchmove = function () {moveTo(segment)}; 
+    //    docID(this.con_id).ontouchend = function () {dragOver(segment)}; 
     }
 }
