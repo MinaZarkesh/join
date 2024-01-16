@@ -73,6 +73,7 @@ class AddTaskBox {
         new Divinputimg('assigned', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png', 'input-con-text-input-id', 'assigned-div'); //+ id + div_id
         docID('input-con-assigned-input-id').onclick = function () {dropdownMenu(`assigned-img`, 'assigned', 'assigned')};
         docID('input-con-assigned-input-id').onkeyup = function () {DropdownFilter(`.tasks-contacts`, 'input-con-assigned-input-id')}  // selector = .tasks-contacts / .tasks-category
+        docID('input-con-assigned-input-id').onclick = function () {dropdownMenu(`assigned-img`, 'assigned', 'assigned')};
         new Div('content-con', 'associate-con', '');
         new Labeldiv('content-con', 'category', 'Category', false);
         new Divinputimg('category', 'input-con', 'text', "Choose...", '../assets/img/arrow_drop_down.png',  'input-con-text-input-id', 'category-div'); //+ id + div_id
