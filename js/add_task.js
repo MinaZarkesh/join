@@ -175,6 +175,7 @@ function createContactListTask() {
         new Span(div_id, `span-${e.idx}`,"", e.name)
         new Checkbox(div_id,`check-${e.idx}`, "checkbox");
         docID(div_id).onclick = function() {CheckboxToggle(`check-${e.idx}`, `contact-list-parent-div-${e.idx}`)};
+        docID(`check-${e.idx}`).onclick = function() {CheckboxToggle(`check-${e.idx}`, `contact-list-parent-div-${e.idx}`)};
     })
 }
 
