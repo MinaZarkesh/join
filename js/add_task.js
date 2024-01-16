@@ -211,6 +211,7 @@ function createCategoryList() {
         new Span(div_id, `category-span-${e.idx}`,"", e.name)
         new Checkbox(div_id, `category-check-${e.idx}`, "checkbox");
         docID(div_id).onclick = function() {CheckboxToggle(`category-check-${e.idx}`, `tasks-category-${e.idx}`)};
+        docID(`category-check-${e.idx}`).onclick = function() {CheckboxToggle(`check-${e.idx}`, `contact-list-parent-div-${e.idx}`)};
     })
 }
 
