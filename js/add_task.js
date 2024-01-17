@@ -595,7 +595,9 @@ function theUrgency() {
             element == "btn-red" ? output.push('Urgent') : "";
             element == "btn-orange" ? output.push('Medium'): "";
             element == "btn-green" ? output.push('Low'): "";
-            output.push(docID(element).children[1].src)
+            let text = docID(element).children[1].src.split('/');
+            let string = `../${text[text.length-3]}/${text[text.length-2]}/${text[text.length-1]}` 
+            output.push(string);
             }
         })
     return output;
