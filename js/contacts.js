@@ -147,7 +147,9 @@ function layoutContactsOverlay() {
     "input-con-phone-input-div-id"
   );
   docID("input-con-phone-input-id").required = true;
-  docID("input-con-phone-input-id").pattern = '[0-9]{2}-[0-9]{3}-[0-9]{3}';
+  docID("input-con-phone-input-id").pattern = '[0-9]{3,}';
+
+  docID("input-con-phone-input-id").title="49-123-123"
 }
 
 /**
