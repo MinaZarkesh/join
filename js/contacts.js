@@ -149,7 +149,7 @@ function layoutContactsOverlay() {
   docID("input-con-phone-input-id").required = true;
   docID("input-con-phone-input-id").pattern = '[0-9]{3,}';
 
-  docID("input-con-phone-input-id").title="49-123-123"
+  docID("input-con-phone-input-id").title="Es sind nur Zahlen erlaubt. Mindestens 3 Zahlen eingeben."
 }
 
 /**
