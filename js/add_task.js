@@ -188,13 +188,14 @@ function createContactListTask() {
  */
 function CheckboxToggle(id, div_id, event) {
     event.stopPropagation();
-    if(docID(id).checked == false) {
+    if(!docID(div_id).classList.contains("active-list")) {
         docID(id).checked = true;
         docID(div_id).classList.add("active-list");
     }else {
         docID(id).checked = false;
         docID(div_id).classList.remove("active-list");
-    }    
+    }
+    // docID(id).checked == false    
 }
 
 /**
