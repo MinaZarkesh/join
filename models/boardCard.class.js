@@ -59,7 +59,9 @@ this.description = new Div(this.container_id, this.description_id, this.descript
     this.associates = new Div(this.lastLine_div_id, this.associates_id, this.associates_class);
     this.assosciates(this.associates_id, e)
     new Img(this.lastLine_div_id, this.priority_id,"board-card-priority", e.priorityImg);
-    // docID(this.container_id).ontouchstart = function () {startDragging(e.id)};
+    docID(this.container_id).onclick = function () {openBigCard(e.id)};
+     docID(this.container_id).ondragstart = function () {startDragging(e.id)};
+     docID(this.container_id).ontouchstart = function () {checkMobile()};
     docID(this.container_id).draggable = true;
   }
 

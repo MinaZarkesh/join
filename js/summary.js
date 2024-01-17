@@ -1,13 +1,9 @@
-//for responsiveness
-let screen_size = 1023; //ab wann Wechsel zu Desktop Version
-
-//erstelle die Werte für die Items
+let screen_size = 1023; //screenWidth of Window
 let item_amount = 6;
 let summaryBox_div_id = "summary-box";
-
-//empty Array for new summary_boxes
 let summary_boxes = [];
 let new_number;
+let sum;
 
 let descriptions = [
   "Tasks urgent",
@@ -28,7 +24,8 @@ let images = [
   "../assets/img/done_summary.png",
   "../assets/img/done_summary.png",
 ];
-let sum;
+
+
 
 /**
  * Initializes the summary.
@@ -37,12 +34,11 @@ let sum;
  */
 async function initSummary() {
   await loadUsers();
-  activeUser(); //set activeUser
+  activeUser(); 
   init();
-  // updateUserValues();
   greetings();
   task_amounts = await updateTaskAmounts();
-  createSummaryBoxes(); //creates summary-boxes beim
+  createSummaryBoxes(); 
   setNavBarActive("summary-link");
 }
 

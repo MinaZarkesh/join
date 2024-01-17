@@ -15,7 +15,7 @@ function addStart(elem) {
 
 
         elem.addEventListener("touchend", eve => {
-            elem.style.zIndex = 0;
+            // elem.style.zIndex = 0;
 
             if (elem.getBoundingClientRect().top > donePos.top) {
                 if (!done.contains(elem)) {
@@ -38,7 +38,7 @@ function addStart(elem) {
             let nextY = eve.changedTouches[0].clientY;
             elem.style.left = nextX - startX + "px";
             elem.style.top = nextY - startY + "px";
-            elem.style.zIndex = 10;
+            // elem.style.zIndex = 10;
         });
     });
 }
@@ -56,7 +56,6 @@ function checkMobile() {
   if (window.matchMedia("(max-width: 1023px)").matches) {
     //Größe vom TouchGerät auch Laptop möglich
     segments = document.querySelectorAll(".board-segments");
-    console.log(segments);
     let toDoTouchDiv = document.querySelector(".toDo");
     let doneTouchDiv = document.querySelector(".done");
     toDoPos = segments[0].getBoundingClientRect();
@@ -65,7 +64,6 @@ function checkMobile() {
     donePos = segments[3].getBoundingClientRect();
     console.log(toDoPos, inProgessPos, awaitFeedbackPos, donePos);
     touchTasks = document.querySelectorAll(".board-card");
-    console.log(touchTasks);
     touchTasks.forEach(addStart);
   }
 }

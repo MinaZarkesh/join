@@ -1,4 +1,39 @@
 //for reset the Backend
+
+/**
+ * Reset for the Backemd 
+ * beispiel: users: {name: "Guest",mail: "guest@guest.de",nameTag: "G",password: "test123",}
+ * tasks:  {
+      container: "to-do-con",
+      category: ["Office", "Design"],
+      title: "Kochwelt Page & Recipe Recommender",
+      description: "Build start page with recipe recommendation.",
+      date: "2024-01-24",
+      priority: "Medium",
+      priorityImg: "../assets/img/medium.svg",
+      associates: [5, 6, 9],
+      assignedTo: ["Emmanuel Mauer", "Marcel Bauer", "Anton Mayer"],
+      assignedToNameTag: ["EM", "MB", "AM"],
+      assignedToColor: ["--variant10", "--variant16", "--variant09"],
+      subtasks: ["Implement Recipe Recommendation", "Start Page Layout"],
+      subtaskschecked: ["checked", "checked"],
+      id: 1,
+    },
+* contact: {
+      name: "Wilhelmina Schattschneider",
+      color: "--variant09",
+      mail: "wschatt@gmail.com",
+      phone: "+49-123-123",
+      nameTag: "WS",
+      idx: 0,
+    },
+*  {
+    name: "Office",
+    color: "--variant02",
+    nameTag: "OF",
+    idx: 0
+  }
+ */
 let oldUsers = [
     {
       name: "Guest",
@@ -240,7 +275,9 @@ let  oldCategorys = [
   },
 ];
   
-//array of colors for profilebadges
+/*
+* backgroudcolors, not in Backend
+*/
 let backgroundcolors = [
     "--default",
     "--variant02",
@@ -259,7 +296,3 @@ let backgroundcolors = [
     "--variant15",
     "--variant16",
   ];
-
-  // task_amounts = [1, 2, 3, 40, 5, 6, 7]; //verändern durch Tasks
-
-  // let new_task_amounts = [1, 12, 3, 9, 5, 6, 8]; //zum Testen

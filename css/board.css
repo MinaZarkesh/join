@@ -63,6 +63,13 @@
     z-index: 0;
 }
 
+.taskcard-clone {
+    position: fixed;
+    opacity: 0.7;
+    z-index: 1000;
+    height: 314px;
+}
+
 .card-dept {
     display: flex;
     gap: 5px;

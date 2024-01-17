@@ -1,30 +1,28 @@
 Board_task = [];
 let current_Dragged_Element;
+
 let toDoDiv;
 let inProgressDiv;
 let awaitFeedBackDiv;
 let doneDiv;
+
 let filteredTasks = [];
 let filteredTasks_Ids = [];
+let onTouchScrollInterval;
 
 /**
  * Initializes the board by performing the following actions:
  * - Calls the `init` function
  * - Sets the active user
  * - Updates user values
- * - Loads tasks
- * - Loads contacts
- * - Loads categories
+ * - Loads backend
  * - Creates the head container
  * - Creates the search input field with image
  * - Adds event listener to activate the keyboard
  * - Creates the "Add Task" button
  * - Creates the close button image
  * - Creates the content container
- * - Creates the "To do" board segment
- * - Creates the "In progress" board segment
- * - Creates the "Await feedback" board segment
- * - Creates the "Done" board segment
+ * - Creates the board segments
  * - Creates the board cards
  * - Creates the main board card container
  * - Sets the navigation bar active
@@ -33,18 +31,18 @@ let filteredTasks_Ids = [];
  */
 async function initBoard() {
   init();
-  activeUser(); //set activeUser
+  activeUser(); 
   updateUserValues();
   await loadTasks();
   await loadContacts();
   await loadCategorys();
-  new Div("main-board", "board-head-con"); //the head container
+  new Div("main-board", "board-head-con"); 
   new Div("board-head-con", "search-con");
-  new Divinputimg("search-con", "search", "text", "Find Task", "../assets/img/searchLupe.png", "search-text-input-id","search-con-div"); //+ id + div_id
-  new docID('search-text-input-id').onclick = keyboardActive();
-  new Button("search-con", "add-task-Task", "button", function () {openAddTask("to-do-con");}, "Add Task");
+  new Divinputimg("search-con","search","text","Find Task","../assets/img/searchLupe.png","search-text-input-id","search-con-div");
+  new docID("search-text-input-id").onclick = keyboardActive();
+  new Button("search-con","add-task-Task","button", function () {openAddTask("to-do-con");},"Add Task");
   new Img("board-head-con", "", "", "../assets/img/cross white.png");
-  new Div("main-board", "board-content-con", ""); //the content container
+  new Div("main-board", "board-content-con", ""); 
   new BoardSegment("board-content-con", "to-do", "To do");
   new BoardSegment("board-content-con", "in-progress", "In progress");
   new BoardSegment("board-content-con", "await-feedback", "Await feedback");
@@ -52,96 +50,109 @@ async function initBoard() {
   createBoardCards();
   new Div("main-card-div", "main-board-card");
   setNavBarActive("board-link");
-  checkMobile();
 }
 
-let segments;
-let toDoPos;
-let inProgessPos;
-let awaitFeedbackPos;
-let donePos;
-let touchTasks;
-let toDoTouchDiv;
-let doneTouchDiv;
+/**
+ * Checks if the current device is a mobile device and performs specific tasks if it is.
+ *
+ * @return {void} This function does not return a value.
+ */
 function checkMobile() {
-  if (window.matchMedia("(max-width: 1023px)").matches) {
-    //Größe vom TouchGerät auch Laptop möglich
-    segments = document.querySelectorAll(".board-segments");
-    console.log(segments);
-    let toDoTouchDiv = document.querySelector(".toDo");
-    let doneTouchDiv = document.querySelector(".done");
-    toDoPos = segments[0].getBoundingClientRect();
-    inProgessPos = segments[1].getBoundingClientRect();
-    awaitFeedbackPos = segments[2].getBoundingClientRect();
-    donePos = segments[3].getBoundingClientRect();
-    console.log(toDoPos, inProgessPos, awaitFeedbackPos, donePos);
+  // if (window.matchMedia("(max-width: 1025px)").matches) {
     touchTasks = document.querySelectorAll(".board-card");
-    console.log(touchTasks);
     touchTasks.forEach(addStart);
-  }
+  // }
 }
 
-function addStart(elem, index) {
+/**
+ * Adds a touchstart, touchend, touchmove event listener to the given element.
+ *
+ * @param {Element} elem - The element to add the event listener to.
+ */
+function addStart(elem) {
   elem.addEventListener("touchstart", (e) => {
+
     let startX = e.changedTouches[0].clientX;
     let startY = e.changedTouches[0].clientY;
-    let elemBottom = elem.getBoundingClientRect().bottom;
+    let nextX;
+    let nextY;
+    let drop_name;
     let elemTop = elem.getBoundingClientRect().top;
-    // console.log("touchstart", startX, startY);
-    let parentID = elem.parentElement.id;
-    console.log("touchstart", " bottom: ", elemBottom, " top: ",elemTop, "style: ", elem.style.bottom);
+    let elemLeft = elem.getBoundingClientRect().left;
+    let segmentList;
+    let elemID = elem.id.split("-");
+    current_Dragged_Element = elemID[elemID.length - 1];
+    //füge einen Clone ins Body ein
+    cloneMoveTouch = elem.cloneNode(true);
+    cloneMoveTouch.classList.add("taskcard-clone");
+    cloneMoveTouch.style.width = `${elem.clientWidth}px`;
+    cloneMoveTouch.style.top = `${elemTop}px`;
+    cloneMoveTouch.style.left = `${elemLeft}px`;
+    document.body.appendChild(cloneMoveTouch);
+ 
     elem.addEventListener("touchend", (eve) => {
-      // elem.style.backgroundColor = "red";
-      console.log("touchend");
-       elem.style.zIndex = 0;
-      // touchDivName = elem.id.split("-");
-      // touchDivID = elem.id.split("-");
-      // touchDivID = touchDivID[touchDivID.length-1]
-      // touchDivID = touchTasks.indexOf(elem);
-      // console.log(touchTasks);
-      // console.log("elemente move end:", " left: ", elem.style.left, " top: ",elem.style.top);
 
-      if (elem.getBoundingClientRect().top < awaitFeedbackPos.top) {
-        console.log("toDoPos", elem.getBoundingClientRect().top , awaitFeedbackPos.top);
+      segmentList = document.querySelectorAll(".board-segments");
 
-          // if (!doneTouchDiv.contains(elem)) {
-          //   doneTouchDiv.appendChild(elem);
-          // }
-      }
-      else if (elem.getBoundingClientRect().left > toDoPos.right && elem.getBoundingClientRect().left > inProgessPos.left) {
-        console.log("inProgess");
-          // if (!toDoTouchDiv.contains(elem)) {
-          //   toDoTouchDiv.appendChild(elem);
-          // }
+      for (let i = 0; i < segmentList.length; i++) {
+        const segment = segmentList[i];
+        let segment_pos = segment.getClientRects()[0];
+        if (
+          segment_pos.left < nextX && nextX < segment_pos.right && 
+          segment_pos.top < nextY && nextY < segment_pos.bottom
+        ) {
+          drop_name = segment.id;
+          drop_name = drop_name.replace("-con", "");
+          moveTo(drop_name);
+        }
       }
 
-     setTimeout(()=>{
-      elem.style.left = 0 + "px";
-      elem.style.top = 0 + "px";
-     }, 2000);
+      document.querySelectorAll(".taskcard-clone").forEach((e) => e.remove());
+      cloneMoveTouch.remove();
     });
 
     elem.addEventListener("touchmove", (eve) => {
       eve.preventDefault();
-    
-      let nextX = eve.changedTouches[0].clientX;
-      let nextY = eve.changedTouches[0].clientY;
-      elem.style.left = nextX - startX + "px";
-      elem.style.top = nextY - startY + "px";
-      elem.style.zIndex = 99999;
-      console.log("touchmove", elem.style.zIndex);
-
-      // console.log("elemente move:", elem.style.left,elem.style.top );
-    });
+      nextX = eve.changedTouches[0].clientX;
+      nextY = eve.changedTouches[0].clientY;
+      cloneMoveTouch.style.left = nextX + "px";
+      cloneMoveTouch.style.top = nextY + "px";
+      checkAutoScroll(eve);
+     });
   });
 }
 
-// function  moveCardmobile(id, bool){
-//   // docID("main-board-card").style.zIndex = 0;
-// // let img_id = ``;
-//   //  docID(id).style.backgroundColor = "red";
-//    console.log(id, bool);
-// }
+/**
+ * Fuction is called by the moveTouching() function to allow for a dymanic scroll during the drag-drop on mobile devices
+ * It calculates the top and bottom 30 pixels. When a touch is registered in the defined areas an interval is called that scrolls up or down.
+ * Scroll speed is dynamically determined by how high/low the user touches.
+ * clears interval every time an area is touched to avoid stacking intervals
+ *
+ * @param {event} event the event of someone touching the screen
+ */
+function checkAutoScroll(event) {
+  let segmentsDiv = document.querySelector("#board-content-con");
+
+  let rect = segmentsDiv.getBoundingClientRect();
+
+  let touchY = event.touches[0].clientY;
+  let topLimit = rect.top + 30;
+  let bottomLimit = rect.bottom - 30;
+
+  if (touchY <= topLimit) {
+    clearInterval(onTouchScrollInterval);
+    onTouchScrollInterval = setInterval(() => {
+      segmentsDiv.scrollTop -= 10 + (topLimit - touchY);
+    }, 50);
+  } else if (touchY >= bottomLimit) {
+    clearInterval(onTouchScrollInterval);
+    onTouchScrollInterval = setInterval(() => {
+      segmentsDiv.scrollTop += 10 - (bottomLimit - touchY); // Scroll down a bit
+    }, 50);
+  } else {
+    clearInterval(onTouchScrollInterval);
+  }
+}
 
 /**
  * Opens the add task functionality in the specified container.
@@ -346,7 +357,6 @@ function getTasksIdx() {
 
   for (let i = 0; i < tasks.length; i++) {
     const element_idx = tasks[i].id;
-
     if (current_Dragged_Element == element_idx) {
       task_idx = i;
     }
