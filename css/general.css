@@ -1,16 +1,19 @@
 @font-face {
   font-family: "Open Sans";
-  src: url(../assets/fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf);
-  src: url(../assets/fonts/OpenSans-VariableFont_wdth,wght.ttf);
+  src: url(../assets/fonts/OpenSans-Italic-VariableFont_wdthwght.ttf);
+  src: url(../assets/fonts/OpenSans-VariableFont_wdthwght.ttf);
 }
 
 @font-face {
   font-family: "Inter";
-  src: url(../assets/fonts/Inter-VariableFont_slnt,wght.ttf);
+  src: url(../assets/fonts/Inter-VariableFont_slntwght.ttf);
 }
 
 :root {
   --mediumSize: 768px;
+  --font-body: "Open Sans", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
   /*colors*/
   --primary: #4589ff;
   --secondary: #d2e3ff;
@@ -61,36 +64,32 @@
 .font-body {
   color: var(--menu-color, #42526e);
   /* Version 2/body */
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--font-body, "Open Sans", sans-serif);
   font-size: 1rem;
-  font-style: normal;
   font-weight: 400;
   line-height: 120%; /* 1.2rem */
 }
 
-.font-t1{
+.font-t1 {
   /* Version 2/t1 */
-font-family: "Open Sans";
-font-size: 3rem;
-font-style: normal;
-font-weight: 400;
-line-height: 120%; /* 57.6px */
+  font-family: var(--font-body, "Open Sans", sans-serif);
+  font-size: 3rem;
+  font-weight: 400;
+  line-height: 120%; /* 57.6px */
 }
 
 .font-t5 {
   /* Version 2/t5 */
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--font-body, "Open Sans", sans-serif);
   font-size: 1.4375rem;
-  font-style: normal;
   font-weight: 400;
   line-height: 120%; /* 1.725rem */
 }
 
 .font-t6 {
   /* Version 2/t6 */
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--font-body, "Open Sans", sans-serif);
   font-size: 1.1875rem;
-  font-style: normal;
   font-weight: 400;
   line-height: 120%; /* 1.425rem */
 }
@@ -99,9 +98,8 @@ line-height: 120%; /* 57.6px */
   /* Version 2/label */
   color: var(--label-color);
   /* font-family: Inter; */
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--font-body, "Open Sans", sans-serif);
   font-size: 0.8125rem;
-  font-style: normal;
   font-weight: 400;
   line-height: 120%; /* 0.975rem */
 }
@@ -111,7 +109,7 @@ body {
   width: 100%;
   margin: 0;
   background-color: var(--white);
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--font-body, "Open Sans", sans-serif);
 }
 
 header {
@@ -311,26 +309,26 @@ input[type="checkbox"] {
   height: 16px;
 }
 
-
 .imput-img-div {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;
   padding: 0px 21px;
-  border-bottom: 1px solid var(--grey); 
+  border-bottom: 1px solid var(--grey);
 }
 
 /* nochmal gemeinsam schauen */
 
-.input-field{
-outline: none;
-border: none;
+.input-field {
+  outline: none;
+  border: none;
 }
 
-
-.imput-img-div:hover, .imput-img-div:focus-within, .imput-img-div:focus{
-border-bottom: 1px solid var(--primary);
+.imput-img-div:hover,
+.imput-img-div:focus-within,
+.imput-img-div:focus {
+  border-bottom: 1px solid var(--primary);
 }
 
 .profile-badge {
@@ -408,19 +406,19 @@ border-bottom: 1px solid var(--primary);
   animation-fill-mode: forwards;
 }
 
-.fadeIn{
+.fadeIn {
   animation-duration: 500ms;
   animation-delay: 0ms;
   animation-fill-mode: forwards;
 }
 
-.fadeOut{
+.fadeOut {
   animation-duration: 500ms;
   animation-delay: 100ms;
   animation-fill-mode: backwards;
 }
 
-#help-item{
+#help-item {
   display: none;
 }
 
@@ -446,32 +444,26 @@ border-bottom: 1px solid var(--primary);
   }
 }
 
-@keyframes fadingLeft{
-0%{
-  left:-100%;
-}
-100%{
-  left: 0;
-}
+@keyframes fadingLeft {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 0;
+  }
 }
 
-@keyframes fadingRight{
-  0%{
-    right:-100%;
+@keyframes fadingRight {
+  0% {
+    right: -100%;
   }
-  100%{
+  100% {
     right: 0;
   }
-
 }
-/* 
-@keyframes fadeOut{
-  
-} */
 
 @media (max-width: 1023px) {
-
-  #help-item{
+  #help-item {
     display: flex;
   }
 
@@ -513,34 +505,4 @@ border-bottom: 1px solid var(--primary);
     font-weight: 400;
     line-height: 120%;
   }
-  /* 
-  [type="checkbox"] {
-    position: relative;
-    left: -200px;
-    opacity: 0;
-  }
-
-  input[type="checkbox"] {
-    position: absolute;
-    vertical-align: middle;
-    width: fit-content;
-  } */
-
-  /* [type="checkbox"] + label::before {
-    width: 24px;
-    height: 24px;
-    background-image: url(../assets/img/checket.svg);
-    content: "";
-    float: left;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  [type="checkbox"]:checked + label::before {
-    background-image: url(../assets/img/box.svg);
-    width: 24px;
-    height: 24px;
-    background-position: center;
-    background-repeat: no-repeat;
-  }*/
 }
