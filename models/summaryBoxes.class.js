@@ -26,6 +26,19 @@ class SummaryBox {
     this.renderPosition();
   }
 
+createFirstBox() {
+  docID(`item-${summaryBox_div_id}-0`).innerHTML ="";
+  new Div(`item-${summaryBox_div_id}-0`,`item-${summaryBox_div_id}-0-1`, "col");
+  new Div(`item-${summaryBox_div_id}-0-1`, 'div-row', "row");
+  new Img('div-row', "", "", images[0]);
+  new Headline("h1", 'div-row', `task_amounts-${summaryBox_div_id}-0`, "", task_amounts[0]);
+  new Headline("h6",`item-${summaryBox_div_id}-0-1`, "", "",descriptions[0]);
+  new Div(`item-${summaryBox_div_id}-0`, 'first-box');
+  new Headline("h6", 'first-box', 'upcoming-deadline', "", "Upcoming Deadline");
+  new Span('first-box', "", "", "Upcoming Deadline");
+  docID(`first-box`).onclick = navToBoard;
+}
+
   generateItemHTML(id, index) {
     new Div(`${id}-${index}`, `item-${id}-${index}`, "col");
     new Div(`item-${id}-${index}`, `item-${id}-${index}-row`, 'row')

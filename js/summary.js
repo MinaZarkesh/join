@@ -22,10 +22,8 @@ let images = [
   "../assets/img/in_progress_summary.png",
   "../assets/img/await_feedback_summary.png",
   "../assets/img/done_summary.png",
-  "../assets/img/done_summary.png",
+  "../assets/img/urgent_summary.png",
 ];
-
-
 
 /**
  * Initializes the summary.
@@ -34,61 +32,56 @@ let images = [
  */
 async function initSummary() {
   await loadUsers();
-  activeUser(); 
+  await activeUser();
   init();
-  greetings();
-  task_amounts = await updateTaskAmounts();
-  createSummaryBoxes(); 
+  await generateGreetingMessage();
+  const taskAmounts = await updateTaskAmounts();
+  createSummaryBoxes();
   setNavBarActive("summary-link");
 }
 
 /**
- * Updates the task amounts.
- *
- * @return {Array} The updated task amounts.
+ * Updates the task amounts and returns the updated amounts array.
  */
 async function updateTaskAmounts() {
   await loadTasks();
-  let amounts = [];
-  sum = 0;
-  amounts = getTasksAmounts();
-  amounts.forEach((item) => {
-    sum += item;
-  });
-  sum = sum - amounts[amounts.length - 1];
-  amounts.splice(0, 0, tasks.filter((obj) => obj.priority == "Urgent").length); //wieviele Tasks sind urgent
-  amounts.splice(1, 0, sum);
-  task_amounts = amounts;
-  return amounts;
+  let taskAmounts = getTasksAmounts();
+  let urgentTasksCount = tasks.filter(
+    (task) => task.priority === "Urgent"
+  ).length;
+  let sum =
+    taskAmounts.reduce((total, amount) => total + amount, 0) -
+    taskAmounts[taskAmounts.length - 1];
+  taskAmounts.splice(0, 0, urgentTasksCount);
+  taskAmounts.splice(1, 0, sum);
+  return taskAmounts;
 }
 
 /**
  * Generates a greeting message based on the current hour and displays it on the webpage.
  *
- * @param {number} currentHour - The current hour of the day.
  * @return {void} This function does not return anything.
  */
-function greetings() {
-  const currentHour = new Date().getHours();
-  let greeting = "";
-  greeting = getGreeting(currentHour);
-  new Div("greetings", "greetings-span", "font-t1", greeting);
-  new Div("greetings", "greeting-name", "", active_user.name);
+function generateGreetingMessage() {
+  let greeting = getGreeting();
   if (active_user.name == "Guest") {
-    docID("greeting-name").textContent = "";
+    new Div("greetings", "greetings-span", "font-t1", greeting);
+    new Div("greetings", "greeting-name", "", "");
   } else {
-    docID("greetings-span").innerHTML += ", ";
-    docID("greeting-name").textContent = active_user.name;
+    new Div("greetings", "greetings-span", "font-t1", `${greeting},`);
+    new Div("greetings", "greeting-name", "", active_user.name);
   }
 }
+
 
 /**
  * Generate a greeting based on the current hour.
  *
- * @param {number} currentHour - The current hour of the day.
  * @return {string} The appropriate greeting based on the current hour.
  */
-function getGreeting(currentHour) {
+function getGreeting() {
+  const currentHour = new Date().getHours();
+  let greeting;
   if (currentHour >= 6 && currentHour < 12) {
     greeting = "Good Morning";
   } else if (currentHour >= 12 && currentHour < 18) {
@@ -98,14 +91,12 @@ function getGreeting(currentHour) {
   } else {
     greeting = "Good Night";
   }
-  return greeting
+  return greeting;
 }
 
 /**
  * Creates summary boxes.
  *
- * @param {type} summaryBox_div_id - the id of the summary box div
- * @return {type} undefined
  */
 function createSummaryBoxes() {
   docID(summaryBox_div_id).innerHTML = "";
@@ -114,28 +105,7 @@ function createSummaryBoxes() {
     new Div(summaryBox_div_id, `${summaryBox_div_id}-${i}`);
     summary_boxes.push(new SummaryBox(summaryBox_div_id, i));
   }
-  createFirstBox();
-}
-
-/**
- * Create the first box by clearing the existing box and adding elements in a new div to make it position relative in CSS.
- *
- * @return {undefined} This function does not return a value.
- */
-function createFirstBox() {
-  docID(`item-${summaryBox_div_id}-0`).innerHTML = /*html*/ `
-    <div  id="item-${summaryBox_div_id}-0-1" class="col">  
-      <div class="row">
-        <img src=${images[0]}>
-        <h1 id="task-amounts-${summaryBox_div_id}-0">${task_amounts[0]}</h1>
-      </div>
-      <h6>${descriptions[0]}</h6>
-    </div>
-    <div onclick="navToBoard()"id="first-box">
-      <h6 id="upcoming-deadline"></h6>
-      <span>Upcoming Deadline</span>
-    </div>
- `;
+  summary_boxes[0].createFirstBox();
   checkDate();
 }
 
