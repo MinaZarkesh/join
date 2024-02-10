@@ -107,6 +107,7 @@ async function init() {
  * @return {undefined} This function does not return a value.
  */
 function setHeader() {
+  new Header();
   openNavMenu(); 
   if (localStorage.getItem("activeuser") === null && sessionStorage.getItem("activeuser") === null) {
     docID("header-name-tag").style.display = "none";

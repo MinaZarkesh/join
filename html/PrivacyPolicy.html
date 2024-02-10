@@ -19,44 +19,23 @@
     <link rel="stylesheet" href="../css/navbar.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/help.css" />
+    
     <script src="../js/resetVariables.js"></script>
     <script src="../elements/element.class.js"></script>
     <script src="../elements/div.class.js"></script>
     <script src="../elements/anchor.class.js"></script>
     <script src="../elements/img.class.js"></script>
     <script src="../elements/span.class.js"></script>
-    <script src="../js/storage.js"></script>
+    <script src="../elements/unorderedList.class.js"></script>
+    <script src="../elements/listElement.class.js"></script>
+    <script src="../models/header.class.js"></script>
     <script src="../models/menuLink.class.js"></script>
+    <script src="../js/storage.js"></script>
+  
   </head>
 
   <body onload="init()">
-    <header id="header-div" class="">
-      <img class="img-fluid" src="../assets/img/logo-white.png" alt="logo" />
-      <div class="header-row">
-        <span class="span-size font-t6">Kanban Project Management Tool</span>
-        <a href="../html/help.html">
-          <img class="help-icon" src="../assets/img/help.png" alt="help-icon" />
-        </a>
-        <div class="d-flex">
-          <ul id="dropdown-menu" class="dropdown-menu">
-            <li><a id="help-item" class="dropdown-item" href="..\html\help.html">Help</a></li>
-            <li>
-              <a class="dropdown-item" href="../html/LegalNotice.html"
-                >Legal Notice</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" href="..\html\PrivacyPolicy.html"
-                >Privacy Policy</a
-              >
-            </li>
-            <li>
-              <a class="dropdown-item" id="logout" onclick="logout()" href="..\html\index.html">Log Out</a>
-            </li>
-          </ul>
-        </div>
-        <div onclick="showHeaderDropdown()" id="header-name-tag"></div>
-      </div>
+    <header id="header-div">
     </header>
 
     <div class="main-site">
