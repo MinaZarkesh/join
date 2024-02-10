@@ -194,8 +194,7 @@ function CheckboxToggle(id, div_id, event) {
     }else {
         docID(id).checked = false;
         docID(div_id).classList.remove("active-list");
-    }
-    // docID(id).checked == false    
+    }  
 }
 
 /**
