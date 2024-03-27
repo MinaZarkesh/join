@@ -237,6 +237,7 @@ function changeStyle(bool) {
       "../html/LegalNotice.html",
       "Legal Notice"
     );
+    // new Anchor("login-link-group", "", "", "mina-zarkesh.de", "mady by Mina Zarkesh")
   }
 }
 

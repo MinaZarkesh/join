@@ -23,6 +23,7 @@ main {
   top: 4.6%;
   right: 6%;
   display: flex;
+  align-items: center;
   width: fit-content;
   gap: 35px;
 }
@@ -190,6 +191,15 @@ main {
   gap: 32px;
 }
 
+.website{
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+}
+
+.website img{
+  width: 24px;
+}
 
 @media (max-width: 1023px) {
   .main-site,
@@ -202,7 +212,7 @@ main {
     display: inline-flex;
     align-items: center;
     width: fit-content;
-    gap: 35px;
+    gap: 24px;
     top: 83%;
     right: auto;
   }
