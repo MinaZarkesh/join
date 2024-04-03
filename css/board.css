@@ -63,6 +63,10 @@
     z-index: 0;
 }
 
+.board-card:hover {
+    cursor: pointer;
+}
+
 .taskcard-clone {
     position: fixed;
     opacity: 0.7;

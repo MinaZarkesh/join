@@ -491,6 +491,8 @@ function clearTask() {
     listRender('associate-con', ".tasks-contacts");
     listRender('department-con', ".tasks-category");
     docID('input-con-Add').value = "";
+    docID('taskName-requiered').textContent = "";
+    docID('due-date-requiered').textContent = "";
     subtask = [];
     subtaskListRender();
 }
@@ -519,13 +521,19 @@ async function addTask(department) {
 
     let title = docID('task-title').value;
     let date = docID('date-input').value;
-    console.log("date: ", date, Date.now(), date >= 4999999999999, date < Date.now());
+    let parseDate = Date.parse(date);
     if (!title) {
-        docID('taskName-requiered').textContent = 'This field is requiered';
+        docID('taskName-requiered').textContent = 'This field is required';
         return
     }
-    if (!date || date < Date.now() || date >= 4999999999999) {
-        docID('due-date-requiered').textContent = 'This field is requiered';
+    if (!date) {
+        docID('due-date-requiered').textContent = 'This field is required';
+        return
+    }else if(parseDate < (Date.now() - 86400000) ){
+        docID('due-date-requiered').textContent = 'Your selection of the due date is in the past! Please choose a date in the future!';
+        return
+    }else if( parseDate >= 4999999999999){
+        docID('due-date-requiered').textContent = 'Your selection of the due date is too far in the future! Please choose a date before 2128-06-11!';
         return
     }
     let description = docID('desc-input').value;
@@ -561,9 +569,9 @@ async function addTask(department) {
     task_assigned_to_nametag = [];
     task_assigned_to_color = [];
     await setItem("tasks", tasks);
-    // setTimeout(() => {
-    //     window.location.href = "../html/board.html";
-    // }, 2000)
+    setTimeout(() => {
+        window.location.href = "../html/board.html";
+    }, 2000)
     
 }
 
@@ -576,7 +584,7 @@ async function addTask(department) {
  */
 function requiered(title, id) {
     if (!title) {
-        docID(id).textContent = 'This field is requiered';
+        docID(id).textContent = 'This field is required';
         return false;
     } else {
         return true;

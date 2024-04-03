@@ -56,6 +56,10 @@
     padding: 13px 16px;
 }
 
+#assigned-img:hover, #category-img:hover{
+    cursor: pointer;
+}
+
 .textarea {
     height: 80px;
     outline: none;
@@ -70,6 +74,9 @@
 #Due-date input {
     height: 50px;
     padding: 0 10px;
+}
+#Due-date input:hover{
+    cursor: text;
 }
 
 #priority-button {
@@ -170,6 +177,7 @@
 .tasks-contacts:hover, .tasks-category:hover, .list-element:hover, .list-element:hover input,
 .list-element img:hover, #subtask-img:hover, #img-check:hover, .list:hover::before, .list:hover, .list:hover input  {
     background-color: #D2E3FF;
+    cursor: pointer;
 }
 
 #contact-list-Parent {

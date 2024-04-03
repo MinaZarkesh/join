@@ -18,6 +18,7 @@
 #navbar-con{
   display: flex;
   flex-direction: column;
+  gap: 1vh;
 }
 
 #navbar-bottom{
@@ -31,7 +32,7 @@
   width: 100%;
   background-color: var(--white);
   border-radius: 10px;
-  padding: 3vh 1vw;
+  padding: 3vh 3vw;
   color: var(--menuColor); /* Black text color */
   display: flex;
   gap: 1vw;

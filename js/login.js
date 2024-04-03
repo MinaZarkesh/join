@@ -220,7 +220,7 @@ function changeStyle(bool) {
       "login-link-group",
       "",
       "link-group-a",
-      "/",
+      "https://www.mina-zarkesh.de",
       "Portfolio"
     );
   } else {
@@ -249,7 +249,7 @@ function changeStyle(bool) {
       "login-link-group",
       "",
       "",
-      "/",
+      "https://www.mina-zarkesh.de",
       "Portfolio"
     );
   }
