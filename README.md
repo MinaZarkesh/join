@@ -1,23 +1,7 @@
-# join-mit-Kay
+# Join Gruppenarbeit
 
-Join Mina Zarkesh
-
-## Login
-
-Gruppe:
-Token für Backend: 848MSA6HLK28ZES60D4LDV7DSIDBDOSA4TSPOBAX
-Single-Use
-Token für Join mit Kay: CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE
-
-## Figma Link
-
-https://www.figma.com/file/mhDPfpde734bGDOh5W1U3f/Join-Version-2-final?type=design&node-id=0-1&mode=design&t=qXkEakXu5OYW8IF8-0
-
-## Benennung-Regeln
-function camelCase
-class PascalCase
-.css-classes #id-names kebap-case
-variables snake_case
+Mina Zarkesh
+Kay Schumacher
 
 ## Reports
 
@@ -107,6 +91,3 @@ variables snake_case
 
   - Ich habe überall die Benennung der Variablen zu unseren neuen Regeln angepasst, außer in der AddTasks und den dazugehörigen classes, weil ich nicht genau wusste, wie das alles zusammen passt und die dazugehörigen Dateien sind noch nicht richtig umbenannt, weil wir dafür noch nicht festgelegt hatten.
   - Außerdem habe ich gemerkt, dass das DropDownMenu bei Assigned nicht mehr die Contacts anzeigt, aber ich weiß nicht ob das Absicht ist.
-
-
-Dies ist ein Test
