@@ -71,6 +71,7 @@ main {
 .col:hover {
   background-color: var(--secondary);
   scale: 1.1;
+  cursor: pointer;
 }
 
 /*first Row in Item*/
@@ -166,6 +167,7 @@ main {
   color: var(--primary);
   scale: 1.05;
   z-index: 1;
+  cursor: pointer;
 }
 
 #item-summary-box-0:hover #item-summary-box-0-1 {
@@ -174,17 +176,20 @@ main {
   color: var(--primary);
   scale: 1;
   z-index: 0;
+  cursor: pointer;
 }
 
 /*überschreiben fürs erste Element*/
 #item-summary-box-0:hover #item-summary-box-0-1 h6,
 #item-summary-box-0:hover #first-box h6 {
   color: var(--primary);
+  cursor: pointer;
 }
 
 /*Strich wechselt Farbe beim hovern*/
 #item-summary-box-0:hover #first-box {
   border-left: 3px solid var(--primary);
+  cursor: pointer;
 }
 
 @media (max-width: 1023px) {
@@ -195,10 +200,12 @@ main {
   .col:hover {
     background-color: var(--secondary);
     scale: 1;
+    cursor: pointer;
   }
 
   #item-summary-box-0:hover {
-    scale: 1;
+    scale: 1;  
+    cursor: pointer;
   }
 
   #greetings {

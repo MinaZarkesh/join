@@ -215,6 +215,14 @@ function changeStyle(bool) {
       "../html/LegalNotice.html",
       "Legal Notice"
     );
+    
+    new Anchor(
+      "login-link-group",
+      "",
+      "link-group-a",
+      "/",
+      "Portfolio"
+    );
   } else {
     docID("signup-back-btn").style.display = "none";
     docID("button-group").style.display = "flex";
@@ -237,7 +245,13 @@ function changeStyle(bool) {
       "../html/LegalNotice.html",
       "Legal Notice"
     );
-    // new Anchor("login-link-group", "", "", "mina-zarkesh.de", "mady by Mina Zarkesh")
+    new Anchor(
+      "login-link-group",
+      "",
+      "",
+      "/",
+      "Portfolio"
+    );
   }
 }
 

@@ -148,6 +148,7 @@ function openNavMenu() {
   new Div("navbar", "navbar-bottom");
   new Anchor("navbar-bottom","nav-privacy","", "../html/PrivacyPolicy.html", "Privacy Policy");
   new Anchor("navbar-bottom","nav-legal","","../html/LegalNotice.html","Legal Notice");
+  new Anchor("navbar-bottom","nav-portfolio","","/","Portfolio");
 }
 
 

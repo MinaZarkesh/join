@@ -21,7 +21,7 @@ class Header {
         new ListElement('dropdown-menu', 'li-3', "dropdown-item"); //parent, id, class, data
         new Anchor('li-3', 'logout', "", "../html/index.html", "Log Out"); //parent, id, class, href, textContent
         new ListElement('dropdown-menu', 'li-4', "dropdown-item"); //parent, id, class, data
-        new Anchor('li-4', "", "", "/", "Main Website"); //parent, id, class, href, textContent
+        new Anchor('li-4', "", "", "/", "Portfolio"); //parent, id, class, href, textContent
         new Div(this.headerRow,"header-name-tag",'', "") //parent, id, class, data
         docID('logout').onclick = logout;
         docID('header-name-tag').onclick = showHeaderDropdown;

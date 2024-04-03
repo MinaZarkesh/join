@@ -519,11 +519,12 @@ async function addTask(department) {
 
     let title = docID('task-title').value;
     let date = docID('date-input').value;
+    console.log("date: ", date, Date.now(), date >= 4999999999999, date < Date.now());
     if (!title) {
         docID('taskName-requiered').textContent = 'This field is requiered';
         return
     }
-    if (!date) {
+    if (!date || date < Date.now() || date >= 4999999999999) {
         docID('due-date-requiered').textContent = 'This field is requiered';
         return
     }
@@ -560,9 +561,9 @@ async function addTask(department) {
     task_assigned_to_nametag = [];
     task_assigned_to_color = [];
     await setItem("tasks", tasks);
-    setTimeout(() => {
-        window.location.href = "../html/board.html";
-    }, 2000)
+    // setTimeout(() => {
+    //     window.location.href = "../html/board.html";
+    // }, 2000)
     
 }
 

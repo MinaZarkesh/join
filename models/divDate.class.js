@@ -11,8 +11,8 @@ class Divdate extends Elements {
      */
     constructor(parent, id, className) {
         super("input", id, className)
-        // min="2000-01-02"
-        this.element.min = this.today()
+        this.element.min = this.today();
+        this.element.max = '2128-06-11';
         this.element.type = 'date';
         docID(parent).appendChild(this.element);
         docID(id).onfocus = function () {blueBorderToggle(id)};
