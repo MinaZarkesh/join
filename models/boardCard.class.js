@@ -51,17 +51,17 @@ class BoardCard {
     this.container = new Div(this.parent,this.container_id,this.container_class);
     this.departments = new Div(this.container_id,this.departments_id,this.departments_class,this.departments_content);
     this.departments.depart(e, this.departments_id);
-this.description = new Div(this.container_id, this.description_id, this.description_class,);
-        this.title(e, this.description_id)
-        this.subtask = new Div(this.container_id, this.subtask_id, this.subtask_class);
+    this.description = new Div(this.container_id, this.description_id, this.description_class,);
+    this.title(e, this.description_id)
+    this.subtask = new Div(this.container_id, this.subtask_id, this.subtask_class);
     this.subtaskContent(this.subtask_id, e);
     new Div(this.container_id, this.lastLine_div_id, "last-line-div");
     this.associates = new Div(this.lastLine_div_id, this.associates_id, this.associates_class);
     this.assosciates(this.associates_id, e)
     new Img(this.lastLine_div_id, this.priority_id,"board-card-priority", e.priorityImg);
     docID(this.container_id).onclick = function () {openBigCard(e.id)};
-     docID(this.container_id).ondragstart = function () {startDragging(e.id)};
-     docID(this.container_id).ontouchstart = function () {checkMobile()};
+    docID(this.container_id).ondragstart = function () {startDragging(e.id)};
+    docID(this.container_id).ontouchstart = function () {checkMobile()};
     docID(this.container_id).draggable = true;
   }
 

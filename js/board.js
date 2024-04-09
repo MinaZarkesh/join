@@ -71,7 +71,6 @@ function checkMobile() {
  */
 function addStart(elem) {
   elem.addEventListener("touchstart", (e) => {
-
     let startX = e.changedTouches[0].clientX;
     let startY = e.changedTouches[0].clientY;
     let nextX;
@@ -79,11 +78,13 @@ function addStart(elem) {
     let drop_name;
     let elemTop = elem.getBoundingClientRect().top;
     let elemLeft = elem.getBoundingClientRect().left;
-    let segmentList;
+    let  segmentList = document.querySelectorAll(".board-segments");
     let elemID = elem.id.split("-");
     current_Dragged_Element = elemID[elemID.length - 1];
     //füge einen Clone ins Body ein
+    
     cloneMoveTouch = elem.cloneNode(true);
+    
     cloneMoveTouch.classList.add("taskcard-clone");
     cloneMoveTouch.style.width = `${elem.clientWidth}px`;
     cloneMoveTouch.style.top = `${elemTop}px`;
@@ -93,7 +94,7 @@ function addStart(elem) {
     elem.addEventListener("touchend", (eve) => {
 
       segmentList = document.querySelectorAll(".board-segments");
-
+   
       for (let i = 0; i < segmentList.length; i++) {
         const segment = segmentList[i];
         let segment_pos = segment.getClientRects()[0];
@@ -102,11 +103,18 @@ function addStart(elem) {
           segment_pos.top < nextY && nextY < segment_pos.bottom
         ) {
           drop_name = segment.id;
+          console.log("segment.id: ", segment.id);
           drop_name = drop_name.replace("-con", "");
           moveTo(drop_name);
         }
       }
-
+      segmentList.forEach((e) => {
+        let dragFrame = e.id;
+        dragFrame = dragFrame.replace("-con", "-div");
+        console.log("dragFrame: ", dragFrame);
+        dragFrame = docID(dragFrame);
+        dragFrame.classList.remove("drag-frame");
+      });
       document.querySelectorAll(".taskcard-clone").forEach((e) => e.remove());
       cloneMoveTouch.remove();
     });
@@ -118,6 +126,27 @@ function addStart(elem) {
       cloneMoveTouch.style.left = nextX + "px";
       cloneMoveTouch.style.top = nextY + "px";
       checkAutoScroll(eve);
+
+      segmentList.forEach((e) => {
+        let dragFrame = e.id;
+        dragFrame = dragFrame.replace("-con", "-div");
+        console.log("dragFrame: ", dragFrame);
+        dragFrame = docID(dragFrame);
+        dragFrame.classList.remove("drag-frame");
+      });
+      for (let i = 0; i < segmentList.length; i++) {
+        const segment = segmentList[i];
+        let segment_pos = segment.getClientRects()[0];
+        if (
+          segment_pos.left < nextX && nextX < segment_pos.right && 
+          segment_pos.top < nextY && nextY < segment_pos.bottom
+        ) {
+          let dragFrame= segment.id;
+          dragFrame = dragFrame.replace("-con", "-div");
+           dragFrame = document.getElementById(dragFrame);
+          dragFrame.classList.add("drag-frame");
+        }
+      }
      });
   });
 }
@@ -333,6 +362,17 @@ function allowDrop(ev) {
 function moveTo(category) {
   let id = getTasksIdx();
   tasks[id].container = `${category}-con`;
+
+
+  let dragFrame = `${category}-div`;
+  let segmentList = document.querySelectorAll(".board-segments");
+  segmentList.forEach((e) => {
+     let segment = e.id;
+     segment = segment.replace("-con", "-div");
+     segment = docID(segment);
+     segment.classList.remove("drag-frame");
+  })
+  
   setItem("tasks", tasks);
   renderBoardSegments();
 }
@@ -345,6 +385,16 @@ function moveTo(category) {
  */
 function dragOver(category) {
   allowDrop(event);
+  let dragFrame = `${category}-div`;
+  let segmentList = document.querySelectorAll(".board-segments");
+  segmentList.forEach((e) => {
+    let segment = e.id;
+    segment = segment.replace("-con", "-div");
+    segment = docID(segment);
+     segment.classList.remove("drag-frame");
+  })
+  dragFrame = document.getElementById(dragFrame);
+  dragFrame.classList.add("drag-frame");
 }
 
 /**
