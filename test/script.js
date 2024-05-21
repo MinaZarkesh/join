@@ -1,9 +1,10 @@
 async function onloadFunc() {
  
-  putData("/users", oldUsers);
-  putData("/contacts", oldContacts);
-  putData("/tasks", oldTasks);
-  putData("/categorys", oldCategorys);
+  setData("/users", oldUsers);
+  setData("/contacts", oldContacts);
+  setData("/tasks", oldTasks);
+  setData("/categorys", oldCategorys);
+
   contacts = await getData("/contacts");
   let users = oldUsers;
   users.push(
@@ -14,20 +15,20 @@ async function onloadFunc() {
         password: "test",
       }
   );
-  putData("/users", users)
-  postData("/test", users);
-  deleteData("/test");
+  setData("/users", users)
+   setData("/test/", users);
+  // deleteData("/test/0");
   console.log(contacts[1]);
 }
 
 const BASE_URL =
   "https://remotestorage-45af7-default-rtdb.europe-west1.firebasedatabase.app/";
 
-async function loadData(path = "") {
-  let response = await fetch(BASE_URL + path + ".json");
-  let responseToJson = await response.json();
-  return responseToJson;
-}
+// async function loadData(path = "") {
+//   let response = await fetch(BASE_URL + path + ".json");
+//   let responseToJson = await response.json();
+//   return responseToJson;
+// }
 
 //abfragen
 async function getData(path = "") {
@@ -61,7 +62,7 @@ async function deleteData(path = "") {
 }
 
 //update
-async function putData(path, data) {
+async function setData(path, data) {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "PUT",
     header: {
