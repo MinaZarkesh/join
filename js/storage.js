@@ -329,6 +329,12 @@ async function loadContacts() {
 async function loadTasks() {
   // tasks = JSON.parse(await getItem("tasks"));
   tasks = await getItem("tasks");
+  tasks.forEach((t)=>{
+    if(!t.subtasks ){
+      t.subtasks = [];
+      t.subtaskschecked = [];
+    }
+  })
 }
 
 /**
