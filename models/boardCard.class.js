@@ -107,6 +107,7 @@ class BoardCard {
    */
   assosciates(parent, e) {
     let counter;
+    
     e.assignedToNameTag.forEach((element, index) => {
       if (index < 3) {
         let div_id = `${parent}-assiciate-${index}`;

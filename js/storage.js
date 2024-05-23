@@ -38,29 +38,43 @@ let segements_array = [
  * The token used for remote storage authentication.
  * @type {string}
  */
-const STORAGE_TOKEN = "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE";
+// const STORAGE_TOKEN = "CA66J9VJZ010MHTW4IAFVKAPKFNFFP7F129MWRPE";
+const BASE_URL =
+  "https://remotestorage-45af7-default-rtdb.europe-west1.firebasedatabase.app/";
 
 /**
  * The URL for remote storage.
  * @type {string}
  */
-const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
+// const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
-/**
- * Sets a key-value pair in remote storage.
- *
- * This function sends a POST request to the remote storage URL with the provided key and value.
- *
- * @param {string} key - The key for the data.
- * @param {any} value - The value to be stored.
- * @returns {Promise<Object>} - A Promise that resolves to the response data.
- */
-async function setItem(key, value) {
-  const payload = { key, value, token: STORAGE_TOKEN };
-  return fetch(STORAGE_URL, {
-    method: "POST",
-    body: JSON.stringify(payload),
-  }).then((res) => res.json());
+// /**
+//  * Sets a key-value pair in remote storage.
+//  *
+//  * This function sends a POST request to the remote storage URL with the provided key and value.
+//  *
+//  * @param {string} key - The key for the data.
+//  * @param {any} value - The value to be stored.
+//  * @returns {Promise<Object>} - A Promise that resolves to the response data.
+//  */
+// async function setItem(key, value) {
+//   const payload = { key, value, token: STORAGE_TOKEN };
+//   return fetch(STORAGE_URL, {
+//     method: "POST",
+//     body: JSON.stringify(payload),
+//   }).then((res) => res.json());
+// }
+
+//update
+async function setItem(path, data) {
+  let response = await fetch(BASE_URL + path + ".json", {
+    method: "PUT",
+    header: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return (responseToJson = await response.json());
 }
 
 /**
@@ -69,16 +83,27 @@ async function setItem(key, value) {
  * @param {string} key - The key of the item to retrieve.
  * @return {Promise<any>} A promise that resolves to the value of the retrieved item.
  */
-async function getItem(key) {
-  const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-  return fetch(url)
-    .then((res) => res.json())
-    .then((res) => {
-      if (res.data) {
-        return res.data.value;
-      }
-      throw `Could not find data with key "${key}".`;
-    });
+// async function getItem(key) {
+//   const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
+//   return fetch(url)
+//     .then((res) => res.json())
+//     .then((res) => {
+//       if (res.data) {
+//         return res.data.value;
+//       }
+//       throw `Could not find data with key "${key}".`;
+//     });
+// }
+
+//abfragen
+async function getItem(path) {
+  let response = await fetch(BASE_URL + path + ".json", {
+    method: "GET",
+    header: {
+      "Content-Type": "application/json",
+    },
+  });
+  return (responseToJson = await response.json());
 }
 
 /**
@@ -280,7 +305,9 @@ function setNameTag(name) {
  * @return {Promise<void>} A promise that resolves when the users are loaded and parsed.
  */
 async function loadUsers() {
-  users = JSON.parse(await getItem("users"));
+  // users = JSON.parse(await getItem("users"));
+  users = await getItem("users");
+
 }
 
 /**
@@ -289,7 +316,9 @@ async function loadUsers() {
  * @return {Promise<void>} A Promise that resolves once the contacts are loaded.
  */
 async function loadContacts() {
-  contacts = JSON.parse(await getItem("contacts"));
+  // contacts = JSON.parse(await getItem("contacts"));
+  contacts = await getItem("contacts");
+
 }
 
 /**
@@ -298,7 +327,8 @@ async function loadContacts() {
  * @return {Promise<Array>} The tasks retrieved from storage.
  */
 async function loadTasks() {
-  tasks = JSON.parse(await getItem("tasks"));
+  // tasks = JSON.parse(await getItem("tasks"));
+  tasks = await getItem("tasks");
 }
 
 /**
@@ -307,7 +337,8 @@ async function loadTasks() {
  * @return {Promise<void>} A Promise that resolves with no value.
  */
 async function loadCategorys() {
-  categorys = JSON.parse(await getItem("categorys"));
+  // categorys = JSON.parse(await getItem("categorys"));
+  categorys = await getItem("categorys");
 }
 
 /**

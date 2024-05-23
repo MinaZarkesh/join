@@ -170,6 +170,23 @@ let oldTasks = [
     subtaskschecked: ["checked", "unchecked"],
     id: 9,
   },
+  {
+    container: "in-progress-con",
+    category: ["Engine"],
+    title: "Titel: Ostern",
+    description:
+      "Das ist die Description, hier etwas text : handy telefonieren",
+    date: "2024-03-23",
+    priority: "Urgent",
+    priorityImg: "../assets/img/urgentImg.png",
+    associates: [6, 9, 5],
+    assignedTo: ["Marcel Bauer", "Anton Mayer", "Emmanuel Mauer"],
+    assignedToNameTag: ["MB", "AM", "EM"],
+    assignedToColor: ["--variant16", "--variant09", "--variant10"],
+    subtasks: ["Subtask1", "Start Page Layout"],
+    subtaskschecked: ["checked", "unchecked"],
+    id: 10,
+  },
 ];
 
 let oldContacts = [
